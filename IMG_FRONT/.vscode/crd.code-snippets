@@ -1,0 +1,25 @@
+{
+	"Set Base React Form": {
+		"prefix": "crd",
+		"body": [
+			"import React, { useEffect, useState, useRef } from 'react';",
+			"import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';",
+			"import Actions from 'Actions/index';",
+			"import axios from 'axios';",
+			"import { useCookies } from 'react-cookie';",
+			"",
+			"import $Name Component from './$Name _component';",
+			"",
+			"const $Name : React.FC<any> = (props, {}) => {",
+			"\treturn(",
+			"\t\t<>",
+			"\t\t\t<$Name Component {...props} />",
+			"\t\t</>",
+			"\t);",
+			"};",
+			"",
+			"export default $Name ;",
+		],
+		"description": "Set Base React Form"
+	}
+}
