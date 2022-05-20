@@ -1,6 +1,6 @@
-# **REWORK**
+# **IMG_FRONT**
 
-> **홈페이지의 기본 뼈대 템플릿 제작 프로젝트**
+> **이미지 어학원 웹앱 FRONT**
 
 <br/>
 
@@ -36,10 +36,10 @@
 
 ### **함수**
 
-함수명의 경우 Camel Case를 활용하여 작성한다.
-함수명의 첫 글자는 무조건 소문자로 작성한다.
-기본적으로 Arrow Function으로 작성한다.
-redux-saga에서의 함수는 function 키워드를 이용하여 작성한다.
+함수명의 경우 Camel Case를 활용하여 작성한다.<br/>
+함수명의 첫 글자는 무조건 소문자로 작성한다.<br/>
+기본적으로 Arrow Function으로 작성한다.<br/>
+redux-saga에서의 함수는 function 키워드를 이용하여 작성한다.<br/>
 
 ```typescript
 // Base
@@ -53,9 +53,9 @@ function sagaFunc() {}
 
 ### **타입**
 
-타입명의 경우 Pascal Case를 활용하여 작성한다.
-타입명의 어두는 반드시 대문자로 작성한다.
-타입명의 어미에는 반드시 "Type" 을 붙여준다.
+타입명의 경우 Pascal Case를 활용하여 작성한다.<br/>
+타입명의 어두는 반드시 대문자로 작성한다.<br/>
+타입명의 어미에는 반드시 "Type" 을 붙여준다.<br/>
 
 ```typescript
 interface BaseType {}
@@ -66,7 +66,7 @@ type BaseType {}
 
 ### **변수**
 
-변수명의 경우 Camel Case를 활용하여 작성한다.
+변수명의 경우 Camel Case를 활용하여 작성한다.<br/>
 
 ```typescript
 const baseVar;
@@ -77,9 +77,9 @@ let baseVar;
 
 ### **스타일**
 
-스타일 변수는 반드시 const로 작성한다.
-스타일 변수명의 경우 Snake Case를 활용하여 작성한다.
-스타일 변수명의 어두에는 반드시 "$" 를 붙여준다.
+스타일 변수는 반드시 const로 작성한다.<br/>
+스타일 변수명의 경우 Snake Case를 활용하여 작성한다.<br/>
+스타일 변수명의 어두에는 반드시 "$" 를 붙여준다.<br/>
 
 ```typescript
 const $base_style_var;
@@ -89,10 +89,10 @@ const $base_style_var;
 
 ### **컴포넌트**
 
-컴포넌트 함수는 Arrow Function으로 작성한다.
-컴포넌트 함수는 반드시 const로 작성한다.
-컴포넌트명의 경우 Pascal Case를 활용하여 작성한다.
-컴포넌트명의 어두는 반드시 대문자로 작성한다.
+컴포넌트 함수는 Arrow Function으로 작성한다.<br/>
+컴포넌트 함수는 반드시 const로 작성한다.<br/>
+컴포넌트명의 경우 Pascal Case를 활용하여 작성한다.<br/>
+컴포넌트명의 어두는 반드시 대문자로 작성한다.<br/>
 
 ```typescript
 const BaseComponent = () => {};
@@ -102,15 +102,15 @@ const BaseComponent = () => {};
 
 ### **리덕스**
 
-리덕스 액션의 상태 변수는 const로 작성한다.
-리덕스 액션의 상태 변수명은 Snake Case를 활용하여 작성한다.
-리덕스 액션의 상태 변수명은 반드시 모두 대문자로 작성한다.
+리덕스 액션의 상태 변수는 const로 작성한다.<br/>
+리덕스 액션의 상태 변수명은 Snake Case를 활용하여 작성한다.<br/>
+리덕스 액션의 상태 변수명은 반드시 모두 대문자로 작성한다.<br/>
 
 ```typescript
 const REDUX_ACTION_VAR = 'base/REDUX_ACTION_VAR';
 ```
 
-리덕스 상태명은 Camel Case를 활용하여 작성한다.
+리덕스 상태명은 Camel Case를 활용하여 작성한다.<br/>
 
 ```typescript
 const initState = {
