@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
-import StoriesLayout from 'src/components/stories/storiesLayout';
+import StoriesLayout from 'StoriesLayout';
 
 import ListViewComponent from './listView_component';
 import { ListViewPropsType, ItemListType } from './listView_types';
 
 export default {
-  title: 'Molecules/ListView',
+  title: 'Organisms/ListView',
   component: ListViewComponent,
   parameters: {},
 } as Meta;
 
 const Template: Story<ListViewPropsType> = (args: ListViewPropsType) => (
-  <StoriesLayout title="Molecules/ListView">
+  <StoriesLayout title="Organisms/ListView">
     <span className="info">Default</span>
     <div>
       <ListViewComponent {...args} />

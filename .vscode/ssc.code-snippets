@@ -1,6 +1,7 @@
 {
     "Set Base React Form": {
         "prefix": "ssc",
+        "scope": "javascript, typescript, typescriptreact",
         "body": [
             "import React, { useEffect, useState, useRef } from 'react';",
             "import { Meta, Story } from '@storybook/react';",

@@ -1,7 +1,11 @@
 import React from 'react';
 import HomeComponent from './home_component';
 
-const HomeTemplate: React.FC<any> = (props) => {
+export interface HomeTemplatePropsType {
+  titleBannerImgSrc: string;
+}
+
+const HomeTemplate: React.FC<HomeTemplatePropsType> = (props) => {
   return (
     <>
       <HomeComponent {...props} />

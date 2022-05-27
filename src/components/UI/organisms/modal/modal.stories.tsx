@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, MouseEvent } from 'react';
 import { Meta, Story } from '@storybook/react';
 import ModalComponent from './modal_component';
-import StoriesLayout from 'src/components/stories/storiesLayout';
+import StoriesLayout from 'StoriesLayout';
 
 export default {
   title: 'Atoms/Modal',

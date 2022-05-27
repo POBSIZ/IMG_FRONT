@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonComponent from './button_component';
 
 export interface ButtonPropsType {
-  children: string;
+  children: any;
   backColor: 'primary' | 'gradient' | 'black' | 'red';
   isDisabled?: boolean;
   onClick?: () => {} | void;

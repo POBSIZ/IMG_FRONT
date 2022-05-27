@@ -1,6 +1,7 @@
 {
 	"Set Base React Form": {
 		"prefix": "npc",
+		"scope": "javascript, typescript, typescriptreact",
 		"body": [
 			"import React from 'react';",
 			"import { NextPage } from 'next';",

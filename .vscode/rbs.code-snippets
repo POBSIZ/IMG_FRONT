@@ -1,6 +1,7 @@
 {
 	"Set Base React Form": {
 		"prefix": "rbs",
+		"scope": "javascript, typescript, typescriptreact",
 		"body": [
 			"import React, { useEffect, useState, useRef } from 'react';",
 			"import PropTypes from 'prop-types';",

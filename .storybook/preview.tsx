@@ -5,7 +5,9 @@ import Head from 'next/head';
 import GlobalStyle from '../styles/global_styles';
 import * as NextImage from 'next/image';
 
-import '../styles/globals.css';
+import { AosInitializer } from 'Hoc';
+
+import '../styles/init.css';
 
 const OriginalNextImage = NextImage.default;
 
@@ -35,7 +37,9 @@ export const decorators = [
         />
         <link rel="stylesheet" href="/global.css" />
       </Head>
-      <Story />
+      <AosInitializer>
+        <Story />
+      </AosInitializer>
     </ThemeProvider>
   ),
 ];

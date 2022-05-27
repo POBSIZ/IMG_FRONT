@@ -1,6 +1,7 @@
 {
 	"Set Base React Form": {
 		"prefix": "crd",
+		"scope": "javascript, typescript, typescriptreact",
 		"body": [
 			"import React, { useEffect, useState, useRef } from 'react';",
 			"import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';",

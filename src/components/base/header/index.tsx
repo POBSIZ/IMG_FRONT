@@ -13,8 +13,8 @@ export interface HeaderPropsType {
 
 const Header: React.FC = (props) => {
   const navList: NavListType[] = [
-    { url: '/', text: 'TEST' },
-    { url: '/', text: 'TEST' },
+    { url: '/quiz', text: 'QUIZ' },
+    { url: '/quiz/play', text: 'PLAY' },
     { url: '/', text: 'TEST' },
   ];
 

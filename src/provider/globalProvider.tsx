@@ -22,7 +22,7 @@ const GlobalProvider: React.FC<any> = ({ children }) => {
     <>
       <CookiesProvider>
         <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
+          <PersistGate loading={<></>} persistor={persistor}>
             <ThemeProvider theme={globalStyle}>
               <Suspense fallback={<h1>Loading...</h1>}>
                 <AosInitializer>{children}</AosInitializer>

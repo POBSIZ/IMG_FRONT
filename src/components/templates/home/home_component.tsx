@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
+import { HomeTemplatePropsType } from '.';
 import StyledHome from './home_styled';
 
-import { TitleBanner } from 'Templates';
-import { SwipeBanner } from 'Organisms';
+import { SwipeBanner, TitleBanner } from 'Organisms';
 
-const HomeComponent: React.FC = () => {
+const HomeComponent: React.FC<HomeTemplatePropsType> = (
+  props: HomeTemplatePropsType,
+) => {
   return (
     <StyledHome>
-      <TitleBanner imgSrc="/img/main_bg.webp" />
+      <TitleBanner imgSrc={props.titleBannerImgSrc} />
       <SwipeBanner />
     </StyledHome>
   );

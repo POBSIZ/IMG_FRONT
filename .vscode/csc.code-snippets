@@ -1,6 +1,7 @@
 {
 	"Set Base React Form": {
 		"prefix": "csc",
+		"scope": "javascript, typescript, typescriptreact",
 		"body": [
 			"import styled, { css } from 'styled-components';",
 			"import { GlobalStyleType } from 'StyleVars';",

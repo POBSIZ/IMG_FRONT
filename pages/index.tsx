@@ -10,7 +10,7 @@ const HomePage: NextPage<any> = ({}) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE}</title>
       </Head>
-      <HomeTemplate />
+      <HomeTemplate titleBannerImgSrc="/img/main_bg.webp" />
     </>
   );
 };

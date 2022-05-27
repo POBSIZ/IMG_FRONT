@@ -6,76 +6,82 @@
       "dom.iterable",
       "esnext"
     ],
-    "baseUrl": ".",
+    "types": [
+      "node"
+    ],
+    "baseUrl": "./",
     "paths": {
       "Actions": [
-        "src/redux/actions/index.ts"
+        "./src/redux/actions/index.ts"
       ],
       "Actions/*": [
-        "src/redux/actions/*"
+        "./src/redux/actions/*"
       ],
       "Types/*": [
-        "src/redux/types/*"
+        "./src/redux/types/*"
       ],
       "Bases": [
-        "src/components/base/index.ts"
+        "./src/components/base/index.ts"
       ],
       "Bases/*": [
-        "src/components/base/*"
+        "./src/components/base/*"
       ],
       "Templates": [
-        "src/components/templates/index.tsx"
+        "./src/components/templates/index.tsx"
       ],
       "Templates/*": [
-        "src/components/templates/*"
+        "./src/components/templates/*"
       ],
       "UIpages": [
-        "src/components/pages/index.ts"
+        "./src/components/pages/index.ts"
       ],
       "UIpages/*": [
-        "src/components/pages/*"
+        "./src/components/pages/*"
       ],
       "Atoms": [
-        "src/components/UI/atoms/index.ts"
+        "./src/components/UI/atoms/index.ts"
       ],
       "Atoms/*": [
-        "src/components/UI/atoms/*"
+        "./src/components/UI/atoms/*"
       ],
       "Molecules": [
-        "src/components/UI/molecules/index.ts"
+        "./src/components/UI/molecules/index.ts"
       ],
       "Molecules/*": [
-        "src/components/UI/molecules/*"
+        "./src/components/UI/molecules/*"
       ],
       "Organisms": [
-        "src/components/UI/organisms/index.ts"
+        "./src/components/UI/organisms/index.ts"
       ],
       "Organisms/*": [
-        "src/components/UI/organisms/*"
+        "./src/components/UI/organisms/*"
       ],
       "Hoc": [
-        "src/components/HOC/index.tsx"
+        "./src/components/HOC/index.tsx"
       ],
       "Hoc/*": [
-        "src/components/HOC/*"
+        "./src/components/HOC/*"
       ],
       "Utils": [
-        "src/utils/index.ts"
+        "./src/utils/index.ts"
       ],
       "Utils/*": [
-        "src/utils/*"
+        "./src/utils/*"
       ],
       "StyleVars": [
         "styles/global_styles.tsx"
       ],
       "StoriesLayout": [
-        "src/components/stories/storiesLayout/index.tsx"
+        "./src/components/stories/storiesLayout/index.tsx"
       ],
       "Hooks": [
-        "src/hooks/index.ts"
+        "./src/hooks/index.ts"
       ],
       "Layouts": [
-        "src/components/layout/index.ts"
+        "./src/components/layout/index.ts"
+      ],
+      "Types": [
+        "./src/types/index.ts"
       ]
     },
     "allowJs": true,
@@ -112,7 +118,9 @@
   ],
   "typeRoots": [
     "node_modules/@types",
+    // "./node_modules/@types",
     "src/@type",
-    "src/types"
+    "src/types",
+    "./src/types/index.d.ts"
   ]
 }

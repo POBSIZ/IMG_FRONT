@@ -10,3 +10,5 @@ declare module '*.jpeg' {
   const content: string;
   export default content;
 }
+
+declare var require: any
