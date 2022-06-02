@@ -4,10 +4,12 @@ import Actions from 'Actions/index';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import IconInputComponent from './iconInput_component';
+import IconInputComponent from './iconInput.component';
 
 export interface IconInputPropsType {
   type: 'username' | 'password';
+  value: string | number | null;
+  onChange: <T>(T: any) => void;
 }
 
 const IconInput: React.FC<IconInputPropsType> = (

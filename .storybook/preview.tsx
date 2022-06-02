@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import Head from 'next/head';
 
-import GlobalStyle from '../styles/global_styles';
+import GlobalStyle from '../styles/global.styles';
 import * as NextImage from 'next/image';
 
 import { AosInitializer } from 'Hoc';

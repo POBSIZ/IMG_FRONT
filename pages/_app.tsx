@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import ProviderLayout from 'src/provider';
 import GlobalProvider from 'src/provider/globalProvider';
@@ -16,9 +17,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           <meta property="og:image" content="/banner.png" />
           <meta property="og:title" content="REWORK" />
           <meta property="og:description" content="REWORK 시스템" />
-          <link
+          <Link
             rel="stylesheet"
-            type="text/css"
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"
           />
         </Head>

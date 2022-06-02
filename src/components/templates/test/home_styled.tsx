@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { GlobalStyleType } from 'StyleVars';
+import { GlobalStyleType } from 'styles/global.styles';
 
 const StyledHome = styled.article.attrs((props) => {})`
   ${(props) => {

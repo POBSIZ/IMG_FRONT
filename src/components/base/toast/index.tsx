@@ -3,7 +3,7 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import ToastComponent from './toast_component';
+import ToastComponent from './toast.component';
 
 import { initToast } from 'Actions/toastAction';
 
@@ -18,12 +18,11 @@ const Toast: React.FC<any> = (props, {}) => {
   const toast_state = useSelector(
     (state: RootStateOrAny) => state.toastReducer,
   );
-  const toastProps = toast_state.toJS();
 
   const [initState, setInitState] = useState(false);
 
   useEffect(() => {
-    if (toastProps.isPop === true && initState === false) {
+    if (toast_state.isPop === true && initState === false) {
       setInitState(true);
       setTimeout(() => {
         dispatch(initToast());
@@ -31,11 +30,11 @@ const Toast: React.FC<any> = (props, {}) => {
       }, 2000);
     }
     return () => {};
-  }, [toastProps]);
+  }, [toast_state]);
 
   return (
     <>
-      <ToastComponent {...props} {...toastProps} />
+      <ToastComponent {...props} {...toast_state} />
     </>
   );
 };

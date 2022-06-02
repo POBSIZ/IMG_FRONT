@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
 import StoriesLayout from 'StoriesLayout';
 
-import SwitchComponent from './switch_component';
+import SwitchComponent from './switch.component';
 
 export default {
   title: 'Atoms/Switch',

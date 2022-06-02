@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 
-import InputComponent from './input_component';
+import InputComponent from './input.component';
 
 export interface InputPropsType {
   className?: string;
@@ -16,7 +16,7 @@ export interface InputPropsType {
     | 'number'
     | string;
   value: string | number | null;
-  onChange: (e: any) => void;
+  onChange: <T>(T: any) => void;
   name?: string;
   required?: boolean;
   disabled?: boolean;

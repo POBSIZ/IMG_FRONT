@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeComponent from './home_component';
+import HomeComponent from './home.component';
 
 export interface HomeTemplatePropsType {
   titleBannerImgSrc: string;

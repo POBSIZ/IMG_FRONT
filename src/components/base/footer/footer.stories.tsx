@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
 
-import FooterComponent from './footer_component';
+import FooterComponent from './footer.component';
 
 export default {
     title: 'Base/Footer',

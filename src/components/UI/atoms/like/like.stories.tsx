@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
 import StoriesLayout from 'StoriesLayout';
 
-import LikeComponent from './like_component';
+import LikeComponent from './like.component';
 
 export default {
   title: 'Atoms/Like',

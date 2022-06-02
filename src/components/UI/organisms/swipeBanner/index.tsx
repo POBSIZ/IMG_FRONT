@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-import SwipeBannerComponent from './swipeBanner_component';
+import SwipeBannerComponent from './swipeBanner.component';
 
 export interface ImgSrcType {
   src: string;

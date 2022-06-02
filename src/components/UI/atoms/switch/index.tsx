@@ -1,5 +1,5 @@
 import React from 'react';
-import SwitchComponent from './switch_component';
+import SwitchComponent from './switch.component';
 import { SetStateType } from 'Types';
 
 export interface SwitchPropsType {

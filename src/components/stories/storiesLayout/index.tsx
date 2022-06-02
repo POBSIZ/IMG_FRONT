@@ -10,7 +10,7 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import StoiesLayoutComponent from './layout_component';
+import StoiesLayoutComponent from './layout.component';
 
 export interface StoriesLayoutPropsType {
   title: string;

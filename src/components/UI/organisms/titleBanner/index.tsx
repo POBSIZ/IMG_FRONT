@@ -4,7 +4,7 @@ import Actions from 'Actions/index';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import TitleBannerComponent from './titleBanner_component';
+import TitleBannerComponent from './titleBanner.component';
 
 export interface TitleBannerPropsType {
   imgSrc: string;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
 import StoriesLayout from 'StoriesLayout';
-import ToastComponent from './toast_component';
+import ToastComponent from './toast.component';
 
 export default {
   title: 'Atoms/Toast',

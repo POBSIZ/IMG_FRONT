@@ -1,4 +1,8 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import {
+  legacy_createStore as createStore,
+  applyMiddleware,
+  compose,
+} from 'redux';
 import rootReducer, { rootSaga } from './reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -7,6 +11,7 @@ import createSagaMiddleware from 'redux-saga';
 function configureStore() {
   const sagaMiddleware = createSagaMiddleware({});
 
+  // const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
   const enhancer =
     process.env.NODE_ENV === 'production'
       ? compose(applyMiddleware(sagaMiddleware))

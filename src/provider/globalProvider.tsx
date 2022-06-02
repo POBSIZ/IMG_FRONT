@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import configureStore from 'src/redux/reducer/configureStore';
 
 import { ThemeProvider } from 'styled-components';
-import GlobalStyle, { GlobalStyleType } from 'StyleVars';
+import GlobalStyle, { GlobalStyleType } from 'styles/global.styles';
 
 import { AosInitializer } from 'Hoc';
 

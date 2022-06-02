@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonComponent from './button_component';
+import ButtonComponent from './button.component';
 
 export interface ButtonPropsType {
   children: any;

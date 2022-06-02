@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
 import StoriesLayout from 'StoriesLayout';
 
-import TimerComponent from './timer_component';
+import TimerComponent from './timer.component';
 
 export default {
   title: 'Atoms/Timer',

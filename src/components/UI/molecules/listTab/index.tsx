@@ -4,7 +4,7 @@ import Actions from 'Actions/index';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import ListTabComponent from './listTab_component';
+import ListTabComponent from './listTab.component';
 
 export interface ListTabPropsType {
   maxNum: number;

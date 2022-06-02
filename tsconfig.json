@@ -57,7 +57,7 @@
         "./src/components/UI/organisms/*"
       ],
       "Hoc": [
-        "./src/components/HOC/index.tsx"
+        "src/components/HOC/index.ts"
       ],
       "Hoc/*": [
         "./src/components/HOC/*"
@@ -69,7 +69,7 @@
         "./src/utils/*"
       ],
       "StyleVars": [
-        "styles/global_styles.tsx"
+        "styles/global.styles.tsx"
       ],
       "StoriesLayout": [
         "./src/components/stories/storiesLayout/index.tsx"
@@ -95,6 +95,7 @@
     "moduleResolution": "node",
     "noUnusedLocals": false,
     "resolveJsonModule": true,
+    // "isolatedModules": false,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,

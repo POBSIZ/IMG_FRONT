@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
 import StoriesLayout from 'StoriesLayout';
 
-import InputComponent from './input_component';
+import InputComponent from './input.component';
 
 export default {
   title: 'Atoms/Input',

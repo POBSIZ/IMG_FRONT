@@ -31,6 +31,7 @@
 4. **스타일**
 5. **컴포넌트**
 6. **리덕스**
+7. **파일**
 
 <br/>
 
@@ -120,3 +121,17 @@ const initState = {
 ```
 
 <br/>
+
+### **파일**
+
+```typescript
+const 파일명 = {
+  컴포넌트명_폴더: [
+    'index.tsx',
+    '컴포넌트명.component.tsx',
+    '컴포넌트명.styled.tsx',
+    '컴포넌트명.stories.tsx',
+    '컴포넌트명.types.ts',
+  ],
+};
+```

@@ -4,7 +4,7 @@ import Actions from 'Actions/index';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import ContainerComponent from './container_component';
+import ContainerComponent from './container.component';
 
 const Container: React.FC<any> = (props, {}) => {
   return(

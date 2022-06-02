@@ -18,22 +18,25 @@ export default {
   },
 } as Meta;
 
-const Template: Story<any> = (args) => (
-  <>
-    <StoriesLayout title="Molecules/IconInput">
-      <div
-        style={{
-          width: args.width,
-        }}
-      >
-        <span className="info">Default</span>
-        <IconInput {...args} />
-        <span className="info">Password</span>
-        <IconInput {...args} type="password" />
-      </div>
-    </StoriesLayout>
-  </>
-);
+const Template: Story<any> = (args) => {
+  const [state, setState] = useState<any>();
+  return (
+    <>
+      <StoriesLayout title="Molecules/IconInput">
+        <div
+          style={{
+            width: args.width,
+          }}
+        >
+          <span className="info">Default</span>
+          <IconInput value={state} onChange={setState} {...args} />
+          <span className="info">Password</span>
+          <IconInput value={state} onChange={setState} {...args} type="password" />
+        </div>
+      </StoriesLayout>
+    </>
+  );
+};
 
 export const Default = Template.bind({});
 Default.parameters = {};

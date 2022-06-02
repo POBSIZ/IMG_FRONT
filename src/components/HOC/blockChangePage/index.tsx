@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Beforeunload } from 'react-beforeunload';
 
 interface BlockChangePageProps {
+  exitMsg: string;
   exitFunc: () => {} | void;
   condFunc: () => {} | void;
   children: ReactElement;
@@ -16,7 +17,7 @@ const BlockChangePage: React.FC<BlockChangePageProps> = (
   const exitFunc = useCallback(
     (e) => {
       router.events.emit('routeChangeError');
-      const inputData = confirm('게임을 나가시겠습니까?');
+      const inputData = confirm(props.exitMsg);
       if (inputData) {
         props.exitFunc();
         return;

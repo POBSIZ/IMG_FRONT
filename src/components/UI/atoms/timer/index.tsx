@@ -1,5 +1,5 @@
 import React from 'react';
-import TimerComponent from './timer_component';
+import TimerComponent from './timer.component';
 import { SetStateType } from 'Types';
 
 export interface TimerPropsType {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HeaderComponent from './header_component';
+import HeaderComponent from './header.component';
 
 export interface NavListType {
   url: string;
@@ -13,8 +13,9 @@ export interface HeaderPropsType {
 
 const Header: React.FC = (props) => {
   const navList: NavListType[] = [
+    { url: '/auth/login', text: 'LOGIN' },
     { url: '/quiz', text: 'QUIZ' },
-    { url: '/quiz/play', text: 'PLAY' },
+    { url: '/admin', text: 'ADMIN' },
     { url: '/', text: 'TEST' },
   ];
 

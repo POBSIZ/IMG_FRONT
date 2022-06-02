@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, MouseEvent } from 'react';
 import { Meta, Story } from '@storybook/react';
-import ModalComponent from './modal_component';
+import ModalComponent from './modal.component';
 import StoriesLayout from 'StoriesLayout';
 
 export default {

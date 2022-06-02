@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 
-import HeaderComponent from './header_component';
+import HeaderComponent from './header.component';
 
 export default {
   title: 'Base/Header',
