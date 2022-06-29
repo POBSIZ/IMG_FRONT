@@ -34,7 +34,8 @@ export const NavList = styled.nav.attrs((props) => {})`
           cursor: pointer;
           font-size: ${$font_subtitle};
           margin: 0 10px;
-          color: ${$base_theme_color};
+          /* color: ${$base_theme_color}; */
+          color: ${$color_base_black};
           text-decoration: none;
           &:last-child {
             margin-right: 0;
@@ -139,7 +140,8 @@ const StyledHeader = styled.header.attrs((props) => {})`
 
       .Icon {
         display: none;
-        color: ${$base_theme_color};
+        /* color: ${$base_theme_color}; */
+        color: ${$color_base_black};
         font-size: 20px;
         cursor: pointer;
       }

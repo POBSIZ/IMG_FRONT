@@ -15,7 +15,7 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
 
     return css`
       width: 100%;
-      height: 90vh;
+      height: 100vh;
 
       display: flex;
       justify-content: center;
