@@ -22,7 +22,7 @@ const QuizCreatePage: NextPage<any> = (props, {}) => {
   });
 
   const getBookList = useCallback(async () => {
-    const res = await Get('http://localhost:3939/quiz/book', {
+    const res = await Get('/quiz/book', {
       headers: {
         Authorization: `Bearer ${authState.token}`,
       },
