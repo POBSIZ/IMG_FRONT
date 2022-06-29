@@ -3,16 +3,16 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f ./env/development.env next dev -p 8888",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build -p 8888",
+    "start": "next start -p 8888",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest",
+    "start:dev": "env-cmd -f ./env/development.env next start -p 8888",
     "build:dev": "env-cmd -f ./env/delvopment.env next build",
-    "build:prod": "env-cmd -f ./env/production.env next build",
-    "start:dev": "env-cmd -f ./env/development.env next start",
-    "start:prod": "env-cmd -f ./env/production.env next start"
+    "start:prod": "env-cmd -f ./env/production.env next start -p 8888",
+    "build:prod": "env-cmd -f ./env/production.env next build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",

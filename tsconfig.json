@@ -109,7 +109,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "src/components/UI/atoms/button/button.stories"
+    "**/*.tsx",
+    "src/components/UI/atoms/button/button.stories"
   ],
   "exclude": [
     "node_modules",
