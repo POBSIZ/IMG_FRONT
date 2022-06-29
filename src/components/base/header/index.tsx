@@ -1,25 +1,48 @@
-import React from 'react';
+import { authLogout } from 'Actions/authAction';
+import Router from 'next/router';
+import React, { useCallback } from 'react';
+import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
+
+import { pushToastAsync } from 'Actions/toastAction';
 
 import HeaderComponent from './header.component';
 
-export interface NavListType {
+export interface NavListItemType {
   url: string;
   text: string;
 }
 
-export interface HeaderPropsType {
-  navList: NavListType[];
+export interface NavListType {
+  top: NavListItemType[];
+  default: NavListItemType[];
+  admin: NavListItemType[];
 }
 
-const Header: React.FC = (props) => {
-  const navList: NavListType[] = [
-    { url: '/auth/login', text: 'LOGIN' },
-    { url: '/quiz', text: 'QUIZ' },
-    { url: '/admin', text: 'ADMIN' },
-    { url: '/', text: 'TEST' },
-  ];
+export interface HeaderPropsType {
+  navList: NavListType;
+}
 
-  return <HeaderComponent navList={navList} {...props} />;
+export interface HeaderComponentPropsType extends HeaderPropsType {
+  authState: RootStateOrAny;
+  logout: Function;
+}
+
+const Header: React.FC<HeaderPropsType> = (props) => {
+  const dispatch = useDispatch();
+  const authState = useSelector((state: RootStateOrAny) => state.authReducer);
+
+  const logout = useCallback(() => {
+    dispatch(authLogout());
+    dispatch(
+      pushToastAsync.request({
+        status: 'error',
+        message: '로그아웃하였습니다.',
+      }),
+    );
+    Router.push('/');
+  }, []);
+
+  return <HeaderComponent authState={authState} logout={logout} {...props} />;
 };
 
 export default Header;

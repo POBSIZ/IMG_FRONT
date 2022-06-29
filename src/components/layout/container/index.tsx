@@ -4,14 +4,23 @@ import Actions from 'Actions/index';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-import ContainerComponent from './container.component';
+import styled, { css } from 'styled-components';
+import { GlobalStyleType } from 'styles/global.styles';
 
-const Container: React.FC<any> = (props, {}) => {
-  return(
-    <>
-      <ContainerComponent {...props} />
-    </>
-  );
-};
+const Container = styled.article.attrs((props) => ({}))`
+  ${(props) => {
+    const Theme: GlobalStyleType = props.theme;
+    const $tablet_max_width = Theme.media.$tablet_max_width;
+    const $header_desktop_line_height = Theme.size.$header_desktop_line_height;
+    const $header_mobile_line_height = Theme.size.$header_mobile_line_height;
+    return css`
+      padding: ${$header_desktop_line_height} 5%;
+
+      @media screen and (max-width: ${$tablet_max_width}) {
+        padding: ${$header_mobile_line_height} 2%;
+      }
+    `;
+  }};
+`;
 
 export default Container;

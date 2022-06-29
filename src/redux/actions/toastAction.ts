@@ -1,10 +1,7 @@
 import { action, createAction, createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
 
-import {
-  ToastReducerType,
-  PushToastPropsType,
-} from 'Types/toastTypes';
+import { ToastReducerType, PushToastPropsType } from 'Types/toastTypes';
 import { ErrorInfo } from 'react';
 
 // PUSH_TOAST Action
@@ -15,7 +12,7 @@ export const pushToastAsync = createAsyncAction(
   PUSH_TOAST,
   PUSH_TOAST_SUCCESS,
   PUSH_TOAST_ERROR,
-)<any, PushToastPropsType, any>();
+)<PushToastPropsType, PushToastPropsType, any>();
 
 // INIT_TOAST Action
 export const INIT_TOAST = 'toast/INIT_TOAST' as const;

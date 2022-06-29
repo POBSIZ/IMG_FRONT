@@ -1,5 +1,6 @@
 export interface QuizItemType {
-  id: number;
+  userQuiz_id: number;
+  quiz_id: number;
   title: string;
   date: string;
   tryCount: number;
@@ -10,4 +11,5 @@ export interface QuizItemType {
 
 export interface QuizTemplatePropsType {
   quizList: QuizItemType[];
+  isLoading: boolean;
 }

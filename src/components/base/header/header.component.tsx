@@ -6,14 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // HOC
 import { nanoid } from 'nanoid';
 
 import Link from 'next/link';
+import { CheckAdmin } from 'Hoc';
 
-import { HeaderPropsType, NavListType } from '.';
+import {
+  HeaderPropsType,
+  NavListType,
+  NavListItemType,
+  HeaderComponentPropsType,
+} from '.';
 import StyledHeader, { NavList } from './header.styled';
 
-const HeaderComponent: React.FC<HeaderPropsType> = (props) => {
+const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
   const [navState, setNavState] = useState(false);
 
-  const handleNavOpen = useCallback(() => {
+  const handleNavState = useCallback(() => {
     setNavState((state) => !state);
   }, [navState]);
 
@@ -23,28 +29,66 @@ const HeaderComponent: React.FC<HeaderPropsType> = (props) => {
       <NavList isOpen={navState}>
         <ul>
           <li>
-            <span>Welcome!</span>
+            <span>
+              {props.authState?.profile?.name
+                ? `안녕하세요 ${props.authState?.profile?.name}님`
+                : '안녕하세요.'}
+            </span>
             <FontAwesomeIcon
               icon={faXmark as IconProp}
               className="Icon"
-              onClick={handleNavOpen}
+              onClick={handleNavState}
             />
           </li>
-          <div onClick={handleNavOpen}>
-            {props.navList?.map((item: NavListType) => {
+          <div onClick={handleNavState}>
+            {props.navList?.default?.map((item: NavListItemType) => {
               return (
                 <Link key={nanoid()} href={item.url}>
                   {item.text}
                 </Link>
               );
             })}
+
+            <CheckAdmin>
+              <>
+                {props.navList?.admin?.map((item: NavListItemType) => {
+                  return (
+                    <Link key={nanoid()} href={item.url}>
+                      {item.text}
+                    </Link>
+                  );
+                })}
+              </>
+            </CheckAdmin>
+
+            {props.authState?.token ? (
+              <>
+                <Link href="/profile">프로필</Link>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    props.logout();
+                  }}
+                >
+                  로그아웃
+                </a>
+              </>
+            ) : (
+              props.navList?.top?.map((item: NavListItemType) => {
+                return (
+                  <Link key={nanoid()} href={item.url}>
+                    {item.text}
+                  </Link>
+                );
+              })
+            )}
           </div>
         </ul>
       </NavList>
       <FontAwesomeIcon
         icon={faBars as IconProp}
         className="Icon"
-        onClick={handleNavOpen}
+        onClick={handleNavState}
       />
     </StyledHeader>
   );

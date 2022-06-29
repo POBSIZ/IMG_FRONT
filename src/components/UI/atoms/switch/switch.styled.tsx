@@ -97,6 +97,7 @@ const StyledSwitch = styled.div.attrs((props: SwitchPropsType) => ({}))<{
     const $bg_color = props.state ? $color_key_color : $color_base_LightGray;
 
     return css`
+      cursor: pointer;
       width: ${sizeTable[props.size].body.w};
       height: ${sizeTable[props.size].body.h};
       border-radius: 32px;

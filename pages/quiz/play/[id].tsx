@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+
+import { useSelector, RootStateOrAny } from 'react-redux';
+import { Get } from 'Utils';
 
 import {
   QuizPlayTemplatePropsType,
@@ -9,33 +12,56 @@ import {
   AnswerListItem,
 } from 'Templates/quiz/play/quizPlay.types';
 import { QuizPlayTemplate } from 'Templates';
+import { Loader } from 'Bases';
 
 const QuizPlayPage: NextPage<any> = ({}) => {
   const router = useRouter();
-  const { id, title } = router.query;
+  const authState = useSelector((state: RootStateOrAny) => state.authReducer);
 
-  let quizList: QuizItemType[] = [];
+  /**
+   * @param id quiz_id
+   * @param title quiz title
+   * @param uqid userQuiz_id
+   */
+  const { id, title, uqid } = router.query;
 
-  [...Array(10)].forEach((item, i) => {
-    quizList[i] = {
-      word: `${i + 1}. Apple`,
-      diacritic: 'ǽpl',
-      options: ['사과', '배', '포도', '참외'],
-      answer: 0,
-    };
-  });
+  const [isLoad, setIsLoad] = useState<boolean>(true);
+
+  const [probList, setProbList] = useState<{
+    limitTime: number;
+    probList: QuizItemType[];
+  }>({ limitTime: NaN, probList: [] });
+
+  // 문제 목록 가져오기
+  const getProbs = useCallback(async () => {
+    const probs = await Get(`/quiz/prob/${id}`, {
+      timeout: 10000,
+      headers: { Authorization: `Bearer ${authState.token}` },
+    });
+    setProbList(probs.data);
+    setIsLoad(false);
+  }, []);
+
+  useEffect(() => {
+    getProbs();
+  }, []);
 
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE} | QUIZ PLAY</title>
+        <title>{process.env.NEXT_PUBLIC_TITLE} | 퀴즈 진행</title>
       </Head>
-      <QuizPlayTemplate
-        quizId={Number(id)}
-        quizTitle={`${title}`}
-        limitTime={5}
-        quizList={quizList}
-      />
+      {isLoad ? (
+        <Loader />
+      ) : (
+        <QuizPlayTemplate
+          userQuizId={Number(uqid)}
+          quizId={Number(id)}
+          quizTitle={`${title}`}
+          limitTime={probList.limitTime}
+          quizList={probList.probList}
+        />
+      )}
     </>
   );
 };

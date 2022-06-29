@@ -8,7 +8,7 @@ const QuizResultPage: NextPage<any> = (props, {}) => {
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE} | QUIZ RESULT</title>
+        <title>{process.env.NEXT_PUBLIC_TITLE} | 퀴즈 결과</title>
       </Head>
       <QuizResultTemplate />
     </>

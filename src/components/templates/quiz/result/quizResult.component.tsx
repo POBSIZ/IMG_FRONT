@@ -1,7 +1,13 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import { nanoid } from 'nanoid';
 import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
+import { faPlayCircle, faUser } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
 import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // HOC
 
@@ -12,77 +18,123 @@ import StyledQuizResult, {
   IsWrongToggle,
   StyledAnswerList,
   StyledAnswerListHead,
+  ResultNum,
+  GoToProfile,
 } from './quizResult.styled';
 
 import Layout from 'Layouts';
-
-import { Switch } from 'Atoms';
+import { Loader } from 'Bases';
+import { Switch, Title } from 'Atoms';
+import Link from 'next/link';
 
 const QuizResultComponent: React.FC<QuizResultComponentPropsType> = (props) => {
-  const [isWrong, setIsWrong] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const audioRef: { current: HTMLAudioElement | null } = useRef(null);
+  const [audioState, setAudioState] = useState<string>('');
 
-  const resultList = useMemo(() => {
-    return isWrong
-      ? props.result.result.list.filter(
-          (item) => item.answer[0] !== item.correctWordId,
-        )
-      : props.result.result.list;
-  }, [isWrong]);
+  const handleAudio = useCallback((_audio: string) => {
+    setAudioState(_audio);
+    // audioRef?.current?.src = _audio;
+    audioRef?.current?.play();
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [props.resultList]);
 
   return (
     <Layout.Container>
       <StyledQuizResult>
-        <h1>📝 {props.result.result.title} 결과</h1>
+        <Title style={{ margin: '20px 0' }}>
+          📝 {props.quizResultState?.result?.title} 결과
+        </Title>
+
         <IsWrongToggle>
           <span>오답만 보기</span>
           <Switch
             name="isWrong"
             size="M"
-            switchState={isWrong}
-            handleSwitch={setIsWrong}
+            switchState={props.isWrong}
+            handleSwitch={() => {
+              setIsLoading(true);
+              props.setIsWrong();
+            }}
           />
         </IsWrongToggle>
-        <StyledAnswerList>
-          {resultList.map((item: AnswerListItem, i) => {
-            return (
-              <li key={nanoid()}>
-                <StyledAnswerListHead>
-                  <span
-                    className={
-                      item.answer[0] === item.correctWordId
-                        ? 'correct'
-                        : 'wrong'
-                    }
-                  >
-                    {item.id + 1}
-                  </span>
-                  <h4>
-                    {item.options[item.correctWordId]} [{item.diacritic}]
-                  </h4>
-                  <FontAwesomeIcon icon={faPlayCircle} />
-                </StyledAnswerListHead>
-                <ol>
-                  {item.options.map((option, k) => {
-                    return (
-                      <li
-                        key={nanoid()}
-                        className={
-                          k === item.correctWordId
-                            ? 'correct'
-                            : k === item.answer[0]
-                            ? 'wrong'
-                            : ''
-                        }
-                      >
-                        {k + 1}. {option}
-                      </li>
-                    );
-                  })}
-                </ol>
-              </li>
-            );
-          })}
-        </StyledAnswerList>
+
+        <ResultNum>
+          {props.quizResultState?.result?.corrCount} /{' '}
+          {props.quizResultState?.result?.list.length}{' '}
+          <GoToProfile>
+            <Link href="/profile">
+              <span>
+                <FontAwesomeIcon icon={faUser} /> 프로필로 이동
+              </span>
+            </Link>
+          </GoToProfile>
+        </ResultNum>
+
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <StyledAnswerList>
+            {props.resultList?.map((item: AnswerListItem) => {
+              return (
+                <Layout.Content style={{ margin: '20px 0' }} key={nanoid()}>
+                  <li>
+                    <StyledAnswerListHead>
+                      <div>
+                        <span
+                          className={
+                            item?.answer[0] === item?.correctWordId
+                              ? 'correct'
+                              : 'wrong'
+                          }
+                        >
+                          {item?.id + 1}
+                        </span>
+                        <FontAwesomeIcon
+                          icon={faPlayCircle}
+                          onClick={() => {
+                            handleAudio(item?.audio);
+                          }}
+                        />
+                      </div>
+                      <h4>
+                        {item?.correctWord} [{item?.diacritic}]
+                      </h4>
+                    </StyledAnswerListHead>
+                    <ol>
+                      {item?.options?.map((option: string, k: number) => {
+                        return (
+                          <li
+                            key={nanoid()}
+                            className={
+                              k === item?.correctWordId
+                                ? 'correct'
+                                : k === item?.answer[0]
+                                ? 'wrong'
+                                : ''
+                            }
+                          >
+                            {k + 1}. {option}
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  </li>
+                </Layout.Content>
+              );
+            })}
+          </StyledAnswerList>
+        )}
+
+        <audio
+          src={audioState}
+          autoPlay={true}
+          loop={false}
+          ref={audioRef}
+        ></audio>
       </StyledQuizResult>
     </Layout.Container>
   );

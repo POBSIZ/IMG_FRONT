@@ -17,7 +17,17 @@ const GlobalStyle = {
   baseTheme: { ...baseThemes },
   palette: {
     // 키 컬러
-    $color_key_color: '#3182F6',
+
+    // 토스 컬러
+    // $color_key_color: '#3182F6',
+
+    // 짙은 카카오 컬러
+    // $color_key_color: '#ffcd00',
+    $color_key_color: 'hsl(48, 100%, 50%)',
+
+    // 밝은 카카오 컬러
+    // $color_key_color: '#fae100',
+
     $color_key_light: '#6CA6F9',
 
     // 기본 팔레트

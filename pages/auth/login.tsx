@@ -8,7 +8,7 @@ const LoginPage: NextPage<any> = (props, {}) => {
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE} | LOGIN</title>
+        <title>{process.env.NEXT_PUBLIC_TITLE} | 로그인</title>
       </Head>
       <LoginTemplate />
     </>

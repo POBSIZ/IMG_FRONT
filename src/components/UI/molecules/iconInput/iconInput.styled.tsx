@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const StyledIconInput = styled.div.attrs((props) => ({}))`
+const StyledIconInput = styled.div.attrs((props) => ({}))<any>`
   ${(props) => {
     const colorD3Blue = props.theme.palette.$color_d3_blue;
     const colorBaseBlack = props.theme.palette.$color_base_black;

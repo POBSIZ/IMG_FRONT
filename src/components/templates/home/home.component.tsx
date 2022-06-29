@@ -11,13 +11,7 @@ const HomeComponent: React.FC<HomeTemplatePropsType> = (
   return (
     <StyledHome>
       <TitleBanner imgSrc={props.titleBannerImgSrc} />
-      <SwipeBanner />
-
-      <div className="wrap">
-        <div className="box">
-          <div className="inner"></div>
-        </div>
-      </div>
+      {/* <SwipeBanner /> */}
     </StyledHome>
   );
 };

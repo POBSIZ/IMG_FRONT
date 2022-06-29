@@ -1,7 +1,11 @@
-import Utils, { Get } from 'Utils';
+import Utils, { Get, Post } from 'Utils';
 
-// // GET NAME API
-// export async function apiGetCheckSession(info: GetCheckSessionPramType) {
-//   const response = await Get<GetCheckSessionResponseType>(`/api/hello`);
-//   return response.data;
-// }
+import { ApiPostLoginParamType, ApiPostLoginResType } from 'Types/authTypes';
+
+/**
+ * POST LOGIN API
+ * */
+export async function apiPostLogin({ ...args }: ApiPostLoginParamType) {
+  const res = await Post<ApiPostLoginResType>(`/user/login`, { ...args });
+  return res.data;
+}

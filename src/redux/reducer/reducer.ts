@@ -11,14 +11,14 @@ import Sagas from '../sagas';
 const persistConfig = {
   key: 'root',
   storage,
-  // whitelist: ['authReducer'],
-  blacklist: [],
+  whitelist: ['authReducer'],
+  // blacklist: [],
 };
 
-import testReducer from './testReducer';
-import toastReducer from './toastReducer';
-import quizReducer from './quizReducer';
-import authReducer from './authReducer';
+import testReducer from './store/testReducer';
+import toastReducer from './store/toastReducer';
+import quizReducer from './store/quizReducer';
+import authReducer from './store/authReducer';
 
 const rootReducer = combineReducers({
   testReducer,

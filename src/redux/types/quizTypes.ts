@@ -7,6 +7,7 @@ export interface QuizResultType {
   title: string;
   id: number;
   list: AnswerListItem[];
+  corrCount: number;
 }
 
 // Quiz Reducer Types

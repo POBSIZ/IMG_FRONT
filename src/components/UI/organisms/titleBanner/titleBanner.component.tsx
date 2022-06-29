@@ -20,8 +20,8 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
       </AosWrapper>
       <AosWrapper animation="fade-up" delay={1000} duration={800}>
         <p>
-          REWORK는 편리한 랜딩페이지 제작을 위해 제작된 템플릿 입니다. <br />
-          REWORK는 모두에게 열려있는 오픈소스 프로젝트 입니다.
+          REWORK는 편리한 랜딩페이지 제작을 위해 제작된 템플릿 입니다. REWORK는
+          모두에게 열려있는 오픈소스 프로젝트 입니다.
         </p>
       </AosWrapper>
     </StyledTitleBanner>

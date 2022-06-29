@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // axios 인스턴스를 생성합니다.
 const GetInstance = axios.create({
-  baseURL: 'https://localhost:8888',
-  timeout: 1800,
+  baseURL: process.env.NEXT_PUBLIC_SERVER,
+  timeout: 2800,
 });
 
 /*

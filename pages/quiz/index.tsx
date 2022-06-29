@@ -1,36 +1,41 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
 import { QuizTemplate } from 'Templates';
-
 import { QuizItemType } from 'Templates/quiz/index/quiz.types';
 
+import { RedirectLogin } from 'Hoc';
+import { Get } from 'Utils';
+
 const QuizPage: NextPage<any> = (props, {}) => {
-  let quizList: QuizItemType[] = [];
-  const year = new Date(Date.now()).getFullYear();
-  const month = new Date(Date.now()).getMonth();
-  const day = new Date(Date.now()).getDate();
-  const date = `${year}-${month}-${day}`;
-  console.log(date);
-  [...Array(10)].forEach((item, i) => {
-    quizList.push({
-      title: `${i + 1} TEST`,
-      id: i + 1,
-      date: date,
-      tryCount: i,
-      solvedCount: i,
-      maxCount: i * i,
-      disabled: i % 2 == 0 && i !== 0 ? true : false,
+  const [isLoad, setIsLoad] = useState<boolean>(true);
+
+  const authState = useSelector((state: RootStateOrAny) => state.authReducer);
+  const [quizList, setQuizList] = useState<QuizItemType[]>([]);
+
+  // 내 유저 퀴즈 목록 가져오기
+  const getMyQuizs = useCallback(async () => {
+    const quizs = await Get('/quiz/my', {
+      headers: { Authorization: `Bearer ${authState.token}` },
     });
-  });
+    setQuizList(quizs.data);
+    setIsLoad(false);
+  }, []);
+
+  useEffect(() => {
+    getMyQuizs();
+  }, []);
 
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE} | QUIZ</title>
+        <title>{process.env.NEXT_PUBLIC_TITLE} | 퀴즈</title>
       </Head>
-      <QuizTemplate quizList={quizList} />
+      <RedirectLogin>
+        <QuizTemplate isLoading={isLoad} quizList={quizList} />
+      </RedirectLogin>
     </>
   );
 };

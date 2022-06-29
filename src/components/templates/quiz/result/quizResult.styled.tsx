@@ -22,25 +22,43 @@ export const StyledAnswerListHead = styled.div.attrs((props) => {})`
     const $mobile_max_width = Theme.media.$mobile_max_width;
     return css`
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      flex-flow: row;
+      justify-content: flex-start;
       align-items: center;
-      gap: 100px;
+      gap: 20px;
 
-      span {
-        ${$font_subtitle};
+      div {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
+        flex-flow: row;
+        justify-content: flex-start;
         align-items: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 100%;
-        color: ${$color_base_white};
+        gap: 20px;
 
-        &.correct {
-          background-color: ${$color_success};
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          width: 44px;
+          height: 44px;
+          border-radius: 100%;
+          color: ${$color_base_white};
+          ${$font_subtitle};
+
+          &.correct {
+            background-color: ${$color_success};
+          }
+          &.wrong {
+            background-color: ${$color_failure};
+          }
         }
-        &.wrong {
-          background-color: ${$color_failure};
+
+        svg {
+          cursor: pointer;
+          font-size: 44px;
+          color: ${$color_key_color};
         }
       }
 
@@ -48,13 +66,10 @@ export const StyledAnswerListHead = styled.div.attrs((props) => {})`
         ${$font_title_regular};
       }
 
-      svg {
-        font-size: 24px;
-        color: ${$color_key_color};
-      }
-
       @media screen and (max-width: ${$mobile_max_width}) {
-        gap: 14px;
+        gap: 10px;
+        flex-flow: column;
+        align-items: flex-start;
       }
     `;
   }}
@@ -87,18 +102,18 @@ export const StyledAnswerList = styled.ul.attrs((props) => {})`
       li {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         flex-wrap: wrap;
+        flex-flow: column;
 
         border-bottom: 1px solid ${$color_base_line};
 
-        height: 100px;
-
         ol {
-          padding: 0;
+          padding: 10px 10px 20px 10px;
           display: flex;
+          flex-flow: column;
           justify-content: space-between;
-          align-items: center;
+          align-items: flex-start;
           gap: 14px;
           li {
             ${$font_subtitle};
@@ -116,8 +131,7 @@ export const StyledAnswerList = styled.ul.attrs((props) => {})`
 
       @media screen and (max-width: ${$mobile_max_width}) {
         li {
-          height: auto;
-          padding-bottom: 10px;
+          margin: 10px 0;
         }
       }
     `;
@@ -143,7 +157,65 @@ export const IsWrongToggle = styled.div.attrs((props) => {})`
   }}
 `;
 
-const StyledQuizResult = styled.p.attrs((props) => {})`
+export const ResultNum = styled.div.attrs((props) => {})`
+  ${(props) => {
+    const Theme: GlobalStyleType = props.theme;
+
+    const $font_body_head = Theme.font.$font_body_head;
+
+    const $color_base_white = Theme.palette.$color_base_white;
+    const $color_base_black = Theme.palette.$color_base_black;
+    const $color_base_dark = Theme.palette.$color_base_dark;
+    const $color_key_color = Theme.palette.$color_key_color;
+
+    const $mobile_max_width = Theme.media.$mobile_max_width;
+    return css`
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      ${$font_body_head};
+      @media screen and (max-width: ${$mobile_max_width}) {
+      }
+    `;
+  }}
+`;
+
+export const GoToProfile = styled.div.attrs((props) => {})`
+  ${(props) => {
+    const Theme: GlobalStyleType = props.theme;
+
+    const $font_body_head = Theme.font.$font_body_head;
+    const $font_body_info = Theme.font.$font_body_info;
+
+    const $color_base_white = Theme.palette.$color_base_white;
+    const $color_base_black = Theme.palette.$color_base_black;
+    const $color_base_dark = Theme.palette.$color_base_dark;
+    const $color_key_color = Theme.palette.$color_key_color;
+
+    const $mobile_max_width = Theme.media.$mobile_max_width;
+    return css`
+      ${$font_body_info};
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 10px;
+
+      width: fit-content;
+      /* margin-top: 10px; */
+      padding: 8px 10px;
+      background-color: ${$color_key_color};
+      color: ${$color_base_white};
+
+      @media screen and (max-width: ${$mobile_max_width}) {
+      }
+    `;
+  }}
+`;
+
+const StyledQuizResult = styled.section.attrs((props) => {})`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 

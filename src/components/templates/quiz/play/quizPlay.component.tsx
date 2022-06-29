@@ -1,7 +1,18 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import { nanoid } from 'nanoid';
 import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
-import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
+import {
+  faAngleRight,
+  faAngleLeft,
+  faClock,
+  faList,
+} from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
 import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // HOC
 
@@ -20,30 +31,51 @@ import StyledQuiz, {
 
 import { Timer, Button } from 'Atoms';
 import { ListTab } from 'Molecules';
+import { Modal } from 'Organisms';
 import Layout from 'Layouts';
-
-import { useRouter } from 'next/router';
+import { BlockChangePage } from 'Hoc';
 
 const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
-  const router = useRouter();
+  const [modalState, setModalState] = useState<boolean>(true);
+
+  const audioRef: { current: HTMLAudioElement | null } = useRef(null); // audio 객체 지정
 
   const [timer, setTimer] = useState<number>(props.limitTime); // 타이머 시간
   const [currNum, setCurrNum] = useState<number>(0); // 현재 단어 id
   const [answerList, setAnswerList] = useState<AnswerListItem[]>([]); // 제출 데이터
   const [prevState, setPrevState] = useState<boolean>(true); // 이전 단어 버튼 사용 유무
 
-  // console.log('Render: QuizPlayComponent');
-  console.log(answerList);
+  // Audio 플레이 함수
+  const handleAudio = useCallback(() => {
+    const audioTime = setTimeout(() => {
+      audioRef?.current?.play();
+    }, 1000);
+    timer < 2 ? clearTimeout(audioTime) : audioTime;
+  }, [audioRef.current]);
 
+  // Audio 이벤트
+  useEffect(() => {
+    audioRef?.current?.addEventListener('ended', handleAudio);
+    return () => {
+      removeEventListener('ended', handleAudio);
+    };
+  }, [audioRef]);
+
+  // AnswerList State 변경
   const handleAnswerList = useCallback(
     (_currNum: number, _answer: [number, string] | []) => {
+      if (props.quizList[_currNum].answer === _answer[0]) {
+      }
       setAnswerList((state) => {
         state[_currNum] = {
           id: _currNum,
+          prob_id: props.quizList[_currNum].prob_id,
           answer: _answer,
           correctWordId: props.quizList[_currNum].answer,
+          correctWord: props.quizList[_currNum].word,
           options: props.quizList[_currNum].options,
           diacritic: props.quizList[_currNum].diacritic,
+          audio: props.quizList[_currNum].audio,
         };
         return state;
       });
@@ -58,13 +90,16 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
         let _answerList: AnswerListItem[] = Object.assign([], answerList);
         _answerList[_currNum] = {
           id: _currNum,
+          prob_id: props.quizList[_currNum].prob_id,
           answer: _answer,
-          correctWordId: props.quizList[_currNum].answer,
-          options: props.quizList[_currNum].options,
-          diacritic: props.quizList[_currNum].diacritic,
+          correctWordId: props.quizList[_currNum]?.answer,
+          correctWord: props.quizList[_currNum].word,
+          options: props.quizList[_currNum]?.options,
+          diacritic: props.quizList[_currNum]?.diacritic,
+          audio: props.quizList[_currNum]?.audio,
         };
         props.handleSave(_answerList);
-        router.push('/quiz/result');
+        props.router.push('/quiz/result');
       }
     },
     [answerList],
@@ -100,8 +135,8 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
   useEffect(() => {
     if (
       timer <= 0 &&
-      currNum + 1 < props.quizList.length &&
-      answerList.length < props.quizList.length
+      currNum + 1 < props.quizList?.length &&
+      answerList.length < props.quizList?.length
     ) {
       nextWord(false);
     } else {
@@ -112,7 +147,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
   // 단어 선택시 실행
   const handleOption = useCallback(
     (item: string, i: number, _currNum: number) => {
-      if (timer !== 0 && _currNum + 1 < props.quizList.length) {
+      if (timer !== 0 && _currNum + 1 < props.quizList?.length) {
         handleAnswerList(_currNum, [i, item]);
         nextWord(true);
       } else {
@@ -125,13 +160,46 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
   return (
     <Layout.Container>
       <StyledQuiz>
-        <Timer count={timer} handleCount={setTimer} />
+        <Modal
+          title="주의사항"
+          openState={modalState}
+          setOpenState={() => {
+            setModalState(false);
+          }}
+        >
+          <>
+            <section>
+              <div>
+                <FontAwesomeIcon icon={faClock} />
+                <span>제한시간</span>
+                <span>{props.limitTime}</span>
+              </div>
+              <div>
+                <FontAwesomeIcon icon={faList} />
+                <span>문제수</span>
+                <span>{props.quizList.length}</span>
+              </div>
+            </section>
+            <Button
+              backColor="primary"
+              onClick={() => {
+                setModalState(false);
+              }}
+            >
+              퀴즈 시작
+            </Button>
+          </>
+        </Modal>
+
+        {modalState ? null : <Timer count={timer} handleCount={setTimer} />}
+
         <QuizWord>
-          <h1>{props.quizList[currNum].word}</h1>
-          <h3>[{props.quizList[currNum].diacritic}]</h3>
+          <h1>{props.quizList[currNum]?.word}</h1>
+          <h3>[{props.quizList[currNum]?.diacritic}]</h3>
         </QuizWord>
+
         <QuizOptions>
-          {props.quizList[currNum].options?.map((item, i) => {
+          {props.quizList[currNum]?.options?.map((item, i) => {
             return (
               <Button
                 key={nanoid()}
@@ -140,11 +208,12 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
                   handleOption(item, i, currNum);
                 }}
               >
-                {i + 1}. {item}
+                {item}
               </Button>
             );
           })}
         </QuizOptions>
+
         <QuizControl>
           {prevState ? (
             <Button
@@ -155,6 +224,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
               <FontAwesomeIcon icon={faAngleLeft} />
             </Button>
           ) : null}
+
           <Button
             backColor="black"
             onClick={() => {
@@ -164,8 +234,17 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
             <FontAwesomeIcon icon={faAngleRight} />
           </Button>
         </QuizControl>
-        <ListTab maxNum={props.quizList.length} currNum={currNum + 1} />
+
+        <ListTab maxNum={props.quizList?.length} currNum={currNum + 1} />
+
         <QuizTitle>{props.quizTitle}</QuizTitle>
+
+        <audio
+          src={!modalState ? props.quizList[currNum]?.audio : undefined}
+          autoPlay={true}
+          loop={false}
+          ref={audioRef}
+        ></audio>
       </StyledQuiz>
     </Layout.Container>
   );

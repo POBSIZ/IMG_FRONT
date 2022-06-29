@@ -1,11 +1,12 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'styles/global.styles';
 
-import { ButtonPropsType } from '.';
+export interface BadgePropsType {
+  backColor: 'primary' | 'black' | 'red';
+}
 
-const StyledButton = styled.button.attrs((props: ButtonPropsType) => ({
-  disabled: props.isDisabled,
-}))<ButtonPropsType>`
+const Badge = styled.li.attrs((props) => ({}))<BadgePropsType>`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $color_base_black = Theme.palette.$color_base_black;
@@ -22,21 +23,18 @@ const StyledButton = styled.button.attrs((props: ButtonPropsType) => ({
         : `background-color: ${$color_base_black};`;
 
     return css`
-      background: ${$color_base_black};
+      /* background: ${$color_base_black}; */
       ${bgColor};
       background-repeat: no-repeat;
       color: #fff;
-      width: 100%;
-      height: 45px;
-      border: none;
-      padding: 5px 10px;
+      width: fit-content;
+      border-radius: 32px;
+      padding: 12px;
       font-size: 1em;
       font-weight: 500;
-      outline: none;
-      cursor: pointer;
-      transition: all 0.3s;
+      cursor: default;
     `;
   }};
 `;
 
-export default StyledButton;
+export default Badge;

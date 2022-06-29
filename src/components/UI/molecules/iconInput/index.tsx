@@ -6,9 +6,9 @@ import { useCookies } from 'react-cookie';
 
 import IconInputComponent from './iconInput.component';
 
-export interface IconInputPropsType {
-  type: 'username' | 'password';
-  value: string | number | null;
+export interface IconInputPropsType extends Partial<HTMLInputElement> {
+  type: 'username' | 'password' | 'new-password';
+  value: string | undefined;
   onChange: <T>(T: any) => void;
 }
 

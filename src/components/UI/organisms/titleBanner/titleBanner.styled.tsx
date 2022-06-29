@@ -5,9 +5,12 @@ const StyledTitleBanner = styled.section.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
+    const $color_base_gray = Theme.palette.$color_base_gray;
+    const $color_base_line = Theme.palette.$color_base_line;
     const $color_base_white = Theme.palette.$color_base_white;
     const $color_key_color = Theme.palette.$color_key_color;
 
+    const $font_body_info = Theme.font.$font_body_info;
     const $font_title_big = Theme.font.$font_title_big;
 
     const $mobile_max_width = Theme.media.$mobile_max_width;
@@ -34,12 +37,17 @@ const StyledTitleBanner = styled.section.attrs((props) => ({}))`
         /* color: ${$color_key_color}; */
       }
       p {
-        width: 60%;
-        line-height: 24px;
+        width: 30%;
+        line-height: 20px;
         text-align: center;
+        ${$font_body_info};
+        color: ${$color_base_gray};
       }
 
       @media screen and (max-width: ${$mobile_max_width}) {
+        p {
+          width: 80%;
+        }
       }
     `;
   }};

@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'styles/global.styles';
 
+import { Title } from 'Atoms';
+
 export const QuizItem = styled.div.attrs((props) => {})`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
@@ -15,6 +17,7 @@ export const QuizItem = styled.div.attrs((props) => {})`
     const $color_failure = Theme.palette.$color_failure;
 
     const $font_body_head = Theme.font.$font_body_head;
+    const $font_body_info = Theme.font.$font_body_info;
     const $font_subtitle = Theme.font.$font_subtitle;
     const $font_title_big = Theme.font.$font_title_big;
     const $font_title_medium = Theme.font.$font_title_medium;
@@ -40,7 +43,7 @@ export const QuizItem = styled.div.attrs((props) => {})`
       width: 100%;
       height: fit-content;
 
-      border-radius: 32px;
+      /* border-radius: 32px; */
       border: 4px solid ${$is_disabled_bg};
 
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
@@ -54,6 +57,12 @@ export const QuizItem = styled.div.attrs((props) => {})`
           ${$font_title_regular};
           margin: 0;
           color: ${$is_disabled_font};
+        }
+
+        p {
+          color: ${$color_base_gray};
+          ${$font_body_info};
+          margin: 0;
         }
 
         span {
@@ -91,10 +100,8 @@ const StyledQuiz = styled.div.attrs((props) => {})`
     return css`
       min-height: 100vh;
 
-      h1 {
-        ${$font_title_big};
-        padding: 10px 0;
-        border-bottom: 1px solid ${$color_base_black};
+      ${Title} {
+        margin: 20px 0;
       }
 
       ul {

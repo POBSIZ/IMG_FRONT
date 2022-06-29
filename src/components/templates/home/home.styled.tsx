@@ -11,13 +11,6 @@ const StyledHome = styled.article.attrs((props) => {})`
     return css`
       min-height: 100vh;
       background-color: ${$color_base_white};
-
-      .wrap {
-        .box {
-          .inner {
-          }
-        }
-      }
     `;
   }}
 `;

@@ -31,6 +31,7 @@ export const NavList = styled.nav.attrs((props) => {})`
           display: none;
         }
         a {
+          cursor: pointer;
           font-size: ${$font_subtitle};
           margin: 0 10px;
           color: ${$base_theme_color};
@@ -67,7 +68,7 @@ export const NavList = styled.nav.attrs((props) => {})`
           backdrop-filter: blur(10px);
           width: 100%;
           height: 100vh;
-          
+
           li {
             background-color: ${$color_base_white};
             color: ${$color_key_color};
@@ -94,11 +95,11 @@ export const NavList = styled.nav.attrs((props) => {})`
             background-color: ${$color_base_white};
             font-size: ${$font_body_head};
             border-bottom: 1px solid ${$color_base_line};
-            transition: all .3s;
+            transition: all 0.3s;
             &:hover {
               padding: 0 10%;
               background-color: ${$color_base_black};
-              color: ${$color_base_white}
+              color: ${$color_base_white};
             }
           }
         }
@@ -133,6 +134,7 @@ const StyledHeader = styled.header.attrs((props) => {})`
       /* box-shadow: 0px 1px 0px rgba(56, 56, 56, 0.3); */
       font-weight: 500;
       background-color: rgba(255, 255, 255, 0.1);
+      /* background-color: rgba(180, 180, 180, 0.1); */
       backdrop-filter: blur(10px);
 
       .Icon {

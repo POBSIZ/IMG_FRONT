@@ -31,6 +31,12 @@ const IconInputComponent: React.FC<IconInputPropsType> = (
       icon: faLock,
       placeholder: '비밀번호',
     },
+    'new-password': {
+      type: 'new-password',
+      name: 'new-password',
+      icon: faLock,
+      placeholder: '비밀번호',
+    },
   };
   const inputType = typeSet[props.type];
 

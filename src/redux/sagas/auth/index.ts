@@ -1,21 +1,24 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 
-import { PUSH_TOAST } from 'Actions/toastAction';
-import { pushToastAsync, initToast } from 'Actions/toastAction';
+import { authLoginAsync, AUTH_LOGIN } from 'Actions/authAction';
+import { apiPostLogin } from './api';
 
-// PUSH TOAST SAGA
-// function* pushToastSaga(action: ReturnType<typeof pushToastAsync.request>) {
-//   try {
-//     yield put(pushToastAsync.success(action.payload));
-//     // yield put(initToast());
-//   } catch (error: any) {
-//     console.log(error);
-//     yield put(pushToastAsync.failure(error));
-//   }
-// }
+/**
+ * AUTH LOGIN SAGA
+ */
+function* authLoginSaga(action: ReturnType<typeof authLoginAsync.request>) {
+  try {
+    const res = yield call(apiPostLogin, { ...action.payload });
+    yield put(authLoginAsync.success(res));
+    console.log(res);
+  } catch (error: any) {
+    console.log(error);
+    yield put(authLoginAsync.failure(error));
+  }
+}
 
 export function* authSaga() {
-  // yield takeLatest(PUSH_TOAST, pushToastSaga);
+  // yield takeLatest(AUTH_LOGIN, authLoginSaga);
 }
 
 export { authSaga as default };
