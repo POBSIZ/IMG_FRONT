@@ -156,6 +156,12 @@ const StyledHeader = styled.header.attrs((props) => {})`
           color: ${$color_key_color};
           text-decoration: none;
         }
+
+        img {
+          cursor: pointer;
+          width: calc(332px / 2) !important;
+          height: calc(81px / 2) !important;
+        }
       }
 
       @media screen and (max-width: ${$tablet_max_width}) {

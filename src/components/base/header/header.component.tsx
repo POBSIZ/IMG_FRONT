@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid';
 
 import Link from 'next/link';
 import { CheckAdmin } from 'Hoc';
+import Image from 'next/image';
 
 import {
   HeaderPropsType,
@@ -25,7 +26,10 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
 
   return (
     <StyledHeader className="header">
-      <Logo href="/">{process.env.NEXT_PUBLIC_TITLE}</Logo>
+      <Logo href="/">
+        <Image src="/logo.gif" width={0} height={0} />
+      </Logo>
+
       <NavList isOpen={navState}>
         <ul>
           <li>

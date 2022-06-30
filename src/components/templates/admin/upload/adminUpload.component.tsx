@@ -29,7 +29,7 @@ const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
       <Layout.Container>
         <StyledAdminUpload>
           <Title>엑셀 파일 업로드</Title>
-          <form onSubmit={props.handleSubmit}>
+          <form onSubmit={props.handleSubmit} acceptCharset="UTF-8">
             <File name="file" />
             <Button type="submit" backColor="primary">
               SUBMIT

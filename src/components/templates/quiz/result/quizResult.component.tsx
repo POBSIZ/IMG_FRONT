@@ -33,7 +33,7 @@ const QuizResultComponent: React.FC<QuizResultComponentPropsType> = (props) => {
   const [audioState, setAudioState] = useState<string>('');
 
   const handleAudio = useCallback((_audio: string) => {
-    setAudioState(_audio);
+    setAudioState(`${process.env.NEXT_PUBLIC_SERVER}${_audio}`);
     // audioRef?.current?.src = _audio;
     audioRef?.current?.play();
   }, []);

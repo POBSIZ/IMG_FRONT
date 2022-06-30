@@ -240,7 +240,11 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
         <QuizTitle>{props.quizTitle}</QuizTitle>
 
         <audio
-          src={!modalState ? props.quizList[currNum]?.audio : undefined}
+          src={
+            !modalState
+              ? `${process.env.NEXT_PUBLIC_SERVER}${props.quizList[currNum]?.audio}`
+              : undefined
+          }
           autoPlay={true}
           loop={false}
           ref={audioRef}

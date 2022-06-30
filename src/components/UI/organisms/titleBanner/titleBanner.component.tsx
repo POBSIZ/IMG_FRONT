@@ -14,17 +14,21 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
   props: TitleBannerPropsType,
 ) => {
   return (
-    <StyledTitleBanner style={{ background: props.imgSrc }}>
-      <AosWrapper animation="fade-up" duration={600}>
-        <h1>{process.env.NEXT_PUBLIC_TITLE}</h1>
-      </AosWrapper>
-      <AosWrapper animation="fade-up" delay={1000} duration={800}>
+    <>
+      <StyledTitleBanner style={{ background: props.imgSrc }}>
+        <section>
+          <AosWrapper animation="fade-up" duration={600}>
+            <h1>{process.env.NEXT_PUBLIC_TITLE}</h1>
+          </AosWrapper>
+        </section>
+        {/* <AosWrapper animation="fade-up" delay={1000} duration={800}>
         <p>
           REWORK는 편리한 랜딩페이지 제작을 위해 제작된 템플릿 입니다. REWORK는
           모두에게 열려있는 오픈소스 프로젝트 입니다.
         </p>
-      </AosWrapper>
-    </StyledTitleBanner>
+      </AosWrapper> */}
+      </StyledTitleBanner>
+    </>
   );
 };
 

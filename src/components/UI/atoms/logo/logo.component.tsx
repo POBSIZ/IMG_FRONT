@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 import StyledLogo from './logo.styled';
 
-const LogoComponent: React.FC<any> = ({ href, children }) => {
+const LogoComponent: React.FC<any> = (props) => {
   return (
     <>
       <StyledLogo>
-        <Link href={href}>{children}</Link>
+        <Link href={props.href}>{props.children}</Link>
       </StyledLogo>
     </>
   );

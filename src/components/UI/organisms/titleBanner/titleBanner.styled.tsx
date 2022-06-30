@@ -30,18 +30,28 @@ const StyledTitleBanner = styled.section.attrs((props) => ({}))`
 
       /* color: ${$color_base_white}; */
 
-      h1 {
-        margin: 0;
-        ${$font_title_big};
-        /* font-size: 60px; */
-        /* color: ${$color_key_color}; */
-      }
-      p {
-        width: 30%;
-        line-height: 20px;
-        text-align: center;
-        ${$font_body_info};
-        color: ${$color_base_gray};
+      section {
+        width: 100%;
+        height: 100vh;
+        backdrop-filter: blur(2px);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+          margin: 0;
+          ${$font_title_big};
+          /* font-size: 60px; */
+          /* color: ${$color_key_color}; */
+        }
+        p {
+          width: 30%;
+          line-height: 20px;
+          text-align: center;
+          ${$font_body_info};
+          color: ${$color_base_gray};
+        }
       }
 
       @media screen and (max-width: ${$mobile_max_width}) {
