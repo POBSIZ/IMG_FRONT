@@ -16,13 +16,13 @@ const AdminPage: NextPage<any> = (props, {}) => {
         <CheckAdmin>
           <Layout.Container>
             <h2>
-              <Link href="/admin/upload">책 업로드</Link>
+              <Link href="/admins/upload">책 업로드</Link>
             </h2>
             <h2>
-              <Link href="/admin/quiz/create">퀴즈 생성</Link>
+              <Link href="/admins/quiz/create">퀴즈 생성</Link>
             </h2>
             <h2>
-              <Link href="/admin/user">회원 관리</Link>
+              <Link href="/admins/user">회원 관리</Link>
             </h2>
           </Layout.Container>
         </CheckAdmin>

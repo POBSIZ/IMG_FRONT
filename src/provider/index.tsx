@@ -64,7 +64,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
           navList={{
             top: [{ url: '/auth/login', text: '로그인' }],
             default: [{ url: '/quiz', text: '퀴즈' }],
-            admin: [{ url: '/admin', text: '관리자' }],
+            admin: [{ url: '/admins', text: '관리자' }],
           }}
         />
       )}

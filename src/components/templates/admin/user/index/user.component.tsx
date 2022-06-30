@@ -32,7 +32,7 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
           </UserItem>
           {props.userList?.map((item) => {
             return (
-              <Link href={`/admin/user/${item.user_id}`} key={nanoid()}>
+              <Link href={`/admins/user/${item.user_id}`} key={nanoid()}>
                 <UserItem>
                   <span>{item.user_id}</span>
                   <span>{item.name}</span>
