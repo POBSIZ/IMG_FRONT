@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  FormEventHandler,
+  FormEvent,
+} from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
@@ -12,6 +19,7 @@ import { AdminUploadPropsType } from './adminUpload.types';
 
 import axios from 'axios';
 import { Post } from 'Utils';
+import { InputFiles } from 'typescript';
 
 const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
@@ -24,6 +32,7 @@ const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
 
     let formData = new FormData();
     formData.append('file', e.target.file.files[0]);
+    formData.append('name', encodeURIComponent(e.target.file.files[0].name));
 
     const post = await Post('/quiz/upload', formData, {
       headers: {
