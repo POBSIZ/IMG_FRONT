@@ -3,7 +3,7 @@ import axios from 'axios';
 // axios 인스턴스를 생성합니다.
 const PatchInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER,
-  timeout: 2800,
+  // timeout: 2800,
 });
 
 /*

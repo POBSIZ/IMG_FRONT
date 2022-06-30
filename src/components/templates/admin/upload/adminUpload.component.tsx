@@ -15,15 +15,12 @@ import Layout from 'Layouts';
 import StyledAdminUpload from './adminUpload.styled';
 
 import { Input, Button, File, Title } from 'Atoms';
+import Link from 'next/link';
 import { nanoid } from 'nanoid';
 
 const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
   props,
 ) => {
-  useEffect(() => {
-    return () => {};
-  }, []);
-
   return (
     <>
       <Layout.Container>
@@ -35,7 +32,7 @@ const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
               SUBMIT
             </Button>
           </form>
-          <Layout.Content>
+          {/* <Layout.Content>
             <ul>
               <li>
                 <span>단어</span>
@@ -52,7 +49,8 @@ const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
                 );
               })}
             </ul>
-          </Layout.Content>
+          </Layout.Content> */}
+          <Link href="/admin/quiz/create">퀴즈 생성 이동</Link>
         </StyledAdminUpload>
       </Layout.Container>
     </>

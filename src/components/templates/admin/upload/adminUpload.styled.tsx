@@ -48,6 +48,19 @@ const StyledAdminUpload = styled.article.attrs((props) => ({}))`
         }
       }
 
+      a {
+        width: 100%;
+
+        margin-top: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: ${$color_base_black};
+        text-decoration: none;
+      }
+
       @media screen and (max-width: ${$mobile_max_width}) {
       }
     `;

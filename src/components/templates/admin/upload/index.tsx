@@ -20,11 +20,13 @@ import { AdminUploadPropsType } from './adminUpload.types';
 import axios from 'axios';
 import { Post } from 'Utils';
 import { InputFiles } from 'typescript';
+import { pushToastAsync } from 'Actions/toastAction';
 
 const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
+  const dispatch = useDispatch();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
 
-  const [resList, setResList] = useState();
+  const [resList, setResList] = useState([]);
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
@@ -34,17 +36,32 @@ const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
     formData.append('file', e.target.file.files[0]);
     formData.append('name', encodeURIComponent(e.target.file.files[0].name));
 
-    const post = await Post('/quiz/upload', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${authState.token}`,
-        // credentials: 'include',
-        mode: 'cors',
-      },
-      // withCredentials: true,
-    });
+    try {
+      const post = await Post('/quiz/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${authState.token}`,
+          // credentials: 'include',
+          mode: 'cors',
+        },
+        // withCredentials: true,
+      });
+      dispatch(
+        pushToastAsync.request({
+          status: 'success',
+          message: '책 생성에 성공하였습니다.',
+        }),
+      );
+    } catch (error) {
+      dispatch(
+        pushToastAsync.request({
+          status: 'error',
+          message: '책 생성에 실패하였습니다.',
+        }),
+      );
+    }
 
-    setResList(post.data);
+    // setResList(post.data);
   }, []);
 
   return (
