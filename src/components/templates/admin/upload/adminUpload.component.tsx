@@ -50,7 +50,7 @@ const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
               })}
             </ul>
           </Layout.Content> */}
-          <Link href="/admin/quiz/create">퀴즈 생성 이동</Link>
+          <Link href="/admins/quiz/create">퀴즈 생성 이동</Link>
         </StyledAdminUpload>
       </Layout.Container>
     </>
