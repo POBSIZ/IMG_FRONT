@@ -38,11 +38,11 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
             token: res.data,
           }),
         );
-        
+
         dispatch(
           pushToastAsync.request({
             status: 'success',
-            message: '로그인에 성공하였습니다!',
+            message: '로그인에 성공하였습니다.',
           }),
         );
         Router.push('/');

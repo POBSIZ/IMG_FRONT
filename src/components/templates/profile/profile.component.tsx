@@ -37,13 +37,14 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
             </QuizLogItem> */}
             {props.quizLog.map((item) => {
               return item.map((_item) => {
-                const dateObj = new Date(_item.date);
-                const date = `${dateObj.getFullYear()}.${dateObj.getMonth()}.${dateObj.getDay()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
+                const dateObj = new Date(_item.date).toDateString();
+                console.log(dateObj);
+                // const date = `${dateObj.getFullYear()}.${dateObj.getMonth()}.${dateObj.getDay()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
 
                 return (
                   <QuizLogItem key={nanoid()}>
                     <p>
-                      <p>{date}</p>
+                      <p>{dateObj}</p>
                       <p>{_item.title}</p>
                       <p>
                         {_item.score} / {_item.probCount}

@@ -36,6 +36,8 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
             <ul>
               {props.quizList?.map((item: QuizItemType, i) => {
                 const isTry = item.tryCount > 0 ? true : false;
+                const date = new Date(item.date).toDateString();
+                // const date = new Date(item.date).toISOString();
                 return (
                   <QuizItem
                     disabled={item.disabled}
@@ -53,7 +55,7 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
                   >
                     <div>
                       <h3>{item.title}</h3>
-                      <p>{item.date}</p>
+                      <p>{date}</p>
                       <span>{item.tryCount}회 응시</span>
                       <span>
                         최고 {item.solvedCount} / {item.maxCount}
