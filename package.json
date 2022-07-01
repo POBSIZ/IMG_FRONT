@@ -33,6 +33,7 @@
     "next-redux-wrapper": "^7.0.5",
     "react": "latest",
     "react-beforeunload": "^2.5.2",
+    "react-daum-postcode": "^3.1.1",
     "react-dom": "latest",
     "react-query": "^3.34.16",
     "react-redux": "^7.2.6",

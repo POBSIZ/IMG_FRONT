@@ -22,6 +22,7 @@ const QuizPage: NextPage<any> = (props, {}) => {
     });
     setQuizList(quizs.data);
     setIsLoad(false);
+    // console.log(quizs);
   }, []);
 
   useEffect(() => {

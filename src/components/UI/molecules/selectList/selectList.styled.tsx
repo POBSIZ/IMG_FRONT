@@ -69,7 +69,7 @@ export const ListItem = styled.div.attrs((props) => ({}))`
 `;
 
 const StyledSelectList = styled.div.attrs((props) => ({}))<{
-  boxHeight: number;
+  boxHeight: number | string;
 }>`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
@@ -80,7 +80,7 @@ const StyledSelectList = styled.div.attrs((props) => ({}))<{
     return css`
       border: 1px solid ${$color_base_line};
       padding: 4px;
-      height: ${props.boxHeight}px;
+      height: ${props.boxHeight};
       overflow: hidden;
       overflow-y: scroll;
     `;

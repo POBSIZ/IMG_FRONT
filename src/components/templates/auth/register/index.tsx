@@ -16,21 +16,31 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
     async (
       _name: string,
       _username: string,
+      _password: string,
+      _phone: string,
+      _role: string,
       _school: string,
       _grade: string,
-      _phone: string,
-      _password: string,
+      _address: string,
+      _zipCode: string,
+      _addressDetail: string,
+      _academy: string,
     ) => {
       try {
         const res = await Post('/auth/register', {
           name: _name,
           username: _username,
+          password: _password,
+          phone: _phone,
+          role: _role,
           school: _school,
           grade: _grade,
-          phone: _phone,
-          password: _password,
+          address: _address,
+          zip: _zipCode,
+          address_detail: _addressDetail,
+          academy: _academy,
         });
-        console.log(res);
+        // console.log(res);
         dispatch(
           pushToastAsync.request({
             status: 'success',

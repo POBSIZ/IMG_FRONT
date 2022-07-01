@@ -3,8 +3,11 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import Actions from 'Actions/index';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { nanoid } from 'nanoid';
 
-import SelectListComponent from './selectList.component';
+import StyledSelectList, { ListItem } from './selectList.styled';
+
+import { Input } from 'Atoms';
 
 export interface SelectListType {
   idx: number;
@@ -16,7 +19,7 @@ export interface SelectListPropsType extends Partial<HTMLInputElement> {
   name: string;
   type: 'radio' | 'checkbox' | 'button';
   selectList: SelectListType[];
-  boxHeight: number;
+  boxHeight: number | string;
   handleClick: (
     _idx: number,
     _title: string,
@@ -26,9 +29,25 @@ export interface SelectListPropsType extends Partial<HTMLInputElement> {
 
 const SelectList: React.FC<SelectListPropsType> = (props, {}) => {
   return (
-    <>
-      <SelectListComponent {...props} />
-    </>
+    <StyledSelectList boxHeight={props.boxHeight}>
+      {props.selectList?.map((item, i) => {
+        return (
+          <ListItem key={nanoid()}>
+            <Input
+              type={props.type}
+              id={props.name + i}
+              name={props.name}
+              onClick={(e) => {
+                props.handleClick(item.idx, item.title, item.subtitle);
+              }}
+            />
+            <label htmlFor={props.name + i}>
+              {item.title} <span>/ {item.subtitle}</span>
+            </label>
+          </ListItem>
+        );
+      })}
+    </StyledSelectList>
   );
 };
 

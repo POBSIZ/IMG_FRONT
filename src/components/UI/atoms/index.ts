@@ -7,6 +7,7 @@ import Switch from './switch';
 import Title from './title';
 import Badge from './badge';
 import File from './file';
+import Select from './select';
 
 const Atoms = {
   Logo,
@@ -18,8 +19,9 @@ const Atoms = {
   Title,
   Badge,
   File,
+  Select,
 };
 
 export default Atoms;
 
-export { Logo, Input, Button, Like, Timer, Switch, Title, Badge, File };
+export { Logo, Input, Button, Like, Timer, Switch, Title, Badge, File, Select };

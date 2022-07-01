@@ -9,7 +9,9 @@ import RegisterTemplate from './auth/register';
 
 import ProfileTemplate from './profile';
 
-import AdminUploadTemplate from './admin/upload';
+import AdminUploadTemplate from './admin/book/upload';
+import AdminBookListTemplate from './admin/book/list';
+
 import QuizCreateTemplate from './admin/quiz/create';
 import UserTemplate from './admin/user/index';
 import UserInfoTemplate from './admin/user/info';
@@ -26,6 +28,7 @@ const Templates = {
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,
+  AdminBookListTemplate,
 };
 export default Templates;
 export {
@@ -40,4 +43,5 @@ export {
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,
+  AdminBookListTemplate,
 };

@@ -38,18 +38,18 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
             {props.quizLog.map((item) => {
               return item.map((_item) => {
                 const dateObj = new Date(_item.date).toDateString();
-                console.log(dateObj);
+                // console.log(dateObj);
                 // const date = `${dateObj.getFullYear()}.${dateObj.getMonth()}.${dateObj.getDay()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
 
                 return (
                   <QuizLogItem key={nanoid()}>
-                    <p>
+                    <section>
                       <p>{dateObj}</p>
                       <p>{_item.title}</p>
                       <p>
                         {_item.score} / {_item.probCount}
                       </p>
-                    </p>
+                    </section>
                     <div>
                       <Link href="/">결과보기</Link>
                       <Link href="/">재시험</Link>

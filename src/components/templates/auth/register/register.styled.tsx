@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'StyleVars';
 
+import { Select } from 'Atoms';
+
 const StyledRegister = styled.article.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
@@ -12,10 +14,10 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
 
     const $font_title_medium = Theme.font.$font_title_medium;
     const $font_body_base = Theme.font.$font_body_base;
+    const $font_body_info = Theme.font.$font_body_info;
 
     return css`
       width: 100%;
-      height: 100vh;
 
       display: flex;
       justify-content: center;
@@ -58,6 +60,20 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
           margin-top: 10px;
           text-decoration: none;
           color: ${$color_base_black};
+        }
+
+        .detail-wrapper {
+          width: 100%;
+
+          span {
+            display: inline-block;
+            margin-bottom: 6px;
+            ${$font_body_info};
+          }
+
+          ${Select} {
+            margin-bottom: 10px;
+          }
         }
       }
 

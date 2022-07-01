@@ -28,7 +28,7 @@ export const QuizLogItem = styled.li.attrs((props) => {})`
       border-bottom: 1px solid ${$color_base_line};
       padding: 2%;
 
-      p {
+      section {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
