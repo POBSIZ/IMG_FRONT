@@ -7,6 +7,7 @@ import { Post } from 'Utils';
 import { pushToastAsync } from 'Actions/toastAction';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Router, useRouter } from 'next/router';
+import window from 'global/window';
 
 const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
   const router = useRouter();
@@ -44,7 +45,7 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
         dispatch(
           pushToastAsync.request({
             status: 'success',
-            message: '회원가입에 성공하였습니다!',
+            message: '회원가입에 성공하였습니다.',
           }),
         );
         router.push('/auth/login');

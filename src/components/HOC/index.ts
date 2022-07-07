@@ -1,13 +1,13 @@
 import AosWrapper, { AosInitializer } from './aosWrapper';
 import BlockChangePage from './blockChangePage';
-import CheckAdmin from './checkAdmin';
+import CheckRole from './checkRole';
 import RedirectLogin from './redirectLogin';
 
 const Hoc = {
   AosWrapper,
   AosInitializer,
   BlockChangePage,
-  CheckAdmin,
+  CheckRole,
   RedirectLogin,
 };
 
@@ -16,6 +16,6 @@ export {
   AosWrapper,
   AosInitializer,
   BlockChangePage,
-  CheckAdmin,
+  CheckRole,
   RedirectLogin,
 };

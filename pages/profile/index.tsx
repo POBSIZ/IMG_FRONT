@@ -19,7 +19,7 @@ const ProfilePage: NextPage<any> = (props, {}) => {
         grade: authState.profile.grade,
         phone: authState.profile.phone,
       },
-      quizLog: quizLog,
+      quizLog: quizLog.reverse(),
     }),
     [quizLog],
   );

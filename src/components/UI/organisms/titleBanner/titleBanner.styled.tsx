@@ -33,16 +33,18 @@ const StyledTitleBanner = styled.section.attrs((props) => ({}))`
       section {
         width: 100%;
         height: 100vh;
-        backdrop-filter: blur(2px);
 
+        backdrop-filter: blur(2px) brightness(90%);
         display: flex;
         justify-content: center;
         align-items: center;
 
         h1 {
-          margin: 0;
+          margin: 0px;
+          margin-bottom: 60px;
           ${$font_title_big};
           /* font-size: 60px; */
+          color: ${$color_base_white};
           /* color: ${$color_key_color}; */
         }
         p {

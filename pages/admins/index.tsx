@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from 'Layouts';
 
-import { CheckAdmin, RedirectLogin } from 'Hoc';
+import { CheckRole, RedirectLogin } from 'Hoc';
 
 const AdminPage: NextPage<any> = (props, {}) => {
   return (
@@ -13,7 +13,7 @@ const AdminPage: NextPage<any> = (props, {}) => {
         <title>{process.env.NEXT_PUBLIC_TITLE} | 관리자</title>
       </Head>
       <RedirectLogin>
-        <CheckAdmin>
+        <CheckRole role="admin" isRedirect={true}>
           <Layout.Container>
             <h2>
               <Link href="/admins/book/upload">책 업로드</Link>
@@ -28,7 +28,7 @@ const AdminPage: NextPage<any> = (props, {}) => {
               <Link href="/admins/user">회원 관리</Link>
             </h2>
           </Layout.Container>
-        </CheckAdmin>
+        </CheckRole>
       </RedirectLogin>
     </>
   );

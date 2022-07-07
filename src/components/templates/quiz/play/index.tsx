@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
@@ -20,9 +20,10 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
+  const [isSend, setIsSend] = useState<boolean>(false);
 
-  const saveData = useCallback(
-    async (_list: AnswerListItem[], _corrCount: number) => {
+  const saveData = async (_list: AnswerListItem[], _corrCount: number) => {
+    if (!isSend) {
       const data = {
         userQuiz_id: props.userQuizId,
         quiz_id: props.quizId,
@@ -34,29 +35,32 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
         headers: { Authorization: `Bearer ${authState.token}` },
       });
       // console.log(res);
-    },
-    [],
-  );
+      setIsSend(true);
+    }
+  };
 
-  const handleSave = useCallback(async (_list: AnswerListItem[]) => {
-    let corrCount = 0;
-    _list.forEach((item) => {
-      if (item.correctWordId === item.answer[0]) {
-        corrCount++;
-      }
-    });
+  const handleSave = async (_list: AnswerListItem[]) => {
+    if (!isSend) {
+      router.push('/quiz/result');
+      let corrCount = 0;
+      _list.forEach((item) => {
+        if (item.correctWordId === item.answer[0]) {
+          corrCount++;
+        }
+      });
 
-    await saveData(_list, corrCount);
+      await saveData(_list, corrCount);
 
-    dispatch(
-      saveQuiz({
-        title: props.quizTitle,
-        id: props.quizId,
-        list: _list,
-        corrCount: corrCount,
-      }),
-    );
-  }, []);
+      dispatch(
+        saveQuiz({
+          title: props.quizTitle,
+          id: props.quizId,
+          list: _list,
+          corrCount: corrCount,
+        }),
+      );
+    }
+  };
 
   return (
     <>

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // HOC
 import { nanoid } from 'nanoid';
 
 import Link from 'next/link';
-import { CheckAdmin } from 'Hoc';
+import { CheckRole } from 'Hoc';
 import Image from 'next/image';
 
 import {
@@ -44,6 +44,7 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
               onClick={handleNavState}
             />
           </li>
+
           <div onClick={handleNavState}>
             {props.navList?.default?.map((item: NavListItemType) => {
               return (
@@ -53,7 +54,43 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
               );
             })}
 
-            <CheckAdmin>
+            <CheckRole role="student" isRedirect={false}>
+              <>
+                {props.navList?.student?.map((item: NavListItemType) => {
+                  return (
+                    <Link key={nanoid()} href={item.url}>
+                      {item.text}
+                    </Link>
+                  );
+                })}
+              </>
+            </CheckRole>
+
+            <CheckRole role="parent" isRedirect={false}>
+              <>
+                {props.navList?.parent?.map((item: NavListItemType) => {
+                  return (
+                    <Link key={nanoid()} href={item.url}>
+                      {item.text}
+                    </Link>
+                  );
+                })}
+              </>
+            </CheckRole>
+
+            <CheckRole role="insider" isRedirect={false}>
+              <>
+                {props.navList?.insider?.map((item: NavListItemType) => {
+                  return (
+                    <Link key={nanoid()} href={item.url}>
+                      {item.text}
+                    </Link>
+                  );
+                })}
+              </>
+            </CheckRole>
+
+            <CheckRole role="admin" isRedirect={false}>
               <>
                 {props.navList?.admin?.map((item: NavListItemType) => {
                   return (
@@ -63,7 +100,7 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
                   );
                 })}
               </>
-            </CheckAdmin>
+            </CheckRole>
 
             {props.authState?.token ? (
               <>
@@ -78,7 +115,7 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
                 </a>
               </>
             ) : (
-              props.navList?.top?.map((item: NavListItemType) => {
+              props.navList?.auth?.map((item: NavListItemType) => {
                 return (
                   <Link key={nanoid()} href={item.url}>
                     {item.text}

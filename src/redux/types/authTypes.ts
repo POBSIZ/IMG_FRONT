@@ -18,11 +18,18 @@ export interface ApiPostLoginResType {
 }
 
 export interface AuthProfileType {
-  name: string | null;
-  school: string | null;
-  grade: string | null;
-  phone: string | null;
-  role: 'student' | 'admin';
+  user_id: number; // 회원 ID
+  name: string; // 이름
+  phone: string; // 전화번호
+  role: 'student' | 'parent' | 'insider' | 'admin'; // 권한
+  created_at: Date; // 생성일
+  school: string; // 학교
+  grade: string; // 학년
+  class_id: number; // 반 ID
+  address: string; // 주소
+  zip: string; // 우편번호
+  address_detail: string; // 상세 주소
+  academy_id: number; // 학원 ID
 }
 
 export interface AuthReducerType {

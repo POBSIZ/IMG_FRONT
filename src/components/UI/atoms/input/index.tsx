@@ -23,6 +23,7 @@ const Input = styled.input.attrs((props) => ({
   required: props.required || false,
   disabled: props.disabled || false,
   value: props.value || undefined,
+  autocomplete: props.type === 'password' ? 'current-password' : 'on',
 }))<InputPropsType>`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;

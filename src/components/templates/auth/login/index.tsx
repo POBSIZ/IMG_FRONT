@@ -29,11 +29,18 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
         dispatch(
           authLogin({
             profile: {
+              user_id: profileData.user_id,
               name: profileData.name,
-              school: profileData.school,
-              grade: profileData.grade,
               phone: profileData.phone,
               role: profileData.role,
+              created_at: profileData.created_at,
+              school: profileData.school,
+              grade: profileData.grade,
+              class_id: profileData.class_id,
+              address: profileData.address,
+              zip: profileData.zip,
+              address_detail: profileData.address_detail,
+              academy_id: profileData.academy_id,
             },
             token: res.data,
           }),

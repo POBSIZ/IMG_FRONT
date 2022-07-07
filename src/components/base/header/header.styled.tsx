@@ -134,7 +134,7 @@ const StyledHeader = styled.header.attrs((props) => {})`
       align-items: center;
       /* box-shadow: 0px 1px 0px rgba(56, 56, 56, 0.3); */
       font-weight: 500;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.2);
       /* background-color: rgba(180, 180, 180, 0.1); */
       backdrop-filter: blur(10px);
 

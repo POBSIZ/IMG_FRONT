@@ -36,7 +36,8 @@ const LoginComponent: React.FC<any> = (props) => {
           >
             <IconInput
               type="username"
-              value={username}
+              autocomplete="on"
+              value={username || ''}
               required
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -44,16 +45,19 @@ const LoginComponent: React.FC<any> = (props) => {
             />
             <IconInput
               type="password"
-              value={password}
+              value={password || ''}
               required
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
+
             <Button backColor="primary" type="submit">
               로그인
             </Button>
-            <Link className="register" href='/auth/register'>회원가입</Link>
+            <Link className="register" href="/auth/register">
+              회원가입
+            </Link>
           </form>
         </StyledLogin>
       </Layout.Container>

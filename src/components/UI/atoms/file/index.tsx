@@ -20,7 +20,7 @@ export const StyledFile = styled.div.attrs((props) => ({}))`
     return css`
       width: 100%;
       display: flex;
-      gap: 4px;
+      gap: 10px;
 
       span,
       label {
@@ -42,6 +42,7 @@ export const StyledFile = styled.div.attrs((props) => ({}))`
         justify-content: center;
         color: ${$color_base_white};
         background-color: ${$color_key_color};
+        cursor: pointer;
       }
 
       input[type='file'] {

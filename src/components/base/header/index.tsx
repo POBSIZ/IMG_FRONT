@@ -13,9 +13,12 @@ export interface NavListItemType {
 }
 
 export interface NavListType {
-  top: NavListItemType[];
   default: NavListItemType[];
+  student: NavListItemType[];
+  parent: NavListItemType[];
+  insider: NavListItemType[];
   admin: NavListItemType[];
+  auth: NavListItemType[];
 }
 
 export interface HeaderPropsType {

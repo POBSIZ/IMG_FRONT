@@ -121,7 +121,7 @@ const RegisterComponent: React.FC<any> = (props) => {
           </>
         ) : (
           <>
-            <span>주소입력</span>
+            <span>학원 주소입력</span>
             <Address setAddress={setAddress} setZipCode={setZipCode} />
           </>
         )}
@@ -198,7 +198,12 @@ const RegisterComponent: React.FC<any> = (props) => {
               value={phone}
               required
               onChange={(e) => {
-                setPhone(e.target.value);
+                setPhone(
+                  e.target.value
+                    .replace(/[^0-9]/g, '')
+                    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+                    .replace(/(\-{1,2})$/g, ''),
+                );
               }}
             />
 

@@ -31,11 +31,18 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
         dispatch(
           authLogin({
             profile: {
+              user_id: profileData.user_id,
               name: profileData.name,
-              school: profileData.school,
-              grade: profileData.grade,
               phone: profileData.phone,
               role: profileData.role,
+              created_at: profileData.created_at,
+              school: profileData.school,
+              grade: profileData.grade,
+              class_id: profileData.class_id,
+              address: profileData.address,
+              zip: profileData.zip,
+              address_detail: profileData.address_detail,
+              academy_id: profileData.academy_id,
             },
             token: res.data,
           }),
@@ -62,9 +69,15 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
       {router.pathname === '/quiz/play/[id]' ? null : (
         <Header
           navList={{
-            top: [{ url: '/auth/login', text: '로그인' }],
-            default: [{ url: '/quiz', text: '퀴즈' }],
+            default: [],
+            student: [{ url: '/quiz', text: '퀴즈' }],
+            parent: [],
+            insider: [
+              { url: '/academy', text: '학원' },
+              { url: '/academy/create', text: '학원 생성' },
+            ],
             admin: [{ url: '/admins', text: '관리자' }],
+            auth: [{ url: '/auth/login', text: '로그인' }],
           }}
         />
       )}

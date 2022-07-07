@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 
 import { AdminUploadTemplate } from 'Templates';
-import { CheckAdmin, RedirectLogin } from 'Hoc';
+import { CheckRole, RedirectLogin } from 'Hoc';
 
 const AdminUploadPage: NextPage<any> = (props, {}) => {
   return (
@@ -12,9 +12,9 @@ const AdminUploadPage: NextPage<any> = (props, {}) => {
         <title>{process.env.NEXT_PUBLIC_TITLE} | 책 업로드</title>
       </Head>
       <RedirectLogin>
-        <CheckAdmin>
+        <CheckRole role="admin" isRedirect={false}>
           <AdminUploadTemplate />
-        </CheckAdmin>
+        </CheckRole>
       </RedirectLogin>
     </>
   );

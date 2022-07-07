@@ -9,6 +9,9 @@ const HomePage: NextPage<any> = ({}) => {
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE}</title>
+        <meta property="og:image" content="/banner.png" />
+        <meta property="og:title" content="이미지 어학원" />
+        <meta property="og:description" content="이미지 어학원" />
       </Head>
       <HomeTemplate titleBannerImgSrc="/img/main_bg.webp" />
     </>

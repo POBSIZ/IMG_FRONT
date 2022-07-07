@@ -6,7 +6,7 @@ import { AdminBookListTemplate } from 'Templates';
 
 import { Get } from 'Utils';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import { CheckAdmin, RedirectLogin } from 'Hoc';
+import { CheckRole, RedirectLogin } from 'Hoc';
 
 const AdminBookListPage: NextPage<any> = (props, {}) => {
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
@@ -31,9 +31,9 @@ const AdminBookListPage: NextPage<any> = (props, {}) => {
         <title>{process.env.NEXT_PUBLIC_TITLE} | 책 목록</title>
       </Head>
       <RedirectLogin>
-        <CheckAdmin>
+        <CheckRole role="admin" isRedirect={false}>
           <AdminBookListTemplate bookList={list} />
-        </CheckAdmin>
+        </CheckRole>
       </RedirectLogin>
     </>
   );

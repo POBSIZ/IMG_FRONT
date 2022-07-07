@@ -16,6 +16,8 @@ import QuizCreateTemplate from './admin/quiz/create';
 import UserTemplate from './admin/user/index';
 import UserInfoTemplate from './admin/user/info';
 
+import AcademyCreateTemplate from './academy/create';
+
 const Templates = {
   HomeTemplate,
   QuizPlayTemplate,
@@ -29,6 +31,7 @@ const Templates = {
   UserInfoTemplate,
   ProfileTemplate,
   AdminBookListTemplate,
+  AcademyCreateTemplate,
 };
 export default Templates;
 export {
@@ -44,4 +47,5 @@ export {
   UserInfoTemplate,
   ProfileTemplate,
   AdminBookListTemplate,
+  AcademyCreateTemplate,
 };

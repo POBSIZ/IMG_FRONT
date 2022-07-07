@@ -36,7 +36,7 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
               <span>오답 엑셀</span>
             </QuizLogItem> */}
             {props.quizLog.map((item) => {
-              return item.map((_item) => {
+              return item.reverse().map((_item) => {
                 const dateObj = new Date(_item.date).toDateString();
                 // console.log(dateObj);
                 // const date = `${dateObj.getFullYear()}.${dateObj.getMonth()}.${dateObj.getDay()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;

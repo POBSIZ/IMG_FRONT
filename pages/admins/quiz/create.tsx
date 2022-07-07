@@ -9,7 +9,7 @@ import {
 } from 'Templates/admin/quiz/create/quizCreate.types';
 import { Get } from 'Utils';
 import { useSelector, RootStateOrAny } from 'react-redux';
-import { CheckAdmin, RedirectLogin } from 'Hoc';
+import { CheckRole, RedirectLogin } from 'Hoc';
 
 const QuizCreatePage: NextPage<any> = (props, {}) => {
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
@@ -44,9 +44,9 @@ const QuizCreatePage: NextPage<any> = (props, {}) => {
         <title>{process.env.NEXT_PUBLIC_TITLE} | 퀴즈 생성</title>
       </Head>
       <RedirectLogin>
-        <CheckAdmin>
+        <CheckRole role="admin" isRedirect={false}>
           <QuizCreateTemplate {...quizProps} />
-        </CheckAdmin>
+        </CheckRole>
       </RedirectLogin>
     </>
   );

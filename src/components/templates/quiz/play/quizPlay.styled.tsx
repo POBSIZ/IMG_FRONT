@@ -47,6 +47,7 @@ export const QuizControl = styled.ul.attrs((props) => {})`
 
       ${Button} {
         width: calc(50% - 20px);
+        height: auto;
         margin: 10px;
         border-radius: 32px;
         svg {

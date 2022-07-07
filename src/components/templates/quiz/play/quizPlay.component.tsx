@@ -99,7 +99,6 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
           audio: props.quizList[_currNum]?.audio,
         };
         props.handleSave(_answerList);
-        props.router.push('/quiz/result');
       }
     },
     [answerList],
