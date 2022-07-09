@@ -52,7 +52,7 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
         );
         router.push('/auth/login');
       } catch (error: any) {
-        console.log(error);
+        // console.log(error);
         dispatch(
           pushToastAsync.request({
             status: 'error',

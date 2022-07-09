@@ -15,7 +15,7 @@ const QuizListPage: NextPage<any> = (props, {}) => {
   const getQuizList = useCallback(async () => {
     const res = await method.GET('/quiz/all');
     setQuizList(res.data);
-    console.log(res.data);
+    // console.log(res.data);
   }, []);
 
   useEffect(() => {

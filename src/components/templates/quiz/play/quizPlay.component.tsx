@@ -85,7 +85,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
 
   // 단어 리덕스 저장
   const saveAnwerList = useCallback(
-    (_currNum: number, _answer: [number, string] | []) => {
+    async (_currNum: number, _answer: [number, string] | []) => {
       if (answerList.length + 1 >= props.quizList.length) {
         let _answerList: AnswerListItem[] = Object.assign([], answerList);
         _answerList[_currNum] = {
@@ -98,7 +98,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
           diacritic: props.quizList[_currNum]?.diacritic,
           audio: props.quizList[_currNum]?.audio,
         };
-        props.handleSave(_answerList);
+        await props.handleSave(_answerList);
       }
     },
     [answerList],
@@ -106,7 +106,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
 
   // 다음 단어
   const nextWord = useCallback(
-    (isButton: boolean) => {
+    async (isButton: boolean) => {
       if (
         currNum + 1 < props.quizList.length &&
         answerList.length < props.quizList.length
@@ -115,7 +115,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
         setCurrNum((state) => ++state);
         setTimer((state) => props.limitTime);
       } else {
-        saveAnwerList(currNum, [NaN, '']);
+        await saveAnwerList(currNum, [NaN, '']);
       }
     },
     [currNum],
@@ -145,12 +145,12 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
 
   // 단어 선택시 실행
   const handleOption = useCallback(
-    (item: string, i: number, _currNum: number) => {
+    async (item: string, i: number, _currNum: number) => {
       if (timer !== 0 && _currNum + 1 < props.quizList?.length) {
         handleAnswerList(_currNum, [i, item]);
         nextWord(true);
       } else {
-        saveAnwerList(_currNum, [i, item]);
+        await saveAnwerList(_currNum, [i, item]);
       }
     },
     [],

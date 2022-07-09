@@ -27,41 +27,36 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
   const [isSend, setIsSend] = useState<boolean>(false);
 
   const saveData = async (_list: AnswerListItem[], _corrCount: number) => {
-    if (!isSend) {
-      const data = {
-        userQuiz_id: props.userQuizId,
-        quiz_id: props.quizId,
-        best_solve: _corrCount,
-        answerList: _list,
-      };
+    const data = {
+      userQuiz_id: props.userQuizId,
+      quiz_id: props.quizId,
+      best_solve: _corrCount,
+      answerList: _list,
+    };
 
-      const res = await method.PATCH('/auth/userQuiz/update', data);
-    }
+    const res = await method.PATCH('/auth/userQuiz/update', data);
   };
 
   const handleSave = async (_list: AnswerListItem[]) => {
     setIsSend(true);
-    if (!isSend) {
-      // console.log('save');
-      router.push('/quiz/result');
-      let corrCount = 0;
-      _list.forEach((item) => {
-        if (item.correctWordId === item.answer[0]) {
-          corrCount++;
-        }
-      });
+    router.push('/quiz/result');
+    let corrCount = 0;
+    _list.forEach((item) => {
+      if (item.correctWordId === item.answer[0]) {
+        corrCount++;
+      }
+    });
 
-      await saveData(_list, corrCount);
+    await saveData(_list, corrCount);
 
-      dispatch(
-        saveQuiz({
-          title: props.quizTitle,
-          id: props.quizId,
-          list: _list,
-          corrCount: corrCount,
-        }),
-      );
-    }
+    dispatch(
+      saveQuiz({
+        title: props.quizTitle,
+        id: props.quizId,
+        list: _list,
+        corrCount: corrCount,
+      }),
+    );
   };
 
   return (
