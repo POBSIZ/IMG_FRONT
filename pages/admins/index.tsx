@@ -19,10 +19,13 @@ const AdminPage: NextPage<any> = (props, {}) => {
               <Link href="/admins/book/upload">책 업로드</Link>
             </h2>
             <h2>
-              <Link href="/admins/book/list">책 목록</Link>
+              <Link href="/admins/book/list">책 관리</Link>
             </h2>
             <h2>
               <Link href="/admins/quiz/create">퀴즈 생성</Link>
+            </h2>
+            <h2>
+              <Link href="/admins/quiz/assign">퀴즈 할당</Link>
             </h2>
             <h2>
               <Link href="/admins/user">회원 관리</Link>

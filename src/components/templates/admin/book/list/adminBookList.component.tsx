@@ -24,7 +24,7 @@ const AdminBookListComponent: React.FC<AdminBookListComponentPropsType> = (
 ) => {
   return (
     <>
-      <Layout.Container>
+      <Layout.Container style={{ paddingTop: '0px' }}>
         <StyledAdminBookList>
           <Title style={{ margin: '20px 0' }}>📚 책 목록</Title>
           <Layout.Content>
@@ -37,7 +37,7 @@ const AdminBookListComponent: React.FC<AdminBookListComponentPropsType> = (
               handleClick={props.handleBook}
             />
             <section className="btns">
-              <Button backColor="primary">단어 보기</Button>
+              {/* <Button backColor="primary">단어 보기</Button> */}
               <Button backColor="red" onClick={props.deleteBook}>
                 삭제
               </Button>

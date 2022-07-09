@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { QuizTemplate } from 'Templates';
 import { QuizItemType } from 'Templates/quiz/index/quiz.types';
 
-import { RedirectLogin } from 'Hoc';
+import { RedirectLogin, CheckRole } from 'Hoc';
 import { Get } from 'Utils';
 
 const QuizPage: NextPage<any> = (props, {}) => {

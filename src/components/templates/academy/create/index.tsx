@@ -4,6 +4,7 @@ import React, {
   useRef,
   useCallback,
   FormEvent,
+  useMemo,
 } from 'react';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import Actions from 'Actions/index';
@@ -17,13 +18,25 @@ import { Post } from 'Utils';
 import { pushToastAsync } from 'Actions/toastAction';
 
 import { useMethod } from 'Hooks';
+import { useRouter } from 'next/router';
 
 const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
   props,
 ) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const method = useMethod();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
+
+  const myAcademyInfo = useMemo(() => {
+    return {
+      president_name: authState.profile.name,
+      phone: authState.profile.phone,
+      address: authState.profile.address,
+      zip: authState.profile.zip,
+      address_detail: authState.profile.address_detail,
+    };
+  }, []);
 
   const handleSubmit = useCallback(
     async (
@@ -43,7 +56,6 @@ const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
           zip: _zip,
           address_detail: _address_detail,
         });
-        console.log(res);
 
         dispatch(
           pushToastAsync.request({
@@ -51,6 +63,8 @@ const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
             message: '학원을 생성하였습니다.',
           }),
         );
+
+        router.push('/academy');
       } catch (error: any) {
         console.log(error);
         dispatch(
@@ -64,7 +78,12 @@ const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
     [],
   );
 
-  return <AcademyCreateComponent handleSubmit={handleSubmit} />;
+  return (
+    <AcademyCreateComponent
+      handleSubmit={handleSubmit}
+      myAcademyInfo={myAcademyInfo}
+    />
+  );
 };
 
 export default AcademyCreateTemplate;

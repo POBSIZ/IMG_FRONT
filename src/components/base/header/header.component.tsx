@@ -27,6 +27,12 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
   return (
     <StyledHeader className="header">
       <Logo href="/">
+        {/* {props.authState?.profile?.academy_id &&
+        props.academy.name !== '이미지 어학원' ? (
+          <span>{props.academy.name}</span>
+        ) : (
+          <Image src="/logo.gif" width={0} height={0} />
+        )} */}
         <Image src="/logo.gif" width={0} height={0} />
       </Logo>
 

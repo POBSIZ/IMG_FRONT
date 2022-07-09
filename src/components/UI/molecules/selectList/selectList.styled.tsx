@@ -25,12 +25,16 @@ export const ListItem = styled.div.attrs((props) => ({}))`
       flex-flow: row;
 
       label {
+        cursor: pointer;
         will-change: background-color, color;
-        display: block;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
         width: 98%;
         margin: 0;
         padding-left: 10px;
-        line-height: 48px;
+        line-height: fit-content;
         ${$font_body_head};
         background-color: ${$color_base_LightGray};
         background-color: ${$color_base_white};
@@ -38,6 +42,7 @@ export const ListItem = styled.div.attrs((props) => ({}))`
 
         span {
           ${$font_body_base};
+          margin-bottom: 0 !important;
         }
       }
 

@@ -18,12 +18,14 @@ export interface SelectListType {
 export interface SelectListPropsType extends Partial<HTMLInputElement> {
   name: string;
   type: 'radio' | 'checkbox' | 'button';
-  selectList: SelectListType[];
+  // selectList: SelectListType[];
+  selectList: any;
   boxHeight: number | string;
   handleClick: (
     _idx: number,
     _title: string,
     _subtitle: string | number,
+    _dataObj: any,
   ) => any | any;
 }
 
@@ -38,7 +40,9 @@ const SelectList: React.FC<SelectListPropsType> = (props, {}) => {
               id={props.name + i}
               name={props.name}
               onClick={(e) => {
-                props.handleClick(item.idx, item.title, item.subtitle);
+                props.handleClick(item.idx, item.title, item.subtitle, {
+                  ...item,
+                });
               }}
             />
             <label htmlFor={props.name + i}>
@@ -51,4 +55,4 @@ const SelectList: React.FC<SelectListPropsType> = (props, {}) => {
   );
 };
 
-export default memo(SelectList);
+export default SelectList;

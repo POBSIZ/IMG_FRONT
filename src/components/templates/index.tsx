@@ -13,10 +13,14 @@ import AdminUploadTemplate from './admin/book/upload';
 import AdminBookListTemplate from './admin/book/list';
 
 import QuizCreateTemplate from './admin/quiz/create';
+import QuizAssignTemplate from './admin/quiz/assign';
+
 import UserTemplate from './admin/user/index';
 import UserInfoTemplate from './admin/user/info';
 
+import AcademyTemplate from './academy/index';
 import AcademyCreateTemplate from './academy/create';
+import AcademyQuizListTemplate from './academy/quiz/list';
 
 const Templates = {
   HomeTemplate,
@@ -27,11 +31,14 @@ const Templates = {
   RegisterTemplate,
   AdminUploadTemplate,
   QuizCreateTemplate,
+  QuizAssignTemplate,
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,
   AdminBookListTemplate,
   AcademyCreateTemplate,
+  AcademyTemplate,
+  AcademyQuizListTemplate,
 };
 export default Templates;
 export {
@@ -43,9 +50,12 @@ export {
   RegisterTemplate,
   AdminUploadTemplate,
   QuizCreateTemplate,
+  QuizAssignTemplate,
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,
   AdminBookListTemplate,
   AcademyCreateTemplate,
+  AcademyTemplate,
+  AcademyQuizListTemplate,
 };

@@ -15,6 +15,7 @@ import { useDebounce, useMethod } from 'Hooks';
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'styles/global.styles';
 import StyledSelectList from 'Molecules/selectList/selectList.styled';
+import { SelectListType } from 'Molecules/selectList';
 
 export const StyledSearch = styled.div.attrs((props) => ({}))`
   ${(props) => {
@@ -30,9 +31,18 @@ export const StyledSearch = styled.div.attrs((props) => ({}))`
       flex-flow: column;
       gap: 4px;
 
+      * {
+        margin: 0 !important;
+      }
+
+      span {
+        margin-bottom: 6px !important;
+      }
+
       ${StyledSelectList} {
         width: 100%;
       }
+
       @media screen and (max-width: ${$mobile_max_width}) {
       }
     `;
@@ -41,21 +51,30 @@ export const StyledSearch = styled.div.attrs((props) => ({}))`
 
 export interface SearchPropsType {
   getBaseUrl: string;
-  setSearchResult: SetStateType;
+  setSearchResult: Function;
 }
 
 const Search: React.FC<SearchPropsType> = (props) => {
   const debounce = useDebounce();
   const method = useMethod();
-  const [textVal, setTextVal] = useState('');
-  const [resList, setResList] = useState([]);
+  const [resList, setResList] = useState<SelectListType[]>([]);
+  const [dataObj, setDataObj] = useState<any>({});
 
   const getResult = async (e) => {
-    e.target.value === '' ? setResList([]) : null;
     debounce(async () => {
       try {
-        const res = await method.GET(`${props.getBaseUrl}/${e.target.value}`);
-        setResList(res.data);
+        e.target.value === '' ? setResList([]) : null;
+        const res = await method.POST(`${props.getBaseUrl}`, {
+          str: e.target.value,
+        });
+        setResList(
+          res.data.map((item) => ({
+            idx: item.academy_id,
+            title: item.name,
+            subtitle: item.zip,
+            ...item,
+          })),
+        );
       } catch (error) {
         setResList([]);
       }
@@ -64,19 +83,20 @@ const Search: React.FC<SearchPropsType> = (props) => {
 
   return (
     <StyledSearch>
-      <TextInput type="text" placeholder="검색" text="" onChange={getResult} />
+      <TextInput
+        type="text"
+        placeholder="검색"
+        text="검색"
+        onChange={getResult}
+      />
       {resList.length < 1 ? null : (
         <SelectList
           name="result"
           type="radio"
           boxHeight={'auto'}
           selectList={resList}
-          handleClick={(_idx, _title, _subtitle) => {
-            props.setSearchResult((state) => ({
-              _idx,
-              _title,
-              _subtitle,
-            }));
+          handleClick={(_idx, _title, _subtitle, _dataObj) => {
+            props.setSearchResult(_idx, _title, _subtitle, _dataObj);
           }}
         />
       )}

@@ -13,7 +13,7 @@ const HomePage: NextPage<any> = ({}) => {
         <meta property="og:title" content="이미지 어학원" />
         <meta property="og:description" content="이미지 어학원" />
       </Head>
-      <HomeTemplate titleBannerImgSrc="/img/main_bg.webp" />
+      <HomeTemplate titleBannerImgSrc="/img/main_bg.svg" />
     </>
   );
 };

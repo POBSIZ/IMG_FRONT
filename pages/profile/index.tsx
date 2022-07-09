@@ -6,8 +6,10 @@ import { ProfileTemplate } from 'Templates';
 import { ProfileTemplatePropsType } from 'Templates/profile';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { Get } from 'Utils';
+import { useMethod } from 'Hooks';
 
 const ProfilePage: NextPage<any> = (props, {}) => {
+  const method = useMethod();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
   const [quizLog, setQuizLog] = useState([]);
 
@@ -25,12 +27,15 @@ const ProfilePage: NextPage<any> = (props, {}) => {
   );
 
   const getQuizLog = useCallback(async () => {
-    const res = await Get('/auth/quiz/log', {
-      headers: {
-        Authorization: `Bearer ${authState.token}`,
-      },
-    });
-    setQuizLog(res.data);
+    const res = await method.GET('/auth/quiz/log');
+    setQuizLog(
+      res.data
+        .flat()
+        .sort((a, b) => {
+          return new Date(b.date) - new Date(a.date);
+        })
+        .reverse(),
+    );
   }, []);
 
   useEffect(() => {

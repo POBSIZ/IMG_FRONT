@@ -32,6 +32,15 @@ const AcademyCreateComponent: React.FC<AcademyCreatePropsType> = (props) => {
   const [zip, setZip] = useState<string>(''); // 우편번호
   const [addressDetail, setAddressDetail] = useState<string>(''); // 상세주소
 
+  const getMyInfo = useCallback(() => {
+    // setName(props.myAcademyInfo.name);
+    setPresidentName(props.myAcademyInfo.president_name);
+    setPhone(props.myAcademyInfo.phone);
+    setAddress(props.myAcademyInfo.address);
+    setZip(props.myAcademyInfo.zip);
+    setAddressDetail(props.myAcademyInfo.address_detail);
+  }, []);
+
   return (
     <Layout.Container>
       <StyledAcademyCreate>
@@ -50,6 +59,10 @@ const AcademyCreateComponent: React.FC<AcademyCreatePropsType> = (props) => {
           }}
         >
           <Title>🏠 학원 생성</Title>
+
+          <Button type="button" backColor="primary" onClick={getMyInfo}>
+            내 정보로 생성
+          </Button>
 
           <TextInput
             text="학원 상호"

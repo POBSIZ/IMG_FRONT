@@ -26,6 +26,7 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
       _zipCode: string,
       _addressDetail: string,
       _academy: string,
+      _academy_id: string,
     ) => {
       try {
         const res = await Post('/auth/register', {
@@ -40,6 +41,7 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
           zip: _zipCode,
           address_detail: _addressDetail,
           academy: _academy,
+          academy_id: _academy_id,
         });
         // console.log(res);
         dispatch(

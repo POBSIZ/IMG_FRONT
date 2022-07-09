@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 interface CheckRolePropsType {
-  role: 'student' | 'parent' | 'insider' | 'admin';
+  role: 'student' | 'parent' | 'insider' | 'admin' | 'all';
   isRedirect?: boolean;
   redirectUrl?: string;
   children: React.ReactElement;
@@ -26,7 +26,7 @@ const CheckRole: React.FC<CheckRolePropsType> = (props) => {
 
   return authReducer?.profile?.role === props.role ? (
     props.children
-  ) : authReducer?.profile?.role === 'admin' ? (
+  ) : authReducer?.profile?.role === 'admin' || props.role === 'all' ? (
     props.children
   ) : (
     <></>

@@ -19,9 +19,12 @@ import {
 import { Post } from 'Utils';
 import { pushToastAsync } from 'Actions/toastAction';
 
+import { useMethod } from 'Hooks';
+
 // type QuizCreateTemplatesPropsType = Partial<QuizCreatePropsType>;
 
 const QuizCreateTemplate: React.FC<QuizCreatePropsType> = (props, {}) => {
+  const method = useMethod();
   const dispatch = useDispatch();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
 
@@ -37,13 +40,8 @@ const QuizCreateTemplate: React.FC<QuizCreatePropsType> = (props, {}) => {
       };
 
       try {
-        const res = await Post('/quiz/create', data, {
-          headers: {
-            Authorization: `Bearer ${authState.token}`,
-            mode: 'cors',
-          },
-        });
-        console.log(res);
+        const res = await method.POST('/quiz/create', data);
+        // console.log(res);
         dispatch(
           pushToastAsync.request({
             status: 'success',

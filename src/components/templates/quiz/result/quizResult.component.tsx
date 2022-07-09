@@ -32,11 +32,24 @@ const QuizResultComponent: React.FC<QuizResultComponentPropsType> = (props) => {
   const audioRef: { current: HTMLAudioElement | null } = useRef(null);
   const [audioState, setAudioState] = useState<string>('');
 
-  const handleAudio = useCallback((_audio: string) => {
-    setAudioState(`${process.env.NEXT_PUBLIC_SERVER}${_audio}`);
-    // audioRef?.current?.src = _audio;
+  const handleAudio = (_audio: string) => {
+    setAudioState((state) => `${process.env.NEXT_PUBLIC_SERVER}${_audio}`);
     audioRef?.current?.play();
-  }, []);
+  };
+
+  const playAudio = (e) => {
+    if (e.type === 'ended') {
+      audioRef?.current?.pause();
+    }
+  };
+
+  // Audio 이벤트
+  useEffect(() => {
+    audioRef?.current?.addEventListener('ended', playAudio);
+    return () => {
+      removeEventListener('ended', playAudio);
+    };
+  }, [audioRef]);
 
   useEffect(() => {
     setIsLoading(false);

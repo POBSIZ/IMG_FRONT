@@ -19,7 +19,7 @@ export interface UserProfile {
 
 export interface ProfileTemplatePropsType {
   profile: UserProfile;
-  quizLog: QuizLogItemType[][];
+  quizLog: QuizLogItemType[];
 }
 
 const ProfileTemplate: React.FC<ProfileTemplatePropsType> = (props) => {

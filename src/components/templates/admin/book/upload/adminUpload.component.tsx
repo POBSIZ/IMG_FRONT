@@ -23,12 +23,12 @@ const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
 ) => {
   return (
     <>
-      <Layout.Container>
+      <Layout.Container style={{ paddingBottom: '0px' }}>
         <StyledAdminUpload>
           <Title>엑셀 파일 업로드</Title>
           <form onSubmit={props.handleSubmit} acceptCharset="UTF-8">
             <File name="file" />
-            <Button type="submit" backColor="primary">
+            <Button type="submit" backColor="primary" isLoad={props.isLoad}>
               SUBMIT
             </Button>
           </form>
@@ -50,7 +50,7 @@ const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
               })}
             </ul>
           </Layout.Content> */}
-          <Link href="/admins/quiz/create">퀴즈 생성 이동</Link>
+          {/* <Link href="/admins/quiz/create">퀴즈 생성 이동</Link> */}
         </StyledAdminUpload>
       </Layout.Container>
     </>

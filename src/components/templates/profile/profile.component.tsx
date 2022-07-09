@@ -26,44 +26,36 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
         </ProfileInfo>
 
         <Layout.Content>
-          <ul>
-            {/* <QuizLogItem>
-              <span>날짜</span>
-              <span>퀴즈명</span>
-              <span>점수</span>
-              <span>시험결과</span>
-              <span>재시험</span>
-              <span>오답 엑셀</span>
-            </QuizLogItem> */}
+          <h2>퀴즈 기록</h2>
+          <ul
+            style={{ height: '50vh', overflow: 'hidden', overflowY: 'scroll' }}
+          >
             {props.quizLog.map((item) => {
-              return item.reverse().map((_item) => {
-                const dateObj = new Date(_item.date).toDateString();
-                // console.log(dateObj);
-                // const date = `${dateObj.getFullYear()}.${dateObj.getMonth()}.${dateObj.getDay()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
-
-                return (
-                  <QuizLogItem key={nanoid()}>
-                    <section>
-                      <p>{dateObj}</p>
-                      <p>{_item.title}</p>
-                      <p>
-                        {_item.score} / {_item.probCount}
-                      </p>
-                    </section>
-                    <div>
-                      <Link href="/">결과보기</Link>
-                      <Link href="/">재시험</Link>
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faDownload} />
-                      </a>
-                    </div>
-                  </QuizLogItem>
-                );
-              });
+              const _dateObj = new Date(item.date).toISOString();
+              const dateObj = new Date(_dateObj);
+              const date = `${dateObj.getFullYear()}년 ${dateObj.getMonth()}월 ${dateObj.getDay()}일 ${dateObj.getHours()}시 ${dateObj.getMinutes()}분`;
+              return (
+                <QuizLogItem key={nanoid()}>
+                  <section>
+                    <p>{date}</p>
+                    <p>{item.title}</p>
+                    <p>
+                      {item.score} / {item.probCount}
+                    </p>
+                  </section>
+                  <div>
+                    <Link href="#">결과보기</Link>
+                    <Link href="#">재시험</Link>
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faDownload} />
+                    </a>
+                  </div>
+                </QuizLogItem>
+              );
             })}
           </ul>
         </Layout.Content>

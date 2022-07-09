@@ -39,6 +39,10 @@ export const QuizControl = styled.ul.attrs((props) => {})`
     const $color_key_color = Theme.palette.$color_key_color;
     const $mobile_max_width = Theme.media.$mobile_max_width;
     return css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       list-style: none;
       padding: 0;
       margin: 0;

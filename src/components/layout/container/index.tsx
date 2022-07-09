@@ -17,7 +17,7 @@ const Container = styled.article.attrs((props) => ({}))`
       padding: ${$header_desktop_line_height} 5%;
 
       @media screen and (max-width: ${$tablet_max_width}) {
-        padding: ${$header_mobile_line_height} 2%;
+        padding: ${$header_mobile_line_height} 5%;
       }
     `;
   }};

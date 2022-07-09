@@ -46,7 +46,7 @@ const AdminBookListTemplate: React.FC<AdminBookListPropsType> = (props) => {
     );
   }, [bookId]);
 
-  const handleBook = useCallback((_idx, _title, _subtitle) => {
+  const handleBook = useCallback((_idx, _title, _subtitle, _dataObj) => {
     setBookId(_idx);
   }, []);
 

@@ -15,8 +15,12 @@ import { AnswerListItem } from './quizPlay.types';
 
 import { useRouter } from 'next/router';
 import { Patch } from 'Utils';
+import { useMethod, useDebounce } from 'Hooks';
+import { Loader } from 'Bases';
 
 const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
+  const debounce = useDebounce();
+  const method = useMethod();
   const dispatch = useDispatch();
   const router = useRouter();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
@@ -30,17 +34,15 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
         best_solve: _corrCount,
         answerList: _list,
       };
-      // console.log(data);
-      const res = await Patch('/auth/userQuiz/update', data, {
-        headers: { Authorization: `Bearer ${authState.token}` },
-      });
-      // console.log(res);
-      setIsSend(true);
+
+      const res = await method.PATCH('/auth/userQuiz/update', data);
     }
   };
 
   const handleSave = async (_list: AnswerListItem[]) => {
+    setIsSend(true);
     if (!isSend) {
+      // console.log('save');
       router.push('/quiz/result');
       let corrCount = 0;
       _list.forEach((item) => {
@@ -64,7 +66,11 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
 
   return (
     <>
-      <QuizPlayComponent {...props} router={router} handleSave={handleSave} />
+      {isSend ? (
+        <Loader />
+      ) : (
+        <QuizPlayComponent {...props} router={router} handleSave={handleSave} />
+      )}
     </>
   );
 };

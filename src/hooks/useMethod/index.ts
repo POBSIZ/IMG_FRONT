@@ -1,5 +1,6 @@
 import { useSelector, RootStateOrAny } from 'react-redux';
 
+import axios from 'axios';
 import { Get, Post, Patch } from 'Utils';
 
 export const useMethod = () => {
@@ -27,6 +28,17 @@ export const useMethod = () => {
           Authorization: `Bearer ${authState.token}`,
         },
       });
+      return res;
+    },
+    DELETE: async (url: string) => {
+      const res = await axios.delete(
+        `${process.env.NEXT_PUBLIC_SERVER}${url}`,
+        {
+          headers: {
+            Authorization: `Bearer ${authState.token}`,
+          },
+        },
+      );
       return res;
     },
   };

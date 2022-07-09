@@ -22,7 +22,7 @@ export interface AuthProfileType {
   name: string; // 이름
   phone: string; // 전화번호
   role: 'student' | 'parent' | 'insider' | 'admin'; // 권한
-  created_at: Date; // 생성일
+  created_at: Date | null; // 생성일
   school: string; // 학교
   grade: string; // 학년
   class_id: number; // 반 ID

@@ -6,6 +6,7 @@ export interface ButtonPropsType extends Partial<ReactElement> {
   children: any;
   backColor: 'primary' | 'gradient' | 'black' | 'red';
   isDisabled?: boolean;
+  isLoad?: boolean;
 }
 
 const Button = styled.button.attrs((props: ButtonPropsType) => ({
@@ -40,6 +41,37 @@ const Button = styled.button.attrs((props: ButtonPropsType) => ({
       outline: none;
       cursor: pointer;
       transition: all 0.3s;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ${props.isLoad
+        ? `
+          &::after {
+            display: inline-block;
+            content: '' '';
+            border: 2px solid #fff;
+            border-radius: 100%;
+            margin: 0 6px;
+            width: 16px;
+            height: 16px;
+            animation: circle 2s ease-in-out infinite;
+          }
+        `
+        : ``}
+
+      @keyframes circle {
+        0% {
+          transform: scale(0%);
+        }
+        50% {
+          transform: scale(100%);
+        }
+        100% {
+          transform: scale(0%);
+        }
+      }
     `;
   }};
 `;

@@ -22,15 +22,21 @@ import { Post } from 'Utils';
 import { InputFiles } from 'typescript';
 import { pushToastAsync } from 'Actions/toastAction';
 
+import { useMethod } from 'Hooks';
+
 const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
+  const method = useMethod();
   const dispatch = useDispatch();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
 
   const [resList, setResList] = useState([]);
+  const [isLoad, setIsLoad] = useState<boolean>(false);
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     e.persist();
+
+    setIsLoad(true);
 
     let formData = new FormData();
     formData.append('file', e.target.file.files[0]);
@@ -52,6 +58,8 @@ const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
           message: '책 생성에 성공하였습니다.',
         }),
       );
+      console.log(post);
+      setIsLoad(false);
     } catch (error) {
       dispatch(
         pushToastAsync.request({
@@ -69,6 +77,7 @@ const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
       <AdminUploadComponent
         handleSubmit={handleSubmit}
         resList={resList}
+        isLoad={isLoad}
         {...props}
       />
     </>
