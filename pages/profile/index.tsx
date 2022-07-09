@@ -28,6 +28,7 @@ const ProfilePage: NextPage<any> = (props, {}) => {
 
   const getQuizLog = useCallback(async () => {
     const res = await method.GET('/auth/quiz/log');
+    console.log(res.data);
     setQuizLog(
       res.data
         .flat()

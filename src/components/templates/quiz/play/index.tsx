@@ -26,17 +26,6 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
   const [isSend, setIsSend] = useState<boolean>(false);
 
-  const saveData = async (_list: AnswerListItem[], _corrCount: number) => {
-    const data = {
-      userQuiz_id: props.userQuizId,
-      quiz_id: props.quizId,
-      best_solve: _corrCount,
-      answerList: _list,
-    };
-
-    const res = await method.PATCH('/auth/userQuiz/update', data);
-  };
-
   const handleSave = async (_list: AnswerListItem[]) => {
     setIsSend(true);
 
@@ -47,8 +36,6 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
       }
     });
 
-    await saveData(_list, corrCount);
-
     dispatch(
       saveQuiz({
         title: props.quizTitle,
@@ -58,6 +45,14 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
       }),
     );
 
+    const data = {
+      userQuiz_id: props.userQuizId,
+      quiz_id: props.quizId,
+      best_solve: corrCount,
+      answerList: _list,
+    };
+
+    const res = await method.PATCH('/auth/userQuiz/update', data);
     router.push('/quiz/result');
   };
 

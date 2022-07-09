@@ -20,6 +20,10 @@ import { pushToastAsync } from 'Actions/toastAction';
 import { useMethod } from 'Hooks';
 import { useRouter } from 'next/router';
 
+import { AuthProfileType } from 'Types/authTypes';
+import jwt from 'jwt-decode';
+import { authLogin } from 'Actions/authAction';
+
 const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
   props,
 ) => {
@@ -56,6 +60,28 @@ const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
           zip: _zip,
           address_detail: _address_detail,
         });
+
+        const profileData: AuthProfileType = await jwt(res.data);
+
+        dispatch(
+          authLogin({
+            profile: {
+              user_id: profileData.user_id,
+              name: profileData.name,
+              phone: profileData.phone,
+              role: profileData.role,
+              created_at: profileData.created_at,
+              school: profileData.school,
+              grade: profileData.grade,
+              class_id: profileData.class_id,
+              address: profileData.address,
+              zip: profileData.zip,
+              address_detail: profileData.address_detail,
+              academy_id: profileData.academy_id,
+            },
+            token: res.data,
+          }),
+        );
 
         dispatch(
           pushToastAsync.request({

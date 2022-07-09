@@ -58,7 +58,7 @@ const AdminUploadTemplate: React.FC<AdminUploadPropsType> = (props) => {
           message: '책 생성에 성공하였습니다.',
         }),
       );
-      console.log(post);
+      // console.log(post);
       setIsLoad(false);
     } catch (error) {
       dispatch(

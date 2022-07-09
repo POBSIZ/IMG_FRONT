@@ -18,9 +18,13 @@ const AssignTemplate: React.FC<QuizAssignTempPropsType> = (props) => {
     e.preventDefault();
     try {
       let userList: number[] = [];
-      const users: RadioNodeList[] = e.target.user;
-      for (let i = 0; i < users.length; i++) {
-        userList.push(Number(users[i].value));
+      const users = e.target.user;
+      if (users.length > 1) {
+        for (let i = 0; i < users.length; i++) {
+          userList.push(Number(users[i].value));
+        }
+      } else {
+        userList.push(Number(users.value));
       }
 
       const res = await method.POST('/auth/userQuiz/create', {
