@@ -76,7 +76,6 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
             admin: [{ url: '/admins', text: '관리자' }],
             auth: [{ url: '/auth/login', text: '로그인' }],
           }}
-          academyName=""
         />
       )}
       <StyledMain>{children}</StyledMain>

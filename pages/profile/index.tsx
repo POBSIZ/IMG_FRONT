@@ -32,7 +32,7 @@ const ProfilePage: NextPage<any> = (props, {}) => {
       res.data
         .flat()
         .sort((a, b) => {
-          return new Date(b.date) - new Date(a.date);
+          return Number(new Date(b.date)) - Number(new Date(a.date));
         })
         .reverse(),
     );
