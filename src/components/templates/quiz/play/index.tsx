@@ -39,7 +39,7 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
 
   const handleSave = async (_list: AnswerListItem[]) => {
     setIsSend(true);
-    router.push('/quiz/result');
+
     let corrCount = 0;
     _list.forEach((item) => {
       if (item.correctWordId === item.answer[0]) {
@@ -57,6 +57,8 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
         corrCount: corrCount,
       }),
     );
+
+    router.push('/quiz/result');
   };
 
   return (
