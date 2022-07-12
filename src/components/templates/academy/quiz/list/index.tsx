@@ -31,7 +31,7 @@ const AcademyQuizListTemplate: React.FC<AcademyQuizListPropsType> = (props) => {
 
   const deleteQuiz = useCallback(async () => {
     const res = await method.DELETE(`/quiz/delete/${quizId}`);
-    console.log(res);
+    // console.log(res);
     dispatch(
       pushToastAsync.request({
         status: 'error',

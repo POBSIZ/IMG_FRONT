@@ -8,6 +8,6 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  console.log(req);
+  // console.log(req);
   res.status(200).json({ test: 'Hello' });
 }

@@ -92,7 +92,7 @@ const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
 
         router.push('/academy');
       } catch (error: any) {
-        console.log(error);
+        // console.log(error);
         dispatch(
           pushToastAsync.request({
             status: 'error',

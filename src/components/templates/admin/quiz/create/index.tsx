@@ -49,7 +49,7 @@ const QuizCreateTemplate: React.FC<QuizCreatePropsType> = (props, {}) => {
           }),
         );
       } catch (e) {
-        console.log(e);
+        // console.log(e);
         dispatch(
           pushToastAsync.request({
             status: 'error',

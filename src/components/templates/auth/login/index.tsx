@@ -54,7 +54,7 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
         );
         Router.push('/');
       } catch (error: any) {
-        console.log(error);
+        // console.log(error);
         dispatch(
           pushToastAsync.request({
             status: 'error',

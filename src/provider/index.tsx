@@ -54,7 +54,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
   }, []);
 
   const handleRouteChange = useCallback(() => {
-    console.log('Page Change');
+    // console.log('Page Change');
   }, [router]);
 
   useEffect(() => {

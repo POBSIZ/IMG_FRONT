@@ -53,7 +53,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
   const getAcademy = useCallback(async () => {
     const res = await method.GET('/academy/info');
     setAcademy(res.data);
-    console.log(res);
+    // console.log(res);
   }, [academy]);
 
   useEffect(() => {

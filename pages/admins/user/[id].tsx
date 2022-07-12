@@ -24,7 +24,7 @@ const UserInfoPage: NextPage<any> = (props, {}) => {
     const res = await Get(`/auth/user/${id}`, {
       headers: { Authorization: `Bearer ${authState.token}` },
     });
-    console.log(res);
+    // console.log(res);
     setUserInfo(res.data);
   }, []);
 

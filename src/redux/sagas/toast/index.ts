@@ -9,7 +9,7 @@ function* pushToastSaga(action: ReturnType<typeof pushToastAsync.request>) {
     yield put(pushToastAsync.success(action.payload));
     // yield put(initToast());
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
     yield put(pushToastAsync.failure(error));
   }
 }

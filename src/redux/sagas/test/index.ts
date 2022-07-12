@@ -23,7 +23,7 @@ function* getCheckSessionSaga(
     );
     yield put(getCheckSessionAsync.success(response));
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
     yield put(getCheckSessionAsync.failure(error));
   }
 }

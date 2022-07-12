@@ -10,9 +10,9 @@ function* authLoginSaga(action: ReturnType<typeof authLoginAsync.request>) {
   try {
     const res = yield call(apiPostLogin, { ...action.payload });
     yield put(authLoginAsync.success(res));
-    console.log(res);
+    // console.log(res);
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
     yield put(authLoginAsync.failure(error));
   }
 }
