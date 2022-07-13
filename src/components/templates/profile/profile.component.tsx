@@ -34,18 +34,24 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
               const _dateObj = new Date(item.date).toISOString();
               const dateObj = new Date(_dateObj);
               const date = `${dateObj.getFullYear()}년 ${dateObj.getMonth()}월 ${dateObj.getDay()}일 ${dateObj.getHours()}시 ${dateObj.getMinutes()}분`;
+
               return (
                 <QuizLogItem key={nanoid()}>
                   <section>
-                    <p>{date}</p>
-                    <p>{item.title}</p>
+                    <p>{date}</p>s<p>{item.title}</p>
                     <p>
                       {item.score} / {item.probCount}
                     </p>
                   </section>
                   <div>
-                    <Link href="#">결과보기</Link>
-                    <Link href="#">재시험</Link>
+                    <Link href={`quiz/wrongResult?id=${item.quizLog_id}`}>
+                      결과보기
+                    </Link>
+                    <Link
+                      href={`quiz/play/${item.quiz_id}?title=${item.title}&uqid=${item.userQuiz_id}`}
+                    >
+                      재시험
+                    </Link>
                     <a
                       onClick={(e) => {
                         e.preventDefault();

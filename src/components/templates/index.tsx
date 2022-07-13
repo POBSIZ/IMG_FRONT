@@ -8,6 +8,7 @@ import LoginTemplate from './auth/login';
 import RegisterTemplate from './auth/register';
 
 import ProfileTemplate from './profile';
+import QuizWrongResultTemplate from './quiz/wrongResult';
 
 import AdminUploadTemplate from './admin/book/upload';
 import AdminBookListTemplate from './admin/book/list';
@@ -35,6 +36,7 @@ const Templates = {
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,
+  QuizWrongResultTemplate,
   AdminBookListTemplate,
   AcademyCreateTemplate,
   AcademyTemplate,
@@ -54,6 +56,7 @@ export {
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,
+  QuizWrongResultTemplate,
   AdminBookListTemplate,
   AcademyCreateTemplate,
   AcademyTemplate,

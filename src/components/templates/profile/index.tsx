@@ -2,6 +2,7 @@ import React from 'react';
 import ProfileComponent from './profile.component';
 
 interface QuizLogItemType {
+  quiz_id: number | bigint;
   quizLog_id: number | bigint;
   userQuiz_id: number | bigint;
   date: string;
