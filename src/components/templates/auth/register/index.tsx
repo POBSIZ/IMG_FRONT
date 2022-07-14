@@ -16,6 +16,7 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
   const handleSubmit = useCallback(
     async (
       _name: string,
+      _nickname: string,
       _username: string,
       _password: string,
       _phone: string,
@@ -31,6 +32,7 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
       try {
         const res = await Post('/auth/register', {
           name: _name,
+          nickname: _nickname,
           username: _username,
           password: _password,
           phone: _phone,

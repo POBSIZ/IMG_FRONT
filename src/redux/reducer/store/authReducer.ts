@@ -11,6 +11,7 @@ const initialState: AuthReducerType = {
   profile: {
     user_id: NaN, // 회원 ID
     name: '', // 이름
+    nickname: '', // 닉네임
     phone: '', // 전화번호
     created_at: null, // 생성일
     school: '', // 학교

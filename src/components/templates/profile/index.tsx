@@ -13,6 +13,7 @@ interface QuizLogItemType {
 
 export interface UserProfile {
   name: string;
+  nickname: string;
   school: string;
   grade: string;
   phone: string;

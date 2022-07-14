@@ -3,9 +3,9 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { ProfileTemplatePropsType } from '.';
 import StyledProfile, { ProfileInfo, QuizLogItem } from './profile.styled';
 
-import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
+import { } from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
 import { faDownload } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
-import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
+import { } from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { nanoid } from 'nanoid';
@@ -18,11 +18,11 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
     <Layout.Container>
       <StyledProfile>
         <ProfileInfo>
-          <h1>{props.profile.name}</h1>
+          <h1>{props.profile.nickname}</h1>
           <p>
             {props.profile.school} | {props.profile.grade}
           </p>
-          <span>{props.profile.phone}</span>
+          {/* <span>{props.profile.phone}</span> */}
         </ProfileInfo>
 
         <Layout.Content>
@@ -33,14 +33,14 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
             {props.quizLog.map((item) => {
               const _dateObj = new Date(item.date).toISOString();
               const dateObj = new Date(_dateObj);
-              const date = `${dateObj.getFullYear()}년 ${dateObj.getMonth()}월 ${dateObj.getDay()}일 ${dateObj.getHours()}시 ${dateObj.getMinutes()}분`;
+              const date = `${dateObj.getFullYear()}/${dateObj.getMonth()}/${dateObj.getDay()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
 
               return (
                 <QuizLogItem key={nanoid()}>
                   <section>
-                    <p>{date}</p>s<p>{item.title}</p>
+                    <p>{date}</p>
                     <p>
-                      {item.score} / {item.probCount}
+                      {item.title} 점수 {item.score} / {item.probCount}
                     </p>
                   </section>
                   <div>

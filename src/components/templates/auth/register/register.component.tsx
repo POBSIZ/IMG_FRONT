@@ -7,9 +7,9 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
-import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
-import {} from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
-import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
+import { } from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
+import { } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
+import { } from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from 'Layouts';
@@ -22,6 +22,7 @@ import Link from 'next/link';
 
 const RegisterComponent: React.FC<any> = (props) => {
   const [name, setName] = useState<string>(''); // 이름
+  const [nickname, setNickname] = useState<string>(''); // 닉네임
   const [username, setUsername] = useState<string>(''); // 아이디
   const [password, setPassword] = useState<string>(''); // 비밀번호
   const [phone, setPhone] = useState<string>(''); // 전화번호
@@ -98,7 +99,7 @@ const RegisterComponent: React.FC<any> = (props) => {
                 value={academy}
                 required
                 disabled
-                onChange={(e) => {}}
+                onChange={(e) => { }}
               />
             </>
           ) : (
@@ -157,7 +158,7 @@ const RegisterComponent: React.FC<any> = (props) => {
                     value={address}
                     required
                     disabled
-                    onChange={() => {}}
+                    onChange={() => { }}
                   />
                   <TextInput
                     text="우편번호"
@@ -166,7 +167,7 @@ const RegisterComponent: React.FC<any> = (props) => {
                     value={zipCode}
                     required
                     disabled
-                    onChange={() => {}}
+                    onChange={() => { }}
                   />
                   <TextInput
                     text="상세주소"
@@ -218,6 +219,7 @@ const RegisterComponent: React.FC<any> = (props) => {
               e.preventDefault();
               props.handleSubmit(
                 name,
+                nickname,
                 username,
                 password,
                 phone,
@@ -240,6 +242,17 @@ const RegisterComponent: React.FC<any> = (props) => {
               required
               onChange={(e) => {
                 setName(e.target.value);
+              }}
+            />
+
+            <TextInput
+              text="닉네임"
+              type="text"
+              placeholder="닉네임"
+              value={nickname}
+              required
+              onChange={(e) => {
+                setNickname(e.target.value);
               }}
             />
 

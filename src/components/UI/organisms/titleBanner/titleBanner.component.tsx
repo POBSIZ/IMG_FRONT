@@ -17,19 +17,21 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
   return (
     <>
       <StyledTitleBanner style={{ background: props.imgSrc }}>
-        <section>
-          <PortalRing>
-            <div className="circle" />
-            <div className="circle" />
-            <div className="circle" />
-            <AosWrapper animation="fade-up" duration={600}>
-              <h1>{process.env.NEXT_PUBLIC_TITLE}</h1>
-            </AosWrapper>
-            <AosWrapper animation="fade-up" delay={1000} duration={800}>
-              <p>안녕하세요 이미지 어학원입니다.</p>
-            </AosWrapper>
-          </PortalRing>
-        </section>
+        <AosWrapper animation="fade-up" duration={500}>
+          <section>
+            <PortalRing>
+              <div className="circle" />
+              <div className="circle" />
+              <div className="circle" />
+              <AosWrapper animation="fade-up" duration={600}>
+                <h1>{process.env.NEXT_PUBLIC_TITLE}</h1>
+              </AosWrapper>
+              <AosWrapper animation="fade-up" delay={1000} duration={800}>
+                <p>안녕하세요 이미지 어학원입니다.</p>
+              </AosWrapper>
+            </PortalRing>
+          </section>
+        </AosWrapper>
       </StyledTitleBanner>
     </>
   );
