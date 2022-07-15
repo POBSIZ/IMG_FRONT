@@ -4,7 +4,7 @@ import { GlobalStyleType } from 'styles/global.styles';
 
 import StyledLogo from 'Atoms/logo/logo.styled';
 
-export const NavList = styled.nav.attrs((props) => {})`
+export const NavList = styled.nav.attrs((props) => { })`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
@@ -109,7 +109,7 @@ export const NavList = styled.nav.attrs((props) => {})`
   }}
 `;
 
-const StyledHeader = styled.header.attrs((props) => {})`
+const StyledHeader = styled.header.attrs((props) => { })`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $base_theme_color = Theme.baseTheme.color;
@@ -150,6 +150,10 @@ const StyledHeader = styled.header.attrs((props) => {})`
         display: flex;
         justify-content: center;
         align-items: center;
+        
+        width: calc(332px / 2) !important;
+        height: calc(81px / 2) !important;
+
         a {
           font-size: 24px;
           font-weight: bold;
@@ -157,11 +161,16 @@ const StyledHeader = styled.header.attrs((props) => {})`
           text-decoration: none;
         }
 
-        img {
-          cursor: pointer;
+        span{
+          
           width: calc(332px / 2) !important;
           height: calc(81px / 2) !important;
+
+          img {
+            cursor: pointer;
+          }
         }
+
       }
 
       @media screen and (max-width: ${$tablet_max_width}) {

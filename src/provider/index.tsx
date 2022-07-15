@@ -28,11 +28,13 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
         });
 
         const profileData: AuthProfileType = await jwt(res.data);
+
         dispatch(
           authLogin({
             profile: {
               user_id: profileData.user_id,
               name: profileData.name,
+              nickname: profileData.nickname,
               phone: profileData.phone,
               role: profileData.role,
               created_at: profileData.created_at,
@@ -61,7 +63,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
     getTokenValidate();
     // console.log(router.pathname);
     // router.events.on('routeChangeStart', handleRouteChange);
-    return () => {};
+    return () => { };
   }, []);
 
   return (

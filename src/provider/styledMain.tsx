@@ -8,6 +8,7 @@ const StyledMain = styled.main.attrs((props) => ({}))`
     const $header_desktop_line_height = Theme.size.$header_desktop_line_height;
     const $header_mobile_line_height = Theme.size.$header_mobile_line_height;
     return css`
+      overflow: hidden;
       min-height: 100vh;
       /* padding-top: ${$header_desktop_line_height}; */
       @media screen and (max-width: ${$tablet_max_width}) {

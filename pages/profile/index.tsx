@@ -8,7 +8,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import { Get } from 'Utils';
 import { useMethod } from 'Hooks';
 
-const ProfilePage: NextPage<any> = (props, {}) => {
+const ProfilePage: NextPage<any> = (props, { }) => {
   const method = useMethod();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
   const [quizLog, setQuizLog] = useState([]);
@@ -17,6 +17,7 @@ const ProfilePage: NextPage<any> = (props, {}) => {
     () => ({
       profile: {
         name: authState.profile.name,
+        nickname: authState.profile.nickname,
         school: authState.profile.school,
         grade: authState.profile.grade,
         phone: authState.profile.phone,
