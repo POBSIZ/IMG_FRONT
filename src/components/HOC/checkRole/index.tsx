@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 interface CheckRolePropsType {
-  role: 'student' | 'parent' | 'insider' | 'admin' | 'all';
+  role: 'student' | 'parents' | 'insider' | 'admin' | 'all';
   isRedirect?: boolean;
   redirectUrl?: string;
   children: React.ReactElement;

@@ -14,8 +14,10 @@ import { Get } from 'Utils';
 import { authLogout, authLogin } from 'Actions/authAction';
 import jwt from 'jwt-decode';
 import { AuthProfileType } from 'Types/authTypes';
+import { useMethod } from 'Hooks';
 
 const ProviderLayout: React.FC<any> = ({ children }) => {
+  const method = useMethod();
   const router = useRouter();
   const dispatch = useDispatch();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
@@ -23,9 +25,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
   const getTokenValidate = useCallback(async () => {
     try {
       if (authState.token) {
-        const res = await Get('/auth/validate', {
-          headers: { Authorization: `Bearer ${authState.token}` },
-        });
+        const res = await method.GET('/auth/validate');
 
         const profileData: AuthProfileType = await jwt(res.data);
 
@@ -33,6 +33,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
           authLogin({
             profile: {
               user_id: profileData.user_id,
+              chain_id: profileData.chain_id,
               name: profileData.name,
               nickname: profileData.nickname,
               phone: profileData.phone,
@@ -53,7 +54,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
     } catch (error) {
       dispatch(authLogout());
     }
-  }, []);
+  }, [authState]);
 
   const handleRouteChange = useCallback(() => {
     // console.log('Page Change');
@@ -63,7 +64,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
     getTokenValidate();
     // console.log(router.pathname);
     // router.events.on('routeChangeStart', handleRouteChange);
-    return () => { };
+    return () => {};
   }, []);
 
   return (
@@ -73,7 +74,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
           navList={{
             default: [{ url: '/quiz', text: '퀴즈풀기' }],
             student: [],
-            parent: [],
+            parents: [],
             insider: [{ url: '/academy', text: '학원 & 퀴즈 관리' }],
             admin: [{ url: '/admins', text: '관리자' }],
             auth: [{ url: '/auth/login', text: '로그인' }],

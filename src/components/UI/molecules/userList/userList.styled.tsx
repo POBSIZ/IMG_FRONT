@@ -3,26 +3,6 @@ import { GlobalStyleType } from 'StyleVars';
 
 import { Input, Button } from 'Atoms';
 
-export const UserListItemBox = styled.div.attrs((props) => ({}))<{
-  checked: boolean;
-}>`
-  ${(props) => {
-    const Theme: GlobalStyleType = props.theme;
-
-    const $color_key_color = Theme.palette.$color_key_color;
-    const $color_base_line = Theme.palette.$color_base_line;
-
-    const $color = props.checked
-      ? `background-color: ${$color_key_color};`
-      : `border: 2px solid ${$color_key_color};`;
-    return css`
-      width: 24px;
-      height: 24px;
-      ${$color};
-    `;
-  }};
-`;
-
 export const UserListItem = styled.label.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;

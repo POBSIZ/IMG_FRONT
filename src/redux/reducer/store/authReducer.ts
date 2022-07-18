@@ -10,6 +10,7 @@ import {
 const initialState: AuthReducerType = {
   profile: {
     user_id: NaN, // 회원 ID
+    chain_id: NaN, // 연결 ID
     name: '', // 이름
     nickname: '', // 닉네임
     phone: '', // 전화번호

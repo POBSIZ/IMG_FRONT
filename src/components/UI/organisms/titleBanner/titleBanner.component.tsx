@@ -26,9 +26,9 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
               <AosWrapper animation="fade-up" duration={600}>
                 <h1>{process.env.NEXT_PUBLIC_TITLE}</h1>
               </AosWrapper>
-              <AosWrapper animation="fade-up" delay={1000} duration={800}>
+              {/* <AosWrapper animation="fade-up" delay={1000} duration={800}>
                 <p>안녕하세요 이미지 어학원입니다.</p>
-              </AosWrapper>
+              </AosWrapper> */}
             </PortalRing>
           </section>
         </AosWrapper>

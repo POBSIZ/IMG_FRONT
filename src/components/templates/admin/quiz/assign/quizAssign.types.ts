@@ -3,6 +3,7 @@ import { UserListType } from 'Molecules/userList';
 
 export interface QuizAssignTempPropsType {
   userList: UserListType[];
+  userInfoList: any[];
   quizList: SelectListType[];
 }
 

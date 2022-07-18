@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useRef, memo } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  memo,
+  useMemo,
+  useCallback,
+} from 'react';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import Actions from 'Actions/index';
 import axios from 'axios';
@@ -30,29 +37,36 @@ export interface SelectListPropsType extends Partial<HTMLInputElement> {
 }
 
 const SelectList: React.FC<SelectListPropsType> = (props, {}) => {
+  const handleClick = useCallback((_item) => {
+    props.handleClick(_item.idx, _item.title, _item.subtitle, {
+      ..._item,
+    });
+  }, []);
+
+  const list = useMemo(() => {
+    const _list = props.selectList?.map((item, i) => {
+      return (
+        <ListItem key={nanoid()}>
+          <Input
+            type={props.type}
+            id={props.name + i}
+            name={props.name}
+            onChange={(e) => {
+              handleClick(item);
+            }}
+          />
+          <label htmlFor={props.name + i}>
+            {item.title} <span>/ {item.subtitle}</span>
+          </label>
+        </ListItem>
+      );
+    });
+    return _list;
+  }, [props.selectList]);
+
   return (
-    <StyledSelectList boxHeight={props.boxHeight}>
-      {props.selectList?.map((item, i) => {
-        return (
-          <ListItem key={nanoid()}>
-            <Input
-              type={props.type}
-              id={props.name + i}
-              name={props.name}
-              onClick={(e) => {
-                props.handleClick(item.idx, item.title, item.subtitle, {
-                  ...item,
-                });
-              }}
-            />
-            <label htmlFor={props.name + i}>
-              {item.title} <span>/ {item.subtitle}</span>
-            </label>
-          </ListItem>
-        );
-      })}
-    </StyledSelectList>
+    <StyledSelectList boxHeight={props.boxHeight}>{list}</StyledSelectList>
   );
 };
 
-export default SelectList;
+export default React.memo(SelectList);

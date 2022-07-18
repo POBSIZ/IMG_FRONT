@@ -7,16 +7,15 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
-import { } from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
-import { } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
-import { } from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
+import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
+import {} from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
+import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from 'Layouts';
 import StyledRegister from './register.styled';
 
-import { Search } from 'Organisms';
-import { Address, IconInput, TextInput } from 'Molecules';
+import { Address, IconInput, TextInput, Search } from 'Molecules';
 import { Button, Input, Select } from 'Atoms';
 import Link from 'next/link';
 
@@ -26,7 +25,7 @@ const RegisterComponent: React.FC<any> = (props) => {
   const [username, setUsername] = useState<string>(''); // 아이디
   const [password, setPassword] = useState<string>(''); // 비밀번호
   const [phone, setPhone] = useState<string>(''); // 전화번호
-  const [role, setRole] = useState<'student' | 'parent' | 'insider' | string>(
+  const [role, setRole] = useState<'student' | 'parents' | 'insider' | string>(
     'student',
   ); // 권한 (학생, 학부모, 학원 관계자)
 
@@ -99,7 +98,7 @@ const RegisterComponent: React.FC<any> = (props) => {
                 value={academy}
                 required
                 disabled
-                onChange={(e) => { }}
+                onChange={(e) => {}}
               />
             </>
           ) : (
@@ -158,7 +157,7 @@ const RegisterComponent: React.FC<any> = (props) => {
                     value={address}
                     required
                     disabled
-                    onChange={() => { }}
+                    onChange={() => {}}
                   />
                   <TextInput
                     text="우편번호"
@@ -167,7 +166,7 @@ const RegisterComponent: React.FC<any> = (props) => {
                     value={zipCode}
                     required
                     disabled
-                    onChange={() => { }}
+                    onChange={() => {}}
                   />
                   <TextInput
                     text="상세주소"
@@ -302,7 +301,7 @@ const RegisterComponent: React.FC<any> = (props) => {
                 }}
               >
                 <option value="student">학생</option>
-                <option value="parent">학부모</option>
+                <option value="parents">학부모</option>
                 <option value="insider">학원관계자</option>
               </Select>
 

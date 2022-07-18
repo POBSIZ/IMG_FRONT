@@ -72,9 +72,9 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
               </>
             </CheckRole>
 
-            <CheckRole role="parent" isRedirect={false}>
+            <CheckRole role="parents" isRedirect={false}>
               <>
-                {props.navList?.parent?.map((item: NavListItemType) => {
+                {props.navList?.parents?.map((item: NavListItemType) => {
                   return (
                     <Link key={nanoid()} href={item.url}>
                       {item.text}

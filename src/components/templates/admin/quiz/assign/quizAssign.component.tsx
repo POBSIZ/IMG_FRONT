@@ -15,7 +15,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import StyledQuizAssign from './quizAssign.styled';
 import Layout from 'Layouts';
-import { UserList, SelectList } from 'Molecules';
+import { UserList, SelectList, Directory } from 'Molecules';
 import { Title, Button } from 'Atoms';
 
 import {
@@ -39,6 +39,16 @@ const QuizAssignComponent: React.FC<QuizAssignCompPropsType> = (props) => {
       >
         <Layout.Content>
           <h2>학생 목록</h2>
+          <Layout.Content style={{ background: '#fff' }}>
+            <h4 style={{ margin: '0' }}>상세보기</h4>
+            <Directory
+              name="dir"
+              title="전체"
+              list={props.userInfoList}
+              data={'all'}
+              handleClick={(e, data) => {}}
+            />
+          </Layout.Content>
           <UserList list={props.userList} name="user" />
         </Layout.Content>
 

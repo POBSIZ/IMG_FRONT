@@ -16,7 +16,7 @@ export interface NavListItemType {
 export interface NavListType {
   default: NavListItemType[];
   student: NavListItemType[];
-  parent: NavListItemType[];
+  parents: NavListItemType[];
   insider: NavListItemType[];
   admin: NavListItemType[];
   auth: NavListItemType[];
@@ -40,6 +40,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
   const [academy, setAcademy] = useState<any>(false);
 
   const logout = useCallback(() => {
+    Router.push('/');
     dispatch(authLogout());
     dispatch(
       pushToastAsync.request({
@@ -47,8 +48,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
         message: '로그아웃하였습니다.',
       }),
     );
-    Router.push('/');
-  }, []);
+  }, [authState]);
 
   const getAcademy = useCallback(async () => {
     const res = await method.GET('/academy/info');

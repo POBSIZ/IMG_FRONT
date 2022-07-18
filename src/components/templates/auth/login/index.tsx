@@ -30,6 +30,7 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
           authLogin({
             profile: {
               user_id: profileData.user_id,
+              chain_id: profileData.chain_id,
               name: profileData.name,
               nickname: profileData.nickname,
               phone: profileData.phone,

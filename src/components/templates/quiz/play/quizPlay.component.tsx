@@ -6,14 +6,14 @@ import React, {
   useRef,
 } from 'react';
 import { nanoid } from 'nanoid';
-import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
+import { } from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
 import {
   faAngleRight,
   faAngleLeft,
   faClock,
   faList,
 } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
-import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
+import { } from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // HOC
 
 import {
@@ -30,8 +30,7 @@ import StyledQuiz, {
 } from './quizPlay.styled';
 
 import { Timer, Button } from 'Atoms';
-import { ListTab } from 'Molecules';
-import { Modal } from 'Organisms';
+import { ListTab, Modal } from 'Molecules';
 import Layout from 'Layouts';
 import { BlockChangePage } from 'Hoc';
 

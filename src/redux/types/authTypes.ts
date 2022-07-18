@@ -19,10 +19,11 @@ export interface ApiPostLoginResType {
 
 export interface AuthProfileType {
   user_id: number; // 회원 ID
+  chain_id: number; // 연결 ID
   name: string; // 이름
   nickname: string; // 닉네임
   phone: string; // 전화번호
-  role: 'student' | 'parent' | 'insider' | 'admin'; // 권한
+  role: 'student' | 'parents' | 'insider' | 'admin'; // 권한
   created_at: Date | null; // 생성일
   school: string; // 학교
   grade: string; // 학년

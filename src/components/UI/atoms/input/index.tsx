@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef, RefObject } from 'react';
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'styles/global.styles';
 
-export interface InputPropsType extends Partial<HTMLInputElement> {
+export interface InputPropsType
+  extends Partial<React.FormHTMLAttributes<HTMLFormElement>> {
   type:
     | 'text'
     | 'username'

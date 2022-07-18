@@ -22,6 +22,8 @@ import UserInfoTemplate from './admin/user/info';
 import AcademyTemplate from './academy/index';
 import AcademyCreateTemplate from './academy/create';
 import AcademyQuizListTemplate from './academy/quiz/list';
+import AcademyManageStudentTemplate from './academy/manage/student';
+import AcademyManageClassTemplate from './academy/manage/class';
 
 const Templates = {
   HomeTemplate,
@@ -41,6 +43,8 @@ const Templates = {
   AcademyCreateTemplate,
   AcademyTemplate,
   AcademyQuizListTemplate,
+  AcademyManageStudentTemplate,
+  AcademyManageClassTemplate,
 };
 export default Templates;
 export {
@@ -61,4 +65,6 @@ export {
   AcademyCreateTemplate,
   AcademyTemplate,
   AcademyQuizListTemplate,
+  AcademyManageStudentTemplate,
+  AcademyManageClassTemplate,
 };

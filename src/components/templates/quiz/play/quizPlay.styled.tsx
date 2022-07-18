@@ -6,9 +6,9 @@ import StyledListTab from 'Molecules/listTab/listTab.styled';
 import StyledModal, {
   ModalBody,
   ModalContent,
-} from 'Organisms/modal/modal.styled';
+} from 'Molecules/modal/modal.styled';
 
-export const QuizTitle = styled.h1.attrs((props) => {})`
+export const QuizTitle = styled.h1.attrs((props) => { })`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $color_base_white = Theme.palette.$color_base_white;
@@ -30,7 +30,7 @@ export const QuizTitle = styled.h1.attrs((props) => {})`
   }}
 `;
 
-export const QuizControl = styled.ul.attrs((props) => {})`
+export const QuizControl = styled.ul.attrs((props) => { })`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $color_base_white = Theme.palette.$color_base_white;
@@ -66,7 +66,7 @@ export const QuizControl = styled.ul.attrs((props) => {})`
   }}
 `;
 
-export const QuizOptions = styled.ul.attrs((props) => {})`
+export const QuizOptions = styled.ul.attrs((props) => { })`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $color_base_white = Theme.palette.$color_base_white;
@@ -107,7 +107,7 @@ export const QuizOptions = styled.ul.attrs((props) => {})`
   }}
 `;
 
-export const QuizWord = styled.div.attrs((props) => {})`
+export const QuizWord = styled.div.attrs((props) => { })`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $color_base_white = Theme.palette.$color_base_white;
@@ -127,7 +127,7 @@ export const QuizWord = styled.div.attrs((props) => {})`
   }}
 `;
 
-const StyledQuiz = styled.div.attrs((props) => {})`
+const StyledQuiz = styled.div.attrs((props) => { })`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 

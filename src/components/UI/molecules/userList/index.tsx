@@ -5,10 +5,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { nanoid } from 'nanoid';
 
-import StyledUserList, {
-  UserListItem,
-  UserListItemBox,
-} from './userList.styled';
+import StyledUserList, { UserListItem } from './userList.styled';
 
 import { Input, Check, Button } from 'Atoms';
 
@@ -25,19 +22,49 @@ export interface UserListPropsType {
   name: string;
 }
 
+const UserListItemComponent: React.FC<{
+  i: number;
+  item: any;
+  name: string;
+  isAllCheck: boolean;
+}> = (props) => {
+  const [isCheck, setIsCheck] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsCheck(props.isAllCheck);
+  }, [props.isAllCheck]);
+
+  return (
+    <UserListItem key={nanoid()} htmlFor={props.i + ''}>
+      <Check
+        value={props.item.user_id + ''}
+        type="checkbox"
+        scale="L"
+        id={props.i + ''}
+        name={props.name}
+        checked={isCheck}
+        onChange={() => {
+          setIsCheck((state) => !state);
+        }}
+      />
+      <span>{props.item.name}</span>
+      <span>{props.item.grade}</span>
+      <span>{props.item.school}</span>
+    </UserListItem>
+  );
+};
+
 const UserList: React.FC<UserListPropsType> = (props) => {
   const [isAllCheck, setIsAllCheck] = useState<boolean>(false);
 
   const handleAll = useCallback((e) => {
-    e.preventDefault();
-    // e.stopPropagation();
     setIsAllCheck((state) => !state);
   }, []);
 
   return (
     <StyledUserList>
-      <UserListItem onClick={handleAll}>
-        <UserListItemBox checked={isAllCheck} />
+      <UserListItem>
+        <Check scale="L" checked={isAllCheck} onClick={handleAll} />
         <span>이름</span>
         <span>학년</span>
         <span>학교</span>
@@ -45,19 +72,12 @@ const UserList: React.FC<UserListPropsType> = (props) => {
       <section>
         {props.list?.map((item, i) => {
           return (
-            <UserListItem key={nanoid()} htmlFor={i + ''}>
-              <Check
-                value={item.user_id + ''}
-                type="checkbox"
-                scale="L"
-                id={i + ''}
-                name={props.name}
-                checked={isAllCheck}
-              />
-              <span>{item.name}</span>
-              <span>{item.grade}</span>
-              <span>{item.school}</span>
-            </UserListItem>
+            <UserListItemComponent
+              i={i}
+              item={item}
+              name={props.name}
+              isAllCheck={isAllCheck}
+            />
           );
         })}
       </section>

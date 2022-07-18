@@ -7,29 +7,30 @@ import { ProfileTemplatePropsType } from 'Templates/profile';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { Get } from 'Utils';
 import { useMethod } from 'Hooks';
+import { AuthReducerType } from 'Types/authTypes';
 
-const ProfilePage: NextPage<any> = (props, { }) => {
+const ProfilePage: NextPage<any> = (props, {}) => {
   const method = useMethod();
-  const authState = useSelector((state: RootStateOrAny) => state.authReducer);
+  const authState: AuthReducerType = useSelector(
+    (state: RootStateOrAny) => state.authReducer,
+  );
+  const [chainId, setChainId] = useState('');
   const [quizLog, setQuizLog] = useState([]);
 
-  const profileData: ProfileTemplatePropsType = useMemo(
+  const profileData: Partial<ProfileTemplatePropsType> = useMemo(
     () => ({
-      profile: {
-        name: authState.profile.name,
-        nickname: authState.profile.nickname,
-        school: authState.profile.school,
-        grade: authState.profile.grade,
-        phone: authState.profile.phone,
-      },
+      profile: authState.profile,
       quizLog: quizLog.reverse(),
+      chainId: chainId,
     }),
-    [quizLog],
+    [quizLog, chainId],
   );
 
   const getQuizLog = useCallback(async () => {
-    const res = await method.GET('/auth/quiz/log');
-    // console.log(res.data);
+    const res = authState?.profile?.chain_id
+      ? await method.GET(`/auth/quiz/log/chain/${authState.profile.chain_id}`)
+      : await method.GET('/auth/quiz/log');
+
     setQuizLog(
       res.data
         .flat()
@@ -38,11 +39,16 @@ const ProfilePage: NextPage<any> = (props, { }) => {
         })
         .reverse(),
     );
-  }, []);
+
+    if (authState.profile.chain_id) {
+      const res = await method.GET(`/auth/user/${authState.profile.chain_id}`);
+      setChainId(res.data.nickname);
+    }
+  }, [authState]);
 
   useEffect(() => {
     getQuizLog();
-  }, []);
+  }, [authState]);
 
   return (
     <>

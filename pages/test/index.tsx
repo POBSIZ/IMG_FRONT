@@ -4,10 +4,9 @@ import Head from 'next/head';
 
 import Layout from 'Layouts';
 
-import { Address } from 'Molecules';
-import { Search } from 'Organisms';
+import { Address, Search } from 'Molecules';
 
-const KakaoPage: NextPage<any> = (props, {}) => {
+const KakaoPage: NextPage<any> = (props, { }) => {
   const [sr, setSR] = useState({});
 
   return (
