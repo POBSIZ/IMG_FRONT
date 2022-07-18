@@ -23,7 +23,7 @@ const TextInput: React.FC<TextInputPropsType> = (props) => {
         name={props.name}
         value={props.value}
         required={props.required}
-        onchange={props.onchange}
+        onChange={props.onchange}
       />
     </StyledTextInput>
   );

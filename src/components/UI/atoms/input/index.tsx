@@ -15,6 +15,7 @@ export interface InputPropsType
     | 'file'
     | string;
   isFail?: boolean;
+  onChange?: any;
 }
 
 const Input = styled.input.attrs((props) => ({

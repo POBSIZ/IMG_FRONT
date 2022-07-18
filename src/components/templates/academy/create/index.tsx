@@ -67,7 +67,9 @@ const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
           authLogin({
             profile: {
               user_id: profileData.user_id,
+              chain_id: profileData.chain_id,
               name: profileData.name,
+              nickname: profileData.nickname,
               phone: profileData.phone,
               role: profileData.role,
               created_at: profileData.created_at,

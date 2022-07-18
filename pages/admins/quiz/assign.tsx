@@ -35,7 +35,7 @@ const AssignPage: NextPage<any> = (props, {}) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 퀴즈 할당</title>
       </Head>
-      <QuizAssignTemplate userList={userListMemo} quizList={quizListMemo} />
+      {/* <QuizAssignTemplate userList={userListMemo} quizList={quizListMemo} /> */}
     </>
   );
 };
