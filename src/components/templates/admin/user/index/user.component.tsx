@@ -26,18 +26,18 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
         <StyledUser>
           <UserItem>
             <span>ID</span>
+            <span>권한</span>
             <span>이름</span>
-            <span>학교</span>
-            <span>학년</span>
+            <span>학원</span>
           </UserItem>
           {props.userList?.map((item) => {
             return (
               <Link href={`/admins/user/${item.user_id}`} key={nanoid()}>
                 <UserItem>
                   <span>{item.user_id}</span>
+                  <span>{item.role}</span>
                   <span>{item.name}</span>
-                  <span>{item.school}</span>
-                  <span>{item.grade}</span>
+                  <span>{item.class_id}</span>
                 </UserItem>
               </Link>
             );

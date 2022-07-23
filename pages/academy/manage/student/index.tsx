@@ -32,7 +32,7 @@ const AcademyManageStudentPage: NextPage<any> = (props) => {
         <title>{process.env.NEXT_PUBLIC_TITLE} | 학생 관리</title>
       </Head>
       <AcademyManageStudentTemplate userList={userList} />
-      <AcademyManageClassPage />
+      {/* <AcademyManageClassPage /> */}
     </>
   );
 };

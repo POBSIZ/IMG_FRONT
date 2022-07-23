@@ -20,8 +20,8 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
     async (_username: string, _password: string) => {
       try {
         const res = await Post('/auth/login', {
-          username: _username,
-          password: _password,
+          username: _username.trim(),
+          password: _password.trim(),
         });
 
         const profileData: AuthProfileType = await jwt(res.data);

@@ -31,17 +31,17 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
     ) => {
       try {
         const res = await Post('/auth/register', {
-          name: _name,
-          nickname: _nickname,
-          username: _username,
-          password: _password,
+          name: _name.trim(),
+          nickname: _nickname.trim(),
+          username: _username.trim(),
+          password: _password.trim(),
           phone: _phone,
           role: _role,
-          school: _school,
+          school: _school.trim(),
           grade: _grade,
           address: _address,
           zip: _zipCode,
-          address_detail: _addressDetail,
+          address_detail: _addressDetail.trim(),
           academy: _academy,
           academy_id: _academy_id,
         });

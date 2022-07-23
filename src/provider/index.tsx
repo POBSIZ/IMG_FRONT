@@ -72,7 +72,10 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
       {router.pathname === '/quiz/play/[id]' ? null : (
         <Header
           navList={{
-            default: [{ url: '/quiz', text: '퀴즈풀기' }],
+            default: [
+              { url: '/quiz', text: '퀴즈풀기' },
+              { url: '/board', text: '게시판' },
+            ],
             student: [],
             parents: [],
             insider: [{ url: '/academy', text: '학원 & 퀴즈 관리' }],

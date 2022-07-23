@@ -11,6 +11,8 @@ import Address from './address';
 import Modal from './modal';
 import Search from './search';
 
+import Wysiwyg from './wysiwyg'
+
 const Molecules = {
   IconInput,
   ListTab,
@@ -21,6 +23,7 @@ const Molecules = {
   UserList,
   Modal,
   Search,
+  Wysiwyg
 };
 
 export default Molecules;
@@ -35,4 +38,5 @@ export {
   Directory,
   Modal,
   Search,
+  Wysiwyg
 };

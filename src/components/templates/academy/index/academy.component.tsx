@@ -35,12 +35,12 @@ const AcademyComponent: React.FC<any> = (props) => {
             </Move>
 
             <Move href="/academy/manage/student" backColor="primary">
-              📦 학생 & 반 관리
+              🙋‍♀️ 학생 관리
             </Move>
 
-            {/* <Move href="/academy/manage/class" backColor="primary">
+            <Move href="/academy/manage/class" backColor="primary">
               📦 반 관리
-            </Move> */}
+            </Move>
           </>
         ) : (
           <Move href="/academy/create" backColor="primary">

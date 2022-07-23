@@ -33,6 +33,7 @@ const Directory: React.FC<DirectoryPropsType> = (props) => {
   const icon = useMemo(() => (isOpen ? faMinus : faPlus), [isOpen]);
   const id = useMemo(() => nanoid(), [props.list]);
   const list = useMemo(() => props.list, [props.list]);
+  const memoIsOpen = useMemo(() => isOpen, [icon]);
 
   useEffect(() => {
     setIsChecked(props.checked === undefined ? false : props.checked);
@@ -66,7 +67,7 @@ const Directory: React.FC<DirectoryPropsType> = (props) => {
       ) : null}
 
       {list && list?.length !== 0 ? (
-        <List isOpen={isOpen}>
+        <List isOpen={memoIsOpen}>
           {list?.map((item) => {
             return (
               <Directory

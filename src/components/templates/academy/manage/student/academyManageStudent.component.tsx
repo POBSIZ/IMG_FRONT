@@ -24,7 +24,7 @@ const AcademyManageStudentComponent: React.FC<any> = (props) => {
 
   return (
     <Layout.Container>
-      <Title style={{ margin: '20px 0' }}>🔦 학생 관리</Title>
+      <Title style={{ margin: '20px 0' }}>🙋‍♀️ 학생 관리</Title>
       <StyledAcademyManageStudent>
         <Layout.Content className="students">
           <h2>학생 목록</h2>

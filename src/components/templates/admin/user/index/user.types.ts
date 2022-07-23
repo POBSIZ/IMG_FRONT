@@ -1,3 +1,5 @@
+import { AuthProfileType } from 'Types/authTypes';
+
 export interface UserListItem {
   user_id: number;
   name: string;
@@ -7,5 +9,5 @@ export interface UserListItem {
 }
 
 export interface UserPropsType {
-  userList: UserListItem[];
+  userList: AuthProfileType[];
 }

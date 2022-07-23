@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Layout from 'Layouts';
 
 import { CheckRole, RedirectLogin } from 'Hoc';
+import { Move } from 'Atoms';
 
 const AdminPage: NextPage<any> = (props, {}) => {
   return (
@@ -15,21 +16,17 @@ const AdminPage: NextPage<any> = (props, {}) => {
       <RedirectLogin>
         <CheckRole role="admin" isRedirect={true}>
           <Layout.Container>
-            <h2>
-              <Link href="/admins/book/upload">책 업로드</Link>
-            </h2>
-            <h2>
-              <Link href="/admins/book/list">책 관리</Link>
-            </h2>
-            <h2>
-              <Link href="/admins/quiz/create">퀴즈 생성</Link>
-            </h2>
-            <h2>
-              <Link href="/admins/quiz/assign">퀴즈 할당</Link>
-            </h2>
-            <h2>
-              <Link href="/admins/user">회원 관리</Link>
-            </h2>
+            <Layout.Content
+              style={{ display: 'flex', flexFlow: 'column', gap: '10px' }}
+            >
+              <h2>관리</h2>
+              <Move href="/admins/user" backColor="primary">
+                🙍‍♀️ 회원 관리
+              </Move>
+              <Move href="/admins/board/create" backColor="primary">
+                📫 게시판 생성
+              </Move>
+            </Layout.Content>
           </Layout.Container>
         </CheckRole>
       </RedirectLogin>

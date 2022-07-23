@@ -12,6 +12,7 @@ import QuizWrongResultTemplate from './quiz/wrongResult';
 
 import AdminUploadTemplate from './admin/book/upload';
 import AdminBookListTemplate from './admin/book/list';
+import AdminBoardCreateTemplate from './admin/board/create';
 
 import QuizCreateTemplate from './admin/quiz/create';
 import QuizAssignTemplate from './admin/quiz/assign';
@@ -25,6 +26,8 @@ import AcademyQuizListTemplate from './academy/quiz/list';
 import AcademyManageStudentTemplate from './academy/manage/student';
 import AcademyManageClassTemplate from './academy/manage/class';
 
+import BoardTemplate from './board/index';
+
 const Templates = {
   HomeTemplate,
   QuizPlayTemplate,
@@ -33,6 +36,7 @@ const Templates = {
   LoginTemplate,
   RegisterTemplate,
   AdminUploadTemplate,
+  AdminBoardCreateTemplate,
   QuizCreateTemplate,
   QuizAssignTemplate,
   UserTemplate,
@@ -45,6 +49,7 @@ const Templates = {
   AcademyQuizListTemplate,
   AcademyManageStudentTemplate,
   AcademyManageClassTemplate,
+  BoardTemplate,
 };
 export default Templates;
 export {
@@ -55,6 +60,7 @@ export {
   LoginTemplate,
   RegisterTemplate,
   AdminUploadTemplate,
+  AdminBoardCreateTemplate,
   QuizCreateTemplate,
   QuizAssignTemplate,
   UserTemplate,
@@ -67,4 +73,5 @@ export {
   AcademyQuizListTemplate,
   AcademyManageStudentTemplate,
   AcademyManageClassTemplate,
+  BoardTemplate,
 };
