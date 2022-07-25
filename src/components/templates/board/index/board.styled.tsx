@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'StyleVars';
 
+import Layout, { Content } from 'Layouts';
+
 export const BoardList = styled.ul.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
@@ -32,6 +34,9 @@ export const BoardList = styled.ul.attrs((props) => ({}))`
         gap: 6px;
         letter-spacing: 0.8px;
         text-decoration: none;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid ${$color_base_line};
 
         p {
           margin: 0;
@@ -62,6 +67,11 @@ export const BoardHeader = styled.nav.attrs((props) => ({}))`
       display: flex;
       align-items: center;
       gap: 10px;
+
+      a {
+        text-decoration: none;
+        color: ${$color_base_black};
+      }
     `;
   }};
 `;

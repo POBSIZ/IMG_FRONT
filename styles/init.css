@@ -1,7 +1,10 @@
 * {
   font-family: 'Pretendard', 'Apple SD Gothic Neo', Sans-serif !important;
   box-sizing: border-box;
-  word-break: keep-all;
+
+  word-break: break-word;
+
+  /* word-break: keep-all; */
 }
 
 html {

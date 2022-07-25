@@ -46,8 +46,7 @@ const SetEditor: React.FC<any> = ({ onChange, editorLoaded, name, value }) => {
   }
 
   const editorRef = useRef<null | any>(null);
-  const { CKEditor, ClassicEditor, SimpleUploadAdapter } =
-    editorRef.current || {};
+  const { CKEditor, ClassicEditor } = editorRef.current || {};
 
   useEffect(() => {
     editorRef.current = {
@@ -65,13 +64,15 @@ const SetEditor: React.FC<any> = ({ onChange, editorLoaded, name, value }) => {
           plugins={[ClassicEditor.SimpleUploadAdapter]}
           config={{
             extraPlugins: [uploadPlugin],
+            mediaEmbed: {
+              previewsInData: true,
+            },
           }}
           editor={ClassicEditor}
           data={value}
           onReady={(editor) => {}}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            // console.log({ event, editor, data })
+          onChange={(_event, _editor, _data) => {
+            const data = _editor.getData();
             onChange(data);
           }}
         />
@@ -82,18 +83,15 @@ const SetEditor: React.FC<any> = ({ onChange, editorLoaded, name, value }) => {
   );
 };
 
-const Wysiwyg: React.FC<any> = ({ name }) => {
+const Wysiwyg: React.FC<any> = ({ name, onChange }) => {
   const [editorLoaded, setEditorLoaded] = useState(false);
-  const [data, setData] = useState();
 
   useEffect(() => {
     setEditorLoaded(true);
   }, []);
 
-  // console.log(data);
-
   return (
-    <SetEditor name={name} onChange={setData} editorLoaded={editorLoaded} />
+    <SetEditor name={name} onChange={onChange} editorLoaded={editorLoaded} />
   );
 };
 

@@ -14,15 +14,20 @@ const AcademyManageClassPage: NextPage<any> = (props) => {
 
   const [classList, setClassList] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [userInfoList, setUserInfoList] = useState([]);
 
   const getUserList = useCallback(async () => {
     const res = await method.GET('/academy/student/all');
+    const resInfo = await method.GET('/academy/student/info/all');
+
     const _list = res.data?.map((item) => ({
       title: item.name,
       subtitle: item.class_name,
       ...item,
     }));
+
     setUserList(_list);
+    setUserInfoList(resInfo.data);
   }, []);
 
   const getClassList = useCallback(async () => {
@@ -47,7 +52,11 @@ const AcademyManageClassPage: NextPage<any> = (props) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 반 관리</title>
       </Head>
-      <AcademyManageClassTemplate classList={classList} userList={userList} />
+      <AcademyManageClassTemplate
+        classList={classList}
+        userList={userList}
+        userInfoList={userInfoList}
+      />
     </>
   );
 };

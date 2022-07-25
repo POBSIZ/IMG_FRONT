@@ -15,7 +15,7 @@ import StyledAcademyManageClass from './academyManageClass.styled';
 
 import Layout from 'Layouts';
 import { Input, Button, Title } from 'Atoms';
-import { SelectList } from 'Molecules';
+import { SelectList, UserList, Directory } from 'Molecules';
 
 const AcademyManageClassComponent: React.FC<any> = (props) => {
   const [classN, setClassN] = useState<string>('');
@@ -26,18 +26,24 @@ const AcademyManageClassComponent: React.FC<any> = (props) => {
     <Layout.Container>
       <Title style={{ margin: '20px 0' }}>📦 반 관리</Title>
       <Layout.Content>
-        <StyledAcademyManageClass>
+        <StyledAcademyManageClass
+          onSubmit={(e: any) => {
+            e.preventDefault();
+            props.handleSetClass(selClass, e.target.user);
+          }}
+        >
           <h2>학생 목록</h2>
-          <SelectList
-            name="student"
-            type="radio"
-            boxHeight="20vh"
-            selectList={props.userList}
-            handleClick={(_idx, _title, _subtitle, _dataObj) => {
-              // console.log(_idx, _title, _subtitle, _dataObj);
-              setSelUser(_dataObj.user_id);
-            }}
-          />
+          <Layout.Content style={{ background: '#fff' }}>
+            <h4 style={{ margin: '0' }}>상세보기</h4>
+            <Directory
+              name="dir"
+              title="전체"
+              list={props.userInfoList}
+              data={'all'}
+              handleClick={(e, data) => {}}
+            />
+          </Layout.Content>
+          <UserList list={props.userList} name="user" />
 
           <h2>반 목록</h2>
           <SelectList
@@ -51,13 +57,7 @@ const AcademyManageClassComponent: React.FC<any> = (props) => {
             }}
           />
 
-          <Button
-            type="button"
-            backColor="primary"
-            onClick={() => {
-              props.handleSetClass(selClass, selUser);
-            }}
-          >
+          <Button type="submit" backColor="primary">
             반 배정
           </Button>
 

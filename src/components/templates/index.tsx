@@ -27,29 +27,41 @@ import AcademyManageStudentTemplate from './academy/manage/student';
 import AcademyManageClassTemplate from './academy/manage/class';
 
 import BoardTemplate from './board/index';
+import BoardContentTemplate from './board/content';
+import BoardCreateTemplate from './board/create';
 
 const Templates = {
   HomeTemplate,
+
   QuizPlayTemplate,
   QuizTemplate,
   QuizResultTemplate,
+
   LoginTemplate,
   RegisterTemplate,
+
   AdminUploadTemplate,
   AdminBoardCreateTemplate,
+
+  AdminBookListTemplate,
   QuizCreateTemplate,
   QuizAssignTemplate,
+
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,
+
   QuizWrongResultTemplate,
-  AdminBookListTemplate,
+
   AcademyCreateTemplate,
   AcademyTemplate,
   AcademyQuizListTemplate,
   AcademyManageStudentTemplate,
   AcademyManageClassTemplate,
+
   BoardTemplate,
+  BoardContentTemplate,
+  BoardCreateTemplate,
 };
 export default Templates;
 export {
@@ -74,4 +86,6 @@ export {
   AcademyManageStudentTemplate,
   AcademyManageClassTemplate,
   BoardTemplate,
+  BoardContentTemplate,
+  BoardCreateTemplate,
 };

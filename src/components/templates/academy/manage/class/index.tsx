@@ -35,11 +35,19 @@ const AcademyManageClassTemplate: React.FC<any> = (props) => {
     );
   }, []);
 
-  const handleSetClass = useCallback(async (_classId, _userId) => {
+  const handleSetClass = useCallback(async (_classId, _userList) => {
+    let userList: any = [];
+    _userList.forEach((item) => {
+      if (item.checked) {
+        userList.push(item.value);
+      }
+    });
+
     const res = await method.PATCH(`/auth/user/set/class`, {
       class_id: _classId,
-      user_id: _userId,
+      user_id: userList,
     });
+
     dispatch(
       pushToastAsync.request({
         status: 'success',
@@ -55,6 +63,7 @@ const AcademyManageClassTemplate: React.FC<any> = (props) => {
       handleSetClass={handleSetClass}
       classList={props.classList}
       userList={props.userList}
+      userInfoList={props.userInfoList}
     />
   );
 };

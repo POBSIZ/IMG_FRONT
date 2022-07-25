@@ -22,20 +22,30 @@ import Layout from 'Layouts';
 import { Title, Move } from 'Atoms';
 
 const BoardComponent: React.FC<BoardPropsType> = (props) => {
+  const [currPage, setCurrPage] = useState(0);
+
   return (
     <Layout.Container>
       <Title style={{ margin: '20px 0' }}>📫 게시판</Title>
       <StyledBoard>
         <BoardHeader>
-          {props.boardTab?.map((item) => {
+          {props.boardTab?.map((item, i) => {
             return (
-              <Move
-                href={`/board?id=${item.board_id}`}
-                backColor="primary"
-                key={nanoid()}
-              >
-                {item.title}
-              </Move>
+              <Link href={`/board?id=${item.board_id}`} key={nanoid()}>
+                <Layout.Content
+                  onClick={() => {
+                    setCurrPage(i);
+                  }}
+                  style={{
+                    backgroundColor: currPage === i ? 'hsl(48, 100%, 50%)' : '',
+                    color: currPage === i ? '#fff' : '',
+                    padding: '14px 20px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {item.title}
+                </Layout.Content>
+              </Link>
             );
           })}
         </BoardHeader>
@@ -49,13 +59,15 @@ const BoardComponent: React.FC<BoardPropsType> = (props) => {
                     {item.title}
                     <span>/ {item.user_id.name}</span>
                   </p>
-                  <span>{item.contents.slice(0, 20)}</span>
                   <span>{FormatDate(item.created_at)}</span>
                 </a>
               </Link>
             );
           })}
         </BoardList>
+        <Move href="/board/create" backColor="primary">
+          글 작성
+        </Move>
       </StyledBoard>
     </Layout.Container>
   );

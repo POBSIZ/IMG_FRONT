@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'StyleVars';
 
-const StyledAcademyManageClass = styled.section.attrs((props) => ({}))`
+const StyledAcademyManageClass = styled.form.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     return css`
