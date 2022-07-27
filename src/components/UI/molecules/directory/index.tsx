@@ -9,7 +9,12 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'StyleVars';
 import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
+import {
+  faPlus,
+  faMinus,
+  faMinusCircle,
+  faXmarkCircle,
+} from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
 import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -24,7 +29,10 @@ export interface DirectoryPropsType {
   data?: any;
   list?: any[];
   checked?: boolean;
+  isOpen?: boolean;
+  limit: number;
   handleClick: (...args: any) => any;
+  handleDelete?: (...args: any) => any;
 }
 
 const Directory: React.FC<DirectoryPropsType> = (props) => {
@@ -33,11 +41,18 @@ const Directory: React.FC<DirectoryPropsType> = (props) => {
   const icon = useMemo(() => (isOpen ? faMinus : faPlus), [isOpen]);
   const id = useMemo(() => nanoid(), [props.list]);
   const list = useMemo(() => props.list, [props.list]);
-  const memoIsOpen = useMemo(() => isOpen, [icon]);
+  const memoIsOpen = useMemo(() => isOpen, [icon, isOpen]);
 
   useEffect(() => {
-    setIsChecked(props.checked === undefined ? false : props.checked);
+    setIsChecked(props.checked ?? false);
   }, [props.checked]);
+
+  useEffect(() => {
+    if (props.limit > 0) {
+      setIsOpen(props.isOpen ?? false);
+    }
+    return () => {};
+  }, []);
 
   return (
     <StyledDirectory>
@@ -63,6 +78,15 @@ const Directory: React.FC<DirectoryPropsType> = (props) => {
             />
           ) : null}
           <span>{props.title}</span>
+          {props.data?.userQuiz_id && props.handleDelete ? (
+            <FontAwesomeIcon
+              className="delete"
+              icon={faXmarkCircle}
+              onClick={() => {
+                (props.handleDelete ?? (() => {}))(props.data?.userQuiz_id);
+              }}
+            />
+          ) : null}
         </Info>
       ) : null}
 
@@ -75,9 +99,12 @@ const Directory: React.FC<DirectoryPropsType> = (props) => {
                 title={item.title}
                 data={item.data}
                 list={item.list}
-                handleClick={props.handleClick}
                 checked={isChecked}
+                limit={props.limit - 1}
+                isOpen={memoIsOpen}
                 name={props.name}
+                handleClick={props.handleClick}
+                handleDelete={props.handleDelete}
               />
             );
           })}

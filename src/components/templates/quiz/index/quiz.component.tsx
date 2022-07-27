@@ -56,10 +56,12 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
                     <div>
                       <h3>{item.title}</h3>
                       <p>{date}</p>
-                      <span>{item.tryCount}회 응시</span>
-                      <span>
-                        최고 {item.solvedCount} / {item.maxCount}
-                      </span>
+                      <div>
+                        <span>{item.tryCount}회 응시</span>
+                        <span>
+                          최고 {item.solvedCount} / {item.maxCount}
+                        </span>
+                      </div>
                     </div>
                     <p>
                       {item.solvedCount === 0

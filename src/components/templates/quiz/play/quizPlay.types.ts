@@ -26,10 +26,11 @@ export interface QuizPlayComponentPropsType {
   limitTime: number;
   quizList: QuizItemType[];
   handleSave: <T>(T: AnswerListItem[]) => any;
+  getAudio: (_word: string) => any;
   router: any;
 }
 
 export type QuizPlayTemplatePropsType = Omit<
   QuizPlayComponentPropsType,
-  'handleSave' | 'router'
+  'handleSave' | 'router' | 'getAudio'
 >;

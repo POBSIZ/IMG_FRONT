@@ -27,7 +27,7 @@ const BoardContentComponent: React.FC<BoardContentPropsType> = (props) => {
       <StyledBoardContent>
         <Title>
           {props.content.title}
-          <span> / {props.content.user_id.name}</span>
+          <span> / {props.content.user_id.nickname}</span>
         </Title>
         <EditDiv>
           <span>{FormatDate(props.content.created_at)}</span>

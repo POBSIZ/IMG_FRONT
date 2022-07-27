@@ -8,8 +8,11 @@ import { QuizResultTemplatePropsType } from './quizResult.types';
 
 import { BlockChangePage } from 'Hoc';
 import { Loader } from 'Bases';
+import { Get } from 'Utils';
+import { useDebounce } from 'Hooks';
 
 const QuizResultTemplate: React.FC<QuizResultTemplatePropsType> = (props) => {
+  const debounce = useDebounce();
   const [isWrong, setIsWrong] = useState<boolean>(false);
   const quizResultState = useSelector(
     (state: RootStateOrAny) => state.quizReducer,
@@ -28,6 +31,22 @@ const QuizResultTemplate: React.FC<QuizResultTemplatePropsType> = (props) => {
       : quizResultState?.result?.list;
   }, [isWrong, quizResultState]);
 
+  // 오디오 불러오기
+  const getAudio = useCallback(
+    async (_word) => {
+      const res = await Get(`/audio/get/${_word}`, {
+        responseType: 'arraybuffer',
+      });
+      const audioContext = new AudioContext();
+      const audioBuffer = audioContext.decodeAudioData(res.data);
+      const source = audioContext.createBufferSource();
+      source.buffer = await audioBuffer;
+      source.connect(audioContext.destination);
+      source.start();
+    },
+    [resultList],
+  );
+
   return (
     <QuizResultComponent
       quizResultState={quizResultState}
@@ -36,6 +55,7 @@ const QuizResultTemplate: React.FC<QuizResultTemplatePropsType> = (props) => {
       setIsWrong={() => {
         setIsWrong((state) => !state);
       }}
+      getAudio={getAudio}
       {...props}
     />
   );

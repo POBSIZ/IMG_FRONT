@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -7,6 +8,9 @@ import { useMethod } from 'Hooks';
 
 const AssignPage: NextPage<any> = (props, {}) => {
   const method = useMethod();
+
+  const toastState = useSelector((state: RootStateOrAny) => state.toastReducer);
+
   const [userList, setUserList] = useState([]);
   const [userInfoList, setUserInfoList] = useState([]);
   const [quizList, setQuizList] = useState([]);
@@ -34,8 +38,10 @@ const AssignPage: NextPage<any> = (props, {}) => {
   }, [quizList]);
 
   useEffect(() => {
-    getLists();
-  }, []);
+    if (toastState.isPop || userList.length === 0) {
+      getLists();
+    }
+  }, [toastState]);
 
   return (
     <>

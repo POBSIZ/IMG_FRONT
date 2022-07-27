@@ -8,11 +8,13 @@ import { QuizResultTemplatePropsType } from './quizResult.types';
 
 import { BlockChangePage } from 'Hoc';
 import { Loader } from 'Bases';
+import { Get } from 'Utils';
+
 import { QuizResultType } from 'Types/quizTypes';
 
-const QuizWrongResultTemplate: React.FC<QuizResultTemplatePropsType> = (
-  props,
-) => {
+const QuizWrongResultTemplate: React.FC<
+  Omit<QuizResultTemplatePropsType, 'getAudio'>
+> = (props) => {
   const [isWrong, setIsWrong] = useState<boolean>(false);
   const quizResultState = useSelector(
     (state: RootStateOrAny) => state.quizReducer,
@@ -32,10 +34,24 @@ const QuizWrongResultTemplate: React.FC<QuizResultTemplatePropsType> = (
     };
   }, [isWrong, quizResultState]);
 
+  // 오디오 불러오기
+  const getAudio = useCallback(async (_word) => {
+    const res = await Get(`/audio/get/${_word}`, {
+      responseType: 'arraybuffer',
+    });
+    const audioContext = new AudioContext();
+    const audioBuffer = audioContext.decodeAudioData(res.data);
+    const source = audioContext.createBufferSource();
+    source.buffer = await audioBuffer;
+    source.connect(audioContext.destination);
+    source.start();
+  }, []);
+
   return (
     <QuizResultComponent
       result={result}
       isWrong={isWrong}
+      getAudio={getAudio}
       setIsWrong={() => {
         setIsWrong((state) => !state);
       }}

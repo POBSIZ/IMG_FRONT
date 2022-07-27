@@ -9,4 +9,5 @@ export interface QuizAssignTempPropsType {
 
 export interface QuizAssignCompPropsType extends QuizAssignTempPropsType {
   handleSubmit: Function;
+  handleDelete: Function;
 }

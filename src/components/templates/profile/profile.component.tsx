@@ -46,9 +46,9 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
                     placeholder="자녀 아이디"
                     name="chain"
                     type="text"
-                    style={{ width: '80%' }}
+                    style={{ width: '70%' }}
                   />
-                  <Button backColor="primary" style={{ width: '20%' }}>
+                  <Button backColor="primary" style={{ width: '30%' }}>
                     연결하기
                   </Button>
                 </form>
@@ -116,26 +116,31 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
               return (
                 <QuizLogItem key={nanoid()}>
                   <section>
-                    <p>{date}</p>
-                    <p>
-                      {item.title} 점수 {item.score} / {item.probCount}
-                    </p>
+                    <span>{date}</span>
+                    <p>{item.title}</p>
+                    <span>
+                      {item.score} / {item.probCount}
+                    </span>
                   </section>
-                  <div>
-                    <Link href={`quiz/wrongResult?id=${item.quizLog_id}`}>
-                      결과보기
-                    </Link>
-                    <Link
-                      href={`quiz/play/${item.quiz_id}?title=${item.title}&uqid=${item.userQuiz_id}`}
-                    >
-                      재시험
-                    </Link>
-                    <a
-                      href={`${process.env.NEXT_PUBLIC_SERVER}/auth/quiz/wrongList/excel/${item.quizLog_id}`}
-                    >
-                      <FontAwesomeIcon icon={faDownload} />
-                    </a>
-                  </div>
+                  {item.userQuiz_id ? (
+                    <div>
+                      <Link href={`quiz/wrongResult?id=${item.quizLog_id}`}>
+                        결과보기
+                      </Link>
+
+                      <Link
+                        href={`quiz/play/${item.quiz_id}?title=${item.title}&uqid=${item.userQuiz_id}`}
+                      >
+                        다시하기
+                      </Link>
+
+                      <a
+                        href={`${process.env.NEXT_PUBLIC_SERVER}/auth/quiz/wrongList/excel/${item.quizLog_id}`}
+                      >
+                        <FontAwesomeIcon icon={faDownload} />
+                      </a>
+                    </div>
+                  ) : null}
                 </QuizLogItem>
               );
             })}

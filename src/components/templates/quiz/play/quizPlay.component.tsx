@@ -6,14 +6,14 @@ import React, {
   useRef,
 } from 'react';
 import { nanoid } from 'nanoid';
-import { } from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
+import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
 import {
   faAngleRight,
   faAngleLeft,
   faClock,
   faList,
 } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
-import { } from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
+import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // HOC
 
 import {
@@ -37,34 +37,16 @@ import { BlockChangePage } from 'Hoc';
 const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
   const [modalState, setModalState] = useState<boolean>(true);
 
-  const audioRef: { current: HTMLAudioElement | null } = useRef(null); // audio 객체 지정
-
   const [timer, setTimer] = useState<number>(props.limitTime); // 타이머 시간
   const [currNum, setCurrNum] = useState<number>(0); // 현재 단어 id
   const [answerList, setAnswerList] = useState<AnswerListItem[]>([]); // 제출 데이터
   const [prevState, setPrevState] = useState<boolean>(true); // 이전 단어 버튼 사용 유무
 
-  // Audio 플레이 함수
-  const handleAudio = useCallback(() => {
-    const audioTime = setTimeout(() => {
-      audioRef?.current?.play();
-    }, 1000);
-    timer < 2 ? clearTimeout(audioTime) : audioTime;
-  }, [audioRef.current]);
-
-  // Audio 이벤트
-  useEffect(() => {
-    audioRef?.current?.addEventListener('ended', handleAudio);
-    return () => {
-      removeEventListener('ended', handleAudio);
-    };
-  }, [audioRef]);
-
   // AnswerList State 변경
   const handleAnswerList = useCallback(
     (_currNum: number, _answer: [number, string] | []) => {
-      if (props.quizList[_currNum].answer === _answer[0]) {
-      }
+      // if (props.quizList[_currNum].answer === _answer[0]) {
+      // }
       setAnswerList((state) => {
         state[_currNum] = {
           id: _currNum,
@@ -155,6 +137,10 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
     [],
   );
 
+  useEffect(() => {
+    props.getAudio(props.quizList[currNum].word);
+  }, [currNum]);
+
   return (
     <Layout.Container>
       <StyledQuiz>
@@ -236,17 +222,6 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
         <ListTab maxNum={props.quizList?.length} currNum={currNum + 1} />
 
         <QuizTitle>{props.quizTitle}</QuizTitle>
-
-        <audio
-          src={
-            !modalState
-              ? `${process.env.NEXT_PUBLIC_SERVER}${props.quizList[currNum]?.audio}`
-              : undefined
-          }
-          autoPlay={true}
-          loop={false}
-          ref={audioRef}
-        ></audio>
       </StyledQuiz>
     </Layout.Container>
   );

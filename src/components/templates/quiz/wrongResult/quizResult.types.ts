@@ -4,6 +4,7 @@ import { QuizResultType } from 'Types/quizTypes';
 export interface QuizResultComponentPropsType {
   isWrong: boolean;
   setIsWrong: Function;
+  getAudio: (_word: string) => any;
   result: QuizResultType;
 }
 

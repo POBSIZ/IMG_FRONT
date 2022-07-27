@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -13,8 +13,10 @@ import {
 } from 'Templates/quiz/play/quizPlay.types';
 import { QuizPlayTemplate } from 'Templates';
 import { Loader } from 'Bases';
+import { useMethod } from 'Hooks';
 
 const QuizPlayPage: NextPage<any> = ({}) => {
+  const method = useMethod();
   const router = useRouter();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
 
@@ -34,10 +36,7 @@ const QuizPlayPage: NextPage<any> = ({}) => {
 
   // 문제 목록 가져오기
   const getProbs = useCallback(async () => {
-    const probs = await Get(`/quiz/prob/${id}`, {
-      timeout: 10000,
-      headers: { Authorization: `Bearer ${authState.token}` },
-    });
+    const probs = await method.GET(`/quiz/prob/${id}`);
     setProbList(probs.data);
     setIsLoad(false);
   }, []);
@@ -54,13 +53,15 @@ const QuizPlayPage: NextPage<any> = ({}) => {
       {isLoad ? (
         <Loader />
       ) : (
-        <QuizPlayTemplate
-          userQuizId={Number(uqid)}
-          quizId={Number(id)}
-          quizTitle={`${title}`}
-          limitTime={probList.limitTime}
-          quizList={probList.probList}
-        />
+        <>
+          <QuizPlayTemplate
+            userQuizId={Number(uqid)}
+            quizId={Number(id)}
+            quizTitle={`${title}`}
+            limitTime={probList.limitTime}
+            quizList={probList.probList}
+          />
+        </>
       )}
     </>
   );

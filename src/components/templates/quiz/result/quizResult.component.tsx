@@ -109,7 +109,8 @@ const QuizResultComponent: React.FC<QuizResultComponentPropsType> = (props) => {
                         <FontAwesomeIcon
                           icon={faPlayCircle}
                           onClick={() => {
-                            handleAudio(item?.audio);
+                            props.getAudio(item.correctWord);
+                            // handleAudio(item?.audio);
                           }}
                         />
                       </div>

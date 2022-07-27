@@ -46,7 +46,11 @@ const QuizAssignComponent: React.FC<QuizAssignCompPropsType> = (props) => {
               title="전체"
               list={props.userInfoList}
               data={'all'}
+              limit={2}
               handleClick={(e, data) => {}}
+              handleDelete={(_uqid) => {
+                props.handleDelete(_uqid);
+              }}
             />
           </Layout.Content>
           <UserList list={props.userList} name="user" />

@@ -39,6 +39,7 @@ const AcademyManageClassComponent: React.FC<any> = (props) => {
               name="dir"
               title="전체"
               list={props.userInfoList}
+              limit={1}
               data={'all'}
               handleClick={(e, data) => {}}
             />

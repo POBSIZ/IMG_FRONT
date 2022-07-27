@@ -25,7 +25,7 @@ const QuizWrongResultPage: NextPage<any> = (props, {}) => {
     const id = router.asPath.replace(/\/\quiz\/wrongResult\?id=/g, '');
     const res = await method.GET(`/auth/quiz/wrongList/${id}`);
 
-    console.log(res.data);
+    // console.log(res.data);
     setResult((state) => res.data);
     setIsLoad(true);
   };

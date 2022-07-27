@@ -49,9 +49,29 @@ const AssignTemplate: React.FC<QuizAssignTempPropsType> = (props) => {
     }
   };
 
+  const handleDelete = async (_uqid: string) => {
+    try {
+      const res = await method.DELETE(`/auth/userQuiz/delete/${_uqid}`);
+
+      dispatch(
+        pushToastAsync.request({
+          status: 'success',
+          message: '유저 퀴즈 삭제에 성공하였습니다.',
+        }),
+      );
+    } catch (error) {
+      dispatch(
+        pushToastAsync.request({
+          status: 'error',
+          message: '유저 퀴즈 삭제에 실패하였습니다.',
+        }),
+      );
+    }
+  };
+
   return (
     <>
-      <QuizAssignComponent handleSubmit={handleSubmit} {...props} />
+      <QuizAssignComponent handleSubmit={handleSubmit} handleDelete={handleDelete} {...props} />
     </>
   );
 };

@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'StyleVars';
 
-export const List = styled.div.attrs((props) => ({}))<{ isOpen: boolean }>`
+export const List = styled.div.attrs((props) => ({}))<{
+  isOpen: boolean | undefined;
+}>`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $color_key_color = Theme.palette.$color_key_color;
@@ -19,8 +21,10 @@ export const List = styled.div.attrs((props) => ({}))<{ isOpen: boolean }>`
 export const Info = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
+
     const $color_key_color = Theme.palette.$color_key_color;
     const $color_base_line = Theme.palette.$color_base_line;
+    const $color_failure = Theme.palette.$color_failure;
 
     return css`
       display: flex;
@@ -29,6 +33,10 @@ export const Info = styled.div.attrs((props) => ({}))`
 
       svg {
         cursor: pointer;
+      }
+
+      .delete {
+        color: ${$color_failure};
       }
     `;
   }};

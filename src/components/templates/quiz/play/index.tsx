@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
@@ -14,7 +14,7 @@ import { saveQuiz } from 'Actions/quizAction';
 import { AnswerListItem } from './quizPlay.types';
 
 import { useRouter } from 'next/router';
-import { Patch } from 'Utils';
+import { Patch, Get } from 'Utils';
 import { useMethod, useDebounce } from 'Hooks';
 import { Loader } from 'Bases';
 
@@ -56,12 +56,33 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
     router.push('/quiz/result');
   };
 
+  // 오디오 불러오기
+  const getAudio = useCallback(
+    async (_word) => {
+      const res = await Get(`/audio/get/${_word}`, {
+        responseType: 'arraybuffer',
+      });
+      const audioContext = new AudioContext();
+      const audioBuffer = audioContext.decodeAudioData(res.data);
+      const source = audioContext.createBufferSource();
+      source.buffer = await audioBuffer;
+      source.connect(audioContext.destination);
+      source.start();
+    },
+    [props.quizList],
+  );
+
   return (
     <>
       {isSend ? (
         <Loader />
       ) : (
-        <QuizPlayComponent {...props} router={router} handleSave={handleSave} />
+        <QuizPlayComponent
+          {...props}
+          router={router}
+          handleSave={handleSave}
+          getAudio={getAudio}
+        />
       )}
     </>
   );
