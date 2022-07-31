@@ -52,7 +52,7 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
             message: '회원가입에 성공하였습니다.',
           }),
         );
-        router.push('/auth/login');
+        router.push('/auth/login', undefined, { shallow: true });
       } catch (error: any) {
         // console.log(error);
         dispatch(

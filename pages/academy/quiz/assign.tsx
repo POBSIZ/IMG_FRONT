@@ -5,6 +5,7 @@ import Head from 'next/head';
 
 import { QuizAssignTemplate } from 'Templates';
 import { useMethod } from 'Hooks';
+import { FormatDate } from 'Utils';
 
 const AssignPage: NextPage<any> = (props, {}) => {
   const method = useMethod();
@@ -30,7 +31,11 @@ const AssignPage: NextPage<any> = (props, {}) => {
   }, [userList]);
 
   const userInfoListMemo = useMemo(() => {
-    return userInfoList;
+    return userInfoList.map((item: any, i) => ({
+      idx: i,
+      subtitle: FormatDate(item.data?.created_at) || '',
+      ...item,
+    }));
   }, [userInfoList]);
 
   const quizListMemo = useMemo(() => {

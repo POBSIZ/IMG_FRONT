@@ -12,7 +12,7 @@ const RedirectLogin: React.FC<RedirectLoginPropsType> = (props) => {
 
   useEffect(() => {
     if (!authReducer.token) {
-      router.push('/auth/login');
+      router.push('/auth/login', undefined, { shallow: true });
     }
     return () => {};
   }, []);

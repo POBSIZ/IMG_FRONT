@@ -35,26 +35,27 @@ const AcademyManageClassTemplate: React.FC<any> = (props) => {
     );
   }, []);
 
-  const handleSetClass = useCallback(async (_classId, _userList) => {
-    let userList: any = [];
-    _userList.forEach((item) => {
-      if (item.checked) {
-        userList.push(item.value);
+  const handleSetClass = useCallback(
+    async (_classId: string, _dataList: any[]) => {
+      let userList = [_dataList[1]?.data?.data?.user_id];
+      if (_dataList[1] === null) {
+        userList = _dataList[0]?.data?.list?.map((item) => item.data.user_id);
       }
-    });
 
-    const res = await method.PATCH(`/auth/user/set/class`, {
-      class_id: _classId,
-      user_id: userList,
-    });
+      const res = await method.PATCH(`/auth/user/set/class`, {
+        class_id: _classId,
+        user_id: userList,
+      });
 
-    dispatch(
-      pushToastAsync.request({
-        status: 'success',
-        message: '반 배정에 성공하였습니다.',
-      }),
-    );
-  }, []);
+      dispatch(
+        pushToastAsync.request({
+          status: 'success',
+          message: '반 배정에 성공하였습니다.',
+        }),
+      );
+    },
+    [],
+  );
 
   return (
     <AcademyManageClassComponent

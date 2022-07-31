@@ -4,6 +4,7 @@ import { GlobalStyleType } from 'styles/global.styles';
 
 export interface FilePropsType extends Partial<HTMLInputElement> {
   name: string;
+  onChange?: (...args: any) => void;
 }
 
 export const StyledFile = styled.div.attrs((props) => ({}))`
@@ -71,6 +72,9 @@ const File: React.FC<FilePropsType> = (props) => {
         name={props.name}
         onChange={(e) => {
           handleFile(e);
+          if (props.onChange) {
+            props.onChange(e);
+          }
         }}
       />
     </StyledFile>

@@ -32,7 +32,6 @@ const AcademyManageStudentComponent: React.FC<any> = (props) => {
             <form onSubmit={sortData}>
               <Directory
                 name="dir"
-                limit={1}
                 title="전체"
                 list={props.userList}
                 data={'all'}

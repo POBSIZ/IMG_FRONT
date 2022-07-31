@@ -52,6 +52,8 @@ export const StyledSearch = styled.div.attrs((props) => ({}))`
 export interface SearchPropsType {
   getBaseUrl: string;
   setSearchResult: Function;
+  placeholder: string;
+  text: string;
 }
 
 const Search: React.FC<SearchPropsType> = (props) => {
@@ -85,8 +87,8 @@ const Search: React.FC<SearchPropsType> = (props) => {
     <StyledSearch>
       <TextInput
         type="text"
-        placeholder="검색"
-        text="검색"
+        placeholder={props.placeholder}
+        text={props.text}
         onChange={getResult}
       />
       {resList.length < 1 ? null : (

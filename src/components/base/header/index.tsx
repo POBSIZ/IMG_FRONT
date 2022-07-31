@@ -40,7 +40,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
   const [academy, setAcademy] = useState<any>(false);
 
   const logout = useCallback(() => {
-    Router.push('/');
+    Router.push('/', undefined, { shallow: true });
     dispatch(authLogout());
     dispatch(
       pushToastAsync.request({

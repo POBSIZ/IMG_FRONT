@@ -15,6 +15,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import StyledQuizAssign from './quizAssign.styled';
 import Layout from 'Layouts';
+import { FilterBox } from 'Organisms';
 import { UserList, SelectList, Directory } from 'Molecules';
 import { Title, Button } from 'Atoms';
 
@@ -25,38 +26,44 @@ import {
 
 const QuizAssignComponent: React.FC<QuizAssignCompPropsType> = (props) => {
   const [quizIdx, setQuizIdx] = useState<number>(NaN);
-  const handleQuizIdx = useCallback((_idx, _title, _subtitle) => {
-    setQuizIdx(_idx);
-  }, []);
+  const [selList, setSelList] = useState<any[]>([]);
+
+  const handleQuizIdx = useCallback(
+    (_idx, _title, _subtitle) => {
+      setQuizIdx(_idx);
+    },
+    [props.userInfoList],
+  );
+
+  const userInfoList = useMemo(() => props.userInfoList, [props.userInfoList]);
 
   return (
     <Layout.Container>
       <Title style={{ margin: '20px 0' }}>퀴즈 할당</Title>
       <StyledQuizAssign
         onSubmit={(e) => {
-          props.handleSubmit(e, quizIdx);
+          props.handleSubmit(e, quizIdx, selList);
         }}
       >
-        <Layout.Content>
+        <Layout.Content
+          style={{ display: 'flex', flexFlow: 'column', gap: '20px' }}
+        >
           <h2>학생 목록</h2>
-          <Layout.Content style={{ background: '#fff' }}>
-            <h4 style={{ margin: '0' }}>상세보기</h4>
-            <Directory
-              name="dir"
-              title="전체"
-              list={props.userInfoList}
-              data={'all'}
-              limit={2}
-              handleClick={(e, data) => {}}
-              handleDelete={(_uqid) => {
-                props.handleDelete(_uqid);
-              }}
-            />
-          </Layout.Content>
-          <UserList list={props.userList} name="user" />
+          <FilterBox list={userInfoList} getList={setSelList} depth={3} />
+          <Button
+            type="button"
+            backColor="red"
+            onClick={() => {
+              props.handleDelete(Number(selList[2]?.data?.data?.userQuiz_id));
+            }}
+          >
+            유저 퀴즈 삭제
+          </Button>
         </Layout.Content>
 
-        <Layout.Content>
+        <Layout.Content
+          style={{ display: 'flex', flexFlow: 'column', gap: '20px' }}
+        >
           <h2>퀴즈 목록</h2>
           <SelectList
             name="quiz"
@@ -65,12 +72,11 @@ const QuizAssignComponent: React.FC<QuizAssignCompPropsType> = (props) => {
             boxHeight="300px"
             handleClick={handleQuizIdx}
           />
+          <Button backColor="primary">퀴즈 할당</Button>
         </Layout.Content>
-
-        <Button backColor="primary">퀴즈 할당</Button>
       </StyledQuizAssign>
     </Layout.Container>
   );
 };
 
-export default QuizAssignComponent;
+export default React.memo(QuizAssignComponent);

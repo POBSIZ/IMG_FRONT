@@ -14,17 +14,14 @@ const AssignTemplate: React.FC<QuizAssignTempPropsType> = (props) => {
   const method = useMethod();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e, quizIdx: number) => {
+  const handleSubmit = async (e, quizIdx: number, _dataList: any[]) => {
     e.preventDefault();
     try {
-      let userList: number[] = [];
-      const users = e.target.user;
-      if (users.length > 1) {
-        for (let i = 0; i < users.length; i++) {
-          userList.push(Number(users[i].value));
-        }
-      } else {
-        userList.push(Number(users.value));
+      let userList = [Number(_dataList[1]?.data?.data?.user_id)];
+      if (_dataList[1] === null) {
+        userList = _dataList[0]?.data?.list?.map((item) =>
+          Number(item.data.user_id),
+        );
       }
 
       const res = await method.POST('/auth/userQuiz/create', {
@@ -71,7 +68,11 @@ const AssignTemplate: React.FC<QuizAssignTempPropsType> = (props) => {
 
   return (
     <>
-      <QuizAssignComponent handleSubmit={handleSubmit} handleDelete={handleDelete} {...props} />
+      <QuizAssignComponent
+        handleSubmit={handleSubmit}
+        handleDelete={handleDelete}
+        {...props}
+      />
     </>
   );
 };

@@ -23,34 +23,12 @@ import Layout from 'Layouts';
 import { Title, Move } from 'Atoms';
 
 const BoardComponent: React.FC<BoardPropsType> = (props) => {
-  const [currPage, setCurrPage] = useState(0);
-
   return (
     <Layout.Container>
-      <Title style={{ margin: '20px 0' }}>📫 게시판</Title>
+      <Title style={{ margin: '20px 0' }}>
+        {props.boardList[0]?.board_id?.title}
+      </Title>
       <StyledBoard>
-        <BoardHeader>
-          {props.boardTab?.map((item, i) => {
-            return (
-              <Link href={`/board?id=${item.board_id}`} key={nanoid()}>
-                <Layout.Content
-                  onClick={() => {
-                    setCurrPage(i);
-                  }}
-                  style={{
-                    backgroundColor: currPage === i ? 'hsl(48, 100%, 50%)' : '',
-                    color: currPage === i ? '#000' : '',
-                    padding: '14px 20px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {item.title}
-                </Layout.Content>
-              </Link>
-            );
-          })}
-        </BoardHeader>
-
         <BoardList>
           {props.boardList?.map((item, i) => {
             return (
@@ -75,9 +53,9 @@ const BoardComponent: React.FC<BoardPropsType> = (props) => {
             );
           })}
         </BoardList>
-        <Move href="/board/create" backColor="primary">
+        {/* <Move href="/board/create" backColor="primary">
           글 작성
-        </Move>
+        </Move> */}
       </StyledBoard>
     </Layout.Container>
   );

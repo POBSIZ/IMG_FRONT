@@ -16,21 +16,23 @@ const StyledAcademy = styled.section.attrs((props) => ({}))`
 
     const $font_title_regular = Theme.font.$font_title_regular;
     const $font_title_medium = Theme.font.$font_title_medium;
+    const $font_body_head = Theme.font.$font_body_head;
     const $font_body_base = Theme.font.$font_body_base;
     const $font_body_info = Theme.font.$font_body_info;
 
     return css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-flow: column;
-      /* gap: 10px; */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
 
       ${StyledMove} {
-        margin: 5px 0;
+        ${$font_body_head};
+        height: 200px;
+        /* margin: 5px 0; */
       }
 
       @media screen and (max-width: ${$mobile_max_width}) {
+        grid-template-columns: 1fr;
       }
     `;
   }};

@@ -53,7 +53,7 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
     };
 
     const res = await method.PATCH('/auth/userQuiz/update', data);
-    router.push('/quiz/result');
+    router.push('/quiz/result', undefined, { shallow: true });
   };
 
   // 오디오 불러오기

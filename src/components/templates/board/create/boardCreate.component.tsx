@@ -19,7 +19,7 @@ import StyledBoardCreate from './boardCreate.styled';
 
 import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
-import { Title, Move, Button, Select, Input } from 'Atoms';
+import { Title, Move, Button, Select, Input, File } from 'Atoms';
 import { Wysiwyg } from 'Molecules';
 
 const BoardCreateComponent: React.FC<BoardCreatePropsType> = (props) => {
@@ -49,7 +49,9 @@ const BoardCreateComponent: React.FC<BoardCreatePropsType> = (props) => {
               게시판을 선택해주세요
             </option>
             {boardTab.map((item) => (
-              <option value={Number(item.board_id)}>{item.title}</option>
+              <option value={Number(item.board_id)} key={nanoid()}>
+                {item.title}
+              </option>
             ))}
           </Select>
         </div>
@@ -65,6 +67,11 @@ const BoardCreateComponent: React.FC<BoardCreatePropsType> = (props) => {
         </div>
 
         <Wysiwyg onChange={setContent} />
+
+        <div>
+          <h3>썸네일</h3>
+          <File name="thumbnail" onChange={props.handleThumbnail} />
+        </div>
 
         <Button backColor="primary">글 작성</Button>
       </StyledBoardCreate>

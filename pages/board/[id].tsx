@@ -3,45 +3,35 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { BoardContentTemplate } from 'Templates';
+import { BoardIdTemplate } from 'Templates';
 import { useMethod } from 'Hooks';
 
 const BoardContentPage: NextPage<any> = (props) => {
   const method = useMethod();
   const router = useRouter();
 
-  const [contentData, setContentData] = useState({
-    post_id: NaN,
-    board_id: NaN,
-    user_id: { name: '' },
-    content: '',
-    desc: '',
-    is_notice: false,
-    like: 0,
-    status: 'PUBLIC',
-    title: '',
-    updated_at: '',
-    created_at: new Date(),
-  });
+  const [boardList, setBoardList] = useState<any>([]);
 
-  const getPost = async () => {
+  const getBoards = async () => {
     const id = router.asPath.replace(/\/board\//g, '');
-    // console.log(id);
-    const res = await method.GET(`/board/post/${id}`);
-    setContentData(res.data);
+    const resList = await method.GET(`/board/list/${id}`);
+    setBoardList(resList.data);
+
+    // console.log(resList.data);
   };
 
   useEffect(() => {
-    if (!router.isReady) return;
-    getPost();
-  }, [router.isReady]);
+    getBoards();
+  }, [router]);
 
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE}</title>
+        <title>
+          {process.env.NEXT_PUBLIC_TITLE} | {boardList[0]?.board_id?.title}
+        </title>
       </Head>
-      <BoardContentTemplate content={contentData} />
+      <BoardIdTemplate boardList={boardList} />
     </>
   );
 };

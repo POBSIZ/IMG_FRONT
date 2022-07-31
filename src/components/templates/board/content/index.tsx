@@ -38,7 +38,7 @@ const BoardContentTemplate: React.FC<
 
   const deletePost = async (_id) => {
     await method.DELETE(`/board/post/delete/${_id}`);
-    router.push('/board');
+    router.push('/board', undefined, { shallow: true });
   };
 
   const patchPost = async () => {};

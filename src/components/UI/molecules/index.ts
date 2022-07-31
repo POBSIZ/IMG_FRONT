@@ -2,16 +2,21 @@ import IconInput from './iconInput';
 import TextInput from './textInput';
 
 import ListTab from './listTab';
-import SelectList from './selectList';
 import UserList from './userList';
 import Directory from './directory';
+
+import SelectList from './selectList';
+import CustomList from './customList';
 
 import Address from './address';
 
 import Modal from './modal';
 import Search from './search';
 
-import Wysiwyg from './wysiwyg'
+import Wysiwyg from './wysiwyg';
+
+import BoardTab from './boardTab';
+import SmallGallery from './smallGallery';
 
 const Molecules = {
   IconInput,
@@ -23,7 +28,10 @@ const Molecules = {
   UserList,
   Modal,
   Search,
-  Wysiwyg
+  Wysiwyg,
+  CustomList,
+  BoardTab,
+  SmallGallery,
 };
 
 export default Molecules;
@@ -38,5 +46,8 @@ export {
   Directory,
   Modal,
   Search,
-  Wysiwyg
+  Wysiwyg,
+  CustomList,
+  BoardTab,
+  SmallGallery,
 };

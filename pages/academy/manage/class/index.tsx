@@ -6,6 +6,7 @@ import { AcademyManageClassTemplate } from 'Templates';
 import { useMethod } from 'Hooks';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { pushToastAsync } from 'Actions/toastAction';
+import { FormatDate } from 'Utils';
 
 const AcademyManageClassPage: NextPage<any> = (props) => {
   const method = useMethod();
@@ -26,8 +27,14 @@ const AcademyManageClassPage: NextPage<any> = (props) => {
       ...item,
     }));
 
+    const resInfoList = resInfo.data?.map((item, i) => ({
+      idx: i,
+      subtitle: FormatDate(item.data?.created_at),
+      ...item,
+    }));
+
     setUserList(_list);
-    setUserInfoList(resInfo.data);
+    setUserInfoList(resInfoList);
   }, []);
 
   const getClassList = useCallback(async () => {

@@ -89,12 +89,12 @@ const RegisterComponent: React.FC<any> = (props) => {
                   setIsSearch((state) => !state);
                 }}
               >
-                학원 검색하기
+                소속 학원 선택
               </Button>
               <TextInput
-                text="학원"
+                text="소속 학원 선택"
                 type="text"
-                placeholder="학원"
+                placeholder="소속 학원 선택"
                 value={academy}
                 required
                 disabled
@@ -103,6 +103,8 @@ const RegisterComponent: React.FC<any> = (props) => {
             </>
           ) : (
             <Search
+              text="학원 검색하기"
+              placeholder="학원 검색하기"
               getBaseUrl="/academy/search/"
               setSearchResult={setAcademyResult}
             />
@@ -123,6 +125,8 @@ const RegisterComponent: React.FC<any> = (props) => {
                 학원 입력하기
               </Button>
               <Search
+                text="학원 검색하기"
+                placeholder="학원 검색하기"
                 getBaseUrl="/academy/search/"
                 setSearchResult={setAcademyResult}
               />

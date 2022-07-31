@@ -73,6 +73,7 @@ const UserList: React.FC<UserListPropsType> = (props) => {
         {props.list?.map((item, i) => {
           return (
             <UserListItemComponent
+              key={nanoid()}
               i={i}
               item={item}
               name={props.name}

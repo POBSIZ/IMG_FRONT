@@ -33,7 +33,7 @@ export const ListItem = styled.div.attrs((props) => ({}))`
 
         width: 98%;
         margin: 0;
-        padding-left: 10px;
+        padding: 6px 0px 6px 10px;
         line-height: fit-content;
         ${$font_body_head};
         background-color: ${$color_base_LightGray};
@@ -51,7 +51,8 @@ export const ListItem = styled.div.attrs((props) => ({}))`
         margin: 0;
         padding: 0;
         width: 4%;
-        height: 50px;
+        height: auto;
+        min-height: 50px;
         border: none;
         background-color: ${$color_base_line};
         cursor: pointer;

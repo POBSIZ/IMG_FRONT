@@ -27,6 +27,7 @@ import AcademyManageStudentTemplate from './academy/manage/student';
 import AcademyManageClassTemplate from './academy/manage/class';
 
 import BoardTemplate from './board/index';
+import BoardIdTemplate from './board/id';
 import BoardContentTemplate from './board/content';
 import BoardCreateTemplate from './board/create';
 
@@ -60,6 +61,7 @@ const Templates = {
   AcademyManageClassTemplate,
 
   BoardTemplate,
+  BoardIdTemplate,
   BoardContentTemplate,
   BoardCreateTemplate,
 };
@@ -88,4 +90,5 @@ export {
   BoardTemplate,
   BoardContentTemplate,
   BoardCreateTemplate,
+  BoardIdTemplate,
 };

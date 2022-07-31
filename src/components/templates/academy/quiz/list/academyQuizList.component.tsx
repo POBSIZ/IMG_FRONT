@@ -21,7 +21,7 @@ const AcademyQuizListComponent: React.FC<AcademyQuizListComponentPropsType> = (
 ) => {
   return (
     <>
-      <Layout.Container>
+      <Layout.Container style={{ paddingTop: '20px' }}>
         <StyledAcademyQuizList>
           <Title style={{ margin: '20px 0' }}>📚 퀴즈 목록</Title>
           <Layout.Content>

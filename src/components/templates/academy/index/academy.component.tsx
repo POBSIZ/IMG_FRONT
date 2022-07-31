@@ -10,11 +10,12 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import StyledAcademy from './academy.styled';
 import Link from 'next/link';
 import Layout from 'Layouts';
-import { Move } from 'Atoms';
+import { Move, Title } from 'Atoms';
 
 const AcademyComponent: React.FC<any> = (props) => {
   return (
     <Layout.Container>
+      <Title style={{ margin: '20px 0' }}>👀 학원 관리</Title>
       <StyledAcademy>
         {props.authState.profile.academy_id ? (
           <>
@@ -23,15 +24,11 @@ const AcademyComponent: React.FC<any> = (props) => {
             </Move>
 
             <Move href="/academy/quiz/create" backColor="primary">
-              📝 퀴즈 생성
+              📝 퀴즈 관리
             </Move>
 
             <Move href="/academy/quiz/assign" backColor="primary">
               📮 퀴즈 할당
-            </Move>
-
-            <Move href="/academy/quiz/list" backColor="primary">
-              🏪 퀴즈 관리
             </Move>
 
             <Move href="/academy/manage/student" backColor="primary">

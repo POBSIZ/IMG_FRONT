@@ -16,10 +16,10 @@ const AdminPage: NextPage<any> = (props, {}) => {
       <RedirectLogin>
         <CheckRole role="admin" isRedirect={true}>
           <Layout.Container>
+            <h2>관리</h2>
             <Layout.Content
-              style={{ display: 'flex', flexFlow: 'column', gap: '10px' }}
+              style={{ display: 'flex', flexFlow: 'Column', gap: '10px' }}
             >
-              <h2>관리</h2>
               <Move href="/admins/user" backColor="primary">
                 🙍‍♀️ 회원 관리
               </Move>

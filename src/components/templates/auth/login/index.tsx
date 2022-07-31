@@ -54,7 +54,7 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
             message: '로그인에 성공하였습니다.',
           }),
         );
-        Router.push('/');
+        Router.push('/', undefined, { shallow: true });
       } catch (error: any) {
         // console.log(error);
         dispatch(

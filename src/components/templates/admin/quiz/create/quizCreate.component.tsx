@@ -115,7 +115,7 @@ const QuizCreateComponent: React.FC<QuizCreatePropsType> = (props) => {
   }, [props.bookList]);
 
   return (
-    <Layout.Container>
+    <Layout.Container style={{ paddingBottom: '20px' }}>
       <StyledQuizCreate
         onSubmit={(e) => {
           props.handleSubmit(e, checkList);

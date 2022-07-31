@@ -17,7 +17,7 @@ const CheckRole: React.FC<CheckRolePropsType> = (props) => {
     if (props.isRedirect) {
       if (authReducer?.profile?.role !== 'admin') {
         if (authReducer?.profile?.role !== props.role) {
-          router.push(props.redirectUrl || '/');
+          router.push(props.redirectUrl || '/', undefined, { shallow: true });
         }
       }
     }

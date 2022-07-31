@@ -24,6 +24,7 @@ export interface BoardHeaderType {
 export interface BoardCreatePropsType {
   boardTab: BoardHeaderType[];
   handleSubmit: (_board_id: number, _title: string, _content: string) => void;
+  handleThumbnail: (...args: any) => void;
 }
 
 const BoardCreateTemplate: React.FC<any> = (props) => {
@@ -31,12 +32,15 @@ const BoardCreateTemplate: React.FC<any> = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (_board_id, _title, _content) => {
+  const [thumbnail, setThumbnail] = useState<string>('');
+
+  const handleSubmit = async (_board_id, _title, _content, _thumbnail) => {
     try {
       const res = await method.POST('/board/post/create', {
         board_id: _board_id,
         title: _title,
         content: _content,
+        thumbnail: thumbnail,
       });
 
       dispatch(
@@ -46,7 +50,7 @@ const BoardCreateTemplate: React.FC<any> = (props) => {
         }),
       );
 
-      router.push('/board');
+      router.push('/board', undefined, { shallow: true });
     } catch (error) {
       dispatch(
         pushToastAsync.request({
@@ -56,9 +60,27 @@ const BoardCreateTemplate: React.FC<any> = (props) => {
       );
     }
   };
+
+  const handleThumbnail = async (e) => {
+    const body = new FormData();
+    const _file = e.target.files[0];
+    // if (_file.type !== 'image/jpeg') {
+    // }
+
+    body.append('files', _file);
+
+    const res = await method.POST(`/board/upload/image`, body);
+
+    setThumbnail(res.data);
+  };
+
   return (
     <>
-      <BoardCreateComponent handleSubmit={handleSubmit} {...props} />
+      <BoardCreateComponent
+        handleSubmit={handleSubmit}
+        handleThumbnail={handleThumbnail}
+        {...props}
+      />
     </>
   );
 };

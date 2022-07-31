@@ -37,11 +37,8 @@ export interface SelectListPropsType extends Partial<HTMLInputElement> {
 }
 
 const SelectList: React.FC<SelectListPropsType> = (props, {}) => {
-  const handleClick = useCallback((_item) => {
-    props.handleClick(_item.idx, _item.title, _item.subtitle, {
-      ..._item,
-    });
-  }, []);
+  // console.log('render');
+  // console.log(props);
 
   const list = useMemo(() => {
     const _list = props.selectList?.map((item, i) => {
@@ -52,7 +49,9 @@ const SelectList: React.FC<SelectListPropsType> = (props, {}) => {
             id={props.name + i}
             name={props.name}
             onChange={(e) => {
-              handleClick(item);
+              props.handleClick(item.idx, item.title, item.subtitle, {
+                ...item,
+              });
             }}
           />
           <label htmlFor={props.name + i}>

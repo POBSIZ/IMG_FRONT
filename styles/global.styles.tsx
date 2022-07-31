@@ -51,21 +51,31 @@ const GlobalStyle = {
   },
   font: {
     // Title
-    $font_title_big: 'font-size: 2.500rem; font-weight: 700;', // bold
-    $font_title_medium: 'font-size: 2.000rem; font-weight: 700;', // bold
-    $font_title_regular: 'font-size: 1.500rem; font-weight: 700', // bold
-    $font_subtitle: 'font-size: 1.125rem; font-weight: 400;', // regular
+    $font_title_big:
+      'font-size: 2.500rem !important; font-weight: 700 !important;', // bold
+    $font_title_medium:
+      'font-size: 2.000rem !important; font-weight: 700 !important;', // bold
+    $font_title_regular: 'font-size: 1.500rem !important; font-weight: 700', // bold
+    $font_subtitle:
+      'font-size: 1.125rem !important; font-weight: 400 !important;', // regular
 
     // Body
-    $font_body_head: 'font-size: 1.250rem; font-weight: 500;', // medium
-    $font_body_base: 'font-size: 1.000rem; font-weight: 400;', // regular
-    $font_body_info: 'font-size: 0.875rem; font-weight: 400;', // regular
+    $font_body_head:
+      'font-size: 1.250rem !important; font-weight: 500 !important;', // medium
+    $font_body_base:
+      'font-size: 1.000rem !important; font-weight: 400 !important;', // regular
+    $font_body_info:
+      'font-size: 0.875rem !important; font-weight: 400 !important;', // regular
 
     // Property
-    $font_prop_default: 'font-size: 1.000rem; font-weight: 500;', // medium
-    $font_prop_option: 'font-size: 0.875rem; font-weight: 400;', // regular
-    $font_prop_small: 'font-size: 0.750rem; font-weight: 400;', // regular
-    $font_prop_xsmall: 'font-size: 0.625rem; font-weight: 400;', // regular
+    $font_prop_default:
+      'font-size: 1.000rem !important; font-weight: 500 !important;', // medium
+    $font_prop_option:
+      'font-size: 0.875rem !important; font-weight: 400 !important;', // regular
+    $font_prop_small:
+      'font-size: 0.750rem !important; font-weight: 400 !important;', // regular
+    $font_prop_xsmall:
+      'font-size: 0.625rem !important; font-weight: 400 !important;', // regular
   },
   media: {
     $tablet_max_width: '1000px',

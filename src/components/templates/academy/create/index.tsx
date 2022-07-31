@@ -92,7 +92,7 @@ const AcademyCreateTemplate: React.FC<Partial<AcademyCreatePropsType>> = (
           }),
         );
 
-        router.push('/academy');
+        router.push('/academy', undefined, { shallow: true });
       } catch (error: any) {
         // console.log(error);
         dispatch(

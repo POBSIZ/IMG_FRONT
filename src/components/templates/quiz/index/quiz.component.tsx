@@ -20,7 +20,7 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
 
   const handleClick = useCallback(
     (_id, _title, _uqid) => {
-      router.push(`quiz/play/${_id}?title=${_title}&uqid=${_uqid}`);
+      router.push(`quiz/play/${_id}?title=${_title}&uqid=${_uqid}`, undefined, { shallow: true });
     },
     [props.quizList],
   );

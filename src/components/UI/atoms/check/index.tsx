@@ -8,7 +8,7 @@ interface CheckPropsType extends Partial<HTMLInputElement> {
 }
 
 export const Check = styled.input.attrs((props) => ({
-  type: 'checkbox',
+  type: props.type,
 }))<CheckPropsType>`
   ${(props) => {
     const sizeTable = {
@@ -27,6 +27,8 @@ export const Check = styled.input.attrs((props) => ({
     const $color_key_color = Theme.palette.$color_key_color;
     const $color_base_line = Theme.palette.$color_base_line;
 
+    const $type_border_radius = { checkbox: '0', radio: '100%' };
+
     return css`
       cursor: pointer;
       margin: 0;
@@ -39,6 +41,7 @@ export const Check = styled.input.attrs((props) => ({
       width: ${sizeTable[props.scale]?.size};
       height: ${sizeTable[props.scale]?.size};
       border: 2px solid ${$color_key_color};
+      border-radius: ${$type_border_radius[props.type]};
 
       &:checked {
         &:after {
@@ -47,6 +50,7 @@ export const Check = styled.input.attrs((props) => ({
           width: calc(${sizeTable[props.scale]?.size} / 2);
           height: calc(${sizeTable[props.scale]?.size} / 2);
           background-color: ${$color_key_color};
+          border-radius: ${$type_border_radius[props.type]};
         }
       }
     `;
