@@ -33,15 +33,15 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
         ) : (
           <Image src="/logo.gif" width={0} height={0} />
         )} */}
-        <Image src="/logo.gif" layout='responsive' width={0} height={0} />
+        <Image src="/logo.gif" layout="responsive" width={0} height={0} />
       </Logo>
 
       <NavList isOpen={navState}>
         <ul>
           <li>
             <span>
-              {props.authState?.profile?.name
-                ? `안녕하세요 ${props.authState?.profile?.name}님`
+              {props.authState?.profile?.nickname
+                ? `안녕하세요 ${props.authState?.profile?.nickname}님`
                 : '안녕하세요.'}
             </span>
             <FontAwesomeIcon

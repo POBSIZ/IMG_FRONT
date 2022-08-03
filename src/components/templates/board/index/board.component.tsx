@@ -66,7 +66,7 @@ const BoardComponent: React.FC<BoardPropsType> = (props) => {
                   <div>
                     <p>
                       {item.title}
-                      <span>/ {item.user_id.name}</span>
+                      <span>/ {item.user_id.nickname}</span>
                     </p>
                     <span>{FormatDate(item.created_at)}</span>
                   </div>
