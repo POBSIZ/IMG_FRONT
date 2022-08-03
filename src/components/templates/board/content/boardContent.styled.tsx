@@ -14,6 +14,10 @@ export const PostContent = styled.section.attrs((props) => ({}))`
       padding: 20px 0;
       min-height: 50vh;
       overflow: hidden;
+
+      img {
+        width: 100% !important;
+      }
     `;
   }};
 `;
