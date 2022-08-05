@@ -43,7 +43,8 @@ const BoardEditComponent: React.FC<BoardEditPropsType> = (props) => {
 
   useEffect(() => {
     setTitle(props.content.title);
-  }, [props.content.title]);
+    setSelBoard(Number(props.content.board_id));
+  }, [props.content]);
 
   return (
     <Layout.Container>
