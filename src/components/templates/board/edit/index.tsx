@@ -86,7 +86,7 @@ const BoardEditTemplate: React.FC<any> = (props) => {
 
   useEffect(() => {
     setThumbnail(props.content.thumbnail);
-  }, []);
+  }, [props.content]);
 
   return (
     <>
