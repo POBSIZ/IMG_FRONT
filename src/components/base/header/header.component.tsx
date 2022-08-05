@@ -84,33 +84,9 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
               </>
             </CheckRole>
 
-            <CheckRole role="insider" isRedirect={false}>
-              <>
-                {props.navList?.insider?.map((item: NavListItemType) => {
-                  return (
-                    <Link key={nanoid()} href={item.url}>
-                      {item.text}
-                    </Link>
-                  );
-                })}
-              </>
-            </CheckRole>
-
-            <CheckRole role="admin" isRedirect={false}>
-              <>
-                {props.navList?.admin?.map((item: NavListItemType) => {
-                  return (
-                    <Link key={nanoid()} href={item.url}>
-                      {item.text}
-                    </Link>
-                  );
-                })}
-              </>
-            </CheckRole>
-
             {props.authState?.token ? (
               <>
-                <Link href="/profile">프로필</Link>
+                <Link href="/profile">학습 기록</Link>
                 <a
                   onClick={(e) => {
                     e.preventDefault();
@@ -129,6 +105,34 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
                 );
               })
             )}
+
+            <CheckRole role="insider" isRedirect={false}>
+              <>
+                {props.navList?.insider?.map((item: NavListItemType) => {
+                  return (
+                    <Link key={nanoid()} href={item.url}>
+                      <a>
+                        <span className="divider">{item.text}</span>
+                      </a>
+                    </Link>
+                  );
+                })}
+              </>
+            </CheckRole>
+
+            <CheckRole role="admin" isRedirect={false}>
+              <>
+                {props.navList?.admin?.map((item: NavListItemType) => {
+                  return (
+                    <Link key={nanoid()} href={item.url}>
+                      <a>
+                        <span className="divider">{item.text}</span>
+                      </a>
+                    </Link>
+                  );
+                })}
+              </>
+            </CheckRole>
           </div>
         </ul>
       </NavList>

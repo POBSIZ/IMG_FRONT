@@ -14,6 +14,9 @@ import AdminUploadTemplate from './admin/book/upload';
 import AdminBookListTemplate from './admin/book/list';
 import AdminBoardCreateTemplate from './admin/board/create';
 
+import AdminManageAllTemplate from './admin/all';
+import AdminManageAcademyTemplate from './admin/academy';
+
 import QuizCreateTemplate from './admin/quiz/create';
 import QuizAssignTemplate from './admin/quiz/assign';
 
@@ -30,6 +33,7 @@ import BoardTemplate from './board/index';
 import BoardIdTemplate from './board/id';
 import BoardContentTemplate from './board/content';
 import BoardCreateTemplate from './board/create';
+import BoardEditTemplate from './board/edit';
 
 const Templates = {
   HomeTemplate,
@@ -43,6 +47,9 @@ const Templates = {
 
   AdminUploadTemplate,
   AdminBoardCreateTemplate,
+
+  AdminManageAllTemplate,
+  AdminManageAcademyTemplate,
 
   AdminBookListTemplate,
   QuizCreateTemplate,
@@ -64,6 +71,7 @@ const Templates = {
   BoardIdTemplate,
   BoardContentTemplate,
   BoardCreateTemplate,
+  BoardEditTemplate,
 };
 export default Templates;
 export {
@@ -91,4 +99,7 @@ export {
   BoardContentTemplate,
   BoardCreateTemplate,
   BoardIdTemplate,
+  BoardEditTemplate,
+  AdminManageAllTemplate,
+  AdminManageAcademyTemplate,
 };

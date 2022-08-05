@@ -14,7 +14,7 @@ import {
 import Layout from 'Layouts';
 import StyledAdminUpload from './adminUpload.styled';
 
-import { Input, Button, File, Title } from 'Atoms';
+import { Input, Button, File, Title, Back } from 'Atoms';
 import Link from 'next/link';
 import { nanoid } from 'nanoid';
 
@@ -24,6 +24,7 @@ const AdminUploadComponent: React.FC<AdminUploadComponentPropsType> = (
   return (
     <>
       <Layout.Container style={{ paddingBottom: '0px' }}>
+        <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
         <StyledAdminUpload>
           <Title>엑셀 파일 업로드</Title>
           <form onSubmit={props.handleSubmit} acceptCharset="UTF-8">

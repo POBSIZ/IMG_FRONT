@@ -17,11 +17,12 @@ import { UserPropsType } from './user.types';
 import Link from 'next/link';
 
 import Layout from 'Layouts';
-import { Title, Input, Button, Badge } from 'Atoms';
+import { Title, Input, Button, Badge, Back } from 'Atoms';
 
 const UserComponent: React.FC<UserPropsType> = (props) => {
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0' }} />
       <Layout.Content>
         <StyledUser>
           <UserItem>

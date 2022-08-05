@@ -10,6 +10,7 @@ import File from './file';
 import Select from './select';
 import Check from './check';
 import Move from './move';
+import Back from './back';
 
 const Atoms = {
   Logo,
@@ -24,6 +25,7 @@ const Atoms = {
   Select,
   Check,
   Move,
+  Back,
 };
 
 export default Atoms;
@@ -41,4 +43,5 @@ export {
   Select,
   Check,
   Move,
+  Back,
 };

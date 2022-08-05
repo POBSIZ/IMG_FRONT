@@ -12,7 +12,12 @@ const StyleWrapper = styled.div`
   }
 `;
 
-const SetEditor: React.FC<any> = ({ onChange, editorLoaded, name, value }) => {
+const SetEditor: React.FC<any> = ({
+  onChange,
+  editorLoaded,
+  name,
+  initData,
+}) => {
   const method = useMethod();
 
   function uploadAdapter(loader) {
@@ -46,7 +51,7 @@ const SetEditor: React.FC<any> = ({ onChange, editorLoaded, name, value }) => {
   }
 
   const editorRef = useRef<null | any>(null);
-  const { CKEditor, ClassicEditor } = editorRef.current || {};
+  const { CKEditor, ClassicEditor, initDataCurr } = editorRef.current || {};
 
   useEffect(() => {
     editorRef.current = {
@@ -69,7 +74,7 @@ const SetEditor: React.FC<any> = ({ onChange, editorLoaded, name, value }) => {
             },
           }}
           editor={ClassicEditor}
-          data={value}
+          data={`${initData}`}
           onReady={(editor) => {}}
           onChange={(_event, _editor, _data) => {
             const data = _editor.getData();
@@ -83,7 +88,7 @@ const SetEditor: React.FC<any> = ({ onChange, editorLoaded, name, value }) => {
   );
 };
 
-const Wysiwyg: React.FC<any> = ({ name, onChange }) => {
+const Wysiwyg: React.FC<any> = ({ name, onChange, initData }) => {
   const [editorLoaded, setEditorLoaded] = useState(false);
 
   useEffect(() => {
@@ -91,7 +96,12 @@ const Wysiwyg: React.FC<any> = ({ name, onChange }) => {
   }, []);
 
   return (
-    <SetEditor name={name} onChange={onChange} editorLoaded={editorLoaded} />
+    <SetEditor
+      name={name}
+      onChange={onChange}
+      initData={initData}
+      editorLoaded={editorLoaded}
+    />
   );
 };
 

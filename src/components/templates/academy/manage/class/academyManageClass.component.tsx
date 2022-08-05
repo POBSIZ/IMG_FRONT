@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StyledAcademyManageClass from './academyManageClass.styled';
 
 import Layout from 'Layouts';
-import { Input, Button, Title } from 'Atoms';
+import { Input, Button, Title, Back } from 'Atoms';
 import { SelectList, UserList, Directory } from 'Molecules';
 import { FilterBox } from 'Organisms';
 
@@ -25,6 +25,7 @@ const AcademyManageClassComponent: React.FC<any> = (props) => {
 
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <Title style={{ margin: '20px 0' }}>📦 반 관리</Title>
       <Layout.Content>
         <StyledAcademyManageClass

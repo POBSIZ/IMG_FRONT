@@ -4,7 +4,7 @@ import { GlobalStyleType } from 'styles/global.styles';
 
 import StyledLogo from 'Atoms/logo/logo.styled';
 
-export const NavList = styled.nav.attrs((props) => { })`
+export const NavList = styled.nav.attrs((props) => {})`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
@@ -37,8 +37,14 @@ export const NavList = styled.nav.attrs((props) => { })`
           /* color: ${$base_theme_color}; */
           color: ${$color_base_black};
           text-decoration: none;
+
           &:last-child {
             margin-right: 0;
+          }
+
+          .divider {
+            border-left: 1px solid;
+            padding-left: 20px;
           }
         }
       }
@@ -109,13 +115,14 @@ export const NavList = styled.nav.attrs((props) => { })`
   }}
 `;
 
-const StyledHeader = styled.header.attrs((props) => { })`
+const StyledHeader = styled.header.attrs((props) => {})`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $base_theme_color = Theme.baseTheme.color;
     const $color_key_color = Theme.palette.$color_key_color;
     const $color_base_black = Theme.palette.$color_base_black;
     const $color_base_white = Theme.palette.$color_base_white;
+    
     const $tablet_max_width = Theme.media.$tablet_max_width;
     const $header_desktop_line_height = Theme.size.$header_desktop_line_height;
     const $header_mobile_line_height = Theme.size.$header_mobile_line_height;
@@ -150,7 +157,7 @@ const StyledHeader = styled.header.attrs((props) => { })`
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
         width: calc(332px / 2) !important;
         height: calc(81px / 2) !important;
 
@@ -161,8 +168,7 @@ const StyledHeader = styled.header.attrs((props) => { })`
           text-decoration: none;
         }
 
-        span{
-          
+        span {
           width: calc(332px / 2) !important;
           height: calc(81px / 2) !important;
 
@@ -170,7 +176,6 @@ const StyledHeader = styled.header.attrs((props) => { })`
             cursor: pointer;
           }
         }
-
       }
 
       @media screen and (max-width: ${$tablet_max_width}) {

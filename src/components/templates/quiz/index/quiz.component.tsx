@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import { Title } from 'Atoms';
 import { Loader } from 'Bases';
 import Layout from 'Layouts';
+import { FormatDate } from 'Utils';
 
 const QuizComponent: React.FC<QuizTemplatePropsType> = (
   props: QuizTemplatePropsType,
@@ -20,7 +21,9 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
 
   const handleClick = useCallback(
     (_id, _title, _uqid) => {
-      router.push(`quiz/play/${_id}?title=${_title}&uqid=${_uqid}`, undefined, { shallow: true });
+      router.push(`quiz/play/${_id}?title=${_title}&uqid=${_uqid}`, undefined, {
+        shallow: true,
+      });
     },
     [props.quizList],
   );
@@ -36,8 +39,6 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
             <ul>
               {props.quizList?.map((item: QuizItemType, i) => {
                 const isTry = item.tryCount > 0 ? true : false;
-                const date = new Date(item.date).toDateString();
-                // const date = new Date(item.date).toISOString();
                 return (
                   <QuizItem
                     disabled={item.disabled}
@@ -55,7 +56,7 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
                   >
                     <div>
                       <h3>{item.title}</h3>
-                      <p>{date}</p>
+                      <p>{FormatDate(item.date)}</p>
                       <div>
                         <span>{item.tryCount}회 응시</span>
                         <span>

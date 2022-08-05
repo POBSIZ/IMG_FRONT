@@ -9,13 +9,13 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 import { Post } from 'Utils';
 
-import { UserInfoPropsType } from './userInfo.types';
-import UserInfoComponent from './userInfo.component';
+import AdminManageAcademyComponent from './adminManageAcademy.component';
+
 import { useMethod } from 'Hooks';
 import { useRouter } from 'next/router';
 import { pushToastAsync } from 'Actions/toastAction';
 
-const UserInfoTemplate: React.FC<UserInfoPropsType> = (props, {}) => {
+const AdminManageAcademyTemplate: React.FC<any> = (props, {}) => {
   const method = useMethod();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -23,16 +23,15 @@ const UserInfoTemplate: React.FC<UserInfoPropsType> = (props, {}) => {
   const handlePatch = useCallback(async (e) => {
     try {
       const _data = {
-        user_id: e.target.user_id.value,
-        name: e.target.name.value,
-        nickname: e.target.nickname.value,
         academy_id: e.target.academy_id.value,
-        school: e.target.school.value,
-        grade: e.target.grade.value,
+        name: e.target.name.value,
+        address: e.target.address.value,
+        address_detail: e.target.address_detail.value,
+        zip: e.target.zip.value,
         phone: e.target.phone.value,
       };
 
-      const res = await method.PATCH('/auth/user/patch', _data);
+      const res = await method.PATCH('/academy/patch', _data);
 
       dispatch(
         pushToastAsync.request({
@@ -52,9 +51,9 @@ const UserInfoTemplate: React.FC<UserInfoPropsType> = (props, {}) => {
 
   return (
     <>
-      <UserInfoComponent {...props} handlePatch={handlePatch} />
+      <AdminManageAcademyComponent {...props} handlePatch={handlePatch} />
     </>
   );
 };
 
-export default UserInfoTemplate;
+export default AdminManageAcademyTemplate;

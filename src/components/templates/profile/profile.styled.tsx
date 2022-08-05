@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'styles/global.styles';
 
 import Layout from 'Layouts';
+import { Move } from 'Atoms';
+import { StyledMove } from 'Atoms/move';
 
 export const QuizLogItem = styled.li.attrs((props) => {})`
   ${(props) => {
@@ -164,6 +166,11 @@ const StyledProfile = styled.article.attrs((props) => {})`
     const $color_key_color = Theme.palette.$color_key_color;
     return css`
       min-height: 100vh;
+
+      ${StyledMove} {
+        width: 200px;
+        margin: auto;
+      }
 
       ${Layout.Content} {
         margin-top: 20px;

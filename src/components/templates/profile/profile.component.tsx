@@ -10,9 +10,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { nanoid } from 'nanoid';
 import Layout from 'Layouts';
-import { Button, Input } from 'Atoms';
+import { Button, Input, Move } from 'Atoms';
 import Link from 'next/link';
 import { CheckRole } from 'Hoc';
+import { FormatDate } from 'Utils';
 
 const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
   return (
@@ -25,6 +26,10 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
           </p> */}
           {/* <span>{props.profile.phone}</span> */}
         </ProfileInfo>
+
+        <Move href={`/profile/${props.profile?.user_id}`} backColor="primary">
+          내 정보 수정하기
+        </Move>
 
         {/* 학부모 자녀 계정 연결 요청 */}
         <CheckRole role="parents">
@@ -109,14 +114,10 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
             style={{ height: '50vh', overflow: 'hidden', overflowY: 'scroll' }}
           >
             {props?.quizLog?.map((item) => {
-              const _dateObj = new Date(item.date).toISOString();
-              const dateObj = new Date(_dateObj);
-              const date = `${dateObj.getFullYear()}/${dateObj.getMonth()}/${dateObj.getDay()} ${dateObj.getHours()}:${dateObj.getMinutes()}`;
-
               return (
                 <QuizLogItem key={nanoid()}>
                   <section>
-                    <span>{date}</span>
+                    <span>{FormatDate(item.date, true)}</span>
                     <p>{item.title}</p>
                     <span>
                       {item.score} / {item.probCount}

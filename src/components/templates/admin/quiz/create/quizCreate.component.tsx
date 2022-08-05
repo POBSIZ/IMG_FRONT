@@ -18,7 +18,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import StyledQuizCreate, { TextInput, NumberInput } from './quizCreate.styled';
 
 import Layout from 'Layouts';
-import { Title, Input, Button, Badge } from 'Atoms';
+import { Title, Input, Button, Badge, Back } from 'Atoms';
 import { SelectList } from 'Molecules';
 
 import { QuizCreatePropsType, BookWordListType } from './quizCreate.types';
@@ -116,6 +116,7 @@ const QuizCreateComponent: React.FC<QuizCreatePropsType> = (props) => {
 
   return (
     <Layout.Container style={{ paddingBottom: '20px' }}>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <StyledQuizCreate
         onSubmit={(e) => {
           props.handleSubmit(e, checkList);

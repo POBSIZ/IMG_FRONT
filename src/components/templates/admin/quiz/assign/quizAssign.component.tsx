@@ -17,7 +17,7 @@ import StyledQuizAssign from './quizAssign.styled';
 import Layout from 'Layouts';
 import { FilterBox } from 'Organisms';
 import { UserList, SelectList, Directory } from 'Molecules';
-import { Title, Button } from 'Atoms';
+import { Title, Button, Back } from 'Atoms';
 
 import {
   QuizAssignTempPropsType,
@@ -39,6 +39,7 @@ const QuizAssignComponent: React.FC<QuizAssignCompPropsType> = (props) => {
 
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <Title style={{ margin: '20px 0' }}>퀴즈 할당</Title>
       <StyledQuizAssign
         onSubmit={(e) => {

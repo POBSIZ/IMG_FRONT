@@ -15,7 +15,7 @@ import StyledAdminBookList from './adminBookList.styled';
 
 import Layout from 'Layouts';
 import SelectList from 'Molecules/selectList';
-import { Input, Button, File, Title } from 'Atoms';
+import { Input, Button, File, Title, Back } from 'Atoms';
 import Link from 'next/link';
 import { nanoid } from 'nanoid';
 

@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StyledAcademyManageStudent from './academyManageStudent.styled';
 
 import Layout from 'Layouts';
-import { Button, Title } from 'Atoms';
+import { Button, Title, Back } from 'Atoms';
 import { Directory } from 'Molecules';
 import { AcademyManageClassTemplate } from 'Templates';
 
@@ -24,6 +24,7 @@ const AcademyManageStudentComponent: React.FC<any> = (props) => {
 
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <Title style={{ margin: '20px 0' }}>🙋‍♀️ 학생 관리</Title>
       <StyledAcademyManageStudent>
         <Layout.Content className="students">

@@ -25,7 +25,6 @@ export const Select = styled.select.attrs((props) => ({}))<
     const borderColor =
       props.isFail === true ? Theme.palette.$color_failure : $color_base_line;
     return css`
-      background-color: ${bgColor};
       color: ${$color_base_black};
       width: 100%;
       height: 45px;
@@ -41,6 +40,7 @@ export const Select = styled.select.attrs((props) => ({}))<
       appearance: none;
 
       background: url('/down-arrow.svg') no-repeat 97% 50%/15px auto;
+      background-color: ${bgColor};
 
       will-change: border;
 

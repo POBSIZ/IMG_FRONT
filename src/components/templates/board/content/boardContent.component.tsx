@@ -31,17 +31,24 @@ const BoardContentComponent: React.FC<BoardContentPropsType> = (props) => {
         </Title>
         <EditDiv>
           <span>{FormatDate(props.content.created_at)}</span>
-          <div>
-            {/* <Button backColor="primary">수정</Button> */}
-            <Button
-              backColor="red"
-              onClick={() => {
-                props.deletePost(props.content.post_id);
-              }}
-            >
-              삭제
-            </Button>
-          </div>
+          {props.isEditable ? (
+            <div>
+              <Move
+                href={`/board/edit/${props.content.post_id}`}
+                backColor="primary"
+              >
+                수정
+              </Move>
+              <Button
+                backColor="red"
+                onClick={() => {
+                  props.deletePost(props.content.post_id);
+                }}
+              >
+                삭제
+              </Button>
+            </div>
+          ) : null}
         </EditDiv>
       </StyledBoardContent>
       <PostContent

@@ -1,6 +1,8 @@
 import IconInput from './iconInput';
 import TextInput from './textInput';
 
+import EditText from './editText';
+
 import ListTab from './listTab';
 import UserList from './userList';
 import Directory from './directory';
@@ -32,6 +34,7 @@ const Molecules = {
   CustomList,
   BoardTab,
   SmallGallery,
+  EditText,
 };
 
 export default Molecules;
@@ -50,4 +53,5 @@ export {
   CustomList,
   BoardTab,
   SmallGallery,
+  EditText,
 };

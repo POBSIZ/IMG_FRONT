@@ -15,7 +15,7 @@ import { AdminBoardCreatePropsType } from '.';
 import StyledAdminBoardCreate from './adminBoardCreate.styled';
 
 import Layout from 'Layouts';
-import { Title, Input, Button } from 'Atoms';
+import { Title, Input, Button, Back } from 'Atoms';
 import { TextInput } from 'Molecules';
 
 const AdminBoardCreateComponent: React.FC<AdminBoardCreatePropsType> = (
@@ -26,6 +26,7 @@ const AdminBoardCreateComponent: React.FC<AdminBoardCreatePropsType> = (
 
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <Title style={{ margin: '20px 0' }}>📫 게시판 생성</Title>
 
       <StyledAdminBoardCreate

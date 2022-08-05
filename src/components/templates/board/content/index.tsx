@@ -27,14 +27,16 @@ export interface BoardContentType {
 
 export interface BoardContentPropsType {
   content: BoardContentType;
+  isEditable: boolean;
   deletePost: (_id: number) => void;
 }
 
 const BoardContentTemplate: React.FC<
-  Omit<BoardContentPropsType, 'deletePost'>
+  Omit<BoardContentPropsType, 'deletePost' | 'isEditable'>
 > = (props) => {
   const router = useRouter();
   const method = useMethod();
+  const authState = useSelector((state: RootStateOrAny) => state.authReducer);
 
   const deletePost = async (_id) => {
     await method.DELETE(`/board/post/delete/${_id}`);
@@ -43,10 +45,13 @@ const BoardContentTemplate: React.FC<
 
   const patchPost = async () => {};
 
+  // console.log(props.content.user_id.user_id);
+
   return (
     <>
       <BoardContentComponent
         {...props}
+        isEditable={authState.profile.user_id === props.content.user_id.user_id}
         deletePost={deletePost}
         content={props.content}
       />

@@ -73,8 +73,8 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
         <Header
           navList={{
             default: [
-              { url: '/quiz', text: '퀴즈풀기' },
               { url: '/board', text: '게시판' },
+              { url: '/quiz', text: '퀴즈풀기' },
             ],
             student: [],
             parents: [],

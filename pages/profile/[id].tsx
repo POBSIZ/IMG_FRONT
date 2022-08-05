@@ -11,6 +11,7 @@ import { useMethod } from 'Hooks';
 const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
   const method = useMethod();
   const router = useRouter();
+  const authState = useSelector((state: RootStateOrAny) => state.authReducer);
   const toastState = useSelector((state: RootStateOrAny) => state.toastReducer);
   const { id } = router.query;
 
@@ -28,6 +29,10 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
   }, []);
 
   useEffect(() => {
+    if (authState.profile.user_id !== id) {
+      router.push('/');
+    }
+
     if (toastState.status === 'success' || userInfo.name === '') {
       getUserInfo();
     }
