@@ -20,11 +20,12 @@ import StyledBoard, { BoardHeader, BoardList } from './board.styled';
 
 import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
-import { Title, Move } from 'Atoms';
+import { Title, Move, Back } from 'Atoms';
 
 const BoardComponent: React.FC<BoardPropsType> = (props) => {
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <Title style={{ margin: '20px 0' }}>
         {props.boardList[0]?.board_id?.title}
       </Title>

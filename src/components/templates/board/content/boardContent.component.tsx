@@ -18,12 +18,13 @@ import StyledBoardContent, {
 } from './boardContent.styled';
 
 import Layout from 'Layouts';
-import { Title, Move, Button } from 'Atoms';
+import { Title, Move, Button, Back } from 'Atoms';
 import { FormatDate } from 'Utils';
 
 const BoardContentComponent: React.FC<BoardContentPropsType> = (props) => {
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <StyledBoardContent>
         <Title>
           {props.content.title}

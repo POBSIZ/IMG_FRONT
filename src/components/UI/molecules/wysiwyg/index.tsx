@@ -26,9 +26,9 @@ const SetEditor: React.FC<any> = ({
         return new Promise((resolve, reject) => {
           const body = new FormData();
           loader.file.then(async (file) => {
-            if (file.type !== 'image/jpeg') {
-              reject();
-            }
+            // if (file.type !== 'image/jpeg') {
+            //   reject();
+            // }
 
             body.append('files', file);
             const res = await method.POST(

@@ -19,7 +19,7 @@ import StyledBoardCreate from './boardCreate.styled';
 
 import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
-import { Title, Move, Button, Select, Input, File } from 'Atoms';
+import { Title, Move, Button, Select, Input, File, Back } from 'Atoms';
 import { Wysiwyg } from 'Molecules';
 
 const BoardCreateComponent: React.FC<BoardCreatePropsType> = (props) => {
@@ -31,6 +31,7 @@ const BoardCreateComponent: React.FC<BoardCreatePropsType> = (props) => {
 
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <Title style={{ margin: '20px 0' }}>글 작성</Title>
       <StyledBoardCreate
         onSubmit={(e) => {

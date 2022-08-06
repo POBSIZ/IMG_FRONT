@@ -19,7 +19,7 @@ import StyledBoardEdit from './boardEdit.styled';
 
 import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
-import { Title, Move, Button, Select, Input, File } from 'Atoms';
+import { Title, Move, Button, Select, Input, File, Back } from 'Atoms';
 import { Wysiwyg } from 'Molecules';
 
 const BoardEditComponent: React.FC<BoardEditPropsType> = (props) => {
@@ -48,6 +48,7 @@ const BoardEditComponent: React.FC<BoardEditPropsType> = (props) => {
 
   return (
     <Layout.Container>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <Title style={{ margin: '20px 0' }}>글 수정</Title>
       <StyledBoardEdit
         onSubmit={(e) => {
