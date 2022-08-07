@@ -30,6 +30,7 @@ export const ListItem = styled.div.attrs((props) => ({}))`
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        flex-wrap: wrap;
 
         width: 98%;
         margin: 0;

@@ -24,8 +24,8 @@ import { FormatDate } from 'Utils';
 const BoardContentComponent: React.FC<BoardContentPropsType> = (props) => {
   return (
     <Layout.Container>
-      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
       <StyledBoardContent>
+      <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
         <Title>
           {props.content.title}
           <span> / {props.content.user_id.nickname}</span>

@@ -20,9 +20,11 @@ const QuizPage: NextPage<any> = (props, {}) => {
 
   // 내 유저 퀴즈 목록 가져오기
   const getMyQuizs = useCallback(async () => {
-    const quizs = await method.GET('/quiz/my');
-    setQuizList(quizs.data);
-    setIsLoad(false);
+    try {
+      const quizs = await method.GET('/quiz/my');
+      setQuizList(quizs.data);
+      setIsLoad(false);
+    } catch (error) {}
   }, []);
 
   useEffect(() => {

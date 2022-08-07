@@ -58,7 +58,7 @@ const QuizAssignComponent: React.FC<QuizAssignCompPropsType> = (props) => {
               props.handleDelete(Number(selList[2]?.data?.data?.userQuiz_id));
             }}
           >
-            유저 퀴즈 삭제
+            할당 퀴즈 삭제
           </Button>
         </Layout.Content>
 

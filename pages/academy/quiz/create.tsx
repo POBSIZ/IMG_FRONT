@@ -12,6 +12,8 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 import { CheckRole, RedirectLogin } from 'Hoc';
 import { useMethod } from 'Hooks';
 
+import { CreateQuizFilter } from 'Organisms';
+
 const QuizCreatePage: NextPage<any> = (props, {}) => {
   const method = useMethod();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
@@ -46,11 +48,19 @@ const QuizCreatePage: NextPage<any> = (props, {}) => {
     return () => {};
   }, []);
 
+  useEffect(() => {
+    if (toastState.status === 'success' || toastState.status === 'error') {
+      getQuizList();
+    }
+    return () => {};
+  }, [toastState]);
+
   return (
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 퀴즈 관리</title>
       </Head>
+      <CreateQuizFilter maxWords={100} />
       <RedirectLogin>
         <CheckRole role="insider" isRedirect={false}>
           <>

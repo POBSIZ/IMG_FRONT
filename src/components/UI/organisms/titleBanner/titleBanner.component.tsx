@@ -28,10 +28,18 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
   const [storyList, setStoryList] = useState<any[]>([]);
 
   const getLists = async () => {
-    const nl = await method.GET(`/board/list/${4}`);
-    const sl = await method.GET(`/board/list/${3}`);
-    setNoticeList(nl.data);
-    setStoryList(sl.data);
+    const nl: any = await method.GET(`/board/list/${4}`);
+    const sl: any = await method.GET(`/board/list/${3}`);
+    setNoticeList(
+      nl.data.sort((a, b) => {
+        return Number(new Date(b.created_at)) - Number(new Date(a.created_at));
+      }),
+    );
+    setStoryList(
+      sl.data.sort((a, b) => {
+        return Number(new Date(b.created_at)) - Number(new Date(a.created_at));
+      }),
+    );
   };
 
   useEffect(() => {

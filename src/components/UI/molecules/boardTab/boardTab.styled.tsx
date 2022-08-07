@@ -46,9 +46,19 @@ const StyledBoardTab = styled.div.attrs((props) => ({}))`
           padding: 10px 0;
           border-bottom: 1px solid ${$color_base_line};
 
+          span {
+            width: 70%;
+            overflow: hidden;
+            line-height: 30px;
+            height: 30px;
+            text-overflow: ellipsis;
+          }
+
           span:last-child {
             ${$font_body_info};
             color: ${$color_base_gray};
+            text-align: right;
+          }
         }
       }
     `;

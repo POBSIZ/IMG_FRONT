@@ -204,10 +204,13 @@ export const GoToProfile = styled.div.attrs((props) => {})`
       gap: 10px;
 
       width: fit-content;
-      /* margin-top: 10px; */
       padding: 8px 10px;
       background-color: ${$color_key_color};
-      color: ${$color_base_white};
+      text-decoration: none;
+
+      a {
+        color: ${$color_base_white};
+      }
 
       @media screen and (max-width: ${$mobile_max_width}) {
       }

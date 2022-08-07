@@ -57,9 +57,9 @@ const QuizResultComponent: React.FC<QuizResultComponentPropsType> = (props) => {
           {props.result?.corrCount} / {props.result?.list.length}{' '}
           <GoToProfile>
             <Link href="/profile">
-              <span>
+              <a>
                 <FontAwesomeIcon icon={faUser} /> 프로필로 이동
-              </span>
+              </a>
             </Link>
           </GoToProfile>
         </ResultNum>
