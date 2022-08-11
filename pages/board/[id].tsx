@@ -15,7 +15,12 @@ const BoardContentPage: NextPage<any> = (props) => {
   const getBoards = async () => {
     const id = router.asPath.replace(/\/board\//g, '');
     const resList = await method.GET(`/board/list/${id}`);
-    setBoardList(resList.data);
+    setBoardList(
+      resList.data.sort(
+        (a, b) =>
+          Number(new Date(b.created_at)) - Number(new Date(a.created_at)),
+      ),
+    );
 
     // console.log(resList.data);
   };

@@ -21,7 +21,12 @@ const BoardPage: NextPage<any> = (props) => {
         ? await method.GET(`/board/list/${resTab.data[0].board_id}`)
         : await method.GET(`/board/list/${id}`);
     setBoardTab(resTab.data);
-    setBoardList(resList.data);
+    setBoardList(
+      resList.data.sort(
+        (a, b) =>
+          Number(new Date(b.created_at)) - Number(new Date(a.created_at)),
+      ),
+    );
   };
 
   useEffect(() => {

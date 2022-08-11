@@ -49,9 +49,10 @@ const StyledBoardTab = styled.div.attrs((props) => ({}))`
           span {
             width: 70%;
             overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             line-height: 30px;
             height: 30px;
-            text-overflow: ellipsis;
           }
 
           span:last-child {

@@ -15,22 +15,26 @@ import StyledCreateQuizFilter, { Option } from './createQuizFilter.styled';
 import { FilterBoxPropsType } from '.';
 
 import Layout from 'Layouts';
-import { Check, Input } from 'Atoms';
+import { Check, Input, Button } from 'Atoms';
 import { SelectList } from 'Molecules';
 import { FormatDate } from 'Utils';
 
 const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
-  const [selList, setSelList] = useState<any[]>([null, null, null]);
-
-  const [scope, setScope] = useState<[number, number]>([0, 0]);
-  const [inputScope, setInputScope] = useState<[number, number]>([0, 0]);
+  const [scope, setScope] = useState<[number, number] | null>(null);
+  const [inputScope, setInputScope] = useState<[number, number] | null>(null);
   const [scopeDisable, setScopeDisable] = useState<boolean>(true);
 
-  const [wordCount, setWordCount] = useState<number>(0);
-  const [inputWordCount, setInputWordCount] = useState<number>(0);
+  const [wordCount, setWordCount] = useState<number | null>(null);
+  const [inputWordCount, setInputWordCount] = useState<number | null>(null);
   const [wordCountDisable, setWordCountDisable] = useState<boolean>(true);
 
-  useEffect(() => {}, []);
+  const [quizType, setQuizType] = useState<
+    'IN_PREV' | 'EX_PREV' | 'STATIC' | null
+  >(null);
+
+  useEffect(() => {
+    setWordCount(null);
+  }, [scope]);
 
   const MemoD1SL = useMemo(() => {
     return (
@@ -76,9 +80,15 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
                 max={props.maxWords + ''}
                 disabled={scopeDisable}
                 onChange={(e) => {
-                  setInputScope((state) => [Number(e.target.value), state[1]]);
+                  setInputScope((state) => [
+                    Number(e.target.value),
+                    state !== null ? state[1] : 0,
+                  ]);
                   !scopeDisable
-                    ? setScope((state) => [Number(e.target.value), state[1]])
+                    ? setScope((state) => [
+                        Number(e.target.value),
+                        state !== null ? state[1] : 0,
+                      ])
                     : null;
                 }}
               />
@@ -89,9 +99,15 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
                 max={props.maxWords + ''}
                 disabled={scopeDisable}
                 onChange={(e) => {
-                  setInputScope((state) => [state[0], Number(e.target.value)]);
+                  setInputScope((state) => [
+                    state !== null ? state[0] : 0,
+                    Number(e.target.value),
+                  ]);
                   !scopeDisable
-                    ? setScope((state) => [state[0], Number(e.target.value)])
+                    ? setScope((state) => [
+                        state !== null ? state[0] : 0,
+                        Number(e.target.value),
+                      ])
                     : null;
                 }}
               />
@@ -100,7 +116,7 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
         </Layout.Content>
       </>
     );
-  }, [scope, scopeDisable]);
+  }, [scope, scopeDisable, props]);
 
   const MemoD2SL = useMemo(() => {
     return (
@@ -117,7 +133,11 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
               name="wordCount"
               id="wordCount1"
               onChange={() => {
-                setWordCount(scope[1] - scope[0] + 1);
+                setWordCount(
+                  (scope !== null ? scope[1] : 0) +
+                    1 -
+                    (scope !== null ? scope[0] : 0) ?? 0,
+                );
                 setWordCountDisable(true);
               }}
             />
@@ -142,7 +162,11 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
               type="number"
               placeholder="문제수"
               min="1"
-              max={scope[1] - scope[0] + 1 + ''}
+              max={
+                (scope !== null ? scope[1] : 0) +
+                  1 -
+                  (scope !== null ? scope[0] : 0) ?? 0 + ''
+              }
               disabled={wordCountDisable}
               onChange={(e) => {
                 setInputWordCount(Number(e.target.value));
@@ -153,7 +177,7 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
         </Layout.Content>
       </>
     );
-  }, [scope, wordCount]);
+  }, [scope, wordCount, props]);
 
   const MemoD3SL = useMemo(() => {
     return (
@@ -164,32 +188,71 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
         >
           <h2>방식</h2>
           <Option>
-            <Check type="radio" scale="L" name="quizType" id="quizType1" />
+            <Check
+              type="radio"
+              scale="L"
+              name="quizType"
+              id="quizType1"
+              onChange={() => {
+                setQuizType('EX_PREV');
+              }}
+            />
             <label htmlFor="quizType1">이전문제 제외</label>
           </Option>
 
           <Option>
-            <Check type="radio" scale="L" name="quizType" id="quizType2" />
+            <Check
+              type="radio"
+              scale="L"
+              name="quizType"
+              id="quizType2"
+              onChange={() => {
+                setQuizType('IN_PREV');
+              }}
+            />
             <label htmlFor="quizType2">이전문제 포함</label>
           </Option>
 
           <Option>
-            <Check type="radio" scale="L" name="quizType" id="quizType3" />
+            <Check
+              type="radio"
+              scale="L"
+              name="quizType"
+              id="quizType3"
+              onChange={() => {
+                setQuizType('STATIC');
+              }}
+            />
             <label htmlFor="quizType3">문제 고정</label>
           </Option>
         </Layout.Content>
       </>
     );
-  }, [selList[1]]);
+  }, [quizType, props]);
 
   return (
-    <Layout.Container>
+    <>
       <StyledCreateQuizFilter>
         {MemoD1SL}
         {MemoD2SL}
         {MemoD3SL}
       </StyledCreateQuizFilter>
-    </Layout.Container>
+
+      <Button
+        type="button"
+        backColor="primary"
+        isDisabled={
+          scope !== null && wordCount !== null && quizType !== null
+            ? false
+            : true
+        }
+        onClick={() => {
+          props.setOption(scope, wordCount, quizType);
+        }}
+      >
+        설정 적용
+      </Button>
+    </>
   );
 };
 

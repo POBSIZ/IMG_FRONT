@@ -36,7 +36,7 @@ const QuizPlayPage: NextPage<any> = ({}) => {
 
   // 문제 목록 가져오기
   const getProbs = useCallback(async () => {
-    const probs = await method.GET(`/quiz/prob/${id}`);
+    const probs = await method.GET(`/quiz/prob/${id}/${uqid}`);
     setProbList(probs.data);
     setIsLoad(false);
   }, []);

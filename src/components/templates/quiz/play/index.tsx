@@ -36,6 +36,8 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
       }
     });
 
+    // console.log(_list);
+
     dispatch(
       saveQuiz({
         title: props.quizTitle,

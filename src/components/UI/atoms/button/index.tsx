@@ -15,6 +15,8 @@ const Button = styled.button.attrs((props: ButtonPropsType) => ({
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
     const $color_base_black = Theme.palette.$color_base_black;
+    const $color_base_gray = Theme.palette.$color_base_gray;
+    const $color_base_line = Theme.palette.$color_base_line;
     const $color_key_color = Theme.palette.$color_key_color;
     const $color_failure = Theme.palette.$color_failure;
 
@@ -45,6 +47,11 @@ const Button = styled.button.attrs((props: ButtonPropsType) => ({
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &:disabled {
+        cursor: not-allowed;
+        background: ${$color_base_line};
+      }
 
       ${props.isLoad
         ? `

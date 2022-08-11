@@ -74,7 +74,7 @@ const SetEditor: React.FC<any> = ({
             },
           }}
           editor={ClassicEditor}
-          data={`${initData}`}
+          data={`${initData ?? ''}`}
           onReady={(editor) => {}}
           onChange={(_event, _editor, _data) => {
             const data = _editor.getData();

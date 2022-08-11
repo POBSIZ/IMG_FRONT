@@ -3,6 +3,8 @@ import { GlobalStyleType } from 'StyleVars';
 
 import StyledSelectList from 'Molecules/selectList/selectList.styled';
 
+import Layout from 'Layouts';
+
 export const Option = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
@@ -28,6 +30,11 @@ const StyledCreateQuizFilter = styled.div.attrs((props) => ({}))`
       grid-template-columns: 1fr 10px 1fr 10px 1fr;
       align-items: flex-start;
       gap: 10px;
+      margin-bottom: 20px;
+
+      ${Layout.Content} {
+        height: 200px;
+      }
 
       ${StyledSelectList} {
         width: 100%;

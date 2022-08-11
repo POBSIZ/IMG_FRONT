@@ -31,7 +31,6 @@ const QuizCreatePage: NextPage<any> = (props, {}) => {
   const getQuizList = useCallback(async () => {
     const res = await method.GET('/quiz/all');
     setQuizList(res.data);
-    // console.log(res.data);
   }, []);
 
   const getBookList = useCallback(async () => {
@@ -60,7 +59,6 @@ const QuizCreatePage: NextPage<any> = (props, {}) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 퀴즈 관리</title>
       </Head>
-      <CreateQuizFilter maxWords={100} />
       <RedirectLogin>
         <CheckRole role="insider" isRedirect={false}>
           <>

@@ -14,12 +14,17 @@ export interface BookWordListType {
 export interface QuizCreateResDataType {
   title: string;
   time: number;
-  wordList: BookWordListType[];
+  // wordList: BookWordListType[];
+  book_id: number;
+  scope: [number, number];
+  word_count: number;
+  type: 'IN_PREV' | 'EX_PREV' | 'STATIC';
+  max_options?: number;
 }
 
 export interface QuizCreatePropsType {
   bookList: SelectListType[];
   titleName: string;
   timeName: string;
-  handleSubmit: (e: FormEvent, _data: BookWordListType[]) => any;
+  handleSubmit: (e: FormEvent, _data: Partial<QuizCreateResDataType>) => any;
 }

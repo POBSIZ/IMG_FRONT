@@ -11,9 +11,19 @@ import { SetStateType } from 'Types';
 
 import CreateQuizFilterComponent from './createQuizFilter.component';
 
+export interface quizOptionType {
+  scope: [number, number];
+  word_count: number;
+  type: 'IN_PREV' | 'EX_PREV' | 'STATIC';
+}
+
 export interface FilterBoxPropsType {
-  // getList: SetStateType;
   maxWords: number;
+  setOption: (
+    scope: [number, number] | null,
+    word_count: number | null,
+    type: 'IN_PREV' | 'EX_PREV' | 'STATIC' | null,
+  ) => void;
 }
 
 const CreateQuizFilter: React.FC<FilterBoxPropsType> = (props) => {

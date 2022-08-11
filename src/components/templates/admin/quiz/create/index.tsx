@@ -29,14 +29,18 @@ const QuizCreateTemplate: React.FC<QuizCreatePropsType> = (props, {}) => {
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
 
   const handleSubmit = useCallback(
-    async (e: FormEvent, _data: BookWordListType[]) => {
+    async (e: FormEvent, _data: Partial<QuizCreateResDataType>) => {
       e.preventDefault();
       e.persist();
 
-      const data: QuizCreateResDataType = {
+      const data: Partial<QuizCreateResDataType> = {
         title: e.target[props.titleName].value,
         time: e.target[props.timeName].value,
-        wordList: _data,
+        book_id: _data.book_id,
+        scope: _data.scope,
+        word_count: _data.word_count,
+        type: _data.type,
+        // max_options: 0,
       };
 
       try {

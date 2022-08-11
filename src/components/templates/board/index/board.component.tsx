@@ -21,6 +21,7 @@ import StyledBoard, { BoardHeader, BoardList } from './board.styled';
 import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
 import { Title, Move } from 'Atoms';
+import { CheckRole } from 'Hoc';
 
 const BoardComponent: React.FC<BoardPropsType> = (props) => {
   const [currPage, setCurrPage] = useState(0);
@@ -75,9 +76,11 @@ const BoardComponent: React.FC<BoardPropsType> = (props) => {
             );
           })}
         </BoardList>
-        <Move href="/board/create" backColor="primary">
-          글 작성
-        </Move>
+        <CheckRole role="admin">
+          <Move href="/board/create" backColor="primary">
+            글 작성
+          </Move>
+        </CheckRole>
       </StyledBoard>
     </Layout.Container>
   );
