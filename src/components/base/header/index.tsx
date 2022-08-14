@@ -42,13 +42,7 @@ const Header: React.FC<HeaderPropsType> = (props) => {
   const [academy, setAcademy] = useState<any>(false);
 
   const logout = useCallback(() => {
-    router.push(
-      authState?.profile?.academy_info?.name
-        ? `/academy/page/${authState?.profile?.academy_info?.name}`
-        : '/',
-      undefined,
-      { shallow: true },
-    );
+    router.push('/', undefined, { shallow: true });
     dispatch(authLogout());
     dispatch(
       pushToastAsync.request({

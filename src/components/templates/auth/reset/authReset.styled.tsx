@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'StyleVars';
-import Link from 'next/link';
 
-const StyledLogin = styled.article.attrs((props) => ({}))`
+const StyledAuthReset = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
@@ -23,7 +22,6 @@ const StyledLogin = styled.article.attrs((props) => ({}))`
       align-items: center;
       flex-wrap: wrap;
       flex-flow: column;
-      /* gap: 20px; */
 
       section {
         text-align: center;
@@ -48,8 +46,8 @@ const StyledLogin = styled.article.attrs((props) => ({}))`
         align-items: center;
         flex-wrap: wrap;
         flex-flow: column;
-        margin-top: 20px;
-        /* gap: 10px; */
+        margin-top: 40px;
+        gap: 10px;
 
         div {
           margin-bottom: 10px;
@@ -72,4 +70,4 @@ const StyledLogin = styled.article.attrs((props) => ({}))`
   }};
 `;
 
-export default StyledLogin;
+export default StyledAuthReset;

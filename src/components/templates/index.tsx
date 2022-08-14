@@ -6,6 +6,7 @@ import QuizResultTemplate from './quiz/result';
 
 import LoginTemplate from './auth/login';
 import RegisterTemplate from './auth/register';
+import AuthResetTemplate from './auth/reset';
 
 import ProfileTemplate from './profile';
 import QuizWrongResultTemplate from './quiz/wrongResult';
@@ -46,6 +47,7 @@ const Templates = {
 
   LoginTemplate,
   RegisterTemplate,
+  AuthResetTemplate,
 
   AdminUploadTemplate,
   AdminBoardCreateTemplate,
@@ -89,6 +91,7 @@ export {
   AdminBoardCreateTemplate,
   QuizCreateTemplate,
   QuizAssignTemplate,
+  AuthResetTemplate,
   UserTemplate,
   UserInfoTemplate,
   ProfileTemplate,

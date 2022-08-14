@@ -45,13 +45,7 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
           }),
         );
 
-        Router.push(
-          auth?.profile?.academy_info?.name
-            ? `/academy/page/${auth?.profile?.academy_info?.name}`
-            : '/',
-          undefined,
-          { shallow: true },
-        );
+        Router.push('/', undefined, { shallow: true });
       } catch (error: any) {
         // console.log(error);
         dispatch(

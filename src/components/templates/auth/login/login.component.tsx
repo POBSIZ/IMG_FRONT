@@ -55,8 +55,13 @@ const LoginComponent: React.FC<any> = (props) => {
             <Button backColor="primary" type="submit">
               로그인
             </Button>
+
             <Link className="register" href="/auth/register">
               회원가입
+            </Link>
+
+            <Link className="register" href="/auth/reset">
+              비밀번호를 잊으셨나요?
             </Link>
           </form>
         </StyledLogin>

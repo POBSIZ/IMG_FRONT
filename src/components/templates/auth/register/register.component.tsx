@@ -289,7 +289,7 @@ const RegisterComponent: React.FC<any> = (props) => {
             />
 
             <TextInput
-              text="전화번호"
+              text="휴대폰 번호"
               type="text"
               placeholder="010-xxxx-xxxx"
               value={phone}

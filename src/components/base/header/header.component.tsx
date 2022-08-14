@@ -29,24 +29,9 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
 
   return (
     <StyledHeader className="header">
-      {router.pathname === '/' ||
-      router.query.id === '이미지 어학원' ||
-      props.authState?.profile?.academy_info?.name === '이미지 어학원' ||
-      props.authState?.profile?.academy_info?.name === '이미지어학원' ? (
-        <Logo href="/">
-          <Image src="/logo.gif" layout="responsive" width={0} height={0} />
-        </Logo>
-      ) : (
-        <Logo
-          href={
-            props.authState?.profile?.academy_info?.name
-              ? `/academy/page/${props.authState?.profile?.academy_info?.name}`
-              : '/'
-          }
-        >
-          <span>{props.authState?.profile?.academy_info?.name}</span>
-        </Logo>
-      )}
+      <Logo href="/">
+        <Image src="/logo.gif" layout="responsive" width={0} height={0} />
+      </Logo>
 
       <NavList isOpen={navState}>
         <ul>
