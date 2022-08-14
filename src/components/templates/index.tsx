@@ -29,6 +29,8 @@ import AcademyQuizListTemplate from './academy/quiz/list';
 import AcademyManageStudentTemplate from './academy/manage/student';
 import AcademyManageClassTemplate from './academy/manage/class';
 
+import AcademyPageTemplate from './academy/page';
+
 import BoardTemplate from './board/index';
 import BoardIdTemplate from './board/id';
 import BoardContentTemplate from './board/content';
@@ -67,6 +69,8 @@ const Templates = {
   AcademyManageStudentTemplate,
   AcademyManageClassTemplate,
 
+  AcademyPageTemplate,
+
   BoardTemplate,
   BoardIdTemplate,
   BoardContentTemplate,
@@ -102,4 +106,5 @@ export {
   BoardEditTemplate,
   AdminManageAllTemplate,
   AdminManageAcademyTemplate,
+  AcademyPageTemplate,
 };

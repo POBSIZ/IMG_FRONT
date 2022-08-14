@@ -32,20 +32,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
         dispatch(
           authLogin({
             profile: {
-              user_id: profileData.user_id,
-              chain_id: profileData.chain_id,
-              name: profileData.name,
-              nickname: profileData.nickname,
-              phone: profileData.phone,
-              role: profileData.role,
-              created_at: profileData.created_at,
-              school: profileData.school,
-              grade: profileData.grade,
-              class_id: profileData.class_id,
-              address: profileData.address,
-              zip: profileData.zip,
-              address_detail: profileData.address_detail,
-              academy_id: profileData.academy_id,
+              ...profileData,
             },
             token: res.data,
           }),
@@ -73,13 +60,21 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
         <Header
           navList={{
             default: [
-              { url: '/board', text: '게시판' },
+              // { url: '/board', text: '게시판' },
               { url: '/quiz', text: '퀴즈풀기' },
             ],
-            student: [],
+            student: [
+              {
+                url: `/academy/page/${authState?.profile?.academy_info?.name}`,
+                text: '내 학원',
+              },
+            ],
             parents: [],
             insider: [{ url: '/academy', text: '학원 & 퀴즈 관리' }],
-            admin: [{ url: '/admins', text: '관리자' }],
+            admin: [
+              { url: '/admins', text: '관리자' },
+              { url: '/board', text: '게시판' },
+            ],
             auth: [{ url: '/auth/login', text: '로그인' }],
           }}
         />

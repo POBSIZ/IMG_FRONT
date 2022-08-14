@@ -24,7 +24,7 @@ const AcademyComponent: React.FC<any> = (props) => {
             </Move>
 
             <Move href="/academy/quiz/create" backColor="primary">
-              📝 퀴즈 관리
+              📝 퀴즈 관리 및 생성
             </Move>
 
             <Move href="/academy/quiz/assign" backColor="primary">

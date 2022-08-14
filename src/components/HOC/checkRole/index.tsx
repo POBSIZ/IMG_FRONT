@@ -28,6 +28,8 @@ const CheckRole: React.FC<CheckRolePropsType> = (props) => {
     props.children
   ) : authReducer?.profile?.role === 'admin' || props.role === 'all' ? (
     props.children
+  ) : authReducer?.profile?.role === 'insider' && props.role === 'student' ? (
+    props.children
   ) : (
     <></>
   );

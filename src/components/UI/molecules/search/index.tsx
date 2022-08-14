@@ -54,6 +54,7 @@ export interface SearchPropsType {
   setSearchResult: Function;
   placeholder: string;
   text: string;
+  init?: string;
 }
 
 const Search: React.FC<SearchPropsType> = (props) => {
@@ -82,6 +83,27 @@ const Search: React.FC<SearchPropsType> = (props) => {
       }
     }, 200);
   };
+
+  useEffect(() => {
+    const getInfo = async () => {
+      const res = await method.POST(`${props.getBaseUrl}`, {
+        str: props.init,
+      });
+
+      props.setSearchResult(
+        res.data[0].academy_id,
+        res.data[0].name,
+        res.data[0].zip,
+        res.data[0],
+      );
+    };
+
+    if (props.init) {
+      try {
+        getInfo();
+      } catch (error) {}
+    }
+  }, []);
 
   return (
     <StyledSearch>

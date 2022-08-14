@@ -36,15 +36,17 @@ const QuizWrongResultTemplate: React.FC<
 
   // 오디오 불러오기
   const getAudio = useCallback(async (_word) => {
-    const res = await Get(`/audio/get/${_word}`, {
-      responseType: 'arraybuffer',
-    });
-    const audioContext = new AudioContext();
-    const audioBuffer = audioContext.decodeAudioData(res.data);
-    const source = audioContext.createBufferSource();
-    source.buffer = await audioBuffer;
-    source.connect(audioContext.destination);
-    source.start();
+    try {
+      const res = await Get(`/audio/get/${_word}`, {
+        responseType: 'arraybuffer',
+      });
+      const audioContext = new AudioContext();
+      const audioBuffer = audioContext.decodeAudioData(res.data);
+      const source = audioContext.createBufferSource();
+      source.buffer = await audioBuffer;
+      source.connect(audioContext.destination);
+      source.start();
+    } catch (error) {}
   }, []);
 
   return (

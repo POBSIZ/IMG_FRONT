@@ -22,7 +22,12 @@ const QuizPage: NextPage<any> = (props, {}) => {
   const getMyQuizs = useCallback(async () => {
     try {
       const quizs = await method.GET('/quiz/my');
-      setQuizList(quizs.data);
+      setQuizList(
+        quizs.data.sort(
+          (a, b) =>
+            Number(new Date(b.recent_date)) - Number(new Date(a.recent_date)),
+        ),
+      );
       setIsLoad(false);
     } catch (error) {}
   }, []);

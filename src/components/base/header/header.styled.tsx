@@ -122,7 +122,7 @@ const StyledHeader = styled.header.attrs((props) => {})`
     const $color_key_color = Theme.palette.$color_key_color;
     const $color_base_black = Theme.palette.$color_base_black;
     const $color_base_white = Theme.palette.$color_base_white;
-    
+
     const $tablet_max_width = Theme.media.$tablet_max_width;
     const $header_desktop_line_height = Theme.size.$header_desktop_line_height;
     const $header_mobile_line_height = Theme.size.$header_mobile_line_height;
@@ -155,8 +155,8 @@ const StyledHeader = styled.header.attrs((props) => {})`
 
       ${StyledLogo} {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: flex-start;
 
         width: calc(332px / 2) !important;
         height: calc(81px / 2) !important;

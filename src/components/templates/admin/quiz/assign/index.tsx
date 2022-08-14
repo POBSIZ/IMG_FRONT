@@ -48,7 +48,7 @@ const AssignTemplate: React.FC<QuizAssignTempPropsType> = (props) => {
 
   const handleDelete = async (_uqid: string) => {
     try {
-      const res = await method.DELETE(`/auth/userQuiz/delete/${_uqid}`);
+      const res = await method.PATCH(`/auth/userQuiz/delete/${_uqid}`, {});
 
       dispatch(
         pushToastAsync.request({

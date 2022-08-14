@@ -23,9 +23,13 @@ export const authLogin = createAction(AUTH_LOGIN)<AuthReducerType>();
 export const AUTH_LOGOUT = 'auth/AUTH_LOGOUT' as const;
 export const authLogout = createAction(AUTH_LOGOUT)<undefined>();
 
+export const AUTH_HEADER = 'auth/AUTH_HEADER' as const;
+export const authHeader = createAction(AUTH_HEADER)<string>();
+
 const authAction = {
   authLoginAsync,
   authLogin,
   authLogout,
+  authHeader,
 };
 export default authAction;

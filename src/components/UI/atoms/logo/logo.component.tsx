@@ -7,7 +7,9 @@ const LogoComponent: React.FC<any> = (props) => {
   return (
     <>
       <StyledLogo>
-        <Link href={props.href}>{props.children}</Link>
+        <Link href={props.href}>
+          <a>{props.children}</a>
+        </Link>
       </StyledLogo>
     </>
   );

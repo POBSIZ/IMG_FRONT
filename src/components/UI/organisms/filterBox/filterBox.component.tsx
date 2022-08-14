@@ -46,7 +46,7 @@ const FilterBoxComponent: React.FC<FilterBoxPropsType> = (props) => {
         <SelectList
           selectList={props.list[selList[0]?.idx]?.list?.map((item, i) => ({
             idx: i,
-            subtitle: item.data.nickname || '',
+            subtitle: item?.data?.nickname || '',
             ...item,
           }))}
           name="s"
@@ -69,13 +69,15 @@ const FilterBoxComponent: React.FC<FilterBoxPropsType> = (props) => {
       <>
         <FontAwesomeIcon icon={faAngleRight} />
         <SelectList
-          selectList={props.list[selList[0]?.idx]?.list[
-            selList[1]?.idx
-          ]?.list?.map((item, i) => ({
-            idx: i,
-            subtitle: FormatDate(item.data?.created_at) || '',
-            ...item,
-          }))}
+          selectList={props.list[selList[0]?.idx]?.list[selList[1]?.idx]?.list
+            ?.filter((item) => item)
+            .map((item, i) => {
+              return {
+                idx: i,
+                subtitle: FormatDate(item?.data?.created_at) || '',
+                ...item,
+              };
+            })}
           name="t"
           type="radio"
           boxHeight="30vh"

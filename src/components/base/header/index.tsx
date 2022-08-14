@@ -1,5 +1,5 @@
-import { authLogout } from 'Actions/authAction';
-import Router from 'next/router';
+import { authLogout, authHeader } from 'Actions/authAction';
+import Router, { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 
@@ -7,6 +7,7 @@ import { pushToastAsync } from 'Actions/toastAction';
 
 import HeaderComponent from './header.component';
 import { useMethod } from 'Hooks';
+import { getDefaultCompilerOptions } from 'typescript';
 
 export interface NavListItemType {
   url: string;
@@ -34,13 +35,20 @@ export interface HeaderComponentPropsType extends HeaderPropsType {
 }
 
 const Header: React.FC<HeaderPropsType> = (props) => {
+  const router = useRouter();
   const method = useMethod();
   const dispatch = useDispatch();
   const authState = useSelector((state: RootStateOrAny) => state.authReducer);
   const [academy, setAcademy] = useState<any>(false);
 
   const logout = useCallback(() => {
-    Router.push('/', undefined, { shallow: true });
+    router.push(
+      authState?.profile?.academy_info?.name
+        ? `/academy/page/${authState?.profile?.academy_info?.name}`
+        : '/',
+      undefined,
+      { shallow: true },
+    );
     dispatch(authLogout());
     dispatch(
       pushToastAsync.request({
@@ -50,19 +58,14 @@ const Header: React.FC<HeaderPropsType> = (props) => {
     );
   }, [authState]);
 
-  const getAcademy = useCallback(async () => {
-    const res = await method.GET('/academy/info');
-    setAcademy(res.data);
-    // console.log(res);
-  }, [academy]);
-
   useEffect(() => {
-    // if (academy === false) {
-    // }
-    // getAcademy();
-    // if (authState.profile.academy_id) {
-    // }
-  }, [authState.profile.academy_id !== NaN]);
+    if (
+      router.pathname === '/academy/page/[id]' &&
+      authState?.profile?.academy_info === null
+    ) {
+      dispatch(authHeader(String(router.query.id)));
+    }
+  }, [router.pathname]);
 
   return (
     <HeaderComponent

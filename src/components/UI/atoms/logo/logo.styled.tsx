@@ -14,6 +14,11 @@ const StyledLogo = styled.div.attrs((props) => ({}))`
     return css`
       text-decoration: none;
       cursor: pointer;
+
+      a {
+        text-decoration: none;
+      }
+
       span {
         cursor: pointer;
         color: ${$color_key_color};

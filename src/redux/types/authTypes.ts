@@ -23,7 +23,7 @@ export interface AuthProfileType {
   name: string; // 이름
   nickname: string; // 닉네임
   phone: string; // 전화번호
-  role: 'student' | 'parents' | 'insider' | 'admin'; // 권한
+  role: 'student' | 'parents' | 'insider' | 'admin' | null; // 권한
   created_at: Date | null; // 생성일
   school: string; // 학교
   grade: string; // 학년
@@ -32,6 +32,7 @@ export interface AuthProfileType {
   zip: string; // 우편번호
   address_detail: string; // 상세 주소
   academy_id: number; // 학원 ID
+  academy_info: any; // 학원 정보
 }
 
 export interface AuthReducerType {

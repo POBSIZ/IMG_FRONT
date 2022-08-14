@@ -13,9 +13,12 @@ import { pushToastAsync } from 'Actions/toastAction';
 import Router from 'next/router';
 import jwt from 'jwt-decode';
 import { AuthProfileType, AuthReducerType } from 'Types/authTypes';
+import { useAuth } from 'Hooks';
 
 const LoginTemplate: React.FC<LoginPropsType> = (props) => {
   const dispatch = useDispatch();
+  const auth = useAuth();
+
   const handleSubmit = useCallback(
     async (_username: string, _password: string) => {
       try {
@@ -29,20 +32,7 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
         dispatch(
           authLogin({
             profile: {
-              user_id: profileData.user_id,
-              chain_id: profileData.chain_id,
-              name: profileData.name,
-              nickname: profileData.nickname,
-              phone: profileData.phone,
-              role: profileData.role,
-              created_at: profileData.created_at,
-              school: profileData.school,
-              grade: profileData.grade,
-              class_id: profileData.class_id,
-              address: profileData.address,
-              zip: profileData.zip,
-              address_detail: profileData.address_detail,
-              academy_id: profileData.academy_id,
+              ...profileData,
             },
             token: res.data,
           }),
@@ -54,7 +44,14 @@ const LoginTemplate: React.FC<LoginPropsType> = (props) => {
             message: '로그인에 성공하였습니다.',
           }),
         );
-        Router.push('/', undefined, { shallow: true });
+
+        Router.push(
+          auth?.profile?.academy_info?.name
+            ? `/academy/page/${auth?.profile?.academy_info?.name}`
+            : '/',
+          undefined,
+          { shallow: true },
+        );
       } catch (error: any) {
         // console.log(error);
         dispatch(

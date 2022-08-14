@@ -27,23 +27,27 @@ const ProfilePage: NextPage<any> = (props, {}) => {
   );
 
   const getQuizLog = useCallback(async () => {
-    const res = authState?.profile?.chain_id
-      ? await method.GET(`/auth/quiz/log/chain/${authState.profile.chain_id}`)
-      : await method.GET('/auth/quiz/log');
+    try {
+      const res = authState?.profile?.chain_id
+        ? await method.GET(`/auth/quiz/log/chain/${authState.profile.chain_id}`)
+        : await method.GET('/auth/quiz/log');
 
-    setQuizLog(
-      res.data
-        .flat()
-        .sort((a, b) => {
-          return Number(new Date(b.date)) - Number(new Date(a.date));
-        })
-        .reverse(),
-    );
+      setQuizLog(
+        res.data
+          .flat()
+          .sort((a, b) => {
+            return Number(new Date(b.date)) - Number(new Date(a.date));
+          })
+          .reverse(),
+      );
 
-    if (authState.profile.chain_id) {
-      const res = await method.GET(`/auth/user/${authState.profile.chain_id}`);
-      setChainId(res.data.nickname);
-    }
+      if (authState.profile.chain_id) {
+        const res = await method.GET(
+          `/auth/user/${authState.profile.chain_id}`,
+        );
+        setChainId(res.data.nickname);
+      }
+    } catch (error) {}
   }, [authState]);
 
   useEffect(() => {

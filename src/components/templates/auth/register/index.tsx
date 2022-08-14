@@ -8,10 +8,12 @@ import { pushToastAsync } from 'Actions/toastAction';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Router, useRouter } from 'next/router';
 import window from 'global/window';
+import { useAuth } from 'Hooks';
 
 const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const auth = useAuth();
 
   const handleSubmit = useCallback(
     async (
@@ -68,7 +70,11 @@ const RegisterTemplate: React.FC<RegisterPropsType> = (props) => {
 
   return (
     <>
-      <RegisterComponent {...props} handleSubmit={handleSubmit} />
+      <RegisterComponent
+        {...props}
+        authState={auth}
+        handleSubmit={handleSubmit}
+      />
     </>
   );
 };

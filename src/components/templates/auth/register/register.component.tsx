@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Layout from 'Layouts';
 import StyledRegister from './register.styled';
 
-import { Address, IconInput, TextInput, Search } from 'Molecules';
+import { Address, IconInput, TextInput, Search, CheckPrivacy } from 'Molecules';
 import { Button, Input, Select } from 'Atoms';
 import Link from 'next/link';
 
@@ -40,6 +40,8 @@ const RegisterComponent: React.FC<any> = (props) => {
 
   const [isSearch, setIsSearch] = useState<boolean>(false); // 학원 검색 유무
 
+  const [privacyCheck, setPrivacyCheck] = useState<boolean>(false);
+
   const setAcademyResult = useCallback((_idx, _title, _subtitle, _dataObj) => {
     // console.log(_dataObj);
     setAcademyId(_idx);
@@ -57,7 +59,7 @@ const RegisterComponent: React.FC<any> = (props) => {
           <TextInput
             text="학교"
             type="text"
-            placeholder="학교"
+            placeholder="oooo학교"
             value={school}
             required
             onChange={(e) => {
@@ -82,15 +84,17 @@ const RegisterComponent: React.FC<any> = (props) => {
           </Select>
           {isSearch ? (
             <>
-              <Button
-                type="button"
-                backColor="primary"
-                onClick={() => {
-                  setIsSearch((state) => !state);
-                }}
-              >
-                소속 학원 선택
-              </Button>
+              {props.authState?.profile?.academy_info?.name ? null : (
+                <Button
+                  type="button"
+                  backColor="primary"
+                  onClick={() => {
+                    setIsSearch((state) => !state);
+                  }}
+                >
+                  소속 학원 선택
+                </Button>
+              )}
               <TextInput
                 text="소속 학원 선택"
                 type="text"
@@ -106,6 +110,7 @@ const RegisterComponent: React.FC<any> = (props) => {
               text="학원 검색하기"
               placeholder="학원 검색하기"
               getBaseUrl="/academy/search/"
+              init={props.authState?.profile?.academy_info?.name}
               setSearchResult={setAcademyResult}
             />
           )}
@@ -145,7 +150,7 @@ const RegisterComponent: React.FC<any> = (props) => {
               <TextInput
                 text="학원 이름"
                 type="text"
-                placeholder="학원 이름"
+                placeholder="ooo 학원"
                 value={academy}
                 required
                 onChange={(e) => {
@@ -220,21 +225,23 @@ const RegisterComponent: React.FC<any> = (props) => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              props.handleSubmit(
-                name,
-                nickname,
-                username,
-                password,
-                phone,
-                role,
-                school,
-                grade,
-                address,
-                zipCode,
-                addressDetail,
-                academy,
-                academyId,
-              );
+              privacyCheck
+                ? props.handleSubmit(
+                    name,
+                    nickname,
+                    username,
+                    password,
+                    phone,
+                    role,
+                    school,
+                    grade,
+                    address,
+                    zipCode,
+                    addressDetail,
+                    academy,
+                    academyId,
+                  )
+                : alert('개인정보 처리방침을 동의 해주세요.');
             }}
           >
             <TextInput
@@ -284,16 +291,18 @@ const RegisterComponent: React.FC<any> = (props) => {
             <TextInput
               text="전화번호"
               type="text"
-              placeholder="전화번호"
+              placeholder="010-xxxx-xxxx"
               value={phone}
               required
               onChange={(e) => {
-                setPhone(
-                  e.target.value
-                    .replace(/[^0-9]/g, '')
-                    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
-                    .replace(/(\-{1,2})$/g, ''),
-                );
+                e.target.value.length > 13
+                  ? null
+                  : setPhone(
+                      e.target.value
+                        .replace(/[^0-9]/g, '')
+                        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+                        .replace(/(\-{1,2})$/g, ''),
+                    );
               }}
             />
 
@@ -310,6 +319,10 @@ const RegisterComponent: React.FC<any> = (props) => {
               </Select>
 
               {roleMap[role]}
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <CheckPrivacy setCheckPrivacy={setPrivacyCheck} />
             </div>
 
             <Button backColor="primary" type="submit">

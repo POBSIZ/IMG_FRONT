@@ -68,6 +68,12 @@ const QuizCreateComponent: React.FC<QuizCreatePropsType> = (props) => {
     }));
   }, []);
 
+  const quizTypeMap = {
+    IN_PREV: '이전문제 포함',
+    EX_PREV: '이전문제 제외',
+    STATIC: '고정',
+  };
+
   return (
     <Layout.Container style={{ paddingBottom: '20px' }}>
       <Back style={{ margin: '20px 0', alignSelf: 'flex-start' }} />
@@ -111,14 +117,15 @@ const QuizCreateComponent: React.FC<QuizCreatePropsType> = (props) => {
             />
             <div className="option">
               <p>
+                출제범위 :{' '}
                 {quizOption.scope ? (
                   <>
                     {quizOption.scope[0]} ~ {quizOption.scope[1]}
                   </>
-                ) : null} 
+                ) : null}
               </p>
-              <p>{quizOption.word_count}</p>
-              <p>{quizOption.type}</p>
+              <p>문항수 : {quizOption.word_count}</p>
+              <p>방식 : {quizTypeMap[quizOption.type ?? 'IN_PREV']}</p>
             </div>
 
             <TextInput style={{ marginTop: '20px' }}>

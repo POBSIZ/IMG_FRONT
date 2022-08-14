@@ -20,6 +20,8 @@ import Wysiwyg from './wysiwyg';
 import BoardTab from './boardTab';
 import SmallGallery from './smallGallery';
 
+import CheckPrivacy from './checkPrivacy';
+
 const Molecules = {
   IconInput,
   ListTab,
@@ -35,6 +37,7 @@ const Molecules = {
   BoardTab,
   SmallGallery,
   EditText,
+  CheckPrivacy
 };
 
 export default Molecules;
@@ -54,4 +57,5 @@ export {
   BoardTab,
   SmallGallery,
   EditText,
+  CheckPrivacy
 };

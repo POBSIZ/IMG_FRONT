@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Logo } from 'Atoms';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
@@ -16,8 +16,11 @@ import {
   HeaderComponentPropsType,
 } from '.';
 import StyledHeader, { NavList } from './header.styled';
+import { useRouter } from 'next/router';
 
 const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
+  const router = useRouter();
+
   const [navState, setNavState] = useState(false);
 
   const handleNavState = useCallback(() => {
@@ -26,15 +29,23 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
 
   return (
     <StyledHeader className="header">
-      <Logo href="/">
-        {/* {props.authState?.profile?.academy_id &&
-        props.academy.name !== '이미지 어학원' ? (
-          <span>{props.academy.name}</span>
-        ) : (
-          <Image src="/logo.gif" width={0} height={0} />
-        )} */}
-        <Image src="/logo.gif" layout="responsive" width={0} height={0} />
-      </Logo>
+      {router.pathname === '/' ||
+      router.query.id === '이미지 어학원' ||
+      props.authState?.profile?.academy_info?.name === '이미지 어학원' ? (
+        <Logo href="/">
+          <Image src="/logo.gif" layout="responsive" width={0} height={0} />
+        </Logo>
+      ) : (
+        <Logo
+          href={
+            props.authState?.profile?.academy_info?.name
+              ? `/academy/page/${props.authState?.profile?.academy_info?.name}`
+              : '/'
+          }
+        >
+          <span>{props.authState?.profile?.academy_info?.name}</span>
+        </Logo>
+      )}
 
       <NavList isOpen={navState}>
         <ul>
@@ -63,6 +74,12 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
             <CheckRole role="student" isRedirect={false}>
               <>
                 {props.navList?.student?.map((item: NavListItemType) => {
+                  if (
+                    item.text === '내 학원' &&
+                    props.authState?.profile?.academy_info === null
+                  ) {
+                    return <></>;
+                  }
                   return (
                     <Link key={nanoid()} href={item.url}>
                       {item.text}

@@ -177,7 +177,7 @@ const CreateQuizFilterComponent: React.FC<FilterBoxPropsType> = (props) => {
         </Layout.Content>
       </>
     );
-  }, [scope, wordCount, props]);
+  }, [scope, wordCount, props, wordCountDisable]);
 
   const MemoD3SL = useMemo(() => {
     return (

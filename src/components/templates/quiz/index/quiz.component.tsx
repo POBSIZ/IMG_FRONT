@@ -37,42 +37,40 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
             <Loader />
           ) : (
             <ul>
-              {props.quizList?.map((item: QuizItemType, i) => {
-                const isTry = item.tryCount > 0 ? true : false;
-                return (
-                  <QuizItem
-                    disabled={item.disabled}
-                    key={nanoid()}
-                    isTry={isTry}
-                    onClick={() => {
-                      item.disabled
-                        ? null
-                        : handleClick(
-                            item.quiz_id,
-                            item.title,
-                            item.userQuiz_id,
-                          );
-                    }}
-                  >
-                    <div>
-                      <h3>{item.title}</h3>
-                      <p>{FormatDate(item.date)}</p>
+              {props.quizList
+                ?.filter((item) => !item.disabled)
+                .map((item: QuizItemType, i) => {
+                  const isTry = item.tryCount > 0 ? true : false;
+                  return (
+                    <QuizItem
+                      disabled={item.disabled}
+                      key={nanoid()}
+                      isTry={isTry}
+                      onClick={() => {
+                        handleClick(item.quiz_id, item.title, item.userQuiz_id);
+                      }}
+                    >
                       <div>
-                        <span>{item.tryCount}회 응시</span>
-                        <span>
-                          최고 {item.solvedCount} / {item.maxCount}
-                        </span>
+                        <h3>{item.title}</h3>
+                        <p>{FormatDate(item.date)}</p>
+                        <div>
+                          <span>{item.tryCount}회 응시</span>
+                          <span>
+                            최고 {item.solvedCount} / {item.maxCount}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <p>
-                      {item.solvedCount === 0
-                        ? 0
-                        : ((item.solvedCount / item.maxCount) * 100).toFixed(0)}
-                      %
-                    </p>
-                  </QuizItem>
-                );
-              })}
+                      <p>
+                        {item.solvedCount === 0
+                          ? 0
+                          : ((item.solvedCount / item.maxCount) * 100).toFixed(
+                              0,
+                            )}
+                        %
+                      </p>
+                    </QuizItem>
+                  );
+                })}
             </ul>
           )}
         </Layout.Content>

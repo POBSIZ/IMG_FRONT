@@ -38,7 +38,7 @@ const BoardTab: React.FC<any> = (props) => {
               </Link>
             );
           })}
-          {props.list.length > 0 ? (
+          {props.list?.length > 0 ? (
             <Link href={`/board/${props.list[0]?.board_id?.board_id}`}>
               더보기...
             </Link>

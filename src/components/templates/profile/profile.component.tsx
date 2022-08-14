@@ -123,25 +123,23 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
                       {item.score} / {item.probCount}
                     </span>
                   </section>
-                  {item.userQuiz_id ? (
-                    <div>
-                      <Link href={`quiz/wrongResult?id=${item.quizLog_id}`}>
-                        결과보기
-                      </Link>
+                  <div>
+                    <Link href={`quiz/wrongResult?id=${item.quizLog_id}`}>
+                      결과보기
+                    </Link>
 
-                      <Link
-                        href={`quiz/play/${item.quiz_id}?title=${item.title}&uqid=${item.userQuiz_id}`}
-                      >
-                        다시하기
-                      </Link>
+                    <Link
+                      href={`quiz/retry/${item.quiz_id}?title=${item.title}&uqid=${item.userQuiz_id}&qlid=${item.quizLog_id}`}
+                    >
+                      다시하기
+                    </Link>
 
-                      <a
-                        href={`${process.env.NEXT_PUBLIC_SERVER}/auth/quiz/wrongList/excel/${item.quizLog_id}`}
-                      >
-                        <FontAwesomeIcon icon={faDownload} />
-                      </a>
-                    </div>
-                  ) : null}
+                    <a
+                      href={`${process.env.NEXT_PUBLIC_SERVER}/auth/quiz/wrongList/excel/${item.quizLog_id}`}
+                    >
+                      <FontAwesomeIcon icon={faDownload} />
+                    </a>
+                  </div>
                 </QuizLogItem>
               );
             })}

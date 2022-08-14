@@ -5,7 +5,9 @@ import {
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGIN,
   AUTH_LOGOUT,
+  AUTH_HEADER,
 } from 'Actions/authAction';
+import { stat } from 'fs';
 
 const initialState: AuthReducerType = {
   profile: {
@@ -22,8 +24,8 @@ const initialState: AuthReducerType = {
     zip: '', // 우편번호
     address_detail: '', // 상세 주소
     academy_id: NaN, // 학원 ID
-    role: 'student', //권한
-    // academy_name: '',
+    role: null, //권한
+    academy_info: null,
   },
   token: null,
 };
@@ -37,6 +39,15 @@ const authReducer = createReducer<any>(initialState, {
   [AUTH_LOGOUT]: (state: AuthReducerType, action) => {
     return {
       ...initialState,
+    };
+  },
+  [AUTH_HEADER]: (state: AuthReducerType, action) => {
+    return {
+      ...state,
+      profile: {
+        ...state.profile,
+        academy_info: { ...state?.profile?.academy_info, name: action.payload },
+      },
     };
   },
 });
