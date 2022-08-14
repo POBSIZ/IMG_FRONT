@@ -31,7 +31,8 @@ const HeaderComponent: React.FC<HeaderComponentPropsType> = (props) => {
     <StyledHeader className="header">
       {router.pathname === '/' ||
       router.query.id === '이미지 어학원' ||
-      props.authState?.profile?.academy_info?.name === '이미지 어학원' ? (
+      props.authState?.profile?.academy_info?.name === '이미지 어학원' ||
+      props.authState?.profile?.academy_info?.name === '이미지어학원' ? (
         <Logo href="/">
           <Image src="/logo.gif" layout="responsive" width={0} height={0} />
         </Logo>
