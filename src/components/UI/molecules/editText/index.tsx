@@ -17,6 +17,7 @@ import { Button, Input } from 'Atoms';
 export interface EditTextPropsType {
   children: string;
   name?: string;
+  type?: 'phone';
 }
 
 const EditText: React.FC<EditTextPropsType> = (props) => {
@@ -27,6 +28,19 @@ const EditText: React.FC<EditTextPropsType> = (props) => {
     setText(props.children);
   }, [props.children]);
 
+  const handleText = useCallback((e) => {
+    props.type === 'phone'
+      ? e.target.value.length > 13
+        ? null
+        : setText(
+            e.target.value
+              .replace(/[^0-9]/g, '')
+              .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+              .replace(/(\-{1,2})$/g, ''),
+          )
+      : setText(e.target.value);
+  }, []);
+
   return (
     <>
       <StyledEditText>
@@ -36,7 +50,7 @@ const EditText: React.FC<EditTextPropsType> = (props) => {
               type="text"
               placeholder="수정"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={handleText}
             />
             <Button
               type="button"

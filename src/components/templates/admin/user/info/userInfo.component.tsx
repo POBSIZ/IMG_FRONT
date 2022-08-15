@@ -112,7 +112,9 @@ const UserInfoComponent: React.FC<any> = (props) => {
             </Info>
             <Info>
               <h4>전화번호 :</h4>
-              <EditText name="phone">{props.profile?.phone}</EditText>
+              <EditText name="phone" type="phone">
+                {props.profile?.phone}
+              </EditText>
             </Info>
           </Layout.Content>
 
