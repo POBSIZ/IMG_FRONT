@@ -53,11 +53,11 @@ const Directory: React.FC<DirectoryPropsType> = memo((props) => {
           return (
             <Directory
               key={nanoid()}
-              title={item.title}
-              data={item.data}
-              list={item.list}
+              title={item?.title}
+              data={item?.data}
+              list={item?.list}
               checked={isChecked}
-              name={props.name}
+              name={props?.name}
               handleClick={props.handleClick}
               handleDelete={props.handleDelete}
             />
@@ -86,14 +86,14 @@ const Directory: React.FC<DirectoryPropsType> = memo((props) => {
 
   return (
     <StyledDirectory>
-      {props.title && !isDelete ? (
+      {props?.title && !isDelete ? (
         <Info>
           <Check
             type="checkbox"
             scale="M"
             id={nanoid()}
-            value={props.title}
-            name={props.name}
+            value={props?.title}
+            name={props?.name}
             checked={isChecked}
             onChange={handleChange}
           />
@@ -107,7 +107,7 @@ const Directory: React.FC<DirectoryPropsType> = memo((props) => {
             />
           ) : null}
 
-          <span>{props.title}</span>
+          <span>{props?.title}</span>
 
           {props.data?.userQuiz_id && props.handleDelete ? (
             <FontAwesomeIcon

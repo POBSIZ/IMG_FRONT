@@ -64,10 +64,10 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
               { url: '/quiz', text: '퀴즈풀기' },
             ],
             student: [
-              {
-                url: `/academy/page/${authState?.profile?.academy_info?.name}`,
-                text: '내 학원',
-              },
+              // {
+              //   url: `/academy/page/${authState?.profile?.academy_info?.name}`,
+              //   text: '내 학원',
+              // },
             ],
             parents: [],
             insider: [{ url: '/academy', text: '학원 & 퀴즈 관리' }],
