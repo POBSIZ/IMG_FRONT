@@ -11,6 +11,7 @@ export const TableWrapper = styled.section.attrs((props) => ({}))`
 
     return css`
       display: flex;
+      flex-flow: column;
       margin: 20px 0;
     `;
   }};
@@ -25,8 +26,9 @@ export const StyledDateField = styled.div.attrs((props) => ({}))`
     const $font_subtitle = Theme.font.$font_subtitle;
 
     return css`
-      position: absolute;
+      /* position: absolute; */
       ${$font_subtitle};
+      margin: 20px 0;
     `;
   }};
 `;
@@ -46,8 +48,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       border: 1px solid;
       border-left: none;
 
-      margin-top: 40px;
-      padding-left: 100px;
+      /* padding-left: 100px; */
 
       * {
         border-collapse: collapse;
@@ -56,13 +57,16 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       .names {
         width: 100px;
         padding-top: 120px;
-        position: absolute;
 
-        transform: translateX(-100px) translateY(-1px);
+        /* position: absolute; */
+        /* transform: translateX(-100px) translateY(-1px); */
+        position: sticky;
+        left: 0;
 
         background-color: #fff;
 
-        border: 1px solid;
+        border-right: 1px solid;
+        border-left: 1px solid;
 
         div {
           display: flex;
