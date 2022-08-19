@@ -13,6 +13,7 @@ export const TableWrapper = styled.section.attrs((props) => ({}))`
       display: flex;
       flex-flow: column;
       margin: 20px 0;
+      width: fit-content;
     `;
   }};
 `;
@@ -26,7 +27,9 @@ export const StyledDateField = styled.div.attrs((props) => ({}))`
     const $font_subtitle = Theme.font.$font_subtitle;
 
     return css`
-      /* position: absolute; */
+      width: fit-content;
+      position: sticky;
+      left: 0;
       ${$font_subtitle};
       margin: 20px 0;
     `;
