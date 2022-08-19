@@ -6,7 +6,7 @@ import { AuthProfileType, AuthReducerType } from 'Types/authTypes';
 import ProfileComponent from './profile.component';
 import { useValidate } from 'Hooks';
 
-interface QuizLogItemType {
+export interface QuizLogItemType {
   quiz_id: number | bigint;
   quizLog_id: number | bigint;
   userQuiz_id: number | bigint;

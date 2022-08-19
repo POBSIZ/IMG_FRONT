@@ -138,7 +138,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
   );
 
   useEffect(() => {
-    props.getAudio(props.quizList[currNum].word);
+    props.getAudio(props.quizList[currNum]?.word);
   }, [currNum]);
 
   return (

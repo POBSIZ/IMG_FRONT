@@ -21,6 +21,8 @@ import { Title, Input, Button, Badge, Select, Back } from 'Atoms';
 import { EditText, Search } from 'Molecules';
 import { CheckRole } from 'Hoc';
 
+import { QuizLog } from 'Organisms';
+
 const UserInfoComponent: React.FC<any> = (props) => {
   const [academy, setAcademy] = useState<any>();
 
@@ -117,6 +119,8 @@ const UserInfoComponent: React.FC<any> = (props) => {
               </EditText>
             </Info>
           </Layout.Content>
+
+          {props.quizLog ? <QuizLog quizLog={props.quizLog} /> : null}
 
           <div className="btns">
             {/* <Button type="button" backColor="red">

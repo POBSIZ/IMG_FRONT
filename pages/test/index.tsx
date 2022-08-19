@@ -6,16 +6,27 @@ import styled, { css } from 'styled-components';
 import Layout from 'Layouts';
 
 import { Address, Search, CustomList, CheckPrivacy } from 'Molecules';
-import { FilterBox } from 'Organisms';
+import { FilterBox, UserTable } from 'Organisms';
 import { useMethod } from 'Hooks';
 import { FormatDate } from 'Utils';
 
 const TEST: NextPage<any> = (props, {}) => {
   const method = useMethod();
 
+  const [dateUserList, setDateUserList] = useState([]);
+
+  const getUserList = useCallback(async () => {
+    const res = await method.GET('/academy/student/info/all/table');
+    setDateUserList(res.data);
+  }, []);
+
+  useEffect(() => {
+    getUserList();
+  }, []);
+
   return (
     <Layout.Container>
-      <CheckPrivacy setCheckPrivacy={() => {}} />
+      <UserTable dateUserList={dateUserList} />
     </Layout.Container>
   );
 };

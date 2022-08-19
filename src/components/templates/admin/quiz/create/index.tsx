@@ -40,7 +40,7 @@ const QuizCreateTemplate: React.FC<QuizCreatePropsType> = (props, {}) => {
         scope: _data.scope,
         word_count: _data.word_count,
         type: _data.type,
-        // max_options: 0,
+        max_options: 4,
       };
 
       try {

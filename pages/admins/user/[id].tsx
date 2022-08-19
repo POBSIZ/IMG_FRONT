@@ -22,8 +22,20 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
     phone: '',
   });
 
+  const [quizLog, setQuizLog] = useState<any[]>([]);
+
   const getUserInfo = useCallback(async () => {
     const res = await method.GET(`/auth/user/${ssrId ?? id}`);
+
+    const log = await method.GET(`/auth/quiz/log/chain/${ssrId ?? id}`);
+    const sortedLog = log.data
+      .flat()
+      .sort((a, b) => {
+        return Number(new Date(b.date)) - Number(new Date(a.date));
+      })
+      .reverse();
+
+    setQuizLog(sortedLog);
     setUserInfo(res.data);
   }, []);
 
@@ -38,7 +50,7 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 회원 정보</title>
       </Head>
-      <UserInfoTemplate profile={userInfo} />
+      <UserInfoTemplate profile={userInfo} quizLog={quizLog} />
     </>
   );
 };

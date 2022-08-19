@@ -14,6 +14,7 @@ import { Button, Input, Move } from 'Atoms';
 import Link from 'next/link';
 import { CheckRole } from 'Hoc';
 import { FormatDate } from 'Utils';
+import { QuizLog } from 'Organisms';
 
 const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
   return (
@@ -108,43 +109,7 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
           </>
         </CheckRole>
 
-        <Layout.Content>
-          <h2>퀴즈 기록</h2>
-          <ul
-            style={{ height: '50vh', overflow: 'hidden', overflowY: 'scroll' }}
-          >
-            {props?.quizLog?.map((item) => {
-              return (
-                <QuizLogItem key={nanoid()}>
-                  <section>
-                    <span>{FormatDate(item.date, true)}</span>
-                    <p>{item.title}</p>
-                    <span>
-                      {item.score} / {item.probCount}
-                    </span>
-                  </section>
-                  <div>
-                    <Link href={`quiz/wrongResult?id=${item.quizLog_id}`}>
-                      결과보기
-                    </Link>
-
-                    <Link
-                      href={`quiz/retry/${item.quiz_id}?title=${item.title}&uqid=${item.userQuiz_id}&qlid=${item.quizLog_id}`}
-                    >
-                      다시하기
-                    </Link>
-
-                    <a
-                      href={`${process.env.NEXT_PUBLIC_SERVER}/auth/quiz/wrongList/excel/${item.quizLog_id}`}
-                    >
-                      <FontAwesomeIcon icon={faDownload} />
-                    </a>
-                  </div>
-                </QuizLogItem>
-              );
-            })}
-          </ul>
-        </Layout.Content>
+        {props.quizLog ? <QuizLog quizLog={props.quizLog} /> : null}
       </StyledProfile>
     </Layout.Container>
   );

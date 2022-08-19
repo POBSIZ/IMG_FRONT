@@ -52,7 +52,7 @@ export const QuizItem = styled.div.attrs((props) => {})`
 
       div {
         display: block;
-        /* width: 72%; */
+        width: 100%;
         display: flex;
         flex-flow: column;
         gap: 6px;
@@ -70,8 +70,8 @@ export const QuizItem = styled.div.attrs((props) => {})`
         }
 
         div {
-          /* display: flex; */
-          /* flex-flow: row; */
+          display: flex;
+          flex-flow: row;
           span {
             ${$font_subtitle};
             color: ${$is_disabled_font};
@@ -83,13 +83,25 @@ export const QuizItem = styled.div.attrs((props) => {})`
         }
       }
 
-      p:last-child {
-        display: block;
-        margin: 0;
+      .opt {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
-        text-align: end;
-        ${$font_title_regular};
-        color: ${$is_disabled_bg};
+
+        a {
+          /* ${$font_subtitle}; */
+          text-decoration: none;
+          color: ${$is_disabled_font};
+        }
+
+        p {
+          margin: 0;
+          text-align: end;
+          ${$font_title_regular} !important;
+          color: ${$is_disabled_bg};
+        }
       }
 
       @media screen and (max-width: ${$mobile_max_width}) {
