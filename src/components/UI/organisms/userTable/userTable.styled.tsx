@@ -40,7 +40,15 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
+    const $color_key_color = Theme.palette.$color_key_color;
+
+    const $color_base_LightGray = Theme.palette.$color_base_LightGray;
+    const $color_base_gray = Theme.palette.$color_base_gray;
+    const $color_base_line = Theme.palette.$color_base_line;
+
     const $cell_height = '60px';
+
+    const $border_color = $color_base_gray;
 
     return css`
       width: fit-content;
@@ -48,7 +56,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       /* align-items: flex-end; */
       text-align: center;
 
-      border: 1px solid;
+      border: 1px solid ${$border_color};
       border-left: none;
 
       /* padding-left: 100px; */
@@ -58,7 +66,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       }
 
       .names {
-        width: 100px;
+        width: 140px;
         padding-top: 120px;
 
         /* position: absolute; */
@@ -68,8 +76,8 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
 
         background-color: #fff;
 
-        border-right: 1px solid;
-        border-left: 1px solid;
+        border-right: 1px solid ${$border_color};
+        border-left: 1px solid ${$border_color};
 
         div {
           display: flex;
@@ -77,8 +85,8 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
           align-items: center;
           justify-content: center;
 
-          border-bottom: 1px solid;
-          /* border-right: 1px solid; */
+          border-bottom: 1px solid ${$border_color};
+
           height: ${$cell_height};
 
           align-self: flex-start;
@@ -89,7 +97,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
           }
 
           &:first-child {
-            border-top: 1px solid;
+            border-top: 1px solid ${$border_color};
             height: calc(${$cell_height} + 1px);
           }
 
@@ -102,12 +110,20 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       .test {
         width: 220px;
         line-height: ${$cell_height};
-        border-left: 1px solid;
+        border-left: 1px solid ${$border_color};
         align-self: flex-start;
+
+        &:nth-child(odd) {
+          background-color: ${$color_base_line};
+        }
+
+        &:nth-child(2n) {
+          background-color: ${$color_base_LightGray};
+        }
 
         p {
           margin: 0;
-          border-bottom: 1px solid;
+          border-bottom: 1px solid ${$border_color};
         }
 
         ul {
@@ -121,7 +137,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
             text-align: center;
 
             height: ${$cell_height};
-            border-bottom: 1px solid;
+            border-bottom: 1px solid ${$border_color};
 
             &:last-child {
               border-bottom: none;
@@ -138,7 +154,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
               padding: 0 4px;
 
               &:last-child {
-                border-left: 1px solid;
+                border-left: 1px solid ${$border_color};
                 text-align: center;
               }
             }
