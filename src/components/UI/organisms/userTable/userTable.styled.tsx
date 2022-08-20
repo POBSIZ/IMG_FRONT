@@ -25,13 +25,25 @@ export const StyledDateField = styled.div.attrs((props) => ({}))`
     const $cell_height = '60px';
 
     const $font_subtitle = Theme.font.$font_subtitle;
+    const $color_base_gray = Theme.palette.$color_base_gray;
+    const $border_color = $color_base_gray;
 
     return css`
       width: fit-content;
+      padding: 10px;
+
       position: sticky;
+      top: 0;
       left: 0;
+      z-index: 100;
+
+      background-color: #fff;
+
       ${$font_subtitle};
-      margin: 20px 0;
+
+      border: 1px solid ${$border_color};
+
+      /* margin: 20px 0; */
     `;
   }};
 `;
@@ -105,7 +117,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       }
 
       .test {
-        width: 220px;
+        width: 200px;
         line-height: ${$cell_height};
         border-left: 1px solid ${$border_color};
         align-self: flex-start;
@@ -130,7 +142,8 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
 
           li {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            /* grid-template-columns: 1fr 1fr; */
+            grid-template-columns: 1fr;
             text-align: center;
 
             height: ${$cell_height};
@@ -141,7 +154,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
             }
 
             span {
-              line-height: ${$cell_height};
+              line-height: calc(${$cell_height} / 2);
               height: ${$cell_height};
               display: inline-block;
               width: 100%;
@@ -151,7 +164,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
               padding: 0 4px;
 
               &:last-child {
-                border-left: 1px solid ${$border_color};
+                /* border-left: 1px solid ${$border_color}; */
                 text-align: center;
               }
             }

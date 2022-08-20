@@ -17,6 +17,7 @@ import StyledUserTable, {
 } from './userTable.styled';
 import Layout from 'Layouts';
 import { nanoid } from 'nanoid';
+import { FormatDate } from 'Utils';
 
 const UserTableComponent: React.FC<any> = (props) => {
   // console.log(props.dateUserList);
@@ -58,20 +59,42 @@ const UserTableComponent: React.FC<any> = (props) => {
                   {_Arr.map((_, i) => {
                     return (
                       <div className="test" key={nanoid()}>
-                        <p>{i + 1}</p>
+                        <p>{i + 1} 회</p>
                         <ul>
                           <li>
-                            <span>시험명</span>
-                            <span>점수</span>
+                            <span>
+                              시험명
+                              <br />
+                              점수 / 시간
+                            </span>
+                            {/* <span>점수</span> */}
                           </li>
 
                           {_date?.list?.map((_inusr) => {
                             return (
                               <li key={nanoid()}>
-                                <span>{_inusr?.list[i]?.title}</span>
                                 <span>
-                                  {_inusr?.list[i]?.data.score} /{' '}
-                                  {_inusr?.list[i]?.data.probCount}
+                                  {_inusr?.list[i]?.title}
+                                  <br />
+                                  <span
+                                    style={{
+                                      color:
+                                        _inusr?.list[i]?.data.score ===
+                                          _inusr?.list[i]?.data.probCount &&
+                                        _inusr?.list[i]?.data.probCount > 0
+                                          ? 'rgb(46, 204, 113, 100%)'
+                                          : 'rgb(231, 76, 60, 100%)',
+                                    }}
+                                  >
+                                    {_inusr?.list[i]?.data.score} /{' '}
+                                    {_inusr?.list[i]?.data.probCount}
+                                    {' - '}
+                                    {FormatDate(
+                                      _inusr?.list[i]?.data.date,
+                                      false,
+                                      true,
+                                    )}
+                                  </span>
                                 </span>
                               </li>
                             );
@@ -85,6 +108,12 @@ const UserTableComponent: React.FC<any> = (props) => {
             </TableWrapper>
           );
         })}
+
+        <div
+          style={{
+            height: '100vh',
+          }}
+        ></div>
       </>
     </Layout.Content>
   );

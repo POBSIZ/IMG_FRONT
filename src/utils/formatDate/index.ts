@@ -2,9 +2,14 @@
  *
  * @param { Date } _data
  * @param { boolean } _detail default: false
- * @returns { void }
+ * @param { boolean } _onlyDetail default: false
+ * @returns { string }
  */
-export const FormatDate = (_data, _detail = false) => {
+export const FormatDate = (
+  _data,
+  _detail = false,
+  _onlyDetail = false,
+): string => {
   if (_data === undefined) _data = new Date();
   const _dateObj = new Date(_data);
 
@@ -28,7 +33,9 @@ export const FormatDate = (_data, _detail = false) => {
 
   const fullDate = `${year}/${month}/${date} ${hour}:${minute}`;
 
+  const onlyDetail = `${hour}:${minute}`;
+
   const onlyDate = `${year}/${month}/${date}`;
 
-  return _detail ? fullDate : onlyDate;
+  return _detail ? fullDate : _onlyDetail ? onlyDetail : onlyDate;
 };
