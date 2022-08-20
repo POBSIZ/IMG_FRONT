@@ -53,13 +53,10 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
     return css`
       width: fit-content;
       display: flex;
-      /* align-items: flex-end; */
       text-align: center;
 
       border: 1px solid ${$border_color};
       border-left: none;
-
-      /* padding-left: 100px; */
 
       * {
         border-collapse: collapse;
