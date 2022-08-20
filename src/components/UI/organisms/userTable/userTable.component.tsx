@@ -80,20 +80,23 @@ const UserTableComponent: React.FC<any> = (props) => {
                                     style={{
                                       color:
                                         _inusr?.list[i]?.data.score ===
-                                          _inusr?.list[i]?.data.probCount &&
-                                        _inusr?.list[i]?.data.probCount > 0
+                                        _inusr?.list[i]?.data.probCount
                                           ? 'rgb(46, 204, 113, 100%)'
                                           : 'rgb(231, 76, 60, 100%)',
                                     }}
                                   >
-                                    {_inusr?.list[i]?.data.score} /{' '}
-                                    {_inusr?.list[i]?.data.probCount}
-                                    {' - '}
-                                    {FormatDate(
-                                      _inusr?.list[i]?.data.date,
-                                      false,
-                                      true,
-                                    )}
+                                    {_inusr?.list[i]?.data.probCount ? (
+                                      <>
+                                        {_inusr?.list[i]?.data.score} /{' '}
+                                        {_inusr?.list[i]?.data.probCount}
+                                        {' - '}
+                                        {FormatDate(
+                                          _inusr?.list[i]?.data.date,
+                                          false,
+                                          true,
+                                        )}
+                                      </>
+                                    ) : null}
                                   </span>
                                 </span>
                               </li>
