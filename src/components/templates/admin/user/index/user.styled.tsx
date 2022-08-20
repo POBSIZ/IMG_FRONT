@@ -17,7 +17,7 @@ export const UserItem = styled.div.attrs((props) => ({}))`
 
     return css`
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(5, 1fr);
       align-items: center;
       justify-content: center;
 

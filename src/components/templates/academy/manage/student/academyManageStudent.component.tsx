@@ -13,9 +13,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StyledAcademyManageStudent from './academyManageStudent.styled';
 
 import Layout from 'Layouts';
-import { Button, Title, Back } from 'Atoms';
+import { Button, Title, Back, Move } from 'Atoms';
 import { Directory } from 'Molecules';
-import { AcademyManageClassTemplate } from 'Templates';
+import { AcademyManageClassTemplate, UserTemplate } from 'Templates';
+
+import { UserTable } from 'Organisms';
 
 const AcademyManageStudentComponent: React.FC<any> = (props) => {
   const sortData = useCallback((e) => {
@@ -40,6 +42,18 @@ const AcademyManageStudentComponent: React.FC<any> = (props) => {
               />
             </form>
           </Layout.Content>
+
+          <Layout.Content
+            style={{
+              height: '80vh',
+              backgroundColor: '#fff',
+              margin: '20px 0',
+            }}
+          >
+            <UserTable dateUserList={props.userListTable} />
+          </Layout.Content>
+
+          <UserTemplate userList={props.users} />
         </Layout.Content>
       </StyledAcademyManageStudent>
     </Layout.Container>

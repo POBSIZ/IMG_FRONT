@@ -21,8 +21,9 @@ import { Title, Input, Button, Badge, Back } from 'Atoms';
 
 const UserComponent: React.FC<UserPropsType> = (props) => {
   return (
-    <Layout.Container>
-      <Back style={{ margin: '20px 0' }} />
+    <>
+      {/* <Layout.Container> */}
+      {/* <Back style={{ margin: '20px 0' }} /> */}
       <Layout.Content>
         <StyledUser>
           <UserItem>
@@ -30,6 +31,7 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
             <span>권한</span>
             <span>이름</span>
             <span>학원</span>
+            <span>반</span>
           </UserItem>
           {props.userList?.map((item) => {
             return (
@@ -38,14 +40,16 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
                   <span>{item.user_id}</span>
                   <span>{item.role}</span>
                   <span>{item.name}</span>
-                  <span>{item.class_id}</span>
+                  <span>{item.academy_id?.name}</span>
+                  <span>{item.class_id?.name}</span>
                 </UserItem>
               </Link>
             );
           })}
         </StyledUser>
       </Layout.Content>
-    </Layout.Container>
+      {/* </Layout.Container> */}
+    </>
   );
 };
 

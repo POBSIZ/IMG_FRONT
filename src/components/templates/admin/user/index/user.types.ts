@@ -3,11 +3,11 @@ import { AuthProfileType } from 'Types/authTypes';
 export interface UserListItem {
   user_id: number;
   name: string;
-  school: string;
-  grade: string;
-  phone: string;
+  role: string;
+  academy_id: any;
+  class_id: any;
 }
 
 export interface UserPropsType {
-  userList: AuthProfileType[];
+  userList: UserListItem[];
 }
