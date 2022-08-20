@@ -32,17 +32,13 @@ const UserTableComponent: React.FC<any> = (props) => {
     >
       <>
         {props.dateUserList?.map((_date) => {
-          let arrayNum = 0;
+          const listMap = _date.list
+            ?.map((_igf) => {
+              return _igf.list.length;
+            })
+            .sort((a, b) => b - a);
 
-          _date.list?.forEach((_igf) => {
-            arrayNum += _igf.list.length;
-          });
-
-          const sortArr = _date.list?.sort((a, b) => a.length > b.length);
-
-          const _Arr = [...new Array(sortArr[0]?.list?.length)].map(
-            (_, i) => i,
-          );
+          const _Arr = [...new Array(listMap[0])].map((_, i) => i);
 
           return (
             <TableWrapper key={nanoid()}>
@@ -71,10 +67,7 @@ const UserTableComponent: React.FC<any> = (props) => {
                           {_date?.list?.map((_inusr) => {
                             return (
                               <li key={nanoid()}>
-                                <span>
-                                  {_inusr?.list[i]?.title}
-                                  {/* <strong>{_inusr.title}</strong> */}
-                                </span>
+                                <span>{_inusr?.list[i]?.title}</span>
                                 <span>
                                   {_inusr?.list[i]?.data.score} /{' '}
                                   {_inusr?.list[i]?.data.probCount}
