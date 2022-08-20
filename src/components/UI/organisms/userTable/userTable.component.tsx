@@ -45,9 +45,9 @@ const UserTableComponent: React.FC<any> = (props) => {
           );
 
           return (
-            <TableWrapper>
+            <TableWrapper key={nanoid()}>
               <StyledDateField>{_date.title}</StyledDateField>
-              <StyledUserTable key={nanoid()}>
+              <StyledUserTable>
                 <div className="names">
                   {_date.list?.map((usr) => (
                     <div key={nanoid()}>
