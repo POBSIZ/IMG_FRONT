@@ -17,9 +17,9 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
   const [userInfo, setUserInfo] = useState({
     user_id: Number(id),
     name: '',
-    school: '',
-    grade: '',
-    phone: '',
+    role: '',
+    class_id: null,
+    academy_id: null,
   });
 
   const [quizLog, setQuizLog] = useState<any[]>([]);
