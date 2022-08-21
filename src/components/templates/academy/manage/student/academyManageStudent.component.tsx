@@ -13,16 +13,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StyledAcademyManageStudent from './academyManageStudent.styled';
 
 import Layout from 'Layouts';
-import { Button, Title, Back, Move } from 'Atoms';
+import { Button, Title, Back, Move, Select } from 'Atoms';
 import { Directory } from 'Molecules';
 import { AcademyManageClassTemplate, UserTemplate } from 'Templates';
 
 import { UserTable } from 'Organisms';
 
 const AcademyManageStudentComponent: React.FC<any> = (props) => {
-  const sortData = useCallback((e) => {
-    e.preventDefault();
-  }, []);
+  const [viewType, setViewType] = useState<'dir' | 'table' | 'list'>('table');
+
+  const ViewMap = {
+    dir: (
+      <Layout.Content className="inner">
+        <form onSubmit={() => {}}>
+          <Directory
+            name="dir"
+            title="전체"
+            list={props.userList}
+            data={'all'}
+            handleClick={(e, data) => {}}
+          />
+        </form>
+      </Layout.Content>
+    ),
+    table: (
+      <Layout.Content
+        style={{
+          height: '80vh',
+          backgroundColor: '#fff',
+        }}
+      >
+        <UserTable dateUserList={props.userListTable} />
+      </Layout.Content>
+    ),
+    list: (
+      <section
+        style={{
+          maxHeight: '80vh',
+          overflow: 'scroll',
+        }}
+      >
+        <UserTemplate userList={props.users} hasRole={true} />
+      </section>
+    ),
+  };
 
   return (
     <Layout.Container>
@@ -31,29 +65,17 @@ const AcademyManageStudentComponent: React.FC<any> = (props) => {
       <StyledAcademyManageStudent>
         <Layout.Content className="students">
           <h2>학생 목록</h2>
-          <Layout.Content className="inner">
-            <form onSubmit={sortData}>
-              <Directory
-                name="dir"
-                title="전체"
-                list={props.userList}
-                data={'all'}
-                handleClick={(e, data) => {}}
-              />
-            </form>
-          </Layout.Content>
-
-          <Layout.Content
-            style={{
-              height: '80vh',
-              backgroundColor: '#fff',
-              margin: '20px 0',
+          <Select
+            style={{ marginBottom: '20px' }}
+            onChange={(e: any) => {
+              setViewType(e.target.value);
             }}
           >
-            <UserTable dateUserList={props.userListTable} />
-          </Layout.Content>
-
-          <UserTemplate userList={props.users} />
+            <option value="table">테이블 뷰</option>
+            <option value="dir">디렉토리 뷰</option>
+            <option value="list">리스트 뷰</option>
+          </Select>
+          {ViewMap[viewType]}
         </Layout.Content>
       </StyledAcademyManageStudent>
     </Layout.Container>

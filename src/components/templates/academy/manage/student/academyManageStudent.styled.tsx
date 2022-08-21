@@ -23,9 +23,9 @@ const StyledAcademyManageStudent = styled.div.attrs((props) => ({}))`
         }
       }
 
-      section {
+      /* section {
         width: 100%;
-      }
+      } */
 
       @media screen and (max-width: ${$mobile_max_width}) {
         flex-flow: column;

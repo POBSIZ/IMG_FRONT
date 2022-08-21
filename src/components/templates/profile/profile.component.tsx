@@ -14,7 +14,7 @@ import { Button, Input, Move } from 'Atoms';
 import Link from 'next/link';
 import { CheckRole } from 'Hoc';
 import { FormatDate } from 'Utils';
-import { QuizLog } from 'Organisms';
+import { QuizLog, UserTable } from 'Organisms';
 
 const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
   return (
@@ -110,6 +110,15 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
         </CheckRole>
 
         {props.quizLog ? <QuizLog quizLog={props.quizLog} /> : null}
+
+        <Layout.Content
+          style={{
+            height: '80vh',
+          }}
+        >
+          <h2>퀴즈 기록</h2>
+          <UserTable dateUserList={props.dateUserList} />
+        </Layout.Content>
       </StyledProfile>
     </Layout.Container>
   );

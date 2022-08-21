@@ -12,13 +12,16 @@ export const TableWrapper = styled.section.attrs((props) => ({}))`
     return css`
       display: flex;
       flex-flow: column;
-      margin: 20px 0;
+
+      position: relative;
+
       width: fit-content;
+      margin: 40px 0;
     `;
   }};
 `;
 
-export const StyledDateField = styled.div.attrs((props) => ({}))`
+export const StyledNumField = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
@@ -28,22 +31,57 @@ export const StyledDateField = styled.div.attrs((props) => ({}))`
     const $color_base_gray = Theme.palette.$color_base_gray;
     const $border_color = $color_base_gray;
 
-    return css`
-      width: fit-content;
-      padding: 10px;
+    const $color_base_LightGray = Theme.palette.$color_base_LightGray;
+    const $color_base_line = Theme.palette.$color_base_line;
 
+    return css`
       position: sticky;
       top: 0;
       left: 0;
-      z-index: 100;
+      z-index: 3;
 
+      margin: 0;
+      border: 1px solid ${$border_color};
       background-color: #fff;
 
-      ${$font_subtitle};
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
 
-      border: 1px solid ${$border_color};
+      p {
+        border-left: 1px solid ${$border_color};
 
-      /* margin: 20px 0; */
+        text-align: center;
+        display: inline-block;
+        width: 200px;
+        margin: 0;
+        line-height: 25px;
+
+        padding: 10px 0;
+
+        &:nth-child(odd) {
+          background-color: ${$color_base_line};
+        }
+
+        &:nth-child(2n) {
+          background-color: ${$color_base_LightGray};
+        }
+
+        &:first-child {
+          background-color: #fff;
+          position: sticky;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          margin: 0;
+          width: 141px;
+          border-right: 1px solid ${$border_color};
+        }
+
+        &:nth-child(2) {
+          border-left: none;
+        }
+      }
     `;
   }};
 `;
@@ -51,6 +89,8 @@ export const StyledDateField = styled.div.attrs((props) => ({}))`
 const StyledUserTable = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
+
+    const $font_body_info = Theme.font.$font_body_info;
 
     const $color_key_color = Theme.palette.$color_key_color;
 
@@ -68,6 +108,7 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       text-align: center;
 
       border: 1px solid ${$border_color};
+      border-top: none;
       border-left: none;
 
       * {
@@ -75,11 +116,8 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
       }
 
       .names {
-        width: 140px;
-        padding-top: 120px;
+        padding-top: 59px;
 
-        /* position: absolute; */
-        /* transform: translateX(-100px) translateY(-1px); */
         position: sticky;
         left: 0;
 
@@ -93,16 +131,22 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
           flex-flow: column;
           align-items: center;
           justify-content: center;
+          align-self: flex-start;
 
           border-bottom: 1px solid ${$border_color};
 
+          width: 140px;
           height: ${$cell_height};
 
-          align-self: flex-start;
-
           p {
+            ${$font_body_info};
             margin: 0;
-            line-height: 25px;
+            /* padding: 1px 0; */
+            /* line-height: 25px; */
+
+            &:first-child {
+              color: ${$color_base_gray};
+            }
           }
 
           &:first-child {
@@ -121,6 +165,10 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
         line-height: ${$cell_height};
         border-left: 1px solid ${$border_color};
         align-self: flex-start;
+
+        &:nth-child(2) {
+          border-left: none;
+        }
 
         &:nth-child(odd) {
           background-color: ${$color_base_line};
@@ -142,7 +190,6 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
 
           li {
             display: grid;
-            /* grid-template-columns: 1fr 1fr; */
             grid-template-columns: 1fr;
             text-align: center;
 
@@ -156,7 +203,12 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
             span {
               line-height: calc(${$cell_height} / 2);
               height: ${$cell_height};
-              display: inline-block;
+
+              display: flex;
+              flex-flow: column;
+              align-items: center;
+              justify-content: center;
+
               width: 100%;
               overflow: hidden;
               white-space: nowrap;
@@ -164,8 +216,12 @@ const StyledUserTable = styled.div.attrs((props) => ({}))`
               padding: 0 4px;
 
               &:last-child {
-                /* border-left: 1px solid ${$border_color}; */
                 text-align: center;
+              }
+
+              span {
+                height: auto;
+                line-height: 20px;
               }
             }
           }

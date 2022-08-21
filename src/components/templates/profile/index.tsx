@@ -19,14 +19,13 @@ export interface QuizLogItemType {
 export interface ProfileTemplatePropsType {
   profile?: AuthProfileType;
   quizLog?: QuizLogItemType[];
+  dateUserList: any[];
   chainId?: string;
   requestChain: (e: any) => Promise<void>;
   responseChain: (_targetId: number, _status: boolean) => Promise<void>;
 }
 
-const ProfileTemplate: React.FC<Partial<ProfileTemplatePropsType>> = (
-  props,
-) => {
+const ProfileTemplate: React.FC<ProfileTemplatePropsType> = (props) => {
   const method = useMethod();
   const dispatch = useDispatch();
   const validate = useValidate();
@@ -81,6 +80,7 @@ const ProfileTemplate: React.FC<Partial<ProfileTemplatePropsType>> = (
       <ProfileComponent
         profile={props.profile}
         quizLog={props.quizLog}
+        dateUserList={props.dateUserList}
         chainId={props.chainId}
         requestChain={requestChain}
         responseChain={responseChain}

@@ -3,8 +3,11 @@ import { GlobalStyleType } from 'StyleVars';
 
 import { Button, Input, Title } from 'Atoms';
 import { Content } from 'Layouts';
+import { UserPropsType } from './user.types';
 
-export const UserItem = styled.div.attrs((props) => ({}))`
+export const UserItem = styled.div.attrs((props) => ({}))<
+  Partial<UserPropsType>
+>`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
@@ -17,12 +20,15 @@ export const UserItem = styled.div.attrs((props) => ({}))`
 
     return css`
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      /* grid-template-columns: repeat(${props.hasRole ? '5' : '4'}, 1fr); */
+      /* ${props.hasRole ? '5' : '4'} */
+      /* grid-template-columns: .3fr 1fr 1fr 1fr; */
+      grid-template-columns: .4fr 1fr 1fr 1fr 1fr;
       align-items: center;
       justify-content: center;
 
       cursor: pointer;
-      line-height: 60px;
+      height: 60px;
       border-bottom: 1px solid ${$color_base_line};
       background-color: ${$color_base_white};
 
@@ -36,6 +42,7 @@ export const UserItem = styled.div.attrs((props) => ({}))`
       }
 
       span {
+        padding: 0 4px;
         &:first-child {
         }
       }

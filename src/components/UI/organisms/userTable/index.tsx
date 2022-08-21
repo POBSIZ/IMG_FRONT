@@ -9,7 +9,11 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 import UserTableComponent from './userTable.component';
 
-const UserTable: React.FC<any> = (props) => {
+interface UserTablePropsType {
+  dateUserList: any[];
+}
+
+const UserTable: React.FC<UserTablePropsType> = (props) => {
   return (
     <>
       <UserTableComponent {...props} />

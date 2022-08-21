@@ -10,4 +10,5 @@ export interface UserListItem {
 
 export interface UserPropsType {
   userList: UserListItem[];
+  hasRole?: boolean;
 }

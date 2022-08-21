@@ -26,9 +26,9 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
       {/* <Back style={{ margin: '20px 0' }} /> */}
       <Layout.Content>
         <StyledUser>
-          <UserItem>
+          <UserItem hasRole={props.hasRole}>
             <span>ID</span>
-            <span>권한</span>
+            {props.hasRole ? <span>권한</span> : null}
             <span>이름</span>
             <span>학원</span>
             <span>반</span>
@@ -36,9 +36,9 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
           {props.userList?.map((item) => {
             return (
               <Link href={`/admins/user/${item.user_id}`} key={nanoid()}>
-                <UserItem>
+                <UserItem hasRole={props.hasRole}>
                   <span>{item.user_id}</span>
-                  <span>{item.role}</span>
+                  {props.hasRole ? <span>{item.role}</span> : null}
                   <span>{item.name}</span>
                   <span>{item.academy_id?.name}</span>
                   <span>{item.class_id?.name}</span>
@@ -51,6 +51,10 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
       {/* </Layout.Container> */}
     </>
   );
+};
+
+UserComponent.defaultProps = {
+  hasRole: true,
 };
 
 export default UserComponent;

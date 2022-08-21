@@ -21,7 +21,7 @@ const AcademyManageStudentPage: NextPage<any> = (props) => {
 
   const getUserList = useCallback(async () => {
     const res = await method.GET('/academy/student/info/all');
-    const resTable = await method.GET('/academy/student/info/all/table');
+    const resTable = await method.GET('/academy/student/info/all/table/null');
     const resUsers = await method.GET(
       `/auth/user/all/${auth.profile.academy_id}`,
     );

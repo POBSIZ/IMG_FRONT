@@ -12,15 +12,15 @@ import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이�
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import StyledUserTable, {
-  StyledDateField,
   TableWrapper,
+  StyledNumField,
 } from './userTable.styled';
 import Layout from 'Layouts';
 import { nanoid } from 'nanoid';
 import { FormatDate } from 'Utils';
 
 const UserTableComponent: React.FC<any> = (props) => {
-  // console.log(props.dateUserList);
+  // console.log(props);
   return (
     <Layout.Content
       style={{
@@ -28,8 +28,7 @@ const UserTableComponent: React.FC<any> = (props) => {
         height: '100%',
         overflow: 'scroll',
         background: '#fff',
-        paddingLeft: '0',
-        paddingRight: '0',
+        padding: '0',
       }}
     >
       <>
@@ -44,7 +43,12 @@ const UserTableComponent: React.FC<any> = (props) => {
 
           return (
             <TableWrapper key={nanoid()}>
-              <StyledDateField>{_date.title}</StyledDateField>
+              <StyledNumField>
+                <p>{_date.title}</p>
+                {_Arr.map((_, i) => (
+                  <p key={nanoid()}>{i + 1} 회</p>
+                ))}
+              </StyledNumField>
               <StyledUserTable>
                 <div className="names">
                   {_date.list?.map((usr) => (
@@ -59,23 +63,19 @@ const UserTableComponent: React.FC<any> = (props) => {
                   {_Arr.map((_, i) => {
                     return (
                       <div className="test" key={nanoid()}>
-                        <p>{i + 1} 회</p>
                         <ul>
                           <li>
                             <span>
-                              시험명
-                              <br />
-                              점수 / 시간
+                              <span>시험명</span>
+                              <span>점수 / 시간</span>
                             </span>
-                            {/* <span>점수</span> */}
                           </li>
 
                           {_date?.list?.map((_inusr) => {
                             return (
                               <li key={nanoid()}>
                                 <span>
-                                  {_inusr?.list[i]?.title}
-                                  <br />
+                                  <span>{_inusr?.list[i]?.title}</span>
                                   <span
                                     style={{
                                       color:
@@ -111,12 +111,6 @@ const UserTableComponent: React.FC<any> = (props) => {
             </TableWrapper>
           );
         })}
-
-        <div
-          style={{
-            height: '100vh',
-          }}
-        ></div>
       </>
     </Layout.Content>
   );
