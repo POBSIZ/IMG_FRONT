@@ -39,6 +39,7 @@ import BoardCreateTemplate from './board/create';
 import BoardEditTemplate from './board/edit';
 
 import VocaTemplate from './voca/index';
+import VocaListTemplate from './voca/list';
 
 const Templates = {
   HomeTemplate,
@@ -82,6 +83,7 @@ const Templates = {
   BoardEditTemplate,
 
   VocaTemplate,
+  VocaListTemplate,
 };
 export default Templates;
 export {
@@ -115,4 +117,5 @@ export {
   AdminManageAcademyTemplate,
   AcademyPageTemplate,
   VocaTemplate,
+  VocaListTemplate,
 };

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, CSSProperties } from 'react';
 import styled, { css } from 'styled-components';
 import { GlobalStyleType } from 'styles/global.styles';
 import Link from 'next/link';
@@ -8,6 +8,7 @@ export interface MovePropsType extends Partial<ReactElement> {
   backColor: 'primary' | 'gradient' | 'black' | 'red';
   isDisabled?: boolean;
   href: string;
+  style: CSSProperties;
 }
 
 export const StyledMove = styled.div.attrs((props: MovePropsType) => ({
