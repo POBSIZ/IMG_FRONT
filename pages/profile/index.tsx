@@ -24,12 +24,9 @@ const ProfilePage: NextPage<any> = (props, {}) => {
         ? await method.GET(`/auth/quiz/log/chain/${authState.profile.chain_id}`)
         : await method.GET('/auth/quiz/log');
       setQuizLog(
-        res.data
-          .flat()
-          .sort((a, b) => {
-            return Number(new Date(b.date)) - Number(new Date(a.date));
-          })
-          .reverse(),
+        res.data.flat().sort((a, b) => {
+          return Number(new Date(b.date)) - Number(new Date(a.date));
+        }),
       );
 
       const resTable = await method.GET(
@@ -57,7 +54,7 @@ const ProfilePage: NextPage<any> = (props, {}) => {
       </Head>
       <ProfileTemplate
         profile={authState.profile}
-        quizLog={quizLog.reverse()}
+        quizLog={quizLog}
         chainId={chainId}
         dateUserList={userListTable}
         requestChain={useCallback(async () => {}, [])}

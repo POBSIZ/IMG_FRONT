@@ -46,19 +46,46 @@ const StyledSmallGallery = styled.div.attrs((props) => ({}))`
         padding: 0;
         list-style: none;
 
-        img {
-          cursor: pointer;
+        a {
+          display: flex;
+          flex-flow: column;
           width: calc(100% / 4 - 10px);
-          height: 200px;
-          object-fit: cover;
+          /* height: 200px; */
+          text-decoration: none;
+
+          img {
+            width: 100%;
+            height: 200px;
+            cursor: pointer;
+            object-fit: cover;
+          }
+
+          span {
+            display: inline-block;
+            width: 100%;
+            line-height: 20px;
+
+            margin-top: 10px;
+            padding: 0 2px;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: ${$color_base_black};
+
+            &:last-child {
+              line-height: 20px;
+              margin-top: 0px;
+              ${$font_body_info};
+              color: ${$color_base_gray};
+            }
+          }
         }
       }
 
       @media screen and (max-width: ${$mobile_max_width}) {
         ul {
-          grid-template-columns: 1fr;
-
-          img {
+          a {
             width: 100%;
           }
         }

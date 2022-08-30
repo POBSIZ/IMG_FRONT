@@ -15,8 +15,8 @@ const LoginPage: NextPage<any> = (props, {}) => {
   );
 };
 
-// LoginPage.getInitialProps = async () => {
-//   return {};
-// };
+export async function getStaticProps() {
+  return { props: {} };
+}
 
 export default LoginPage;

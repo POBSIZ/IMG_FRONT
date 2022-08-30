@@ -11,6 +11,8 @@ import Select from './select';
 import Check from './check';
 import Move from './move';
 import Back from './back';
+import Textarea from './textarea';
+import CheckButton from './checkButton';
 
 const Atoms = {
   Logo,
@@ -26,6 +28,8 @@ const Atoms = {
   Check,
   Move,
   Back,
+  CheckButton,
+  Textarea,
 };
 
 export default Atoms;
@@ -44,4 +48,6 @@ export {
   Check,
   Move,
   Back,
+  CheckButton,
+  Textarea,
 };

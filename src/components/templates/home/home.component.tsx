@@ -10,7 +10,7 @@ const HomeComponent: React.FC<HomeTemplatePropsType> = (
 ) => {
   return (
     <StyledHome>
-      <TitleBanner imgSrc={props.titleBannerImgSrc} />
+      <TitleBanner {...props} />
       {/* <SwipeBanner /> */}
     </StyledHome>
   );

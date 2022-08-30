@@ -206,7 +206,10 @@ export const GoToProfile = styled.div.attrs((props) => {})`
       width: fit-content;
       padding: 8px 10px;
       background-color: ${$color_key_color};
-      text-decoration: none;
+
+      * {
+        text-decoration: none;
+      }
 
       a {
         color: ${$color_base_white};

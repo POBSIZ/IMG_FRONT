@@ -22,6 +22,7 @@ export interface QuizItemType {
 export interface QuizPlayComponentPropsType {
   userQuizId: number;
   quizId: number;
+  quizLogId: number;
   quizTitle: string;
   limitTime: number;
   quizList: QuizItemType[];

@@ -6,6 +6,8 @@ const StyledBoardTab = styled.div.attrs((props) => ({}))`
     const Theme: GlobalStyleType = props.theme;
 
     const $font_title_regular = Theme.font.$font_title_regular;
+    const $font_subtitle = Theme.font.$font_subtitle;
+
     const $font_body_base = Theme.font.$font_body_base;
     const $font_body_head = Theme.font.$font_body_head;
     const $font_body_info = Theme.font.$font_body_info;
@@ -47,6 +49,7 @@ const StyledBoardTab = styled.div.attrs((props) => ({}))`
           border-bottom: 1px solid ${$color_base_line};
 
           span {
+            ${$font_subtitle};
             width: 70%;
             overflow: hidden;
             text-overflow: ellipsis;

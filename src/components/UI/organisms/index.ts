@@ -6,6 +6,8 @@ import CreateQuizFilter from './createQuizFilter';
 import UserTable from './userTable';
 import QuizLog from './quizLog';
 
+import WordList from './wordList';
+
 const Organisms = {
   SwipeBanner,
   TitleBanner,
@@ -13,6 +15,7 @@ const Organisms = {
   CreateQuizFilter,
   UserTable,
   QuizLog,
+  WordList,
 };
 
 export default Organisms;
@@ -24,4 +27,5 @@ export {
   CreateQuizFilter,
   UserTable,
   QuizLog,
+  WordList,
 };

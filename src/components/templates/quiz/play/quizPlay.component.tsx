@@ -221,7 +221,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
 
         <ListTab maxNum={props.quizList?.length} currNum={currNum + 1} />
 
-        <QuizTitle>{props.quizTitle}</QuizTitle>
+        {/* <QuizTitle>{props.quizTitle}</QuizTitle> */}
       </StyledQuiz>
     </Layout.Container>
   );

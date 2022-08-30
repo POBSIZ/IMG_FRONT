@@ -70,6 +70,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
             default: [
               { url: '/board', text: '게시판' },
               { url: '/quiz', text: '퀴즈풀기' },
+              { url: '/voca', text: '단어장' },
             ],
             student: [
               // {
@@ -79,10 +80,7 @@ const ProviderLayout: React.FC<any> = ({ children }) => {
             ],
             parents: [],
             insider: [{ url: '/academy', text: '학원 & 퀴즈 관리' }],
-            admin: [
-              { url: '/admins', text: '관리자' },
-              // { url: '/board', text: '게시판' },
-            ],
+            admin: [{ url: '/admins', text: '관리자' }],
             auth: [{ url: '/auth/login', text: '로그인' }],
           }}
         />

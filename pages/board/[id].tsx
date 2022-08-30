@@ -1,48 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { NextPage } from 'next';
+import { NextPage, NextPageContext } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import { BoardIdTemplate } from 'Templates';
 import { useMethod } from 'Hooks';
 
-const BoardContentPage: NextPage<any> = (props) => {
+import { Get } from 'Utils';
+
+const BoardContentPage: NextPage<any> = ({ list }) => {
   const method = useMethod();
   const router = useRouter();
-
-  const [boardList, setBoardList] = useState<any>([]);
-
-  const getBoards = async () => {
-    const id = router.asPath.replace(/\/board\//g, '');
-    const resList = await method.GET(`/board/list/${id}`);
-    setBoardList(
-      resList.data.sort(
-        (a, b) =>
-          Number(new Date(b.created_at)) - Number(new Date(a.created_at)),
-      ),
-    );
-
-    // console.log(resList.data);
-  };
-
-  useEffect(() => {
-    getBoards();
-  }, [router]);
-
   return (
     <>
       <Head>
         <title>
-          {process.env.NEXT_PUBLIC_TITLE} | {boardList[0]?.board_id?.title}
+          {process.env.NEXT_PUBLIC_TITLE} | {list[0]?.board_id?.title}
         </title>
       </Head>
-      <BoardIdTemplate boardList={boardList} />
+      <BoardIdTemplate boardList={list} />
     </>
   );
 };
 
-// BoardContentPage.getInitialProps = async () => {
-//   return {};
-// };
+export async function getServerSideProps(ctx: NextPageContext) {
+  const {
+    req,
+    query: { id },
+  } = ctx;
+
+  const res = await Get(`/board/list/${id}`);
+
+  const list = res.data.sort(
+    (a, b) => Number(new Date(b.created_at)) - Number(new Date(a.created_at)),
+  );
+
+  return { props: { list } };
+}
 
 export default BoardContentPage;

@@ -17,35 +17,10 @@ import { TitleBannerPropsType } from '.';
 import Layout from 'Layouts';
 import { BoardTab, SmallGallery } from 'Molecules';
 import { Move } from 'Atoms';
-import { useMethod } from 'Hooks';
 
 const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
   props: TitleBannerPropsType,
 ) => {
-  const method = useMethod();
-
-  const [noticeList, setNoticeList] = useState<any[]>([]);
-  const [storyList, setStoryList] = useState<any[]>([]);
-
-  const getLists = async () => {
-    const nl: any = await method.GET(`/board/list/${4}`);
-    const sl: any = await method.GET(`/board/list/${3}`);
-    setNoticeList(
-      nl.data.sort((a, b) => {
-        return Number(new Date(b.created_at)) - Number(new Date(a.created_at));
-      }),
-    );
-    setStoryList(
-      sl.data.sort((a, b) => {
-        return Number(new Date(b.created_at)) - Number(new Date(a.created_at));
-      }),
-    );
-  };
-
-  useEffect(() => {
-    getLists();
-  }, []);
-
   return (
     <>
       <StyledTitleBanner style={{ background: props.imgSrc }}>
@@ -88,18 +63,18 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
             }}
           >
             <div className="gal">
-              <SmallGallery title="공지" list={noticeList} limit={4} />
+              <SmallGallery title="공지" list={props.noticeList} limit={4} />
             </div>
             <div className="gal">
-              <SmallGallery title="소식" list={storyList} limit={4} />
+              <SmallGallery title="소식" list={props.storyList} limit={4} />
             </div>
           </Layout.Content>
           <BoardTabWrapper>
             <Layout.Content>
-              <BoardTab title="공지" list={noticeList} />
+              <BoardTab title="공지" list={props.noticeList.slice(0, 5)} />
             </Layout.Content>
             <Layout.Content>
-              <BoardTab title="소식" list={storyList} />
+              <BoardTab title="소식" list={props.storyList.slice(0, 5)} />
             </Layout.Content>
           </BoardTabWrapper>
         </Layout.Container>

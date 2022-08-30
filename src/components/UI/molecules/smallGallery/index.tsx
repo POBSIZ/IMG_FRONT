@@ -32,9 +32,13 @@ const SmallGallery: React.FC<any> = (props) => {
           {props.list?.map((item, i) => {
             return i > props.limit - 1 ? null : item.thumbnail ? (
               <Link href={`/board/content/${item.post_id}`} key={nanoid()}>
-                <img
-                  src={`${process.env.NEXT_PUBLIC_SERVER}/${item.thumbnail}`}
-                />
+                <a>
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_SERVER}/${item.thumbnail}`}
+                  />
+                  <span>{item.title}</span>
+                  <span>{FormatDate(item.created_at)}</span>
+                </a>
               </Link>
             ) : null;
           })}

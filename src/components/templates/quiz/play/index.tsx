@@ -46,13 +46,22 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
     );
 
     const data = {
+      title: props.quizTitle,
+      time: props.limitTime,
+      max_words: props.quizList.length,
       userQuiz_id: props.userQuizId,
       quiz_id: props.quizId,
+      quizLog_id: props.quizLogId,
       best_solve: corrCount,
       answerList: _list,
     };
 
-    const res = await method.PATCH('/auth/userQuiz/update', data);
+    if (!props.userQuizId && !props.quizId) {
+      await method.POST(`/auth/userQuiz/retry`, data);
+    } else {
+      await method.PATCH('/auth/userQuiz/update', data);
+    }
+
     router.push('/quiz/result', undefined, { shallow: true });
   };
 

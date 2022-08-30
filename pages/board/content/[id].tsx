@@ -1,41 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { NextPage } from 'next';
+import { NextPage, NextPageContext } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import { BoardContentTemplate } from 'Templates';
 import { useMethod } from 'Hooks';
 
-const BoardContentPage: NextPage<any> = (props) => {
-  const method = useMethod();
-  const router = useRouter();
+import { Get } from 'Utils';
 
-  const [contentData, setContentData] = useState({
-    post_id: NaN,
-    board_id: NaN,
-    user_id: { name: '' },
-    content: '',
-    desc: '',
-    is_notice: false,
-    like: 0,
-    status: 'PUBLIC',
-    title: '',
-    updated_at: '',
-    created_at: new Date(),
-  });
-
-  const getPost = async () => {
-    const id = router.asPath.replace(/\/board\/content\//g, '');
-    // console.log(id);
-    const res = await method.GET(`/board/post/${id}`);
-    setContentData(res.data);
-  };
-
-  useEffect(() => {
-    if (!router.isReady) return;
-    getPost();
-  }, [router.isReady]);
-
+const BoardContentPage: NextPage<any> = ({ contentData }) => {
   return (
     <>
       <Head>
@@ -46,8 +19,17 @@ const BoardContentPage: NextPage<any> = (props) => {
   );
 };
 
-// BoardContentPage.getInitialProps = async () => {
-//   return {};
-// };
+export async function getServerSideProps(ctx: NextPageContext) {
+  const {
+    req,
+    query: { id },
+  } = ctx;
+
+  const res = await Get(`/board/post/${id}`);
+
+  const contentData = res.data;
+
+  return { props: { contentData } };
+}
 
 export default BoardContentPage;

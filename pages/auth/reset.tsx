@@ -15,8 +15,8 @@ const AuthResetPage: NextPage<any> = (props) => {
   );
 };
 
-// AuthResetPage.getInitialProps = async () => {
-//   return {};
-// };
+export async function getStaticProps() {
+  return { props: {} };
+}
 
 export default AuthResetPage;

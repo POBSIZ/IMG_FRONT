@@ -8,6 +8,8 @@ import TitleBannerComponent from './titleBanner.component';
 
 export interface TitleBannerPropsType {
   imgSrc: string;
+  storyList: any;
+  noticeList: any;
 }
 
 const TitleBanner: React.FC<TitleBannerPropsType> = (
