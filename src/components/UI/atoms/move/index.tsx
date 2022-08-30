@@ -8,7 +8,7 @@ export interface MovePropsType extends Partial<ReactElement> {
   backColor: 'primary' | 'gradient' | 'black' | 'red';
   isDisabled?: boolean;
   href: string;
-  style: CSSProperties;
+  style?: CSSProperties;
 }
 
 export const StyledMove = styled.div.attrs((props: MovePropsType) => ({

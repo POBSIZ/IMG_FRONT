@@ -57,6 +57,7 @@ const QuizPlayPage: NextPage<any> = ({}) => {
           <QuizPlayTemplate
             userQuizId={Number(uqid)}
             quizId={Number(id)}
+            quizLogId={Number(id)}
             quizTitle={`${title}`}
             limitTime={probList.limitTime}
             quizList={probList.probList}
