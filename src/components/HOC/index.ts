@@ -4,6 +4,8 @@ import CheckRole from './checkRole';
 import RedirectLogin from './redirectLogin';
 import LoadWrapper from './loadWrapper';
 
+import GoogleAnalyticsHOC from './googleAnalyticsHOC';
+
 const Hoc = {
   AosWrapper,
   AosInitializer,
@@ -11,6 +13,7 @@ const Hoc = {
   CheckRole,
   RedirectLogin,
   LoadWrapper,
+  GoogleAnalyticsHOC,
 };
 
 export default Hoc;
@@ -21,4 +24,5 @@ export {
   CheckRole,
   RedirectLogin,
   LoadWrapper,
+  GoogleAnalyticsHOC,
 };
