@@ -17,9 +17,9 @@ import { GoogleAnalyticsHOC } from 'Hoc';
 import '../styles/init.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  // useEffect(() => {
-  //   initGA('G-KZRZ73DV33', Router);
-  // }, []);
+  useEffect(() => {
+    initGA('G-KZRZ73DV33', Router);
+  }, []);
 
   return (
     <>
@@ -34,11 +34,11 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Link rel="stylesheet" href="/assets/pretendard-dynamic-subset.css" />
         </Head>
 
-        <GoogleAnalyticsHOC>
-          <ProviderLayout>
-            <Component {...pageProps} />
-          </ProviderLayout>
-        </GoogleAnalyticsHOC>
+        {/* <GoogleAnalyticsHOC> */}
+        <ProviderLayout>
+          <Component {...pageProps} />
+        </ProviderLayout>
+        {/* </GoogleAnalyticsHOC> */}
       </GlobalProvider>
     </>
   );
