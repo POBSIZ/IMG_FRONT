@@ -8,11 +8,15 @@ import { Get } from 'Utils';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { useMethod } from 'Hooks';
 
+import { LoadWrapper } from 'Hoc';
+
 const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
   const method = useMethod();
   const router = useRouter();
   const toastState = useSelector((state: RootStateOrAny) => state.toastReducer);
   const { id } = router.query;
+
+  const [isLoad, setIsLoad] = useState<boolean>(false);
 
   const [userInfo, setUserInfo] = useState({
     user_id: Number(id),
@@ -37,6 +41,7 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
 
     setQuizLog(sortedLog);
     setUserInfo(res.data);
+    setIsLoad(true);
   }, []);
 
   useEffect(() => {
@@ -50,7 +55,9 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 회원 정보</title>
       </Head>
-      <UserInfoTemplate profile={userInfo} quizLog={quizLog} />
+      <LoadWrapper isLoad={isLoad}>
+        <UserInfoTemplate profile={userInfo} quizLog={quizLog} />
+      </LoadWrapper>
     </>
   );
 };

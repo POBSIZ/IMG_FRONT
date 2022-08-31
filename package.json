@@ -38,6 +38,7 @@
     "react-beforeunload": "^2.5.2",
     "react-daum-postcode": "^3.1.1",
     "react-dom": "latest",
+    "react-ga": "^3.3.1",
     "react-query": "^3.34.16",
     "react-redux": "^7.2.6",
     "react-slick": "^0.29.0",

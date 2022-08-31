@@ -9,6 +9,8 @@ import { pushToastAsync } from 'Actions/toastAction';
 
 import AcademyManageClassPage from '../class';
 
+import { LoadWrapper } from 'Hoc';
+
 const AcademyManageStudentPage: NextPage<any> = (props) => {
   const method = useMethod();
   const dispatch = useDispatch();
@@ -18,6 +20,8 @@ const AcademyManageStudentPage: NextPage<any> = (props) => {
   const [userList, setUserList] = useState([]);
   const [users, setUsers] = useState([]);
   const [userListTable, setUserListTable] = useState([]);
+
+  const [isLoad, setIsLoad] = useState<boolean>(false);
 
   const getUserList = useCallback(async () => {
     const res = await method.GET('/academy/student/info/all');
@@ -29,6 +33,7 @@ const AcademyManageStudentPage: NextPage<any> = (props) => {
     setUserList(res.data);
     setUserListTable(resTable.data);
     setUsers(resUsers.data);
+    setIsLoad(true);
   }, []);
 
   useEffect(() => {
@@ -40,11 +45,13 @@ const AcademyManageStudentPage: NextPage<any> = (props) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 학생 관리</title>
       </Head>
-      <AcademyManageStudentTemplate
-        userList={userList}
-        userListTable={userListTable}
-        users={users}
-      />
+      <LoadWrapper isLoad={isLoad}>
+        <AcademyManageStudentTemplate
+          userList={userList}
+          userListTable={userListTable}
+          users={users}
+        />
+      </LoadWrapper>
     </>
   );
 };

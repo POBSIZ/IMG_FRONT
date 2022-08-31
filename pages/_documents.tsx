@@ -1,5 +1,12 @@
 import React from 'react';
-import Document, { DocumentContext } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document';
+
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MainDocument extends Document {
@@ -13,8 +20,10 @@ export default class MainDocument extends Document {
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
         });
+
       // Documents의 initial props
       const initialProps = await Document.getInitialProps(ctx);
+
       // props와 styles를 반환
       return {
         ...initialProps,
@@ -28,5 +37,17 @@ export default class MainDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head></Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }

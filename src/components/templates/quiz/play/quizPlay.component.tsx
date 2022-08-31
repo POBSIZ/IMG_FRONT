@@ -33,8 +33,11 @@ import { Timer, Button } from 'Atoms';
 import { ListTab, Modal } from 'Molecules';
 import Layout from 'Layouts';
 import { BlockChangePage } from 'Hoc';
+import { useDebounce } from 'Hooks';
 
 const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
+  const debounce = useDebounce();
+
   const [modalState, setModalState] = useState<boolean>(true);
 
   const [timer, setTimer] = useState<number>(props.limitTime); // 타이머 시간
@@ -138,8 +141,10 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
   );
 
   useEffect(() => {
-    props.getAudio(props.quizList[currNum]?.word);
-  }, [currNum]);
+    if (!modalState) {
+      props.getAudio(props.quizList[currNum]?.word);
+    }
+  }, [currNum, modalState]);
 
   return (
     <Layout.Container>

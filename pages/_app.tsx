@@ -3,13 +3,22 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Link from 'next/link';
 import Script from 'next/script';
+import Router from 'next/router';
+
+import { useRouter } from 'next/router';
 
 import ProviderLayout from 'src/provider';
 import GlobalProvider from 'src/provider/globalProvider';
 
+import initGA from '../lib/ga';
+
 import '../styles/init.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {
+    initGA('G-KZRZ73DV33', Router);
+  }, []);
+
   return (
     <>
       <GlobalProvider>
@@ -21,15 +30,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 
           {/* Font */}
           <Link rel="stylesheet" href="/assets/pretendard-dynamic-subset.css" />
-
-          {/* <!-- jQuery --> */}
-          <Script type="text/javascript" src="/assets/jquery-1.12.4.min.js" />
-
-          {/* <!-- iamport.payment.js --> */}
-          <Script
-            type="text/javascript"
-            src="/assets/iamport.payment-1.1.8.js"
-          />
         </Head>
 
         <ProviderLayout>

@@ -58,7 +58,9 @@ const QuizPlayTemplate: React.FC<QuizPlayTemplatePropsType> = (props) => {
 
     if (!props.userQuizId && !props.quizId) {
       await method.POST(`/auth/userQuiz/retry`, data);
-    } else {
+    }
+
+    if (props.userQuizId && props.quizId) {
       await method.PATCH('/auth/userQuiz/update', data);
     }
 
