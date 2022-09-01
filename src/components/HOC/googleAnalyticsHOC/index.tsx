@@ -9,7 +9,7 @@ const GoogleAnalyticsHOC = ({ children }) => {
       window.dataLayer = window.dataLayer || [];
 
       function gtag(...args: any) {
-        window.dataLayer.push(arguments);
+        window.dataLayer.push(args);
       }
 
       gtag('js', new Date());
@@ -25,7 +25,7 @@ const GoogleAnalyticsHOC = ({ children }) => {
     <>
       <Head>
         <Script
-          async
+          strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-KZRZ73DV33"
         />
       </Head>

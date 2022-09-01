@@ -7,14 +7,16 @@ import { VocaListTemplate } from 'Templates';
 import { RedirectLogin } from 'Hoc';
 import { useMethod } from 'Hooks';
 
-const VocaPage: NextPage<any> = (props) => {
-  const method = useMethod();
+import { VocaApi } from 'api';
+import { GetVocaListRes } from 'api/voca/types/get';
 
-  const [vocaList, setVocaList] = useState([]);
+const VocaPage: NextPage<any> = (props) => {
+  const vocaApi = VocaApi();
+
+  const [vocaList, setVocaList] = useState<GetVocaListRes[]>([]);
 
   const getVocaList = useCallback(async () => {
-    const res = await method.GET('/voca/get/all');
-    setVocaList(res.data);
+    setVocaList((await vocaApi.get.vocaList()).data);
   }, []);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const VocaPage: NextPage<any> = (props) => {
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE}</title>
+        <title>{process.env.NEXT_PUBLIC_TITLE} | 단어장</title>
       </Head>
       <RedirectLogin>
         <VocaListTemplate vocaList={vocaList} />

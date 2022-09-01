@@ -11,14 +11,23 @@ import ProviderLayout from 'src/provider';
 import GlobalProvider from 'src/provider/globalProvider';
 
 import initGA from '../lib/ga';
+import { initGA4 } from '../lib/ga4';
 
 import { GoogleAnalyticsHOC } from 'Hoc';
+
+import window from 'global/window';
 
 import '../styles/init.css';
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   initGA('G-KZRZ73DV33', Router);
+  // }, []);
+
   useEffect(() => {
-    initGA('G-KZRZ73DV33', Router);
+    initGA4('G-KZRZ73DV33');
   }, []);
 
   return (
@@ -34,11 +43,9 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Link rel="stylesheet" href="/assets/pretendard-dynamic-subset.css" />
         </Head>
 
-        {/* <GoogleAnalyticsHOC> */}
         <ProviderLayout>
           <Component {...pageProps} />
         </ProviderLayout>
-        {/* </GoogleAnalyticsHOC> */}
       </GlobalProvider>
     </>
   );

@@ -40,6 +40,7 @@ import BoardEditTemplate from './board/edit';
 
 import VocaTemplate from './voca/index';
 import VocaListTemplate from './voca/list';
+import VocaContentTemplate from './voca/content';
 
 const Templates = {
   HomeTemplate,
@@ -84,6 +85,7 @@ const Templates = {
 
   VocaTemplate,
   VocaListTemplate,
+  VocaContentTemplate,
 };
 export default Templates;
 export {
@@ -118,4 +120,5 @@ export {
   AcademyPageTemplate,
   VocaTemplate,
   VocaListTemplate,
+  VocaContentTemplate,
 };

@@ -10,7 +10,7 @@ const VocaPage: NextPage<any> = (props) => {
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE}</title>
+        <title>{process.env.NEXT_PUBLIC_TITLE} | 단어장 생성</title>
       </Head>
       <RedirectLogin>
         <VocaTemplate />

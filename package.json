@@ -26,6 +26,7 @@
     "axios": "^0.27.2",
     "browser-image-compression": "^2.0.0",
     "env-cmd": "^10.1.0",
+    "ga-4-react": "^0.1.281",
     "global": "^4.4.0",
     "gsap": "^3.10.3",
     "http-proxy-middleware": "^2.0.3",

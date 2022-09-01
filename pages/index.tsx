@@ -11,9 +11,7 @@ const HomePage: NextPage<any> = ({ noticeList, storyList }) => {
   return (
     <>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE}</title>
-        <meta property="og:image" content="/banner.png" />
-        <meta property="og:description" content="이미지 어학원" />
+        <title>{process.env.NEXT_PUBLIC_TITLE} | 홈</title>
       </Head>
       <HomeTemplate
         imgSrc="/img/main_bg.svg"

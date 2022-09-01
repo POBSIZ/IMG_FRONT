@@ -13,21 +13,26 @@ import { useRouter } from 'next/router';
 import VocaComponent from './voca.component';
 import { pushToastAsync } from 'Actions/toastAction';
 
+import { VocaApi } from 'api';
+import { GetWordsRes, GetWordsReq } from 'api/voca/types/get';
+import { CreateVocaReq } from 'api/voca/types/create';
+
 const VocaTemplate: React.FC<any> = (props) => {
   const method = useMethod();
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [wordList, setWordList] = useState([]);
+  const vocaApi = VocaApi();
 
-  const getWords = useCallback(async (_data) => {
-    const res = await method.POST('/voca/words', _data);
-    setWordList(res.data);
+  const [wordList, setWordList] = useState<GetWordsRes[]>([]);
+
+  const getWords = useCallback(async (_data: GetWordsReq) => {
+    setWordList((await vocaApi.get.words(_data)).data);
   }, []);
 
-  const saveVoca = useCallback(async (_data) => {
+  const saveVoca = useCallback(async (_data: CreateVocaReq) => {
     try {
-      const res = await method.POST('/voca/create', _data);
+      await vocaApi.create.voca(_data);
       router.push('/voca');
       dispatch(
         pushToastAsync.request({
