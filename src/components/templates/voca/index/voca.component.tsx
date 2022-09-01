@@ -98,8 +98,8 @@ const VocaComponent: React.FC<any> = (props) => {
                       defaultChecked={isSelectedLabel}
                       onChange={(e) => {
                         if (labels.length < 1) {
-                          setLabels((prev) => [...prev, ['0', 0]]);
-                          setCurrLabel(['0', 0]);
+                          setLabels((prev) => [...prev, ['1', 0]]);
+                          setCurrLabel(['1', 0]);
                         }
 
                         setLabelMap((prev) => {
@@ -252,6 +252,7 @@ const VocaComponent: React.FC<any> = (props) => {
           <div
             style={{
               maxHeight: '46vh',
+              overflowY: 'scroll',
             }}
           >
             <WordList list={props.wordList} setList={props.setList} />

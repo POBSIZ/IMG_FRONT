@@ -1,5 +1,7 @@
+import { UserApi } from './user';
 import { VocaApi } from './voca';
+import { QuizApi } from './quiz';
 
-const Apis = { VocaApi };
+const Apis = { VocaApi, QuizApi, UserApi };
 export default Apis;
-export { VocaApi };
+export { VocaApi, QuizApi, UserApi };

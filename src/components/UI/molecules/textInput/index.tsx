@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  ChangeEventHandler,
+  FormEventHandler,
+} from 'react';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import Actions from 'Actions/index';
 import axios from 'axios';
@@ -10,7 +16,7 @@ import { Input } from 'Atoms';
 
 export interface TextInputPropsType extends Partial<HTMLInputElement> {
   text: string;
-  onChange: Function;
+  onChange: any;
 }
 
 const TextInput: React.FC<TextInputPropsType> = (props) => {

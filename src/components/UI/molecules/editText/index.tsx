@@ -78,6 +78,7 @@ const EditText: React.FC<EditTextPropsType> = (props) => {
         type="text"
         name={props.name}
         value={text}
+        onChange={handleText}
         style={{ display: 'none' }}
       />
     </>

@@ -6,6 +6,8 @@ import Delete from './axios/Delete';
 import { FormatDate } from './formatDate';
 import { dateSort } from './dateSort';
 
-const Utils = { Post, Get, Patch, Delete, FormatDate, dateSort };
+import { getAuth } from './getAuth';
+
+const Utils = { Post, Get, Patch, Delete, FormatDate, dateSort, getAuth };
 export default Utils;
-export { Post, Get, Patch, Delete, FormatDate, dateSort };
+export { Post, Get, Patch, Delete, FormatDate, dateSort, getAuth };

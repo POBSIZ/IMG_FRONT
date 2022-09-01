@@ -23,7 +23,7 @@ export const UserItem = styled.div.attrs((props) => ({}))<
       /* grid-template-columns: repeat(${props.hasRole ? '5' : '4'}, 1fr); */
       /* ${props.hasRole ? '5' : '4'} */
       /* grid-template-columns: .3fr 1fr 1fr 1fr; */
-      grid-template-columns: .4fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       align-items: center;
       justify-content: center;
 

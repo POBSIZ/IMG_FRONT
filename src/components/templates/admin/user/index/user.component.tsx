@@ -33,11 +33,11 @@ const UserComponent: React.FC<UserPropsType> = (props) => {
             <span>학원</span>
             <span>반</span>
           </UserItem>
-          {props.userList?.map((item) => {
+          {props.userList?.map((item: any) => {
             return (
               <Link href={`/admins/user/${item.user_id}`} key={nanoid()}>
                 <UserItem hasRole={props.hasRole}>
-                  <span>{item.user_id}</span>
+                  <span>{item.username}</span>
                   {props.hasRole ? <span>{item.role}</span> : null}
                   <span>{item.name}</span>
                   <span>{item.academy_id?.name}</span>

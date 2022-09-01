@@ -1,27 +1,56 @@
 import { AxiosResponse } from 'axios';
-import { useMethod } from 'Hooks';
+import { Get, Patch, Post, Delete } from 'Utils';
+import { getAuth } from 'Utils';
 
-import { GetVocaListRes, GetWordsRes, GetWordsReq } from './types/get';
+import {
+  GetVocaListRes,
+  GetWordsRes,
+  GetWordsReq,
+  GetWordsByIdRes,
+} from './types/get';
+
 import { CreateVocaReq } from './types/create';
+import { useAuth } from 'Hooks';
 
 export function VocaApi() {
-  const method = useMethod();
+  const auth = getAuth();
+  // const auth = useAuth();
+  const token = `Bearer ${auth.token}`;
 
   return {
     get: {
+      // 내 단어장 모두 불러오기
       vocaList: async (): Promise<AxiosResponse<GetVocaListRes[]>> => {
-        return await method.GET('/voca/get/all');
+        return await Get('/voca/get/all', {
+          headers: { Authorization: token },
+        });
       },
+
+      // 단어 뜻 불러오기
       words: async (
         _data: GetWordsReq,
       ): Promise<AxiosResponse<GetWordsRes[]>> => {
-        return await method.POST('/voca/words', _data);
+        return await Post('/voca/words', _data, {
+          headers: { Authorization: token },
+        });
+      },
+
+      // 단어장 단어 불러오기
+      wordsById: async (
+        _id: string | number, // 단어장 ID (voca_id)
+      ): Promise<AxiosResponse<GetWordsByIdRes>> => {
+        return await Get(`/voca/get/words/${_id}`, {
+          headers: { Authorization: token },
+        });
       },
     },
 
     create: {
+      // 단어장 생성
       voca: async (_data: CreateVocaReq): Promise<AxiosResponse<any>> => {
-        return await method.POST('/voca/create', _data);
+        return await Post('/voca/create', _data, {
+          headers: { Authorization: token },
+        });
       },
     },
   };

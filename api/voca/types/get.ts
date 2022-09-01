@@ -1,3 +1,5 @@
+import { VocaWordEntity } from '../entity/vocaWord';
+
 // 단어장 불러오기 타입
 export interface GetVocaListRes {
   // 단어장 ID
@@ -30,4 +32,13 @@ export interface GetWordsRes {
   phonetic: string;
   meaning: string;
   label: [string, number];
+}
+
+// 단어장 단어 불러오기 타입 - RES
+export interface GetWordsByIdRes {
+  name: string;
+  origin: string;
+  created_at: Date;
+  voca_id: number;
+  word_list: VocaWordEntity[];
 }

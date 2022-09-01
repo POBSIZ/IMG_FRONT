@@ -12,6 +12,8 @@ import {} from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
 import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Link from 'next/link';
+
 import StyledVocaList from './vocaList.styled';
 
 import Layout from 'Layouts';
@@ -35,12 +37,16 @@ const VocaListTemplate: React.FC<any> = (props) => {
         <Layout.Content>
           <StyledVocaList>
             {props.vocaList.map((vc) => (
-              <QuizItem key={nanoid()} isTry={true}>
-                <div>
-                  <h3>{vc.name}</h3>
-                  <p>{FormatDate(vc.created_at)}</p>
-                </div>
-              </QuizItem>
+              <Link href={`/voca/${vc.voca_id}`} key={nanoid()}>
+                <a style={{ textDecoration: 'none' }}>
+                  <QuizItem isTry={true}>
+                    <div>
+                      <h3>{vc.name}</h3>
+                      <p>{FormatDate(vc.created_at)}</p>
+                    </div>
+                  </QuizItem>
+                </a>
+              </Link>
             ))}
           </StyledVocaList>
         </Layout.Content>

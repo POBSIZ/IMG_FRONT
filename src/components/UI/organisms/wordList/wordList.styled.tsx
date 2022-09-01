@@ -13,7 +13,7 @@ const StyledWordList = styled.div.attrs((props) => ({}))`
 
     return css`
       height: 100%;
-      overflow-y: scroll;
+      /* overflow-y: scroll; */
 
       ${Layout.Content} {
         background-color: ${$color_base_white};

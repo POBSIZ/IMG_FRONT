@@ -19,12 +19,11 @@ export interface InputPropsType
 }
 
 const Input = styled.input.attrs((props) => ({
-  placeholder: props.placeholder || 'input',
-  type: props.type || 'text',
-  name: props.name || '',
-  required: props.required || false,
-  disabled: props.disabled || false,
-  value: props.value || undefined,
+  placeholder: props.placeholder ?? 'input',
+  type: props.type ?? 'text',
+  name: props.name ?? '',
+  required: props.required ?? false,
+  disabled: props.disabled ?? false,
   autocomplete: props.type === 'password' ? 'current-password' : 'on',
 }))<InputPropsType>`
   ${(props) => {
