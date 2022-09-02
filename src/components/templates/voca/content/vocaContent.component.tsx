@@ -8,7 +8,11 @@ import React, {
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import { nanoid } from 'nanoid';
 import {} from '@fortawesome/free-brands-svg-icons'; // 브랜드 아이콘
-import { faPen, faCircleXmark } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
+import {
+  faPen,
+  faCircleXmark,
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
 import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -47,21 +51,28 @@ const VocaContentComponent: React.FC<{ content: GetWordsByIdRes }> = (
           <StyledVocaContent>
             <div className="box">
               <h2>단어 목록</h2>
-              <Button
-                backColor="primary"
-                onClick={() => setIsEdit((prev) => !prev)}
-              >
-                <>
-                  {isEdit ? (
-                    '완료'
-                  ) : (
-                    <>
-                      <FontAwesomeIcon className="icon" icon={faPen} />
-                      편집
-                    </>
-                  )}
-                </>
-              </Button>
+              <div>
+                <a
+                  href={`${process.env.NEXT_PUBLIC_SERVER}/voca/get/words/excel/${props.content.voca_id}`}
+                >
+                  <FontAwesomeIcon icon={faDownload} />
+                </a>
+                <Button
+                  backColor="primary"
+                  onClick={() => setIsEdit((prev) => !prev)}
+                >
+                  <>
+                    {isEdit ? (
+                      '완료'
+                    ) : (
+                      <>
+                        <FontAwesomeIcon className="icon" icon={faPen} />
+                        편집
+                      </>
+                    )}
+                  </>
+                </Button>
+              </div>
             </div>
 
             <ul>

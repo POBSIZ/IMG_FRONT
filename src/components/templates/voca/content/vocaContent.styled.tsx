@@ -7,11 +7,22 @@ const StyledVocaContent = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
 
-    const $color_base_white = Theme.palette.$color_base_white;
-    const $color_base_line = Theme.palette.$color_base_line;
-    const $color_base_gray = Theme.palette.$color_base_gray;
+    const $font_body_head = Theme.font.$font_body_head;
+    const $font_body_base = Theme.font.$font_body_base;
+    const $font_body_info = Theme.font.$font_body_info;
 
+    const $color_base_white = Theme.palette.$color_base_white;
+    const $color_base_gray = Theme.palette.$color_base_gray;
+    const $color_base_black = Theme.palette.$color_base_black;
+    const $color_base_line = Theme.palette.$color_base_line;
+    const $color_base_dark = Theme.palette.$color_base_dark;
+
+    const $color_key_color = Theme.palette.$color_key_color;
+    const $color_success = Theme.palette.$color_success;
+    const $color_warning = Theme.palette.$color_warning;
     const $color_failure = Theme.palette.$color_failure;
+
+    const $mobile_max_width = Theme.media.$mobile_max_width;
 
     return css`
       .box {
@@ -19,13 +30,41 @@ const StyledVocaContent = styled.div.attrs((props) => ({}))`
         justify-content: space-between;
         align-items: center;
 
-        ${Button} {
-          width: fit-content;
-          height: fit-content;
-          padding: 10px 20px;
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
 
-          .icon {
-            margin-right: 6px;
+          ${Button} {
+            width: fit-content;
+            height: fit-content;
+            padding: 10px 20px;
+
+            .icon {
+              margin-right: 6px;
+            }
+          }
+
+          a {
+            padding: 10px 20px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: ${$color_failure};
+
+            &:first-child {
+              background-color: ${$color_success};
+            }
+
+            &:nth-child(2) {
+              background-color: ${$color_key_color};
+            }
+
+            svg {
+              cursor: pointer;
+            }
           }
         }
       }
