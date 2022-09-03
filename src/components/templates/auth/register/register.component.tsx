@@ -66,7 +66,7 @@ const RegisterComponent: React.FC<any> = (props) => {
               setSchool(e.target.value);
             }}
           />
-          <span>학년</span>
+          <span className="info_text">학년</span>
           <Select
             onChange={(e) => {
               setGrade(e.target.value);

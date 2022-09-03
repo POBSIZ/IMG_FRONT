@@ -27,7 +27,9 @@ const App = ({ Component, pageProps }: AppProps) => {
   // }, []);
 
   useEffect(() => {
-    initGA4('G-KZRZ73DV33');
+    if (process.env.NODE_ENV == 'production') {
+      initGA4('G-KZRZ73DV33');
+    }
   }, []);
 
   return (

@@ -8,6 +8,7 @@ const StyledTextInput = styled.div.attrs((props) => ({}))<any>`
     const $font_body_info = Theme.font.$font_body_info;
 
     const $color_base_black = Theme.palette.$color_base_black;
+    const $color_base_gray = Theme.palette.$color_base_gray;
 
     return css`
       width: 100%;
@@ -22,6 +23,7 @@ const StyledTextInput = styled.div.attrs((props) => ({}))<any>`
         display: inline-block;
         margin-bottom: 6px;
         ${$font_body_info};
+        /* color: ${$color_base_gray}; */
       }
     `;
   }};

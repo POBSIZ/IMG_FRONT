@@ -73,12 +73,12 @@ const StyledSmallGallery = styled.div.attrs((props) => ({}))`
             white-space: nowrap;
             color: ${$color_base_black};
 
-            &:last-child {
+            /* &:last-child {
               line-height: 20px;
               margin-top: 0px;
               ${$font_body_info};
               color: ${$color_base_gray};
-            }
+            } */
           }
         }
       }

@@ -71,16 +71,34 @@ export const BoardHeader = styled.nav.attrs((props) => ({}))`
     const Theme: GlobalStyleType = props.theme;
 
     const $color_base_black = Theme.palette.$color_base_black;
+    const $color_base_line = Theme.palette.$color_base_line;
 
     return css`
+      width: 100%;
       margin: 0 0 20px 0;
       list-style: none;
 
       display: flex;
+      flex-flow: row;
       align-items: center;
       gap: 10px;
 
+      overflow-x: scroll;
+
+      &::-webkit-scrollbar {
+        height: 1px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: ${$color_base_line};
+      }
+      &::-webkit-scrollbar-track {
+        background-color: #fff;
+      }
+
       a {
+        white-space: nowrap;
+        width: fit-content;
+        display: block;
         text-decoration: none;
         color: ${$color_base_black};
       }

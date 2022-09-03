@@ -7,6 +7,7 @@ import UserTable from './userTable';
 import QuizLog from './quizLog';
 
 import WordList from './wordList';
+import AddWords from './addWords';
 
 const Organisms = {
   SwipeBanner,
@@ -16,6 +17,7 @@ const Organisms = {
   UserTable,
   QuizLog,
   WordList,
+  AddWords,
 };
 
 export default Organisms;
@@ -28,4 +30,5 @@ export {
   UserTable,
   QuizLog,
   WordList,
+  AddWords,
 };

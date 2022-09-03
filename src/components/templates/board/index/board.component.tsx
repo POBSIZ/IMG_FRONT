@@ -22,9 +22,12 @@ import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
 import { Title, Move } from 'Atoms';
 import { CheckRole } from 'Hoc';
+import { useRouter } from 'next/router';
 
 const BoardComponent: React.FC<BoardPropsType> = (props) => {
-  const [currPage, setCurrPage] = useState(0);
+  const router = useRouter();
+  const id: string =
+    (router.query.id as string) ?? String(props.boardTab[0].board_id);
 
   return (
     <Layout.Container>
@@ -32,21 +35,21 @@ const BoardComponent: React.FC<BoardPropsType> = (props) => {
       <StyledBoard>
         <BoardHeader>
           {props.boardTab?.map((item, i) => {
+            const isCurr = Number(id) === Number(item.board_id);
+
             return (
               <Link href={`/board?id=${item.board_id}`} key={nanoid()}>
-                <Layout.Content
-                  onClick={() => {
-                    setCurrPage(i);
-                  }}
-                  style={{
-                    backgroundColor: currPage === i ? 'hsl(48, 100%, 50%)' : '',
-                    color: currPage === i ? '#000' : '',
-                    padding: '14px 20px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {item.title}
-                </Layout.Content>
+                <a>
+                  <Layout.Content
+                    style={{
+                      backgroundColor: isCurr ? 'hsl(48, 100%, 50%)' : '',
+                      padding: '14px 20px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {item.title}
+                  </Layout.Content>
+                </a>
               </Link>
             );
           })}

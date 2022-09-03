@@ -18,6 +18,7 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
 
     return css`
       width: 100%;
+      /* width: fit-content; */
 
       display: flex;
       justify-content: center;
@@ -27,14 +28,18 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
       /* gap: 20px; */
 
       section {
-        text-align: center;
+        text-align: left;
+        margin-bottom: 20px;
 
         h1 {
+          text-align: center;
           ${$font_title_medium};
           color: ${$color_base_black};
           margin-bottom: 8px;
         }
+
         p {
+          text-align: center;
           ${$font_body_base};
           color: ${$color_base_gray};
           margin: 0;
@@ -45,7 +50,7 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
         width: 400px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        /* align-items: flex-start; */
         flex-wrap: wrap;
         flex-flow: column;
         /* gap: 16px; */
@@ -56,6 +61,7 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
         }
 
         a {
+          text-align: center;
           display: inline-block;
           margin-top: 10px;
           text-decoration: none;
@@ -64,6 +70,10 @@ const StyledRegister = styled.article.attrs((props) => ({}))`
 
         .detail-wrapper {
           width: 100%;
+
+          .info_text {
+            margin-top: 10px;
+          }
 
           span {
             display: inline-block;

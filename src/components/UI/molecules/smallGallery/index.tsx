@@ -37,7 +37,7 @@ const SmallGallery: React.FC<any> = (props) => {
                     src={`${process.env.NEXT_PUBLIC_SERVER}/${item.thumbnail}`}
                   />
                   <span>{item.title}</span>
-                  <span>{FormatDate(item.created_at)}</span>
+                  {/* <span>{FormatDate(item.created_at)}</span> */}
                 </a>
               </Link>
             ) : null;

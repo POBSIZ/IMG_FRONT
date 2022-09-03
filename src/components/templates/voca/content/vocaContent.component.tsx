@@ -12,6 +12,7 @@ import {
   faPen,
   faCircleXmark,
   faDownload,
+  faPlayCircle,
 } from '@fortawesome/free-solid-svg-icons'; // fill 타입 아이콘
 import {} from '@fortawesome/free-regular-svg-icons'; // outline 타입 아이콘
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,24 +21,26 @@ import Layout from 'Layouts';
 
 import { Title, Button } from 'Atoms';
 import { EditText } from 'Molecules';
-import { WordList } from 'Organisms';
+import { WordList, AddWords } from 'Organisms';
 import { GetWordsByIdRes } from 'api/voca/types/get';
 
-import StyledVocaContent from './vocaContent.styled';
+import StyledVocaContent, { StyledVocaEdit } from './vocaContent.styled';
 import { WordEntity } from 'api/quiz/entity/word';
 import { VocaWordEntity } from 'api/voca/entity/vocaWord';
 
-const VocaContentComponent: React.FC<{ content: GetWordsByIdRes }> = (
-  props,
-) => {
+const VocaContentComponent: React.FC<any> = (props) => {
+  // props.content: GetWordsByIdRes;
+
   const [wordList, setWordList] = useState<VocaWordEntity[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isAdd, setIsAdd] = useState<boolean>(false);
 
   useEffect(() => {
     setWordList(props.content.word_list);
   }, [props.content.word_list]);
 
-  const handleClick = (_i: number) => {
+  const handleClick = async (_i: number, _vwid: number) => {
+    await props.removeWord(_vwid);
     setWordList((prev) => prev.filter((p) => p !== prev[_i]));
   };
 
@@ -95,17 +98,22 @@ const VocaContentComponent: React.FC<{ content: GetWordsByIdRes }> = (
                     {isLabel ? <h2>{word.label}</h2> : null}
                     <p>
                       <span>
-                        {isEdit ? (
-                          <>
-                            <FontAwesomeIcon
-                              className="icon"
-                              icon={faCircleXmark}
-                              onClick={() => {
-                                handleClick(i);
-                              }}
-                            />{' '}
-                          </>
-                        ) : null}
+                        {isEdit && (
+                          <FontAwesomeIcon
+                            className="icon"
+                            icon={faCircleXmark}
+                            onClick={() => {
+                              handleClick(i, Number(word.vocaWord_id));
+                            }}
+                          />
+                        )}{' '}
+                        <FontAwesomeIcon
+                          style={{ cursor: 'pointer' }}
+                          icon={faPlayCircle}
+                          onClick={() => {
+                            props.getAudio(word.word_id.word);
+                          }}
+                        />{' '}
                         {word.word_id.word}
                       </span>
                       <span>{word.word_id.diacritic}</span>
@@ -117,6 +125,33 @@ const VocaContentComponent: React.FC<{ content: GetWordsByIdRes }> = (
             </ul>
           </StyledVocaContent>
         </Layout.Content>
+
+        <div style={{ marginTop: '20px' }}>
+          <div className="btns">
+            <Button
+              style={{ marginBottom: '20px' }}
+              backColor="primary"
+              onClick={() => {
+                setIsAdd((prev) => !prev);
+              }}
+            >
+              {isAdd ? '닫기' : '단어 추가하기'}
+            </Button>
+          </div>
+
+          {isAdd && (
+            <StyledVocaEdit>
+              <AddWords
+                origin={props.content.origin}
+                vocaId={props.content.voca_id}
+                addVoca={props.addVoca}
+                getWords={props.getWords}
+                wordList={props.wordList}
+                setList={props.setWordList}
+              />
+            </StyledVocaEdit>
+          )}
+        </div>
       </Layout.Container>
     </>
   );

@@ -11,6 +11,7 @@ import {
 
 import { CreateVocaReq } from './types/create';
 import { useAuth } from 'Hooks';
+import { AddWordsReq } from './types/update';
 
 export function VocaApi() {
   const auth = getAuth();
@@ -49,6 +50,26 @@ export function VocaApi() {
       // 단어장 생성
       voca: async (_data: CreateVocaReq): Promise<AxiosResponse<any>> => {
         return await Post('/voca/create', _data, {
+          headers: { Authorization: token },
+        });
+      },
+    },
+
+    update: {
+      // 단어 추가
+      addWords: async (_data: AddWordsReq): Promise<AxiosResponse<any>> => {
+        return await Post('/voca/add/words', _data, {
+          headers: { Authorization: token },
+        });
+      },
+    },
+
+    remove: {
+      // 단어 추가
+      word: async (
+        _vocaWord_id: string | number,
+      ): Promise<AxiosResponse<any>> => {
+        return await Delete(`/voca/remove/word/${_vocaWord_id}`, {
           headers: { Authorization: token },
         });
       },

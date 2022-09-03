@@ -3,6 +3,31 @@ import { GlobalStyleType } from 'StyleVars';
 
 import { Button } from 'Atoms';
 
+export const StyledVocaEdit = styled.section.attrs((props) => ({}))`
+  ${(props) => {
+    const Theme: GlobalStyleType = props.theme;
+
+    const $font_body_head = Theme.font.$font_body_head;
+    const $font_body_base = Theme.font.$font_body_base;
+    const $font_body_info = Theme.font.$font_body_info;
+
+    const $color_base_white = Theme.palette.$color_base_white;
+    const $color_base_gray = Theme.palette.$color_base_gray;
+    const $color_base_black = Theme.palette.$color_base_black;
+    const $color_base_line = Theme.palette.$color_base_line;
+    const $color_base_dark = Theme.palette.$color_base_dark;
+
+    const $color_key_color = Theme.palette.$color_key_color;
+    const $color_success = Theme.palette.$color_success;
+    const $color_warning = Theme.palette.$color_warning;
+    const $color_failure = Theme.palette.$color_failure;
+
+    const $mobile_max_width = Theme.media.$mobile_max_width;
+
+    return css``;
+  }};
+`;
+
 const StyledVocaContent = styled.div.attrs((props) => ({}))`
   ${(props) => {
     const Theme: GlobalStyleType = props.theme;
@@ -112,6 +137,11 @@ const StyledVocaContent = styled.div.attrs((props) => ({}))`
             }
           }
         }
+      }
+
+      .btns {
+        display: flex;
+        gap: 10px;
       }
     `;
   }};

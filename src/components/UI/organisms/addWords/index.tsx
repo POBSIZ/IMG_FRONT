@@ -19,11 +19,9 @@ import { CheckButton, Input, Textarea, Title, Button, Badge } from 'Atoms';
 import { WordList } from 'Organisms';
 
 import { Post } from 'Utils';
+import { AddWordsReq } from 'api/voca/types/update';
 
-const VocaComponent: React.FC<any> = (props) => {
-  // 단어장 이름
-  const [vocaName, setVocaName] = useState<string>('');
-
+const AddWords: React.FC<any> = (props) => {
   // 라벨 목록 string: 라벨 이름, number: 라벨 인덱스
   const [labels, setLabels] = useState<[string, number][]>([]);
 
@@ -39,19 +37,14 @@ const VocaComponent: React.FC<any> = (props) => {
   // 원문
   const [originText, setOriginText] = useState<string>('');
 
-  // 단어장 생성 함수
-  const saveVoca = async () => {
-    if (vocaName === '') {
-      alert('단어장 이름을 기입해주세요.');
-    } else {
-      const _data = {
-        name: vocaName,
-        labels: labels,
-        word_list: props.wordList,
-        origin: originText,
-      };
-      await props.saveVoca(_data);
-    }
+  // 단어 추가 함수
+  const addVoca = async () => {
+    const _data: AddWordsReq = {
+      voca_id: props.vocaId,
+      word_list: props.wordList,
+      origin: originText,
+    };
+    await props.addVoca(_data);
   };
 
   // 데이터 전송 전처리 함수
@@ -59,10 +52,8 @@ const VocaComponent: React.FC<any> = (props) => {
     const wordList = labelMap.map((lm) => [lm[0].split(' ')[2], lm[1]]);
 
     const data = {
-      name: vocaName,
       labels: labels,
       word_list: wordList,
-      origin: originText,
     };
 
     await props.getWords(data);
@@ -142,129 +133,110 @@ const VocaComponent: React.FC<any> = (props) => {
 
   return (
     <>
-      <Layout.Container
-        style={{ display: 'flex', flexFlow: 'column', gap: '20px' }}
-      >
-        <Title style={{ marginTop: '20px' }}>단어장 생성</Title>
+      <Layout.Content>
+        <StyledVocaInput>
+          <h2>복사한 내용을 입력해주세요.</h2>
+          <Textarea
+            required
+            onChange={(e) => {
+              setTextList(regexConverter(e.target.value));
+              setOriginText(e.target.value);
+            }}
+          />
+        </StyledVocaInput>
+      </Layout.Content>
 
-        <Layout.Content>
-          <StyledVocaInput>
-            <h2>단어장 이름을 입력해주세요.</h2>
-            <Input
-              required
-              placeholder="단어장 이름을 입력해주세요."
-              onChange={(e) => {
-                setVocaName(e.target.value);
-              }}
-            />
-          </StyledVocaInput>
-        </Layout.Content>
+      <Layout.Content>
+        <h2 style={{ marginTop: '0' }}>단어를 선택해주세요.</h2>
 
-        <Layout.Content>
-          <StyledVocaInput>
-            <h2>복사한 내용을 입력해주세요.</h2>
-            <Textarea
-              required
-              onChange={(e) => {
-                setTextList(regexConverter(e.target.value));
-                setOriginText(e.target.value);
-              }}
-            />
-          </StyledVocaInput>
-        </Layout.Content>
-
-        <Layout.Content>
-          <h2 style={{ marginTop: '0' }}>단어를 선택해주세요.</h2>
-
-          <StyledVocaLabel>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (
-                  !labels.includes(e.target['label'].value.trim()) &&
-                  e.target['label'].value.trim() !== ''
-                ) {
-                  setLabels((prev) => [
-                    ...prev,
-                    [e.target['label'].value.trim(), labels.length],
-                  ]);
-                  setCurrLabel([e.target['label'].value.trim(), labels.length]);
-                }
-              }}
-            >
-              <Input
-                type="number"
-                placeholder="번호를 입력해주세요."
-                name="label"
-                required
-              />
-              <Button backColor="primary">번호 생성</Button>
-            </form>
-
-            <ul>
-              {(() => {
-                const name = nanoid();
-                return (
-                  <>
-                    {labels.map((_label, i) => (
-                      <CheckButton
-                        key={nanoid()}
-                        id={nanoid()}
-                        type="radio"
-                        name={name}
-                        text={_label[0]}
-                        defaultChecked={currLabel[1] === _label[1]}
-                        onChange={() => {
-                          setCurrLabel(_label);
-                        }}
-                      />
-                    ))}
-                  </>
-                );
-              })()}
-            </ul>
-          </StyledVocaLabel>
-
-          <StyledVoca>{memoTextList}</StyledVoca>
-
-          <Button
-            style={{ marginTop: '20px' }}
-            backColor="primary"
-            onClick={getWords}
-          >
-            단어 뜻 찾기
-          </Button>
-
-          <p style={{ textAlign: 'center', width: '100%', marginBottom: '0' }}>
-            예상 소요 시간 :{' '}
-            {Math.floor(labelMap.flat().filter((m) => m).length / 4)}초
-          </p>
-        </Layout.Content>
-
-        <Layout.Content
-          style={{
-            height: 'fit-content',
-            display: 'flex',
-            flexFlow: 'column',
-            gap: '20px',
-          }}
-        >
-          <h2>찾은 단어</h2>
-          <div
-            style={{
-              maxHeight: '46vh',
-              overflowY: 'scroll',
+        <StyledVocaLabel>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (
+                !labels.includes(e.target['label'].value.trim()) &&
+                e.target['label'].value.trim() !== ''
+              ) {
+                setLabels((prev) => [
+                  ...prev,
+                  [e.target['label'].value.trim(), labels.length],
+                ]);
+                setCurrLabel([e.target['label'].value.trim(), labels.length]);
+              }
             }}
           >
-            <WordList list={props.wordList} setList={props.setList} />
-          </div>
-          <Button backColor="primary" onClick={saveVoca}>
-            단어장 생성
-          </Button>
-        </Layout.Content>
-      </Layout.Container>
+            <Input
+              type="number"
+              placeholder="번호를 입력해주세요."
+              name="label"
+              required
+            />
+            <Button backColor="primary">번호 생성</Button>
+          </form>
+
+          <ul>
+            {(() => {
+              const name = nanoid();
+              return (
+                <>
+                  {labels.map((_label, i) => (
+                    <CheckButton
+                      key={nanoid()}
+                      id={nanoid()}
+                      type="radio"
+                      name={name}
+                      text={_label[0]}
+                      defaultChecked={currLabel[1] === _label[1]}
+                      onChange={() => {
+                        setCurrLabel(_label);
+                      }}
+                    />
+                  ))}
+                </>
+              );
+            })()}
+          </ul>
+        </StyledVocaLabel>
+
+        <StyledVoca>{memoTextList}</StyledVoca>
+
+        <Button
+          style={{ marginTop: '20px' }}
+          backColor="primary"
+          onClick={getWords}
+        >
+          단어 뜻 찾기
+        </Button>
+
+        <p style={{ textAlign: 'center', width: '100%', marginBottom: '0' }}>
+          예상 소요 시간 :{' '}
+          {Math.floor(labelMap.flat().filter((m) => m).length / 4)}초
+        </p>
+      </Layout.Content>
+
+      <Layout.Content
+        style={{
+          height: 'fit-content',
+          display: 'flex',
+          flexFlow: 'column',
+          gap: '20px',
+        }}
+      >
+        <h2>찾은 단어</h2>
+        <div
+          style={{
+            maxHeight: '46vh',
+            overflowY: 'scroll',
+          }}
+        >
+          <WordList list={props.wordList} setList={props.setList} />
+        </div>
+        <Button backColor="primary" onClick={addVoca}>
+          단어 추가
+        </Button>
+      </Layout.Content>
     </>
   );
 };
 
-export default VocaComponent;
+export default AddWords;
