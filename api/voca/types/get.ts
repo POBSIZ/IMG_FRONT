@@ -41,4 +41,5 @@ export interface GetWordsByIdRes {
   created_at: Date;
   voca_id: number;
   word_list: VocaWordEntity[];
+  has_quiz: boolean;
 }

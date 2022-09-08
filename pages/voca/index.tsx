@@ -9,9 +9,13 @@ import { useMethod } from 'Hooks';
 
 import { VocaApi } from 'api';
 import { GetVocaListRes } from 'api/voca/types/get';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 const VocaPage: NextPage<any> = (props) => {
   const vocaApi = VocaApi();
+  const toastReducer = useSelector(
+    (state: RootStateOrAny) => state.toastReducer,
+  );
 
   const [vocaList, setVocaList] = useState<GetVocaListRes[]>([]);
 
@@ -21,7 +25,7 @@ const VocaPage: NextPage<any> = (props) => {
 
   useEffect(() => {
     getVocaList();
-  }, []);
+  }, [toastReducer]);
 
   return (
     <>

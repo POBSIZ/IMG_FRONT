@@ -28,10 +28,12 @@ const VocaContentTemplate: React.FC<any> = (props) => {
 
   const [wordList, setWordList] = useState<GetWordsRes[]>([]);
 
+  // 단어 뜻 찾기
   const getWords = useCallback(async (_data: GetWordsReq) => {
     setWordList((await vocaApi.get.words(_data)).data);
   }, []);
 
+  // 단어 추가
   const addVoca = useCallback(async (_data: AddWordsReq) => {
     try {
       await vocaApi.update.addWords(_data);
@@ -45,6 +47,7 @@ const VocaContentTemplate: React.FC<any> = (props) => {
     } catch (error) {}
   }, []);
 
+  // 단어 삭제
   const removeWord = useCallback(async (_id: string | number) => {
     try {
       await vocaApi.remove.word(_id);
@@ -64,6 +67,34 @@ const VocaContentTemplate: React.FC<any> = (props) => {
     source.start();
   };
 
+  // 퀴즈 생성
+  const createQuiz = async () => {
+    try {
+      await vocaApi.create.quiz(String(router.query.id));
+      dispatch(
+        pushToastAsync.request({
+          status: 'success',
+          message: '퀴즈 생성 완료',
+        }),
+      );
+    } catch (error) {}
+  };
+
+  // 퀴즈 제거
+  const removeQuiz = async () => {
+    try {
+      await vocaApi.remove.quiz(String(router.query.id));
+      dispatch(
+        pushToastAsync.request({
+          status: 'error',
+          message: '퀴즈 제거 완료',
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <VocaContentComponent
@@ -74,6 +105,8 @@ const VocaContentTemplate: React.FC<any> = (props) => {
         wordList={wordList}
         setList={setWordList}
         removeWord={removeWord}
+        createQuiz={createQuiz}
+        removeQuiz={removeQuiz}
       />
     </>
   );

@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export interface MovePropsType extends Partial<ReactElement> {
   children: any;
-  backColor: 'primary' | 'gradient' | 'black' | 'red';
+  backColor: 'primary' | 'gradient' | 'black' | 'red' | 'green';
   isDisabled?: boolean;
   href: string;
   style?: CSSProperties;
@@ -19,6 +19,7 @@ export const StyledMove = styled.div.attrs((props: MovePropsType) => ({
     const $color_base_black = Theme.palette.$color_base_black;
     const $color_key_color = Theme.palette.$color_key_color;
     const $color_failure = Theme.palette.$color_failure;
+    const $color_success = Theme.palette.$color_success;
 
     const bgColor =
       props.backColor === 'primary'
@@ -27,6 +28,8 @@ export const StyledMove = styled.div.attrs((props: MovePropsType) => ({
         ? `background-color: ${$color_base_black};`
         : props.backColor === 'red'
         ? `background-color: ${$color_failure};`
+        : props.backColor === 'green'
+        ? `background-color: ${$color_success};`
         : `background-color: ${$color_base_black};`;
 
     return css`

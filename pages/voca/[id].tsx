@@ -13,8 +13,13 @@ import { useRouter } from 'next/router';
 import { VocaContentTemplate } from 'Templates';
 import { VocaApi } from 'api';
 import { GetWordsByIdRes } from 'api/voca/types/get';
+import { RootStateOrAny, useSelector } from 'react-redux';
+import { Back } from 'Atoms';
 
 const VocaContentPage: NextPage<any> = ({ ssrId }) => {
+  const toastReducer = useSelector(
+    (state: RootStateOrAny) => state.toastReducer,
+  );
   const router = useRouter();
   const { id } = router.query;
   const voca = VocaApi();
@@ -25,6 +30,7 @@ const VocaContentPage: NextPage<any> = ({ ssrId }) => {
     created_at: new Date(),
     voca_id: 0,
     word_list: [],
+    has_quiz: false,
   });
 
   const getWords = async () => {
@@ -33,13 +39,14 @@ const VocaContentPage: NextPage<any> = ({ ssrId }) => {
 
   useEffect(() => {
     getWords();
-  }, []);
+  }, [toastReducer]);
 
   return (
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_TITLE} | 단어장</title>
       </Head>
+
       <VocaContentTemplate content={content} />
     </>
   );

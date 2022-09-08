@@ -48,24 +48,21 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
                       key={nanoid()}
                       isTry={isTry}
                     >
-                      <div
-                        onClick={() => {
-                          handleClick(
-                            item.quiz_id,
-                            item.title,
-                            item.userQuiz_id,
-                          );
-                        }}
+                      <Link
+                        href={`quiz/play/${item.quiz_id}?title=${item.title}&uqid=${item.userQuiz_id}`}
+                        shallow={true}
                       >
-                        <h3>{item.title}</h3>
-                        <p>{FormatDate(item.date)}</p>
-                        <div>
-                          <span>{item.tryCount}회 중 최고 기록 : </span>
-                          <span>
-                            {item.solvedCount} / {item.maxCount}
-                          </span>
-                        </div>
-                      </div>
+                        <a>
+                          <h3>{item.title}</h3>
+                          <p>{FormatDate(item.date)}</p>
+                          <div>
+                            <span>{item.tryCount}회 중 최고 기록 : </span>
+                            <span>
+                              {item.solvedCount} / {item.maxCount}
+                            </span>
+                          </div>
+                        </a>
+                      </Link>
                       <div className="opt">
                         <Link href="profile">
                           <a>
@@ -73,6 +70,14 @@ const QuizComponent: React.FC<QuizTemplatePropsType> = (
                             <FontAwesomeIcon icon={faAngleRight} />
                           </a>
                         </Link>
+                        {item.is_voca && (
+                          <Link href={`/voca/${item.voca_id}`}>
+                            <a>
+                              단어장 보러가기{'  '}
+                              <FontAwesomeIcon icon={faAngleRight} />
+                            </a>
+                          </Link>
+                        )}
                         <p>
                           {item.solvedCount === 0
                             ? 0

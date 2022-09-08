@@ -14,8 +14,8 @@ import { useAuth } from 'Hooks';
 import { AddWordsReq } from './types/update';
 
 export function VocaApi() {
-  const auth = getAuth();
-  // const auth = useAuth();
+  // const auth = getAuth();
+  const auth = useAuth();
   const token = `Bearer ${auth.token}`;
 
   return {
@@ -53,6 +53,24 @@ export function VocaApi() {
           headers: { Authorization: token },
         });
       },
+
+      // 퀴즈 생성
+      quiz: async (_vocaId: string): Promise<AxiosResponse<any>> => {
+        return await Post(
+          `/voca/create/quiz/${_vocaId}`,
+          {},
+          {
+            headers: { Authorization: token },
+          },
+        );
+      },
+
+      // 단어장 합치기
+      merge: async (_list: string[]): Promise<AxiosResponse<any>> => {
+        return await Post(`/voca/merge`, _list, {
+          headers: { Authorization: token },
+        });
+      },
     },
 
     update: {
@@ -70,6 +88,15 @@ export function VocaApi() {
         _vocaWord_id: string | number,
       ): Promise<AxiosResponse<any>> => {
         return await Delete(`/voca/remove/word/${_vocaWord_id}`, {
+          headers: { Authorization: token },
+        });
+      },
+
+      // 퀴즈 제거
+      quiz: async (
+        _vocaQuiz_id: string | number,
+      ): Promise<AxiosResponse<any>> => {
+        return await Delete(`/voca/remove/quiz/${_vocaQuiz_id}`, {
           headers: { Authorization: token },
         });
       },

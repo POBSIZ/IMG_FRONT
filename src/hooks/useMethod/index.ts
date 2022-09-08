@@ -1,11 +1,13 @@
 import { useSelector, RootStateOrAny } from 'react-redux';
+import { useAuth } from '../useAuth';
 
 import axios, { AxiosRequestConfig } from 'axios';
 import { Get, Post, Patch, Delete } from 'Utils';
 
 export const useMethod = () => {
-  const authState = useSelector((state: RootStateOrAny) => state.authReducer);
-  
+  const authState = useAuth();
+  // const authState = useSelector((state: RootStateOrAny) => state.authReducer);
+
   return {
     GET: async (url: string, configs: AxiosRequestConfig = {}) => {
       const res = await Get(url, {

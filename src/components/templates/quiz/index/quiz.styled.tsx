@@ -50,9 +50,10 @@ export const QuizItem = styled.div.attrs((props) => {})`
 
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 
-      div {
+      a {
         display: block;
         width: 100%;
+        text-decoration: none;
         display: flex;
         flex-flow: column;
         gap: 6px;
@@ -72,6 +73,8 @@ export const QuizItem = styled.div.attrs((props) => {})`
         div {
           display: flex;
           flex-flow: row;
+          gap: 4px;
+
           span {
             ${$font_subtitle};
             color: ${$is_disabled_font};
@@ -84,13 +87,11 @@ export const QuizItem = styled.div.attrs((props) => {})`
       }
 
       .opt {
-        display: flex;
-        flex-flow: row;
-        justify-content: space-between;
-        align-items: center;
         width: 100%;
 
         a {
+          margin-bottom: 4px;
+          display: inline-block;
           /* ${$font_subtitle}; */
           text-decoration: none;
           color: ${$is_disabled_font};
@@ -98,6 +99,7 @@ export const QuizItem = styled.div.attrs((props) => {})`
 
         p {
           margin: 0;
+          align-self: flex-end;
           text-align: end;
           ${$font_title_regular} !important;
           color: ${$is_disabled_bg};

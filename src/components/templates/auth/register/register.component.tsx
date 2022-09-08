@@ -60,7 +60,7 @@ const RegisterComponent: React.FC<any> = (props) => {
             text="학교"
             type="text"
             placeholder="oooo학교"
-            value={school}
+            defaultValue={school}
             required
             onChange={(e) => {
               setSchool(e.target.value);
@@ -68,6 +68,7 @@ const RegisterComponent: React.FC<any> = (props) => {
           />
           <span className="info_text">학년</span>
           <Select
+            value={grade}
             onChange={(e) => {
               setGrade(e.target.value);
             }}

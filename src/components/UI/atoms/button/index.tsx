@@ -4,7 +4,7 @@ import { GlobalStyleType } from 'styles/global.styles';
 
 export interface ButtonPropsType extends Partial<ReactElement> {
   children: any;
-  backColor: 'primary' | 'gradient' | 'black' | 'red';
+  backColor: 'primary' | 'gradient' | 'black' | 'red' | 'green';
   isDisabled?: boolean;
   isLoad?: boolean;
 }
@@ -19,6 +19,7 @@ const Button = styled.button.attrs((props: ButtonPropsType) => ({
     const $color_base_line = Theme.palette.$color_base_line;
     const $color_key_color = Theme.palette.$color_key_color;
     const $color_failure = Theme.palette.$color_failure;
+    const $color_success = Theme.palette.$color_success;
 
     const bgColor =
       props.backColor === 'primary'
@@ -27,6 +28,8 @@ const Button = styled.button.attrs((props: ButtonPropsType) => ({
         ? `background-color: ${$color_base_black};`
         : props.backColor === 'red'
         ? `background-color: ${$color_failure};`
+        : props.backColor === 'green'
+        ? `background-color: ${$color_success};`
         : `background-color: ${$color_base_black};`;
 
     return css`

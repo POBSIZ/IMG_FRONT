@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from 'Layouts';
 
-import { Title, Button } from 'Atoms';
+import { Title, Button, Back } from 'Atoms';
 import { EditText } from 'Molecules';
 import { WordList, AddWords } from 'Organisms';
 import { GetWordsByIdRes } from 'api/voca/types/get';
@@ -47,6 +47,7 @@ const VocaContentComponent: React.FC<any> = (props) => {
   return (
     <>
       <Layout.Container>
+        <Back style={{ margin: '20px 0' }} />
         <Title style={{ margin: '20px 0' }}>
           <EditText>{props.content.name}</EditText>
         </Title>
@@ -128,6 +129,28 @@ const VocaContentComponent: React.FC<any> = (props) => {
 
         <div style={{ marginTop: '20px' }}>
           <div className="btns">
+            {props.content.has_quiz ? (
+              <Button
+                style={{ marginBottom: '20px' }}
+                backColor="red"
+                onClick={() => {
+                  props.removeQuiz();
+                }}
+              >
+                퀴즈 삭제하기
+              </Button>
+            ) : (
+              <Button
+                style={{ marginBottom: '20px' }}
+                backColor="green"
+                onClick={() => {
+                  props.createQuiz();
+                }}
+              >
+                퀴즈 생성하기
+              </Button>
+            )}
+
             <Button
               style={{ marginBottom: '20px' }}
               backColor="primary"

@@ -8,7 +8,7 @@ interface CheckPropsType extends Partial<HTMLInputElement> {
 }
 
 export const Check = styled.input.attrs((props) => ({
-  type: props.type,
+  type: props.type ?? 'checkbox',
 }))<CheckPropsType>`
   ${(props) => {
     const sizeTable = {

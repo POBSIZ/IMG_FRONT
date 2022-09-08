@@ -32,12 +32,9 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
     const res = await method.GET(`/auth/user/${ssrId ?? id}`);
 
     const log = await method.GET(`/auth/quiz/log/chain/${ssrId ?? id}`);
-    const sortedLog = log.data
-      .flat()
-      .sort((a, b) => {
-        return Number(new Date(b.date)) - Number(new Date(a.date));
-      })
-      .reverse();
+    const sortedLog = log.data.flat().sort((a, b) => {
+      return Number(new Date(b.date)) - Number(new Date(a.date));
+    });
 
     setQuizLog(sortedLog);
     setUserInfo(res.data);

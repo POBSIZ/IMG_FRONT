@@ -52,8 +52,10 @@ const UserInfoComponent: React.FC<any> = (props) => {
       >
         <Back style={{ margin: '20px 0' }} />
         <Title style={{ margin: '20px 0' }}>
-          <EditText name="name">{props.profile?.name}</EditText>
-          <input name="user_id" value={props.profile?.user_id} hidden />
+          <CheckRole role="admin">
+            <EditText name="name">{props.profile?.name}</EditText>
+          </CheckRole>
+          <input name="user_id" defaultValue={props.profile?.user_id} hidden />
         </Title>
         <StyledUserInfo>
           <Layout.Content>
@@ -75,14 +77,18 @@ const UserInfoComponent: React.FC<any> = (props) => {
               {academy ? (
                 <>
                   <span>{academy.name}</span>
-                  <input name="academy_id" value={academy.academy_id} hidden />
+                  <input
+                    name="academy_id"
+                    defaultValue={academy.academy_id}
+                    hidden
+                  />
                 </>
               ) : (
                 <>
                   <span>{props.profile?.academy_id?.name}</span>
                   <input
                     name="academy_id"
-                    value={props.profile?.academy_id?.academy_id}
+                    defaultValue={props.profile?.academy_id?.academy_id}
                     hidden
                   />
                 </>
@@ -95,21 +101,20 @@ const UserInfoComponent: React.FC<any> = (props) => {
             </Info>
             <Info>
               <h4>학년 :</h4>
-              <Select name="grade">
+              <Select name="grade" defaultValue={props.profile?.grade}>
                 <option
-                  value={props.profile?.grade}
-                  selected
-                  hidden
-                  style={{ display: 'none' }}
+                  defaultValue=""
+                  // hidden
+                  // style={{ display: 'none' }}
                 >
-                  {props.profile?.grade}
+                  미지정
                 </option>
-                <option value="1학년">1학년</option>
-                <option value="2학년">2학년</option>
-                <option value="3학년">3학년</option>
-                <option value="4학년">4학년</option>
-                <option value="5학년">5학년</option>
-                <option value="6학년">6학년</option>
+                <option defaultValue="1학년">1학년</option>
+                <option defaultValue="2학년">2학년</option>
+                <option defaultValue="3학년">3학년</option>
+                <option defaultValue="4학년">4학년</option>
+                <option defaultValue="5학년">5학년</option>
+                <option defaultValue="6학년">6학년</option>
               </Select>
             </Info>
             <Info>
