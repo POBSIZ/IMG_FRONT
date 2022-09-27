@@ -77,6 +77,7 @@ const VocaContentTemplate: React.FC<any> = (props) => {
           message: '퀴즈 생성 완료',
         }),
       );
+      router.push('/quiz');
     } catch (error) {}
   };
 
