@@ -17,14 +17,14 @@ import { UserInfoPropsType } from './userInfo.types';
 import Link from 'next/link';
 
 import Layout from 'Layouts';
-import { Title, Input, Button, Badge, Select, Back } from 'Atoms';
-import { EditText, Search } from 'Molecules';
 import { CheckRole } from 'Hoc';
-
+import { Title, Input, Button, Badge, Select, Back } from 'Atoms';
+import { EditText, Search, Modal } from 'Molecules';
 import { QuizLog } from 'Organisms';
 
 const UserInfoComponent: React.FC<any> = (props) => {
   const [academy, setAcademy] = useState<any>();
+  const [modalState, setModalState] = useState<boolean>(false);
 
   const setAcademyResult = useCallback((_idx, _title, _subtitle, _dataObj) => {
     setAcademy(_dataObj);
@@ -66,6 +66,10 @@ const UserInfoComponent: React.FC<any> = (props) => {
                 <span>{props.profile?.role}</span>
               </Info>
             </CheckRole>
+            <Info>
+              <h4>아이디 :</h4>
+              <span>{props.profile?.username}</span>
+            </Info>
             <Info>
               <h4>닉네임 :</h4>
               <span>
@@ -128,15 +132,41 @@ const UserInfoComponent: React.FC<any> = (props) => {
           {props.quizLog ? <QuizLog quizLog={props.quizLog} /> : null}
 
           <div className="btns">
-            {/* <Button type="button" backColor="red">
-              삭제
-            </Button> */}
+            <Button
+              type="button"
+              backColor="red"
+              onClick={() => {
+                setModalState(true);
+              }}
+            >
+              회원삭제
+            </Button>
             <Button type="submit" backColor="primary">
               저장
             </Button>
           </div>
         </StyledUserInfo>
       </form>
+
+      <Modal
+        title="정말 삭제 하시나요?"
+        openState={modalState}
+        setOpenState={() => {
+          setModalState(false);
+        }}
+      >
+        <>
+          <Button
+            type="button"
+            backColor="red"
+            onClick={() => {
+              props.handleDelete(props.profile?.user_id);
+            }}
+          >
+            네 삭제하겠습니다.
+          </Button>
+        </>
+      </Modal>
     </Layout.Container>
   );
 };

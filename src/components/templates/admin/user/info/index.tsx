@@ -14,11 +14,13 @@ import UserInfoComponent from './userInfo.component';
 import { useMethod } from 'Hooks';
 import { useRouter } from 'next/router';
 import { pushToastAsync } from 'Actions/toastAction';
+import Apis from 'api';
 
 const UserInfoTemplate: React.FC<UserInfoPropsType> = (props, {}) => {
   const method = useMethod();
   const router = useRouter();
   const dispatch = useDispatch();
+  const userApi = Apis.UserApi();
 
   const handlePatch = useCallback(async (e) => {
     try {
@@ -50,9 +52,34 @@ const UserInfoTemplate: React.FC<UserInfoPropsType> = (props, {}) => {
     }
   }, []);
 
+  const handleDelete = async (_uid) => {
+    try {
+      await userApi.remove.user(_uid);
+      dispatch(
+        pushToastAsync.request({
+          status: 'error',
+          message: '삭제하였습니다.',
+        }),
+      );
+      router.back();
+    } catch (error: any) {
+      dispatch(
+        pushToastAsync.request({
+          status: 'error',
+          message: '실패하였습니다.',
+        }),
+      );
+      throw new Error(error);
+    }
+  };
+
   return (
     <>
-      <UserInfoComponent {...props} handlePatch={handlePatch} />
+      <UserInfoComponent
+        {...props}
+        handlePatch={handlePatch}
+        handleDelete={handleDelete}
+      />
     </>
   );
 };

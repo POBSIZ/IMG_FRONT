@@ -39,6 +39,7 @@ export const ModalHeader = styled.div.attrs((props) => ({}))`
       }
 
       svg {
+        cursor: pointer;
         font-size: 20px;
         padding: 0 10px;
         color: ${$color_key_color};

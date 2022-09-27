@@ -7,15 +7,17 @@ export function UserApi() {
   const token = `Bearer ${auth.token}`;
 
   return {
-    get: {
+    get: {},
+
+    create: {},
+
+    remove: {
       // 내 단어장 모두 불러오기
-      vocaList: async (): Promise<AxiosResponse<any>> => {
-        return await Get('/voca/get/all', {
+      user: async (_uid): Promise<AxiosResponse<any>> => {
+        return await Delete(`/auth/remove/${_uid}`, {
           headers: { Authorization: token },
         });
       },
     },
-
-    create: {},
   };
 }
