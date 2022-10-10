@@ -5,7 +5,7 @@ import { AnswerListItem } from 'Templates/quiz/play/quizPlay.types';
 // Quiz Result Reducer Types
 export interface QuizResultType {
   title: string;
-  id: number;
+  id: number | string;
   list: AnswerListItem[];
   corrCount: number;
 }

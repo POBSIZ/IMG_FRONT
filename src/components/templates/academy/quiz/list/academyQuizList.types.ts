@@ -3,7 +3,7 @@ import { SelectListType, SelectListPropsType } from 'Molecules/selectList';
 export interface AcademyQuizListComponentPropsType {
   quizList: SelectListType[];
   handleQuiz: (
-    _idx: number,
+    _idx: number | string,
     _title: string,
     _subtitle: string | number,
     _dataObj: any,
