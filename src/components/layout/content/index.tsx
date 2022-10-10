@@ -18,6 +18,7 @@ const Content = styled.section.attrs((props) => ({}))`
     const $header_mobile_line_height = Theme.size.$header_mobile_line_height;
     return css`
       background-color: rgb(0, 0, 0, 3%);
+      /* background-color: ${$color_base_LightGray}; */
       padding: 2% 3%;
       /* border-radius: 16px; */
 

@@ -1,6 +1,6 @@
 export interface AnswerListItem {
   id: number;
-  prob_id: number;
+  prob_id: string;
   answer: [number, string] | [];
   correctWordId: number;
   correctWord: string;
@@ -20,9 +20,9 @@ export interface QuizItemType {
 }
 
 export interface QuizPlayComponentPropsType {
-  userQuizId: number;
-  quizId: number;
-  quizLogId: number;
+  userQuizId: string;
+  quizId: string;
+  quizLogId: string;
   quizTitle: string;
   limitTime: number;
   quizList: QuizItemType[];

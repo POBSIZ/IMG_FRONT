@@ -13,6 +13,7 @@ import Move from './move';
 import Back from './back';
 import Textarea from './textarea';
 import CheckButton from './checkButton';
+import More from './more';
 
 const Atoms = {
   Logo,
@@ -30,6 +31,7 @@ const Atoms = {
   Back,
   CheckButton,
   Textarea,
+  More,
 };
 
 export default Atoms;
@@ -50,4 +52,5 @@ export {
   Back,
   CheckButton,
   Textarea,
+  More,
 };

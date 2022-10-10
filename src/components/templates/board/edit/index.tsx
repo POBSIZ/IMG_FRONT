@@ -13,7 +13,7 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import BoardEditComponent from './boardEdit.component';
 
 export interface BoardHeaderType {
-  board_id: bigint | number; // 게시판 ID
+  board_id: string; // 게시판 ID
   title: string; // 이름
   desc: string; // 설명
   status: 'PUBLIC' | 'PRIVATE'; // 상태
@@ -26,7 +26,7 @@ export interface BoardEditPropsType {
   boardTab: BoardHeaderType[];
   handleSubmit: (
     _post_id: string,
-    _board_id: number,
+    _board_id: string,
     _title: string,
     _content: string,
   ) => void;

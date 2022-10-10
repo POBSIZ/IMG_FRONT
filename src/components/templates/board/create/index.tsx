@@ -13,7 +13,7 @@ import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import BoardCreateComponent from './boardCreate.component';
 
 export interface BoardHeaderType {
-  board_id: bigint | number; // 게시판 ID
+  board_id: string | string; // 게시판 ID
   title: string; // 이름
   desc: string; // 설명
   status: 'PUBLIC' | 'PRIVATE'; // 상태
@@ -23,7 +23,11 @@ export interface BoardHeaderType {
 
 export interface BoardCreatePropsType {
   boardTab: BoardHeaderType[];
-  handleSubmit: (_board_id: number, _title: string, _content: string) => void;
+  handleSubmit: (
+    _board_id: string,
+    _title: string,
+    _content: string,
+  ) => void;
   handleThumbnail: (...args: any) => void;
 }
 
@@ -50,7 +54,7 @@ const BoardCreateTemplate: React.FC<any> = (props) => {
         }),
       );
 
-      router.push('/board', undefined, { shallow: true });
+      router.back();
     } catch (error) {
       dispatch(
         pushToastAsync.request({

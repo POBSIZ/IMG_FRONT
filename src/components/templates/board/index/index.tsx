@@ -11,7 +11,7 @@ import BoardComponent from './board.component';
 
 export interface BoardHeaderType {
   // 게시판 ID
-  board_id: bigint | number;
+  board_id: string | string;
 
   // 이름
   title: string;

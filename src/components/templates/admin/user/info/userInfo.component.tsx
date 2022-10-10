@@ -132,15 +132,17 @@ const UserInfoComponent: React.FC<any> = (props) => {
           {props.quizLog ? <QuizLog quizLog={props.quizLog} /> : null}
 
           <div className="btns">
-            <Button
-              type="button"
-              backColor="red"
-              onClick={() => {
-                setModalState(true);
-              }}
-            >
-              회원삭제
-            </Button>
+            <CheckRole role="admin">
+              <Button
+                type="button"
+                backColor="red"
+                onClick={() => {
+                  setModalState(true);
+                }}
+              >
+                회원삭제
+              </Button>
+            </CheckRole>
             <Button type="submit" backColor="primary">
               저장
             </Button>

@@ -85,7 +85,7 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
                     backColor="primary"
                     onClick={() => {
                       props.responseChain(
-                        Number(props.profile?.chain_id),
+                        String(props.profile?.chain_id),
                         true,
                       );
                     }}
@@ -96,7 +96,7 @@ const ProfileComponent: React.FC<ProfileTemplatePropsType> = (props) => {
                     backColor="red"
                     onClick={() => {
                       props.responseChain(
-                        Number(props.profile?.chain_id),
+                        String(props.profile?.chain_id),
                         false,
                       );
                     }}

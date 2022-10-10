@@ -33,13 +33,13 @@ import { SelectListType } from 'Molecules/selectList';
 
 const QuizCreateComponent: React.FC<QuizCreatePropsType> = (props) => {
   const [currBook, setCurrBook] = useState<SelectListType>({
-    idx: NaN,
+    idx: 'NaN',
     title: '',
     subtitle: NaN,
   });
 
   const [quizOption, setQuizOption] = useState<Partial<QuizCreateResDataType>>({
-    book_id: 0,
+    book_id: '0',
     scope: [0, 0],
     word_count: 0,
     type: 'IN_PREV',
@@ -50,7 +50,7 @@ const QuizCreateComponent: React.FC<QuizCreatePropsType> = (props) => {
   const handleQuizOption = useCallback(
     (_scope, _word_count, _type) => {
       setQuizOption((state) => ({
-        book_id: Number(currBook.idx),
+        book_id: currBook.idx,
         scope: _scope,
         word_count: _word_count,
         type: _type,
@@ -100,7 +100,7 @@ const QuizCreateComponent: React.FC<QuizCreatePropsType> = (props) => {
           <span className="m-title">2. 책 선택</span>
           <SelectList
             type="radio"
-            boxHeight={300}
+            boxHeight={'300px'}
             id="book"
             name="book"
             selectList={props.bookList}

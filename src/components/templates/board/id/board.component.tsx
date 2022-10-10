@@ -20,7 +20,7 @@ import StyledBoard, { BoardHeader, BoardList } from './board.styled';
 
 import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
-import { Title, Move, Back } from 'Atoms';
+import { Title, Move, Back, More } from 'Atoms';
 
 const BoardComponent: React.FC<BoardPropsType> = (props) => {
   return (
@@ -53,6 +53,7 @@ const BoardComponent: React.FC<BoardPropsType> = (props) => {
               </Link>
             );
           })}
+          <More onClick={() => {}} />
         </BoardList>
         {/* <Move href="/board/create" backColor="primary">
           글 작성

@@ -1,5 +1,5 @@
 export interface WordEntity {
-  word_id: bigint | number;
+  word_id: string;
 
   // book_id: BookEntity;
 

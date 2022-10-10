@@ -7,9 +7,9 @@ import ProfileComponent from './profile.component';
 import { useValidate } from 'Hooks';
 
 export interface QuizLogItemType {
-  quiz_id: number | bigint;
-  quizLog_id: number | bigint;
-  userQuiz_id: number | bigint;
+  quiz_id: string;
+  quizLog_id: string;
+  userQuiz_id: string;
   date: string;
   title: string;
   score: number;
@@ -22,7 +22,10 @@ export interface ProfileTemplatePropsType {
   dateUserList: any[];
   chainId?: string;
   requestChain: (e: any) => Promise<void>;
-  responseChain: (_targetId: number, _status: boolean) => Promise<void>;
+  responseChain: (
+    _targetId: number | string,
+    _status: boolean,
+  ) => Promise<void>;
 }
 
 const ProfileTemplate: React.FC<ProfileTemplatePropsType> = (props) => {

@@ -39,7 +39,7 @@ const VocaContentComponent: React.FC<any> = (props) => {
     setWordList(props.content.word_list);
   }, [props.content.word_list]);
 
-  const handleClick = async (_i: number, _vwid: number) => {
+  const handleClick = async (_i: number | string, _vwid: string) => {
     await props.removeWord(_vwid);
     setWordList((prev) => prev.filter((p) => p !== prev[_i]));
   };
@@ -104,7 +104,7 @@ const VocaContentComponent: React.FC<any> = (props) => {
                             className="icon"
                             icon={faCircleXmark}
                             onClick={() => {
-                              handleClick(i, Number(word.vocaWord_id));
+                              handleClick(i, String(word.vocaWord_id));
                             }}
                           />
                         )}{' '}

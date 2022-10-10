@@ -20,7 +20,7 @@ import StyledBoard, { BoardHeader, BoardList } from './board.styled';
 
 import { FormatDate } from 'Utils';
 import Layout from 'Layouts';
-import { Title, Move } from 'Atoms';
+import { Title, Move, More } from 'Atoms';
 import { CheckRole } from 'Hoc';
 import { useRouter } from 'next/router';
 
@@ -78,6 +78,8 @@ const BoardComponent: React.FC<BoardPropsType> = (props) => {
               </Link>
             );
           })}
+
+          {props.boardList.length > 6 && <More onClick={() => {}} />}
         </BoardList>
         <CheckRole role="admin">
           <Move href="/board/create" backColor="primary">

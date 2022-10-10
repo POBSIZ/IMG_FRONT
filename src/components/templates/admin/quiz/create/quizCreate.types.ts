@@ -15,7 +15,7 @@ export interface QuizCreateResDataType {
   title: string;
   time: number;
   // wordList: BookWordListType[];
-  book_id: number;
+  book_id: string;
   scope: [number, number];
   word_count: number;
   type: 'IN_PREV' | 'EX_PREV' | 'STATIC';

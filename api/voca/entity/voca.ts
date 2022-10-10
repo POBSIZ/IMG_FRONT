@@ -2,7 +2,7 @@ import { UserEntity } from 'api/user/entity/user';
 
 export interface VocaEntity {
   // 단어장 ID
-  voca_id: number;
+  voca_id: string;
 
   // 유저 ID
   user_id: UserEntity;

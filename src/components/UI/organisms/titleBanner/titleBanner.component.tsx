@@ -6,10 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // HOC
 import { nanoid } from 'nanoid';
 import Link from 'next/link';
 
-import StyledTitleBanner, {
-  PortalRing,
-  BoardTabWrapper,
-} from './titleBanner.styled';
+import StyledTitleBanner, { BoardTabWrapper } from './titleBanner.styled';
 import { AosWrapper } from 'Hoc';
 
 import { TitleBannerPropsType } from '.';
@@ -24,28 +21,6 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
   return (
     <>
       <StyledTitleBanner style={{ background: props.imgSrc }}>
-        {/* <Layout.Container>
-          <AosWrapper animation="fade-up" duration={500}>
-            <section>
-              <PortalRing>
-                <div className="circle" />
-                <div className="circle" />
-                <div className="circle" />
-                <AosWrapper animation="fade-up" duration={600}>
-                  <h1>{process.env.NEXT_PUBLIC_TITLE}</h1>
-                </AosWrapper>
-                <AosWrapper animation="fade-up" delay={1000} duration={800}>
-                  <p>안녕하세요 이미지 어학원입니다.</p>
-                </AosWrapper>
-              </PortalRing>
-            </section>
-          </AosWrapper>
-        </Layout.Container> */}
-
-        {/* <Move href="/quiz" backColor="primary">
-          퀴즈풀러가기
-        </Move> */}
-
         <Layout.Container
           style={{
             display: 'flex',
@@ -54,25 +29,23 @@ const TitleBannerComponent: React.FC<TitleBannerPropsType> = (
             marginTop: '40px',
           }}
         >
-          <Layout.Content
-            style={{
-              display: 'flex',
-              flexFlow: 'row',
-              gap: '20px',
-              flexWrap: 'wrap',
-            }}
-          >
+          <Layout.Content>
             <div className="gal">
               <SmallGallery title="공지" list={props.noticeList} limit={4} />
             </div>
+          </Layout.Content>
+
+          <Layout.Content>
             <div className="gal">
               <SmallGallery title="소식" list={props.storyList} limit={4} />
             </div>
           </Layout.Content>
+
           <BoardTabWrapper>
             <Layout.Content>
               <BoardTab title="공지" list={props.noticeList.slice(0, 5)} />
             </Layout.Content>
+
             <Layout.Content>
               <BoardTab title="소식" list={props.storyList.slice(0, 5)} />
             </Layout.Content>

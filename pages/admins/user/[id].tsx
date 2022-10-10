@@ -19,7 +19,7 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
 
   const [userInfo, setUserInfo] = useState({
-    user_id: Number(id),
+    user_id: id as string,
     name: '',
     role: '',
     class_id: null,

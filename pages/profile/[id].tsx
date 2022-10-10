@@ -16,7 +16,7 @@ const UserInfoPage: NextPage<any> = (props, { ssrId }) => {
   const { id } = router.query;
 
   const [userInfo, setUserInfo] = useState({
-    user_id: Number(id),
+    user_id: id as string,
     name: '',
     role: '',
     class_id: null,

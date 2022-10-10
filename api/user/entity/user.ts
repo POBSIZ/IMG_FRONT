@@ -6,8 +6,8 @@ export enum Roles {
 }
 
 export interface UserEntity {
-  user_id: number; // 유저 ID
-  chain_id: number; // 연결 ID
+  user_id: string; // 유저 ID
+  chain_id: string; // 연결 ID
   name: string; // 이름
   nickname: string; // 닉네임
   username: string; // 아이디

@@ -17,7 +17,7 @@ import StyledSelectList, { ListItem } from './selectList.styled';
 import { Input } from 'Atoms';
 
 export interface SelectListType {
-  idx: number;
+  idx: string;
   title: string;
   subtitle: string | number;
 }
@@ -29,7 +29,7 @@ export interface SelectListPropsType extends Partial<HTMLInputElement> {
   selectList: any;
   boxHeight: number | string;
   handleClick: (
-    _idx: number,
+    _idx: string,
     _title: string,
     _subtitle: string | number,
     _dataObj: any,

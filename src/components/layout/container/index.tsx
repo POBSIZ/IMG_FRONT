@@ -14,6 +14,8 @@ const Container = styled.article.attrs((props) => ({}))`
     const $header_desktop_line_height = Theme.size.$header_desktop_line_height;
     const $header_mobile_line_height = Theme.size.$header_mobile_line_height;
     return css`
+      max-width: 1080px;
+      margin: auto;
       padding: ${$header_desktop_line_height} 5%;
 
       @media screen and (max-width: ${$tablet_max_width}) {

@@ -23,7 +23,7 @@ import { Title, Move, Button, Select, Input, File, Back } from 'Atoms';
 import { Wysiwyg } from 'Molecules';
 
 const BoardEditComponent: React.FC<BoardEditPropsType> = (props) => {
-  const [selBoard, setSelBoard] = useState<number>(NaN);
+  const [selBoard, setSelBoard] = useState<string>('NaN');
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
 
@@ -31,9 +31,9 @@ const BoardEditComponent: React.FC<BoardEditPropsType> = (props) => {
     () =>
       props.boardTab.map((item) => (
         <option
-          value={Number(item.board_id)}
+          value={String(item.board_id)}
           key={nanoid()}
-          selected={Number(item.board_id) == Number(props.content.board_id)}
+          selected={item.board_id == props.content.board_id}
         >
           {item.title}
         </option>
@@ -43,7 +43,7 @@ const BoardEditComponent: React.FC<BoardEditPropsType> = (props) => {
 
   useEffect(() => {
     setTitle(props.content.title);
-    setSelBoard(Number(props.content.board_id));
+    setSelBoard(props.content.board_id);
   }, [props.content]);
 
   return (
@@ -60,7 +60,7 @@ const BoardEditComponent: React.FC<BoardEditPropsType> = (props) => {
           <h3>게시판 선택</h3>
           <Select
             onChange={(e) => {
-              setSelBoard((state) => Number(e.target.value));
+              setSelBoard((state) => e.target.value);
             }}
           >
             <option selected style={{ display: 'none' }} hidden>

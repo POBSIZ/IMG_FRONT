@@ -10,11 +10,11 @@ import StyledUserList, { UserListItem } from './userList.styled';
 import { Input, Check, Button } from 'Atoms';
 
 export interface UserListType {
-  user_id: number | bigint;
+  user_id: string;
   name: string;
   grade: string;
   school: string;
-  class_id: number | bigint;
+  class_id: string;
 }
 
 export interface UserListPropsType {

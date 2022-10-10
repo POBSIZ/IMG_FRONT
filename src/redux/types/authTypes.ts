@@ -18,8 +18,8 @@ export interface ApiPostLoginResType {
 }
 
 export interface AuthProfileType {
-  user_id: number; // 회원 ID
-  chain_id: number; // 연결 ID
+  user_id: string; // 회원 ID
+  chain_id: string; // 연결 ID
   name: string; // 이름
   nickname: string; // 닉네임
   phone: string; // 전화번호
@@ -27,11 +27,11 @@ export interface AuthProfileType {
   created_at: Date | null; // 생성일
   school: string; // 학교
   grade: string; // 학년
-  class_id: number; // 반 ID
+  class_id: string; // 반 ID
   address: string; // 주소
   zip: string; // 우편번호
   address_detail: string; // 상세 주소
-  academy_id: number; // 학원 ID
+  academy_id: string; // 학원 ID
   academy_info: any; // 학원 정보
 }
 

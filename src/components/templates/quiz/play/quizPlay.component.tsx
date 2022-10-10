@@ -36,8 +36,6 @@ import { BlockChangePage } from 'Hoc';
 import { useDebounce } from 'Hooks';
 
 const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
-  const debounce = useDebounce();
-
   const [modalState, setModalState] = useState<boolean>(true);
 
   const [timer, setTimer] = useState<number>(props.limitTime); // 타이머 시간
@@ -48,12 +46,10 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
   // AnswerList State 변경
   const handleAnswerList = useCallback(
     (_currNum: number, _answer: [number, string] | []) => {
-      // if (props.quizList[_currNum].answer === _answer[0]) {
-      // }
       setAnswerList((state) => {
         state[_currNum] = {
           id: _currNum,
-          prob_id: props.quizList[_currNum].prob_id,
+          prob_id: String(props.quizList[_currNum]?.prob_id),
           answer: _answer,
           correctWordId: props.quizList[_currNum].answer,
           correctWord: props.quizList[_currNum].word,
@@ -74,7 +70,7 @@ const QuizPlayComponent: React.FC<QuizPlayComponentPropsType> = (props) => {
         let _answerList: AnswerListItem[] = Object.assign([], answerList);
         _answerList[_currNum] = {
           id: _currNum,
-          prob_id: props.quizList[_currNum].prob_id,
+          prob_id: String(props.quizList[_currNum]?.prob_id),
           answer: _answer,
           correctWordId: props.quizList[_currNum]?.answer,
           correctWord: props.quizList[_currNum].word,

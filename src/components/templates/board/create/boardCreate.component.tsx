@@ -23,11 +23,19 @@ import { Title, Move, Button, Select, Input, File, Back } from 'Atoms';
 import { Wysiwyg } from 'Molecules';
 
 const BoardCreateComponent: React.FC<BoardCreatePropsType> = (props) => {
-  const [selBoard, setSelBoard] = useState<number>(NaN);
+  const [selBoard, setSelBoard] = useState<string>('NaN');
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
 
-  const boardTab = useMemo(() => props.boardTab, [props.boardTab]);
+  const boardTab = useMemo(
+    () =>
+      props.boardTab.map((item) => (
+        <option value={String(item.board_id)} key={nanoid()}>
+          {item.title}
+        </option>
+      )),
+    [props.boardTab],
+  );
 
   return (
     <Layout.Container>
@@ -43,17 +51,13 @@ const BoardCreateComponent: React.FC<BoardCreatePropsType> = (props) => {
           <h3>게시판 선택</h3>
           <Select
             onChange={(e) => {
-              setSelBoard((state) => Number(e.target.value));
+              setSelBoard((state) => e.target.value);
             }}
           >
             <option selected style={{ display: 'none' }} hidden>
               게시판을 선택해주세요
             </option>
-            {boardTab.map((item) => (
-              <option value={Number(item.board_id)} key={nanoid()}>
-                {item.title}
-              </option>
-            ))}
+            {boardTab}
           </Select>
         </div>
 
